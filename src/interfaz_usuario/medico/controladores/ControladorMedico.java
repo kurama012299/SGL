@@ -5,10 +5,7 @@
 package interfaz_usuario.medico.controladores;
 
 
-import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
@@ -25,7 +22,10 @@ public class ControladorMedico {
     private Button ExamenesMedicos;
     
     @FXML
-    private Pane PanelDatos;
+    private Pane PanelInicio;
+    
+    @FXML
+    private Pane PanelExamenes;
     
     @FXML
     public void initialize() {
@@ -34,7 +34,14 @@ public class ControladorMedico {
     
     @FXML
     public void TranscisionExamenesMedico() {
-        
+        PanelInicio.setVisible(false);
+        PanelExamenes.setVisible(true);
+    }
+    
+    @FXML
+    public void TranscisionInicio() {
+        PanelInicio.setVisible(true);
+        PanelExamenes.setVisible(false);
     }
 
 }
