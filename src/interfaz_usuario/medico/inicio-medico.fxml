@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.medico.controladores.ControladorMedico">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="151.0" style="-fx-background-color: white;">
+         <children>
+            <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
+               <children>
+                  <JFXButton fx:id="Inicio" layoutX="-34.0" layoutY="138.0" prefHeight="35.0" prefWidth="199.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-inicio.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="ExamanesMedicos" layoutY="181.0" onAction="#TranscisionExamenesMedico" prefHeight="35.0" prefWidth="165.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes médicos">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-examen%20-medico.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                  <Label layoutX="29.0" layoutY="7.0" prefHeight="27.0" prefWidth="121.0" text="        S.G.L" textFill="#8000ff">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="6.0" layoutY="39.0" prefHeight="39.0" prefWidth="46.0" style="-fx-border-color: black; -fx-border-radius: 20;">
+                     <children>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="6.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-usuario.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <JFXButton layoutX="60.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: white;" text="Jhon Carter">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="60.0" layoutY="56.0" prefHeight="21.0" prefWidth="105.0" text=" Médico" textFill="#919191">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="20.0" fitWidth="23.0" layoutX="4.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos-compartidos/imagenes/ico-empresa.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="60.0" layoutY="67.0" prefHeight="21.0" prefWidth="105.0" textFill="#919191">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets right="2.0" />
+               </opaqueInsets>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <StackPane prefHeight="600.0" prefWidth="843.0">
+         <children>
+            <Pane fx:id="PanelDatos" prefHeight="558.0" prefWidth="843.0" visible="false">
+               <children>
+                  <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="835.0" style="-fx-background-color: ghostwhite;">
+                     <children>
+                        <JFXButton layoutX="483.0" layoutY="4.0" prefHeight="25.0" prefWidth="3.0" text=" " />
+                        <JFXButton layoutX="442.0" layoutY="7.0" prefHeight="25.0" prefWidth="18.0" text=" " />
+                        <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="483.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-notificacion.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="517.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-configuracion.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="693.0" layoutY="8.0" prefHeight="17.0" prefWidth="133.0" text="Jho*****ter@gmail.com" />
+                        <Label layoutX="550.0" layoutY="12.0" prefHeight="17.0" prefWidth="105.0" text="1/4/2025  5:44 AM" />
+                        <Label layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="267.0" text="¡Transformando datos, en seguridad vial!" textFill="#919191">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Line endX="-100.0" endY="20.333335876464844" layoutX="768.0" layoutY="8.0" startX="-100.0" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="26.0" layoutY="54.0" prefHeight="33.0" prefWidth="253.0">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-10.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" />
+                  <Pane layoutX="44.0" layoutY="106.0" prefHeight="111.0" prefWidth="169.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
+                     <children>
+                        <Label layoutX="6.0" layoutY="72.0" prefHeight="25.0" prefWidth="157.0" text="Inicios de sesión este mes">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="11.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="   7">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="111.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-correcto.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="330.0" layoutY="106.0" prefHeight="111.0" prefWidth="169.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
+                     <children>
+                        <Label layoutX="12.0" layoutY="75.0" prefHeight="25.0" prefWidth="157.0" text="     Total de pacientes">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="12.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   120">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="112.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-usuario.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="609.0" layoutY="106.0" prefHeight="111.0" prefWidth="169.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
+                     <children>
+                        <Label layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   25">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="6.0" layoutY="72.0" prefHeight="25.0" prefWidth="157.0" text="    Exámenes reprobados">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="108.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-incorrecto-cancelar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="32.0" layoutY="310.0" prefHeight="149.0" prefWidth="261.0">
+                     <children>
+                        <Label layoutX="15.0" layoutY="10.0" prefHeight="25.0" prefWidth="72.0" text="Aprobado">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="43.0" prefHeight="25.0" prefWidth="90.0" text="Reprobado">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="69.0" prefHeight="25.0" prefWidth="105.0" text="Aprobado con">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="96.0" prefHeight="25.0" prefWidth="146.0" text="Reestricciones">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar layoutX="128.0" layoutY="14.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" />
+                        <ProgressBar layoutX="128.0" layoutY="47.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" />
+                        <ProgressBar layoutX="128.0" layoutY="73.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="39.0" layoutY="259.0" prefHeight="25.0" prefWidth="227.0" text="     Resultados mis exámenes">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="439.0" layoutY="249.0" prefHeight="194.0" prefWidth="312.0">
+                     <children>
+                        <Label layoutX="22.0" layoutY="52.0" prefHeight="25.0" prefWidth="61.0" text="    18-40">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="114.0" layoutY="52.0" prefHeight="25.0" prefWidth="61.0" text="   40-60">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="200.0" layoutY="52.0" prefHeight="25.0" prefWidth="72.0" text="    60-70">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="5.0" layoutY="2.0" prefHeight="25.0" prefWidth="301.0" text="  Tipo Pacientes examinados por edad">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="35.0" layoutY="19.0" prefHeight="17.0" prefWidth="35.0" textFill="#2d9f11" />
+                        <ProgressIndicator layoutX="41.0" layoutY="86.0" progress="0.0" />
+                        <ProgressIndicator layoutX="133.0" layoutY="86.0" progress="0.0" />
+                        <ProgressIndicator layoutX="225.0" layoutY="86.0" progress="0.0" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="152.0" layoutY="473.0" prefHeight="53.0" prefWidth="463.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="245.0" text="Exámenes Médicos Realizados">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="249.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos-compartidos/imagenes/ico-examen%20-medico.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="68">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="831.0" visible="false">
+               <children>
+                  <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Médicos">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-10.0" layoutY="42.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="19.0" />
+                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="7 exámenes realizados desde último inicio de sesión" textFill="#919191">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos-compartidos/imagenes/ico-buscar.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton focusTraversable="false" layoutX="406.0" layoutY="94.0" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton focusTraversable="false" layoutX="690.0" layoutY="94.0" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton focusTraversable="false" layoutX="547.0" layoutY="94.0" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <TextField layoutX="47.0" layoutY="95.0" prefHeight="25.0" prefWidth="336.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="441.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos-compartidos/imagenes/ico-filtros.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="462.0" layoutY="48.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXRadioButton layoutX="635.0" layoutY="50.0" prefHeight="17.0" prefWidth="180.0" text="Aprobado condicional">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                  </JFXRadioButton>
+                  <JFXRadioButton layoutX="539.0" layoutY="69.0" prefHeight="17.0" prefWidth="84.0" text="Aprobado">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                  </JFXRadioButton>
+                  <JFXRadioButton layoutX="539.0" layoutY="39.0" prefHeight="17.0" prefWidth="96.0" text="Reprobado">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                  </JFXRadioButton>
+                  <TableView layoutX="27.0" layoutY="138.0" prefHeight="453.0" prefWidth="785.0">
+                    <columns>
+                      <TableColumn prefWidth="255.0" text="Examinado" />
+                        <TableColumn prefWidth="92.0" text="Fecha" />
+                        <TableColumn prefWidth="142.0" text="Resultado" />
+                        <TableColumn prefWidth="194.0" text="Clinica" />
+                        <TableColumn prefWidth="101.0" text="Detalles" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</HBox>
