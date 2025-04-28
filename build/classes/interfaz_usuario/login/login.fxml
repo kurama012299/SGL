@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="257.0" fitWidth="314.0" layoutX="77.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../recursos-compartidos/imagenes/ico-empresa-blanco.png" />
+                  <Image url="@../recursos_compartidos/imagenes/ico-empresa-blanco.png" />
                </image>
             </ImageView>
             <Label layoutX="48.0" layoutY="358.0" prefHeight="39.0" prefWidth="342.0" text="¡Transformando datos en seguridad vial!" textFill="WHITE">
@@ -54,7 +54,7 @@
             </Label>
             <ImageView fitHeight="64.0" fitWidth="77.0" layoutX="361.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../recursos-compartidos/imagenes/ico-empresa.png" />
+                  <Image url="@../recursos_compartidos/imagenes/ico-empresa.png" />
                </image>
             </ImageView>
             <Label layoutX="192.0" layoutY="412.0" prefHeight="17.0" prefWidth="64.0" text="Versión 1.0" textFill="#8000ff">

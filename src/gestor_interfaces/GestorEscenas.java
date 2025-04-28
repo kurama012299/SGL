@@ -6,6 +6,7 @@ package gestor_interfaces;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -53,4 +54,14 @@ public class GestorEscenas  {
      {
          
      } 
+     
+     public static void MostrarOcultarPaneles(Pane Mostrar,Pane... Ocultar)
+     {
+         Mostrar.setVisible(true);
+         for(Pane pan: Ocultar)
+         {
+             if(pan.isVisible())
+                pan.setVisible(false);
+         }
+     }
 }

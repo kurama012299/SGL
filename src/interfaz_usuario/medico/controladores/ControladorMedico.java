@@ -8,6 +8,7 @@ package interfaz_usuario.medico.controladores;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import gestor_interfaces.GestorEscenas;
 
 /**
  *
@@ -34,14 +35,14 @@ public class ControladorMedico {
     
     @FXML
     public void TranscisionExamenesMedico() {
-        PanelInicio.setVisible(false);
-        PanelExamenes.setVisible(true);
+        Pane[] PanelesOcultar={PanelInicio};
+        GestorEscenas.MostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
     }
     
     @FXML
     public void TranscisionInicio() {
-        PanelInicio.setVisible(true);
-        PanelExamenes.setVisible(false);
+       Pane[] PanelesOcultar={PanelExamenes};
+       GestorEscenas.MostrarOcultarPaneles(PanelInicio,PanelesOcultar);
     }
 
 }
