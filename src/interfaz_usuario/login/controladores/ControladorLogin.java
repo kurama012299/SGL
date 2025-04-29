@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import logica.autentificacion.Autentificador;
 
@@ -81,5 +82,16 @@ public class ControladorLogin {
         ((Stage) Entrar.getScene().getWindow()).close();
         GestorEscenas.CargarMenu(Ruta);
     }
+    
+    //kris
+    @FXML
+    private void EntrarTecla()
+    {
+        Usuario.setOnKeyPressed((t) -> {
+            if(t.getCode()== KeyCode.ENTER){
+                Entrar.fire();
+            }
+        });
+    }        
 
 }

@@ -96,7 +96,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="827.0">
          <children>
-            <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0" visible="false">
+            <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="825.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -198,8 +198,18 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="102.0" layoutY="37.0" prefHeight="18.0" prefWidth="139.0" progress="0.0" />
-                        <ProgressBar layoutX="104.0" layoutY="83.0" prefHeight="18.0" prefWidth="139.0" progress="0.0" />
+                        <ProgressBar layoutX="104.0" layoutY="34.0" prefHeight="19.0" prefWidth="139.0" progress="0.45" stylesheets="@controladores/estilos/Estilos.css" />
+                        <ProgressBar layoutX="104.0" layoutY="83.0" prefHeight="19.0" prefWidth="139.0" progress="0.56" stylesheets="@controladores/estilos/Estilos.css" />
+                        <Label layoutX="166.0" layoutY="34.0" text="44%" textFill="#0d0d0d">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="163.0" layoutY="84.0" prefHeight="17.0" prefWidth="31.0" text="56%" textFill="#0d0d0d">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Label layoutX="32.0" layoutY="235.0" prefHeight="25.0" prefWidth="279.0" text="     Resultados exámenes prácticos">
