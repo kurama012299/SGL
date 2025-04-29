@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.stage.Stage;
 
 /**
@@ -54,7 +52,6 @@ public class ControladorMedico {
     @FXML
     public void RegistrarExamenMedico()
     {
-        System.out.println("Pulso");
         String Direccion = "/interfaz_usuario/medico/menu_auxiliares/registrar/registrar-examen-medico.fxml";
         Stage Padre = (Stage) Registrar.getScene().getWindow();
         

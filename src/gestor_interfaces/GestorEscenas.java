@@ -55,7 +55,7 @@ public class GestorEscenas  {
      
      public static void CargarAlertaError(Window Padre, String Direccion,String Titulo,String Mensaje) throws Exception
      {
-         CargarPanelAuxiliar(Padre, Direccion, false, Titulo);
+        CargarPanelAuxiliar(Padre, Direccion, false, Titulo);
      } 
      
      
