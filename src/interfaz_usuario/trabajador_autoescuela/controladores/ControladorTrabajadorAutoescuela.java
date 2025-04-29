@@ -7,6 +7,7 @@ package interfaz_usuario.trabajador_autoescuela.controladores;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import gestor_interfaces.GestorEscenas;
 
 /**
  *
@@ -32,31 +33,28 @@ public class ControladorTrabajadorAutoescuela {
     @FXML
     private Pane PanelExamenesPracticos;
     
+    
     @FXML
     public void initialize() {
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
         PanelInicio.setVisible(true);
     }
-    
-    
+                 
     @FXML
     public void TranscisionExamenesTeoricos() {
-        PanelInicio.setVisible(false);
-        PanelExamenesPracticos.setVisible(false);
-        PanelExamenesTeoricos.setVisible(true);
+        Pane[] PanelesOcultar={PanelExamenesPracticos,PanelInicio};
+        GestorEscenas.MostrarOcultarPaneles(PanelExamenesTeoricos,PanelesOcultar);
     }
     
     @FXML
     public void TranscisionExamenesPracticos() {
-        PanelInicio.setVisible(false);
-        PanelExamenesPracticos.setVisible(true);
-        PanelExamenesTeoricos.setVisible(false);
+        Pane[] PanelesOcultar={PanelExamenesTeoricos,PanelInicio};
+        GestorEscenas.MostrarOcultarPaneles(PanelExamenesPracticos,PanelesOcultar);
     }
     
     @FXML
     public void TranscisionInicio() {
-        PanelInicio.setVisible(true);
-        PanelExamenesTeoricos.setVisible(false);
-        PanelExamenesPracticos.setVisible(false);
+        Pane[] PanelesOcultar={PanelExamenesPracticos,PanelExamenesTeoricos};
+        GestorEscenas.MostrarOcultarPaneles(PanelInicio,PanelesOcultar);
     }
 }

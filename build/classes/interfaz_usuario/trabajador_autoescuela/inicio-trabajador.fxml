@@ -31,7 +31,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-inicio.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-inicio.png" />
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
@@ -44,7 +44,7 @@
                      <children>
                         <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="6.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-usuario.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-usuario.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -61,7 +61,7 @@
                   </Label>
                   <ImageView fitHeight="20.0" fitWidth="23.0" layoutX="4.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../recursos-compartidos/imagenes/ico-empresa.png" />
+                        <Image url="@../recursos_compartidos/imagenes/ico-empresa.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="60.0" layoutY="67.0" prefHeight="21.0" prefWidth="105.0" text="  autoescuela" textFill="#919191">
@@ -73,7 +73,7 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-examen_teorico.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-examen_teorico.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -82,7 +82,7 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-chofer.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-chofer.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -96,7 +96,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="827.0">
          <children>
-            <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0" visible="false">
+            <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="825.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -104,12 +104,12 @@
                         <JFXButton layoutX="442.0" layoutY="7.0" prefHeight="25.0" prefWidth="18.0" text=" " />
                         <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="514.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-notificacion.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-notificacion.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="541.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-configuracion.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-configuracion.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="692.0" layoutY="10.0" prefHeight="17.0" prefWidth="133.0" text="Jho*****ter@gmail.com" />
@@ -143,7 +143,7 @@
                         </Label>
                         <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="111.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-correcto.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-correcto.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -162,7 +162,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="112.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-usuario.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-usuario.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -181,7 +181,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="108.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-examen.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-prueba.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -198,8 +198,18 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="102.0" layoutY="37.0" prefHeight="18.0" prefWidth="139.0" progress="0.0" />
-                        <ProgressBar layoutX="104.0" layoutY="83.0" prefHeight="18.0" prefWidth="139.0" progress="0.0" />
+                        <ProgressBar layoutX="104.0" layoutY="34.0" prefHeight="19.0" prefWidth="139.0" progress="0.45" stylesheets="@controladores/estilos/Estilos.css" />
+                        <ProgressBar layoutX="104.0" layoutY="83.0" prefHeight="19.0" prefWidth="139.0" progress="0.56" stylesheets="@controladores/estilos/Estilos.css" />
+                        <Label layoutX="166.0" layoutY="34.0" text="44%" textFill="#0d0d0d">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="163.0" layoutY="84.0" prefHeight="17.0" prefWidth="31.0" text="56%" textFill="#0d0d0d">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Label layoutX="32.0" layoutY="235.0" prefHeight="25.0" prefWidth="279.0" text="     Resultados exámenes prácticos">
@@ -244,7 +254,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="249.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-examen_teorico.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-examen_teorico.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="23">
@@ -263,7 +273,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="249.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-chofer.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-chofer.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="12">
@@ -291,7 +301,7 @@
                   </Label>
                   <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../recursos-compartidos/imagenes/ico-buscar.png" />
+                        <Image url="@../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
                   <JFXButton focusTraversable="false" layoutX="425.0" layoutY="94.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
@@ -313,7 +323,7 @@
                   <Line endX="204.0" endY="7.62939453125E-6" layoutX="202.0" layoutY="121.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="500.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../recursos-compartidos/imagenes/ico-filtros.png" />
+                        <Image url="@../recursos_compartidos/imagenes/ico-filtros.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="527.0" layoutY="29.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">
@@ -359,7 +369,7 @@
                   </Label>
                   <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../recursos-compartidos/imagenes/ico-buscar.png" />
+                        <Image url="@../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
                   <JFXButton focusTraversable="false" layoutX="425.0" layoutY="94.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
@@ -381,7 +391,7 @@
                   <Line endX="204.0" endY="7.62939453125E-6" layoutX="202.0" layoutY="121.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="500.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../recursos-compartidos/imagenes/ico-filtros.png" />
+                        <Image url="@../recursos_compartidos/imagenes/ico-filtros.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="527.0" layoutY="29.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">

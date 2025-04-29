@@ -31,7 +31,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-inicio.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-inicio.png" />
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
@@ -39,7 +39,7 @@
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-licencia.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-licencia.png" />
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
@@ -47,7 +47,7 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-conductor.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-conductor.png" />
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
@@ -55,7 +55,7 @@
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-examen.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-examen.png" />
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
@@ -63,7 +63,7 @@
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-infraccion.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-infraccion.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -72,7 +72,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-reporte.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-reporte.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -86,7 +86,7 @@
                      <children>
                         <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="6.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-usuario.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-usuario.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -103,7 +103,7 @@
                   </Label>
                   <ImageView fitHeight="20.0" fitWidth="23.0" layoutX="4.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../recursos-compartidos/imagenes/ico-empresa.png" />
+                        <Image url="@../recursos_compartidos/imagenes/ico-empresa.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="79.0" layoutY="70.0" prefHeight="20.0" prefWidth="90.0" text="Centro" textFill="#919191">
@@ -203,7 +203,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane prefHeight="558.0" prefWidth="843.0" visible="false">
+            <Pane prefHeight="558.0" prefWidth="843.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -211,12 +211,12 @@
                         <JFXButton layoutX="442.0" layoutY="7.0" prefHeight="25.0" prefWidth="18.0" text=" " />
                         <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="492.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-notificacion.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-notificacion.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="526.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-configuracion.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-configuracion.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="702.0" layoutY="8.0" prefHeight="17.0" prefWidth="133.0" text="Jho*****ter@gmail.com" />
@@ -250,7 +250,7 @@
                         </Label>
                         <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="111.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-correcto.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-correcto.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -269,7 +269,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="112.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-chofer.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-chofer.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -288,7 +288,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="108.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-incorrecto-cancelar.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-incorrecto-cancelar.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -320,11 +320,36 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="47.0" layoutY="14.0" prefWidth="200.0" progress="0.0" />
-                        <ProgressBar layoutX="47.0" layoutY="47.0" prefWidth="200.0" progress="0.0" />
-                        <ProgressBar layoutX="47.0" layoutY="88.0" prefWidth="200.0" progress="0.0" />
-                        <ProgressBar layoutX="47.0" layoutY="129.0" prefWidth="200.0" progress="0.0" />
-                        <ProgressBar layoutX="47.0" layoutY="168.0" prefWidth="200.0" progress="0.0" />
+                        <ProgressBar layoutX="47.0" layoutY="14.0" prefWidth="200.0" progress="0.26" />
+                        <ProgressBar layoutX="47.0" layoutY="47.0" prefWidth="200.0" progress="0.23" />
+                        <ProgressBar layoutX="47.0" layoutY="88.0" prefWidth="200.0" progress="0.13" />
+                        <ProgressBar layoutX="47.0" layoutY="129.0" prefWidth="200.0" progress="0.19" />
+                        <ProgressBar layoutX="47.0" layoutY="168.0" prefWidth="200.0" progress="0.2" />
+                        <Label layoutX="135.0" layoutY="14.0" text="26%">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="168.0" text="20%">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="88.0" text="13%">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="47.0" text="23%">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="130.0" text="19%">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Label layoutX="74.0" layoutY="245.0" prefHeight="25.0" prefWidth="157.0" text="     Tipos de licencia">
@@ -378,7 +403,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="108.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos-compartidos/imagenes/ico-infraccion.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-infraccion.png" />
                            </image>
                         </ImageView>
                      </children>
