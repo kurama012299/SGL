@@ -27,7 +27,7 @@
          <children>
             <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
                <children>
-                  <JFXButton fx:id="Inicio" layoutX="-34.0" layoutY="138.0" onAction="#TranscisionInicio" prefHeight="35.0" prefWidth="199.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
+                  <JFXButton fx:id="Inicio" layoutX="-34.0" layoutY="138.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="199.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,7 +35,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="ExamanesMedicos" layoutY="181.0" onAction="#TranscisionExamenesMedico" prefHeight="35.0" prefWidth="165.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes médicos">
+                  <JFXButton fx:id="ExamanesMedicos" layoutY="181.0" onAction="#TransicionExamenesMedico" prefHeight="35.0" prefWidth="165.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes médicos">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>

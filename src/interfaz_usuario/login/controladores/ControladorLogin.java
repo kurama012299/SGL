@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import logica.autentificacion.Autentificador;
@@ -36,7 +35,7 @@ public class ControladorLogin {
     }
     
     @FXML
-    private void IniciarSesion(ActionEvent event) {
+    private void IniciarSesion() {
         System.out.println("Intentando iniciar sesión...");
 
         String tipoUsuario;

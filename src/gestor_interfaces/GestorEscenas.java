@@ -42,20 +42,15 @@ public class GestorEscenas  {
         Ventana.show();
         
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new Exception("No se encuentra la interfaz");
         }
     }
 
      
-     public static void CargarPanelDatos(Pane PanelDatosOcultar, String DireccionNuevoPanel)
-     {
-         PanelDatosOcultar.setVisible(false);
-     }
-     
-     
      public static void CargarAlertaError(Window Padre, String Direccion,String Titulo,String Mensaje) throws Exception
      {
-        CargarPanelAuxiliar(Padre, Direccion, false, Titulo);
+        CargarPanelAuxiliar(Padre, Direccion, true, Titulo);
      } 
      
      
@@ -84,6 +79,7 @@ public class GestorEscenas  {
             }
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new Exception("Error al cargar la interfaz");
         }
     }

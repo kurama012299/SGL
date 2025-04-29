@@ -38,13 +38,13 @@ public class ControladorMedico {
     }
     
     @FXML
-    public void TranscisionExamenesMedico() {
+    public void TransicionExamenesMedico() {
         Pane[] PanelesOcultar={PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
     }
     
     @FXML
-    public void TranscisionInicio() {
+    public void TransicionInicio() {
        Pane[] PanelesOcultar={PanelExamenes};
        GestorEscenas.MostrarOcultarPaneles(PanelInicio,PanelesOcultar);
     }

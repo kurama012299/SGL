@@ -4,10 +4,98 @@
  */
 package interfaz_usuario.administrador.autoescuela.controladores;
 
+import gestor_interfaces.GestorEscenas;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
 /**
  *
  * @author Angel Hernandez
  */
 public class ControladorAdministradorAutoescuela {
     
+    @FXML
+    private Button Inicio;
+    
+    @FXML
+    private Button ExamenTeorico;
+    
+    @FXML
+    private Button ExamenPractico;
+    
+    @FXML
+    private Pane PanelInicio;
+    
+    @FXML
+    private Pane PanelExamenesTeoricos;
+    
+    @FXML
+    private Pane PanelExamenesPracticos;
+    
+    @FXML
+    private Button RegistrarExamenTeorico;
+    
+    @FXML
+    private Button RegistrarExamenPractico;
+    
+    
+    @FXML
+    public void initialize()
+    {
+        System.out.println("Controlador Administrador Autoescuela Iniciado");
+    }
+    
+    
+    @FXML
+    public void TransicionInicio()
+    {
+        Pane[] PanelesOcultar={PanelExamenesTeoricos,PanelExamenesPracticos};
+        GestorEscenas.MostrarOcultarPaneles(PanelInicio,PanelesOcultar);
+    }
+    
+    @FXML
+    public void TransicionExamenPractico()
+    {
+        Pane[] PanelesOcultar={PanelInicio,PanelExamenesTeoricos};
+        GestorEscenas.MostrarOcultarPaneles(PanelExamenesPracticos,PanelesOcultar);
+    }
+    
+    @FXML
+    public void TransicionExamenTeorico()
+    {
+        Pane[] PanelesOcultar={PanelInicio,PanelExamenesPracticos};
+        GestorEscenas.MostrarOcultarPaneles(PanelExamenesTeoricos,PanelesOcultar);
+    }
+    
+    
+    @FXML
+    public void TransicionRegistrarExamenPractico()
+    {
+        System.out.println("Pulso");
+        String Direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
+        Stage Padre = (Stage) RegistrarExamenPractico.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen practico");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+        }
+    }
+    
+    
+    @FXML
+    public void TransicionRegistrarExamenTeorico()
+    {
+        String Direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/registrar/registrar-examen-teorico.fxml";
+        Stage Padre = (Stage) RegistrarExamenTeorico.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen teorico");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
 }
