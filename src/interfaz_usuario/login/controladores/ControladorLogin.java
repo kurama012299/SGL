@@ -77,13 +77,14 @@ public class ControladorLogin {
         }
     }
     
+    
     private void CargarMenuInicio(String Ruta) throws Exception
     {
         ((Stage) Entrar.getScene().getWindow()).close();
         GestorEscenas.CargarMenu(Ruta);
     }
     
-    //kris
+    
     @FXML
     private void EntrarTecla()
     {

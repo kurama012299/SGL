@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ProgressIndicator?>
@@ -481,41 +482,21 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="435.0" layoutY="61.0" prefHeight="17.0" prefWidth="42.0" text="%key.unspecified">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <ImageView fitHeight="17.0" fitWidth="19.0" layoutX="460.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="17.0" fitWidth="19.0" layoutX="461.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos_compartidos/imagenes/ico-camion.png" />
                      </image>
                   </ImageView>
-                  <JFXRadioButton layoutX="434.0" layoutY="32.0" prefHeight="17.0" prefWidth="42.0" text="%key.unspecified">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <ImageView fitHeight="17.0" fitWidth="19.0" layoutX="461.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="17.0" fitWidth="19.0" layoutX="461.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos_compartidos/imagenes/ico-guagua.png" />
                      </image>
                   </ImageView>
-                  <JFXRadioButton layoutX="378.0" layoutY="60.0" prefHeight="17.0" prefWidth="42.0" text="%key.unspecified">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <ImageView fitHeight="17.0" fitWidth="19.0" layoutX="397.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="17.0" fitWidth="19.0" layoutX="404.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos_compartidos/imagenes/ico-moto.png" />
                      </image>
                   </ImageView>
-                  <JFXRadioButton layoutX="377.0" layoutY="33.0" prefHeight="17.0" prefWidth="42.0" text="%key.unspecified">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
                   <ImageView fitHeight="17.0" fitWidth="19.0" layoutX="403.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos_compartidos/imagenes/ico-carro.png" />
@@ -532,6 +513,10 @@
                         <TableColumn prefWidth="83.0" text="Detalles" />
                     </columns>
                   </TableView>
+                  <CheckBox layoutX="387.0" layoutY="33.0" mnemonicParsing="false" />
+                  <CheckBox layoutX="387.0" layoutY="60.0" mnemonicParsing="false" />
+                  <CheckBox layoutX="444.0" layoutY="35.0" mnemonicParsing="false" />
+                  <CheckBox layoutX="444.0" layoutY="61.0" mnemonicParsing="false" />
                </children>
             </Pane>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="839.0" visible="false">

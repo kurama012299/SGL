@@ -5,14 +5,16 @@
 package gestor_interfaces;
 
 
+
 import java.net.URL;
-import java.util.ArrayList;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 
 
@@ -23,20 +25,21 @@ import javafx.stage.Stage;
  */
 public class GestorEscenas  {
     
+    
     public static void CargarMenu(String Direccion) throws Exception {
         try {
 
          // Usar ruta relativa desde los recursos
-        URL url = GestorEscenas.class.getResource(Direccion);
+        URL Url = GestorEscenas.class.getResource(Direccion);
         
        
-        FXMLLoader cargador = new FXMLLoader(url);
-        Parent root = cargador.load();
+        FXMLLoader Cargador = new FXMLLoader(Url);
+        Parent Ruta = Cargador.load();
         
-        Stage escena = new Stage();
-        escena.setScene(new Scene(root));
-        escena.setTitle("SGL");
-        escena.show();
+        Stage Ventana = new Stage();
+        Ventana.setScene(new Scene(Ruta));
+        Ventana.setTitle("SGL");
+        Ventana.show();
         
         } catch (Exception e) {
             throw new Exception("No se encuentra la interfaz");
@@ -50,18 +53,48 @@ public class GestorEscenas  {
      }
      
      
-     public static void CargarAlertaError(Pane EscenaPrincipal,String Mensaje)
+     public static void CargarAlertaError(Window Padre, String Direccion,String Titulo,String Mensaje) throws Exception
      {
-         
+         CargarPanelAuxiliar(Padre, Direccion, false, Titulo);
      } 
+     
+     
+    public static void CargarPanelAuxiliar(Window Padre, String Direccion, boolean Modal, String Titulo) throws Exception {
+        try {
+
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+
+            if (Modal) {
+                Ventana.initModality(Modality.WINDOW_MODAL);
+            }
+
+            Ventana.setTitle(Titulo);
+            Ventana.setScene(Escena);
+
+            if (Modal) {
+                Ventana.showAndWait();
+            } else {
+                Ventana.show();
+            }
+
+        } catch (Exception e) {
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
      
      public static void MostrarOcultarPaneles(Pane Mostrar,Pane... Ocultar)
      {
          Mostrar.setVisible(true);
-         for(Pane pan: Ocultar)
+         for(Pane Panel: Ocultar)
          {
-             if(pan.isVisible())
-                pan.setVisible(false);
+             if(Panel.isVisible())
+                Panel.setVisible(false);
          }
      }
 }

@@ -20,15 +20,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            // Ruta relativa desde el classpath (src/main/resources)
+            
             URL urlFXML = getClass().getResource("/interfaz_usuario/login/login.fxml");
             
-            // Verificar que se encontró el archivo
-            if (urlFXML == null) {
-                throw new RuntimeException("No se encontró el archivo FXML en el classpath");
-            }
-            
-            // Cargar el FXML
             Parent root = FXMLLoader.load(urlFXML);
             
             // Configurar la escena

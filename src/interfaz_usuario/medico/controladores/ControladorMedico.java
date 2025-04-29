@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.stage.Stage;
 
 /**
  *
@@ -29,6 +32,9 @@ public class ControladorMedico {
     private Pane PanelExamenes;
     
     @FXML
+    private Button Registrar;
+    
+    @FXML
     public void initialize() {
         System.out.println("Controlador Medico Iniciado");
     }
@@ -43,6 +49,20 @@ public class ControladorMedico {
     public void TranscisionInicio() {
        Pane[] PanelesOcultar={PanelExamenes};
        GestorEscenas.MostrarOcultarPaneles(PanelInicio,PanelesOcultar);
+    }
+    
+    @FXML
+    public void RegistrarExamenMedico()
+    {
+        System.out.println("Pulso");
+        String Direccion = "/interfaz_usuario/medico/menu_auxiliares/registrar/registrar-examen-medico.fxml";
+        Stage Padre = (Stage) Registrar.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen medico");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+        }
     }
 
 }
