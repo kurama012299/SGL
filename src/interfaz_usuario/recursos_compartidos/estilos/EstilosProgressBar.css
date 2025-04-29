@@ -13,12 +13,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
  Estilo básico para ProgressBar 
 .progress-bar {
     -fx-accent: #2ECC71; /* Color verde moderno */
+   
 }
 
 /* Estilo más personalizado */
 .progress-bar > .track {
-    -fx-background-color: #ECF0F1; /* Color de fondo */
+    -fx-background-color: transparent; /* Color de fondo */
     -fx-background-radius: 5; /* Bordes redondeados */
+   
 }
 
 .progress-bar > .bar {
@@ -26,6 +28,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-radius: 5; /* Bordes redondeados */
     -fx-background-insets: 0;
     -fx-padding: 0.2em;
-    
 }
+
 

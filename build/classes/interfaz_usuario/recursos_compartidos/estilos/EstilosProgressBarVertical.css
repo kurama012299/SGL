@@ -1,0 +1,31 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 29 abr 2025, 11:02:30
+    Author     : Kris
+*/
+
+.progress-bar-vertical {
+    -fx-orientation: vertical;
+    -fx-min-width: 20px;
+    -fx-pref-width: 20px;
+    -fx-max-width: 20px;
+    -fx-min-height: 200px;
+}
+
+/* Pista (fondo) de la ProgressBar */
+.progress-bar-vertical .track {
+    -fx-background-color: #e0e0e0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+/* Barra de progreso */
+.progress-bar-vertical .bar {
+    -fx-background-color: linear-gradient(to top, #2a8cff, #0051a8);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}

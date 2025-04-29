@@ -26,12 +26,12 @@
       </Label>
       <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="429.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../recursos-compartidos/imagenes/ico-eliminar.png" />
+            <Image url="@../../../../recursos_compartidos/imagenes/ico-eliminar.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="25.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../recursos-compartidos/imagenes/ico-atras.png" />
+            <Image url="@../../../../recursos_compartidos/imagenes/ico-atras.png" />
          </image>
       </ImageView>
       <Label layoutX="16.0" layoutY="89.0" prefHeight="25.0" prefWidth="71.0" text="Teléfono:">
@@ -43,7 +43,7 @@
       <JFXButton cancelButton="true" layoutX="313.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="    Editar" />
       <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="324.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../recursos-compartidos/imagenes/ico-editar.png" />
+            <Image url="@../../../../recursos_compartidos/imagenes/ico-editar.png" />
          </image>
       </ImageView>
       <Label layoutX="16.0" layoutY="14.0" prefHeight="25.0" prefWidth="144.0" text="Nombre de la entidad :">

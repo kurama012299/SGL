@@ -27,9 +27,9 @@
          <children>
             <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
                <children>
-                  <JFXButton fx:id="Inicio" layoutX="-44.0" layoutY="132.0" onAction="#TranscisionInicio" prefHeight="35.0" prefWidth="219.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
+                  <JFXButton fx:id="Inicio" layoutX="-37.0" layoutY="145.0" onAction="#TranscisionInicio" prefHeight="37.0" prefWidth="212.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Inicio           ">
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenInicio" fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-inicio.png" />
                            </image>
@@ -69,7 +69,7 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="ExamenesTeoricos" layoutX="-1.0" layoutY="181.0" onAction="#TranscisionExamenesTeoricos" prefHeight="33.0" prefWidth="171.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes Teóricos">
+                  <JFXButton fx:id="ExamenesTeoricos" layoutX="-1.0" layoutY="180.0" onAction="#TranscisionExamenesTeoricos" prefHeight="37.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes Teóricos">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -78,7 +78,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="ExamenesPracticos" layoutX="-8.0" layoutY="226.0" onAction="#TranscisionExamenesPracticos" prefHeight="33.0" prefWidth="183.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes Prácticos">
+                  <JFXButton fx:id="ExamenesPracticos" layoutY="216.0" onAction="#TranscisionExamenesPracticos" prefHeight="37.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes Prácticos">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -96,6 +96,142 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="827.0">
          <children>
+            <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">
+               <children>
+                  <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Prácticos">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-10.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" />
+                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos_compartidos/imagenes/ico-buscar.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton focusTraversable="false" layoutX="425.0" layoutY="94.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="RegistrarPractico" focusTraversable="false" layoutX="549.0" layoutY="94.0" onAction="#RegistrarExamenPractico" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton focusTraversable="false" layoutX="682.0" layoutY="94.0" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <TextField layoutX="47.0" layoutY="95.0" prefHeight="25.0" prefWidth="268.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line endX="204.0" endY="7.62939453125E-6" layoutX="202.0" layoutY="121.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="500.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos_compartidos/imagenes/ico-filtros.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="527.0" layoutY="29.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXRadioButton layoutX="453.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Aprobado">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                  </JFXRadioButton>
+                  <JFXRadioButton layoutX="567.0" layoutY="59.0" prefHeight="17.0" prefWidth="104.0" text="Reprobado">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                  </JFXRadioButton>
+                  <TableView fx:id="TablaExamenesPracticos" layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0">
+                     <columns>
+                        <TableColumn fx:id="TableColumnFoto" prefWidth="75.0" text="Foto" />
+                        <TableColumn fx:id="TableColumnExaminado" prefWidth="156.0" text="Examinado" />
+                        <TableColumn fx:id="TableColumnFecha" prefWidth="61.0" text="Fecha" />
+                        <TableColumn fx:id="TableColumnExaminador" prefWidth="166.0" text="Examinador" />
+                        <TableColumn fx:id="TableColumnResultado" prefWidth="101.0" text="Resultado" />
+                        <TableColumn fx:id="TableColumnAutoescuela" prefWidth="134.0" text="Autoescuela" />
+                        <TableColumn fx:id="TableColumnDetalles" prefWidth="87.0" text="Detalles" />
+                     </columns>
+                  </TableView>
+               </children>
+            </Pane>
+            <Pane fx:id="PanelExamenesTeoricos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">
+               <children>
+                  <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Teóricos">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-10.0" layoutY="1.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="19.0" />
+                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos_compartidos/imagenes/ico-buscar.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton focusTraversable="false" layoutX="425.0" layoutY="94.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="RegistrarTeorico" focusTraversable="false" layoutX="549.0" layoutY="94.0" onAction="#RegistrarExamenTeorico" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton focusTraversable="false" layoutX="682.0" layoutY="94.0" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <TextField layoutX="47.0" layoutY="95.0" prefHeight="25.0" prefWidth="268.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line endX="204.0" endY="7.62939453125E-6" layoutX="202.0" layoutY="121.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="500.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos_compartidos/imagenes/ico-filtros.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="527.0" layoutY="29.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXRadioButton layoutX="453.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Aprobado">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                  </JFXRadioButton>
+                  <JFXRadioButton layoutX="567.0" layoutY="59.0" prefHeight="17.0" prefWidth="104.0" text="Reprobado">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                  </JFXRadioButton>
+                  <TableView layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="Foto" />
+                        <TableColumn prefWidth="156.0" text="Examinado" />
+                        <TableColumn prefWidth="61.0" text="Fecha" />
+                        <TableColumn prefWidth="166.0" text="Examinador" />
+                        <TableColumn prefWidth="101.0" text="Resultado" />
+                        <TableColumn prefWidth="134.0" text="Autoescuela" />
+                        <TableColumn prefWidth="87.0" text="Detalles" />
+                     </columns>
+                  </TableView>
+               </children>
+            </Pane>
             <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="825.0" style="-fx-background-color: ghostwhite;">
@@ -198,8 +334,8 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="104.0" layoutY="34.0" prefHeight="19.0" prefWidth="139.0" progress="0.45" stylesheets="@controladores/estilos/Estilos.css" />
-                        <ProgressBar layoutX="104.0" layoutY="83.0" prefHeight="19.0" prefWidth="139.0" progress="0.56" stylesheets="@controladores/estilos/Estilos.css" />
+                        <ProgressBar layoutX="104.0" layoutY="34.0" prefHeight="19.0" prefWidth="139.0" progress="0.45" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="104.0" layoutY="83.0" prefHeight="19.0" prefWidth="139.0" progress="0.56" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
                         <Label layoutX="166.0" layoutY="34.0" text="44%" textFill="#0d0d0d">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -284,142 +420,6 @@
                      </children>
                   </Pane>
                   <Label layoutX="67.0" layoutY="260.0" prefHeight="23.0" prefWidth="169.0" text="+10% mayor índice aprobados" textFill="#2d9f11" />
-               </children>
-            </Pane>
-            <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">
-               <children>
-                  <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Prácticos">
-                     <font>
-                        <Font name="Arial" size="25.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutX="-10.0" layoutY="42.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="19.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../recursos_compartidos/imagenes/ico-buscar.png" />
-                     </image>
-                  </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="425.0" layoutY="94.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="549.0" layoutY="94.0" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="682.0" layoutY="94.0" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <TextField layoutX="47.0" layoutY="95.0" prefHeight="25.0" prefWidth="268.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="204.0" endY="7.62939453125E-6" layoutX="202.0" layoutY="121.0" startX="-147.00003051757812" stroke="#8000ff" />
-                  <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="500.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../recursos_compartidos/imagenes/ico-filtros.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="527.0" layoutY="29.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <JFXRadioButton layoutX="453.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Aprobado">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <JFXRadioButton layoutX="567.0" layoutY="59.0" prefHeight="17.0" prefWidth="104.0" text="Reprobado">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <TableView layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0">
-                     <columns>
-                        <TableColumn prefWidth="75.0" text="Foto" />
-                        <TableColumn prefWidth="156.0" text="Examinado" />
-                        <TableColumn prefWidth="61.0" text="Fecha" />
-                        <TableColumn prefWidth="166.0" text="Examinador" />
-                        <TableColumn prefWidth="101.0" text="Resultado" />
-                        <TableColumn prefWidth="134.0" text="Autoescuela" />
-                        <TableColumn prefWidth="87.0" text="Detalles" />
-                     </columns>
-                  </TableView>
-               </children>
-            </Pane>
-            <Pane fx:id="PanelExamenesTeoricos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">
-               <children>
-                  <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Teóricos">
-                     <font>
-                        <Font name="Arial" size="25.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutX="-10.0" layoutY="42.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="19.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../recursos_compartidos/imagenes/ico-buscar.png" />
-                     </image>
-                  </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="425.0" layoutY="94.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="549.0" layoutY="94.0" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="682.0" layoutY="94.0" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <TextField layoutX="47.0" layoutY="95.0" prefHeight="25.0" prefWidth="268.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="204.0" endY="7.62939453125E-6" layoutX="202.0" layoutY="121.0" startX="-147.00003051757812" stroke="#8000ff" />
-                  <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="500.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../recursos_compartidos/imagenes/ico-filtros.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="527.0" layoutY="29.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <JFXRadioButton layoutX="453.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Aprobado">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <JFXRadioButton layoutX="567.0" layoutY="59.0" prefHeight="17.0" prefWidth="104.0" text="Reprobado">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <TableView layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0">
-                     <columns>
-                        <TableColumn prefWidth="75.0" text="Foto" />
-                        <TableColumn prefWidth="156.0" text="Examinado" />
-                        <TableColumn prefWidth="61.0" text="Fecha" />
-                        <TableColumn prefWidth="166.0" text="Examinador" />
-                        <TableColumn prefWidth="101.0" text="Resultado" />
-                        <TableColumn prefWidth="134.0" text="Autoescuela" />
-                        <TableColumn prefWidth="87.0" text="Detalles" />
-                     </columns>
-                  </TableView>
                </children>
             </Pane>
          </children>
