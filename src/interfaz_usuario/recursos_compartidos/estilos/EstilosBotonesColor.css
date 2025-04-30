@@ -1,0 +1,31 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 29 abr 2025, 12:41:15
+    Author     : Kris
+*/
+
+
+
+/* Efecto hover */
+.jfx-button:hover {
+    -fx-background-color: #ce9dff;  /* Morado más oscuro */
+    -fx-cursor: hand;
+}
+
+.jfx-button:pressed {
+    -fx-background-color: #8000ff;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);
+}
+
+.jfx-button.active {
+    -fx-background-color: #8000ff;  /* Morado oscuro */
+    -fx-border-color: rgba(255, 255, 255, 0.7);
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 1);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+

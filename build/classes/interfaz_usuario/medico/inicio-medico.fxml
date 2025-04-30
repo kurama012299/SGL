@@ -27,7 +27,7 @@
          <children>
             <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
                <children>
-                  <JFXButton fx:id="Inicio" layoutX="-34.0" layoutY="138.0" onAction="#TranscisionInicio" prefHeight="35.0" prefWidth="199.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
+                  <JFXButton fx:id="Inicio" layoutX="-34.0" layoutY="138.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="199.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,7 +35,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="ExamanesMedicos" layoutY="181.0" onAction="#TranscisionExamenesMedico" prefHeight="35.0" prefWidth="165.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes médicos">
+                  <JFXButton fx:id="ExamanesMedicos" layoutY="181.0" onAction="#TransicionExamenesMedico" prefHeight="35.0" prefWidth="165.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes médicos">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -197,9 +197,9 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="128.0" layoutY="14.0" prefHeight="18.0" prefWidth="121.0" progress="0.34" />
-                        <ProgressBar layoutX="128.0" layoutY="47.0" prefHeight="18.0" prefWidth="121.0" progress="0.45" />
-                        <ProgressBar layoutX="128.0" layoutY="85.0" prefHeight="18.0" prefWidth="121.0" progress="0.21" />
+                        <ProgressBar layoutX="128.0" layoutY="14.0" prefHeight="18.0" prefWidth="121.0" progress="0.34" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="128.0" layoutY="47.0" prefHeight="18.0" prefWidth="121.0" progress="0.45" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="128.0" layoutY="85.0" prefHeight="18.0" prefWidth="121.0" progress="0.21" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
                         <Label layoutX="178.0" layoutY="14.0" text="34%">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -245,9 +245,9 @@
                            </font>
                         </Label>
                         <Label layoutX="35.0" layoutY="19.0" prefHeight="17.0" prefWidth="35.0" textFill="#2d9f11" />
-                        <ProgressIndicator layoutX="41.0" layoutY="86.0" progress="0.0" />
-                        <ProgressIndicator layoutX="133.0" layoutY="86.0" progress="0.0" />
-                        <ProgressIndicator layoutX="225.0" layoutY="86.0" progress="0.0" />
+                        <ProgressIndicator layoutX="41.0" layoutY="86.0" progress="0.49" />
+                        <ProgressIndicator layoutX="133.0" layoutY="86.0" progress="0.38" />
+                        <ProgressIndicator layoutX="225.0" layoutY="86.0" progress="0.1" />
                      </children>
                   </Pane>
                   <Label layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">

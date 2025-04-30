@@ -20,31 +20,31 @@
                   <Image url="@../recursos_compartidos/imagenes/ico-empresa-blanco.png" />
                </image>
             </ImageView>
-            <Label layoutX="48.0" layoutY="358.0" prefHeight="39.0" prefWidth="342.0" text="¡Transformando datos en seguridad vial!" textFill="WHITE">
+            <Label layoutX="48.0" layoutY="358.0" prefHeight="39.0" prefWidth="342.0" stylesheets="@../recursos_compartidos/estilos/EstilosFuenteBold.css" text="¡Transformando datos en seguridad vial!" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="17.0" />
+                  <Font name="Arial" size="17.0" />
                </font>
             </Label>
          </children>
       </Pane>
       <Pane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="437.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="119.0" layoutY="146.0" prefHeight="39.0" prefWidth="257.0" text="¡Bienvenido de nuevo!" textFill="#8000ff">
+            <Label layoutX="119.0" layoutY="146.0" prefHeight="39.0" prefWidth="257.0" stylesheets="@../recursos_compartidos/estilos/EstilosFuenteBold.css" text="¡Bienvenido de nuevo!" textFill="#8000ff">
                <font>
-                  <Font name="Arial Bold" size="19.0" />
+                  <Font name="Arial" size="23.0" />
                </font>
             </Label>
-            <JFXButton fx:id="Entrar" layoutX="90.0" layoutY="361.0" onAction="#IniciarSesion" prefHeight="36.0" prefWidth="268.0" style="-fx-background-color: #8000ff; -fx-font-style: bold;" text="Entrar" textFill="WHITE">
+            <JFXButton fx:id="Entrar" layoutX="90.0" layoutY="361.0" onAction="#IniciarSesion" prefHeight="36.0" prefWidth="268.0" style="-fx-background-color: #8000ff;" stylesheets="@../recursos_compartidos/estilos/EstilosFuenteBold.css" text="Entrar" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="19.0" />
+                  <Font name="Arial" size="19.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <Label layoutX="94.0" layoutY="42.0" prefHeight="39.0" prefWidth="260.0" text="         S.G.L" textFill="#8000ff">
+            <Label layoutX="94.0" layoutY="42.0" prefHeight="39.0" prefWidth="260.0" stylesheets="@../recursos_compartidos/estilos/EstilosFuenteBold.css" text="         S.G.L" textFill="#8000ff">
                <font>
-                  <Font name="Arial Bold" size="34.0" />
+                  <Font name="Arial" size="34.0" />
                </font>
             </Label>
             <Label fx:id="OlvidasteClave" layoutX="153.0" layoutY="310.0" prefHeight="17.0" prefWidth="142.0" text="¿Olvídaste tu contraseña?" textFill="#8000ff" underline="true">
@@ -62,9 +62,9 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Label>
-            <Label layoutX="94.0" layoutY="73.0" prefHeight="39.0" prefWidth="260.0" text="¡Transformando datos en seguridad vial!" textFill="#8033cc">
+            <Label layoutX="94.0" layoutY="73.0" prefHeight="39.0" prefWidth="260.0" stylesheets="@../recursos_compartidos/estilos/EstilosFuenteBold.css" text="¡Transformando datos en seguridad vial!" textFill="#8033cc">
                <font>
-                  <Font name="Arial Bold" size="13.0" />
+                  <Font name="Arial" size="13.0" />
                </font>
             </Label>
             <TextField fx:id="Usuario" alignment="CENTER" layoutX="89.0" layoutY="206.0" onKeyPressed="#EntrarTecla" prefHeight="25.0" prefWidth="268.0" promptText="Usuario" style="-fx-background-color: transparent;" />

@@ -197,9 +197,9 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="128.0" layoutY="14.0" prefHeight="18.0" prefWidth="121.0" progress="0.34" />
-                        <ProgressBar layoutX="128.0" layoutY="47.0" prefHeight="18.0" prefWidth="121.0" progress="0.45" />
-                        <ProgressBar layoutX="128.0" layoutY="85.0" prefHeight="18.0" prefWidth="121.0" progress="0.21" />
+                        <ProgressBar layoutX="128.0" layoutY="14.0" prefHeight="18.0" prefWidth="121.0" progress="0.34" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="128.0" layoutY="47.0" prefHeight="18.0" prefWidth="121.0" progress="0.45" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="128.0" layoutY="85.0" prefHeight="18.0" prefWidth="121.0" progress="0.21" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
                         <Label layoutX="178.0" layoutY="14.0" text="34%">
                            <font>
                               <Font name="System Bold" size="12.0" />

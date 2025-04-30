@@ -258,11 +258,11 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="38.0" layoutY="14.0" prefHeight="17.0" prefWidth="200.0" progress="0.19" />
-                        <ProgressBar layoutX="38.0" layoutY="47.0" prefHeight="17.0" prefWidth="200.0" progress="0.26" style="-fx-background-radius: 5;" />
-                        <ProgressBar layoutX="38.0" layoutY="88.0" prefHeight="17.0" prefWidth="200.0" progress="0.2" style="-fx-background-radius: 5;" />
-                        <ProgressBar layoutX="38.0" layoutY="129.0" prefHeight="17.0" prefWidth="200.0" progress="0.13" style="-fx-background-radius: 5;" />
-                        <ProgressBar layoutX="38.0" layoutY="168.0" prefHeight="17.0" prefWidth="200.0" progress="0.23" style="-fx-background-radius: 5;" />
+                        <ProgressBar layoutX="38.0" layoutY="14.0" prefHeight="17.0" prefWidth="200.0" progress="0.19" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="38.0" layoutY="47.0" prefHeight="17.0" prefWidth="200.0" progress="0.26" style="-fx-background-radius: 5;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="38.0" layoutY="88.0" prefHeight="17.0" prefWidth="200.0" progress="0.2" style="-fx-background-radius: 5;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="38.0" layoutY="129.0" prefHeight="17.0" prefWidth="200.0" progress="0.13" style="-fx-background-radius: 5;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="38.0" layoutY="168.0" prefHeight="17.0" prefWidth="200.0" progress="0.23" style="-fx-background-radius: 5;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
                         <Label layoutX="129.0" layoutY="14.0" text="19%">
                            <font>
                               <Font name="System Bold" size="12.0" />

@@ -321,11 +321,11 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="47.0" layoutY="14.0" prefWidth="200.0" progress="0.26" />
-                        <ProgressBar layoutX="47.0" layoutY="47.0" prefWidth="200.0" progress="0.23" />
-                        <ProgressBar layoutX="47.0" layoutY="88.0" prefWidth="200.0" progress="0.13" />
-                        <ProgressBar layoutX="47.0" layoutY="129.0" prefWidth="200.0" progress="0.19" />
-                        <ProgressBar layoutX="47.0" layoutY="168.0" prefWidth="200.0" progress="0.2" />
+                        <ProgressBar layoutX="47.0" layoutY="14.0" prefHeight="17.0" prefWidth="200.0" progress="0.26" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="47.0" layoutY="47.0" prefHeight="17.0" prefWidth="200.0" progress="0.23" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="47.0" layoutY="88.0" prefHeight="17.0" prefWidth="200.0" progress="0.13" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="47.0" layoutY="129.0" prefHeight="17.0" prefWidth="200.0" progress="0.19" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar layoutX="47.0" layoutY="168.0" prefHeight="17.0" prefWidth="200.0" progress="0.2" stylesheets="@../recursos_compartidos/estilos/EstilosProgressBar.css" />
                         <Label layoutX="135.0" layoutY="14.0" text="26%">
                            <font>
                               <Font name="System Bold" size="12.0" />
