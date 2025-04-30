@@ -19,7 +19,7 @@ public class ConectorBaseDato {
     public static Connection Conectar() throws Exception{
         try {
             Connection Conexion = DriverManager.getConnection(URL, USUARIO, CLAVE);
-            System.out.println("¡Conexión exitosa a PostgreSQL!");
+            System.out.println("Base dato conectada");
             return Conexion;
         } catch (Exception e) {
             throw new Exception("Error al conectar con la base de datos");
