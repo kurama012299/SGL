@@ -4,38 +4,22 @@
  */
 package logica.autentificacion;
 
+import logica.usuario.consultas.ConsultasUsuario;
+import logica.usuario.modelos.Usuario;
+
+
+
 /**
  *
  * @author Angel Hernandez
  */
 public class Autentificador {
     
+    public static Usuario Usuario;
     public static String ExisteUsuario(String Correo,String Clave) throws Exception
     {
-        String Rol = "";
-        switch (Correo) {
-                case "Administrador":
-                    Rol="Administrador";
-                    break;
-                case "AdministradorAutoescuela":
-                    Rol="AdministradorAutoescuela";
-                    break;
-                case "AdministradorMedico":
-                    Rol="AdministradorMedico";
-                    break;
-                case "TrabajadorAutoescuela":
-                    Rol="TrabajadorAutoescuela";
-                    break;
-                case "TrabajadorCentro":
-                    Rol="TrabajadorCentro";
-                    break;
-                case "Medico":
-                    Rol="Medico";
-                    break;
-            }
-        
-        if(Rol.isEmpty())
-            throw new Exception("Usuario o clave incorrectos");
-        return Rol;
+        Usuario = ConsultasUsuario.ObtenerUsuario(Correo, Clave);
+        System.out.println(Usuario);
+        return Usuario.getRol();
     }
 }
