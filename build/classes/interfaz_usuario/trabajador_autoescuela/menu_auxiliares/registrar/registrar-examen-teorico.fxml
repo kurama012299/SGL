@@ -37,7 +37,7 @@
       <Line endX="100.0" layoutX="133.0" layoutY="258.0" startX="-100.0" stroke="#8000ff" />
       <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="55.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../recursos-compartidos/imagenes/ico-atras.png" />
+            <Image url="@../../../recursos_compartidos/imagenes/ico-atras.png" />
          </image>
       </ImageView>
       <Line endX="2.0000152587890625" layoutX="444.0" layoutY="89.0" startX="-100.0" stroke="#8000ff" />

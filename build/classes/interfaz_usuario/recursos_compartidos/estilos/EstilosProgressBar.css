@@ -1,0 +1,33 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 28 abr 2025, 17:25:52
+    Author     : Kris
+*/
+
+
+
+
+ Estilo básico para ProgressBar 
+.progress-bar {
+    -fx-accent: #2ECC71; /* Color verde moderno */
+   
+}
+
+/* Estilo más personalizado */
+.progress-bar > .track {
+    -fx-background-color: transparent; /* Color de fondo */
+    -fx-background-radius: 5; /* Bordes redondeados */
+   
+}
+
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(to right, #8000ff, #a74eff, #ce9dff); /* Degradado */
+    -fx-background-radius: 5; /* Bordes redondeados */
+    -fx-background-insets: 0;
+    -fx-padding: 0.2em;
+}
+
+

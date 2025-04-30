@@ -6,11 +6,13 @@ package gestor_interfaces;
 
 
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -93,4 +95,15 @@ public class GestorEscenas  {
                 Panel.setVisible(false);
          }
      }
+     
+   
+     public static void PintarBotones(JFXButton boton,JFXButton... botones)
+     {
+         boton.getStyleClass().add("active");
+         for(JFXButton bot: botones)
+         {
+             bot.getStyleClass().remove("active");
+         }
+     }
+    
 }
