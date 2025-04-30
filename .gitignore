@@ -34,3 +34,4 @@ bin/
 build/built-jar.properties
 build/classes/interfaz_usuario/administrador/autoescuela/inicio-admin-autoescuela.fxml
 build/classes/interfaz_usuario/medico/inicio-medico.fxml
+build/built-jar.properties
