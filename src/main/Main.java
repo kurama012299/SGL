@@ -31,6 +31,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
             
+            
         } catch (Exception e) {
             System.err.println("Error al cargar la interfaz:");
             e.printStackTrace();
