@@ -9,8 +9,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -19,6 +26,8 @@ import javafx.stage.Stage;
  */
 public class ControladorTrabajadorAutoescuela {
     
+    @FXML
+    private HBox BoxRoot;
     
     @FXML
     private JFXButton Inicio;
@@ -44,6 +53,33 @@ public class ControladorTrabajadorAutoescuela {
     @FXML
     private Pane PanelExamenesPracticos;
     
+    @FXML
+    private ProgressBar ProgressbarAprobado;
+    
+    @FXML
+    private Label LabelProgresoAprobado;
+    
+    @FXML
+    private ProgressBar ProgressbarReprobado;
+    
+    @FXML
+    private Label LabelProgresoReprobado;
+    
+    @FXML
+    private ProgressBar ProgressbarTeorico;
+    
+    @FXML
+    private Label LabelProgresoTeorico;
+    
+    @FXML
+    private ProgressBar ProgressbarPractico;
+    
+    @FXML
+    private Label LabelProgresoPractico;
+    
+    @FXML
+    private Label LabelRol;
+       
     private ImageView ImagenTeorico;
     private ImageView ImagenPractico;
     private ImageView ImagenInicio;
@@ -54,8 +90,19 @@ public class ControladorTrabajadorAutoescuela {
         ImagenPractico= (ImageView) ExamenesPracticos.getGraphic();
         ImagenInicio= (ImageView) Inicio.getGraphic();
         
+        ConsumirEnter(Inicio);
+        ConsumirEnter(ExamenesTeoricos);
+        ConsumirEnter(ExamenesPracticos);
+        
+        SaltoLineaLabel(LabelRol);
+        setWindowIcon(BoxRoot);
+        
+        ProgresoLabel(LabelProgresoAprobado,ProgressbarAprobado);
+        ProgresoLabel(LabelProgresoReprobado,ProgressbarReprobado);
+        ProgresoLabel(LabelProgresoTeorico,ProgressbarTeorico);
+        ProgresoLabel(LabelProgresoPractico,ProgressbarPractico);
+        
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
-        PanelInicio.setVisible(true);
         this.TranscisionInicio();
         
         
@@ -68,7 +115,7 @@ public class ControladorTrabajadorAutoescuela {
         JFXButton[] botones={Inicio,ExamenesPracticos};
         GestorEscenas.PintarBotones(ExamenesTeoricos, botones);
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen_teorico_blanco.png")));
-        ExamenesTeoricos.setGraphic(IconoActivo);  
+        ExamenesTeoricos.setGraphic(IconoActivo); 
         ExamenesPracticos.setGraphic(ImagenPractico);
         Inicio.setGraphic(ImagenInicio);
     }
@@ -125,8 +172,52 @@ public class ControladorTrabajadorAutoescuela {
         }
     }
     
+    @FXML
+    public void ProgresoLabel(Label label,ProgressBar barra)
+    {
+        label.textProperty().bind(
+        Bindings.concat(
+            Bindings.format("%.0f", 
+                Bindings.multiply(barra.progressProperty(), 100)
+            ),
+            "%"
+        )
+    );
+    }
     
+    @FXML
+    public void ConsumirEnter(JFXButton boton)
+    {
+        boton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.SPACE) {
+            event.consume(); // Consumir el evento Enter
+        }
+    });
+    }
     
+    @FXML
+    public void SaltoLineaLabel(Label label)
+    {
+        label.setWrapText(true);
+        label.setMaxWidth(100);
+         
+    }
     
-    
+     private void setWindowIcon(HBox box) {
+        Platform.runLater(() -> {
+        Stage stage = (Stage) box.getScene().getWindow();
+        try {
+            Image icon = new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-empresa.png"));
+            stage.getIcons().add(icon);
+            
+            // Opcional: Cambiar título de la ventana
+            stage.setTitle("Administrador Autoescuela");
+        } catch (NullPointerException e) {
+            System.err.println("No se encontró el archivo de icono");
+        }
+    });
+    }
 }
+    
+    
+
