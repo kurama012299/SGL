@@ -48,23 +48,23 @@ public class ControladorLogin {
                     CargarMenuInicio("/interfaz_usuario/administrador/sistema/inicio-administrador.fxml");
                     break;
 
-                case "AdministradorAutoescuela":
+                case "Administrador autoescuela":
                     CargarMenuInicio("/interfaz_usuario/administrador/autoescuela/inicio-admin-autoescuela.fxml");
                     break;
 
-                case "AdministradorMedico":
+                case "Administrador médico":
                     CargarMenuInicio("/interfaz_usuario/administrador/medico/inicio-admin-medico.fxml");
                     break;
 
-                case "TrabajadorAutoescuela":
+                case "Trabajador autoescuela":
                     CargarMenuInicio("/interfaz_usuario/trabajador_autoescuela/inicio-trabajador.fxml");
                     break;
 
-                case "TrabajadorCentro":
+                case "Trabajador centro":
                     CargarMenuInicio("/interfaz_usuario/trabajador_centro/inicio-trabajador-centro.fxml");
                     break;
 
-                case "Medico":
+                case "Médico":
                     CargarMenuInicio("/interfaz_usuario/medico/inicio-medico.fxml");
                     break;
                 default:
