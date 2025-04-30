@@ -3,29 +3,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : 29 abr 2025, 11:02:30
+    Created on : 30 abr 2025, 2:56:10
     Author     : Kris
 */
-
-.progress-bar-vertical {
+.progress-bar:vertical {
     -fx-orientation: vertical;
+    -fx-rotate: 180; /* Invierte la dirección de llenado */
     -fx-min-width: 20px;
     -fx-pref-width: 20px;
     -fx-max-width: 20px;
     -fx-min-height: 200px;
 }
 
-/* Pista (fondo) de la ProgressBar */
-.progress-bar-vertical .track {
-    -fx-background-color: #e0e0e0;
+/* Estilo de la barra de progreso */
+.progress-bar:vertical > .bar {
     -fx-background-insets: 0;
+    -fx-padding: 0;
     -fx-background-radius: 0;
+    -fx-background-color: linear-gradient(to bottom, #2a9d8f, #264653); /* Ejemplo de gradiente */
 }
 
-/* Barra de progreso */
-.progress-bar-vertical .bar {
-    -fx-background-color: linear-gradient(to top, #2a8cff, #0051a8);
-    -fx-background-insets: 0;
+/* Estilo del track (fondo) */
+.progress-bar:vertical > .track {
+    -fx-background-color: #e9ecef;
     -fx-background-radius: 0;
-    -fx-padding: 0;
+    -fx-border-color: #adb5bd;
+    -fx-border-width: 1px;
 }

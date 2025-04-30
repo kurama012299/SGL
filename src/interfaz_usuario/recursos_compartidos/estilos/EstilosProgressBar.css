@@ -18,7 +18,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 /* Estilo más personalizado */
 .progress-bar > .track {
-    -fx-background-color: transparent; /* Color de fondo */
+    -fx-background-color: gainsboro; /* Color de fondo */
     -fx-background-radius: 5; /* Bordes redondeados */
    
 }
@@ -28,6 +28,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-radius: 5; /* Bordes redondeados */
     -fx-background-insets: 0;
     -fx-padding: 0.2em;
+    
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2;
 }
+
+.progress-bar .text {
+    -fx-fill: black;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
 
 
