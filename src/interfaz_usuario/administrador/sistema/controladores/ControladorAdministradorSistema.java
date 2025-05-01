@@ -73,6 +73,18 @@ public class ControladorAdministradorSistema {
     @FXML
     private Button RegistrarClinica;
     
+    @FXML
+    private Button RegistrarInfracciones;
+    
+    @FXML
+    private Button RegistrarExamen;
+    
+    @FXML
+    private Button RegistrarConductores;
+    
+    @FXML
+    private Button RegistrarLicencia;
+    
     
     @FXML
     public void initialize()
@@ -147,7 +159,7 @@ public class ControladorAdministradorSistema {
         Stage Padre = (Stage) RegistrarAutoescuela.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen practico");
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Autoescuela");
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }
@@ -161,10 +173,67 @@ public class ControladorAdministradorSistema {
         Stage Padre = (Stage) RegistrarClinica.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen teorico");
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Clinica");
         } catch (Exception ex) {
             //CAPTURAR ERROR
            
         }
     }
+    
+    @FXML
+    public void TransicionRegistrarInfracciones()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-infraccion.fxml";
+        Stage Padre = (Stage) RegistrarInfracciones.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Infraccion");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
+    
+    @FXML
+    public void TransicionRegistrarExamen()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-examen.fxml";
+        Stage Padre = (Stage) RegistrarExamen.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
+    
+    @FXML
+    public void TransicionRegistrarConductores()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-conductor.fxml";
+        Stage Padre = (Stage) RegistrarConductores.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Conductor");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
+    
+    @FXML
+    public void TransicionRegistrarLicencia()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-licencia.fxml";
+        Stage Padre = (Stage) RegistrarLicencia.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Licencia");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
+    
 }

@@ -527,7 +527,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="620.0" layoutY="94.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
+                  <JFXButton fx:id="RegistrarInfracciones" focusTraversable="false" layoutX="620.0" layoutY="94.0" onAction="#TransicionRegistrarInfracciones" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -601,7 +601,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="500.0" layoutY="101.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
+                  <JFXButton fx:id="RegistrarExamen" focusTraversable="false" layoutX="500.0" layoutY="101.0" onAction="#TransicionRegistrarExamen" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -684,7 +684,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="521.0" layoutY="95.0" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
+                  <JFXButton fx:id="RegistrarConductores" focusTraversable="false" layoutX="521.0" layoutY="95.0" onAction="#TransicionRegistrarConductores" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -762,7 +762,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="367.0" layoutY="94.0" prefHeight="29.0" prefWidth="121.0" style="-fx-background-color: gainsboro;" text="Agregar Licencia" wrapText="true">
+                  <JFXButton fx:id="RegistrarLicencia" focusTraversable="false" layoutX="367.0" layoutY="94.0" onAction="#TransicionRegistrarLicencia" prefHeight="29.0" prefWidth="121.0" style="-fx-background-color: gainsboro;" text="Agregar Licencia" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
