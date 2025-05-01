@@ -9,15 +9,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
-import java.util.ArrayList;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -85,6 +80,7 @@ public class ControladorTrabajadorAutoescuela {
     private ImageView ImagenPractico;
     private ImageView ImagenInicio;
    
+    //Funcion de inicio del menu
     @FXML
     public void initialize() {
         
@@ -102,13 +98,14 @@ public class ControladorTrabajadorAutoescuela {
         JFXButton[] BotonesConsumirTecla={Inicio,ExamenesTeoricos,ExamenesPracticos};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
-        SaltoLineaEtiqueta(EtiquetaRol);
+        GestorEscenas.SaltoLineaEtiqueta(EtiquetaRol);
         
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
 
         this.TranscisionInicio();
     }
                  
+    //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesTeoricos)
     @FXML
     public void TranscisionExamenesTeoricos() {
         Pane[] PanelesOcultar={PanelExamenesPracticos,PanelInicio};
@@ -122,6 +119,7 @@ public class ControladorTrabajadorAutoescuela {
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
+    //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesPracticos)
     @FXML
     public void TranscisionExamenesPracticos() {
         Pane[] PanelesOcultar={PanelExamenesTeoricos,PanelInicio};
@@ -136,6 +134,7 @@ public class ControladorTrabajadorAutoescuela {
         
     }
     
+    //Funcion para hacer la transicion de un menu a otro en este caso(Inicio)
     @FXML
     public void TranscisionInicio() {
         Pane[] PanelesOcultar={PanelExamenesPracticos,PanelExamenesTeoricos};
@@ -146,10 +145,12 @@ public class ControladorTrabajadorAutoescuela {
         
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
         Inicio.setGraphic(IconoActivo);  
-        ExamenesTeoricos.setGraphic(ImagenTeorico);
-        ExamenesPracticos.setGraphic(ImagenPractico);
+        ImageView[]ImagenesCambiar={ImagenPractico,ImagenTeorico};
+        JFXButton[] BotonesCambiar={ExamenesPracticos,ExamenesTeoricos};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
+    //Funcion para aparecer el menu de RegistrarExamen en este caso(Practico)
     @FXML
     public void RegistrarExamenPractico()
     {
@@ -163,6 +164,7 @@ public class ControladorTrabajadorAutoescuela {
         }
     }
     
+    //Funcion para aparecer el menu de RegistrarExamen en este caso(Teorico)
      @FXML
     public void RegistrarExamenTeorico()
     {
@@ -174,15 +176,6 @@ public class ControladorTrabajadorAutoescuela {
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }
-    }
-    
-    
-    @FXML
-    public void SaltoLineaEtiqueta(Label Etiqueta)
-    {
-        Etiqueta.setWrapText(true);
-        Etiqueta.setMaxWidth(100);
-         
     }
     
 }
