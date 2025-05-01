@@ -15,14 +15,16 @@ public class Usuario {
     private String Rol;
     private String Foto;
     private Long EntidadPerteneciente;
+    private Long Id;
     
-    public Usuario (String Nombre, String Correo, String Rol,String Foto ,Long EntidadPerteneciente)
+    public Usuario (String Nombre, String Correo, String Rol,String Foto ,Long EntidadPerteneciente, Long Id)
     {
         this.Nombre=Nombre;
         this.Correo = Correo;
         this.Foto = Foto;
         this.Rol = Rol;
         this.EntidadPerteneciente = EntidadPerteneciente;
+        this.Id=Id;
     }
 
     public String getNombre() {
@@ -45,10 +47,16 @@ public class Usuario {
         return EntidadPerteneciente;
     }
     
+    public Long getId()
+    {
+        return Id;
+    }
+    
     @Override
     public String toString()
     {
-        return "Nombre: "+ Nombre +"\n"+
+        return  "Id: " + Id +"\n"+
+                "Nombre: "+ Nombre +"\n"+
                 "Correo: "+ Correo +"\n"+
                 "Foto: " + Foto +"\n"+
                 "Rol: " + Rol +"\n"+

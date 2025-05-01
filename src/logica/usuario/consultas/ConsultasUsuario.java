@@ -17,7 +17,7 @@ public class ConsultasUsuario {
 
     public static Usuario ObtenerUsuario(String EntradaCorreo, String EntradaClave) throws Exception {
         String Consulta = """
-        SELECT u."Nombre", u."Correo", r."Nombre" AS NombreRol, 
+        SELECT u."Id",u."Nombre", u."Correo", r."Nombre" AS NombreRol, 
                u."Foto", u."Id_Entidad_Perteneciente"
         FROM "Usuario" u
         JOIN "Rol" r ON u."Id_Rol" = r."Id"
@@ -34,13 +34,14 @@ public class ConsultasUsuario {
 
             if (rs.next()) {
                 // Obtener valores, manejando posibles nulos
+                Long Id = rs.getLong("Id");
                 String Nombre = rs.getString("Nombre");
                 String Correo = rs.getString("Correo");
                 String NombreRol = rs.getString("NombreRol");
                 String Foto = rs.getString("Foto");
-                Long numeroEntidad = rs.getObject("Id_Entidad_Perteneciente", Long.class);
+                Long NumeroEntidad = rs.getObject("Id_Entidad_Perteneciente", Long.class);
 
-                return new Usuario(Nombre, Correo, NombreRol, Foto, numeroEntidad);
+                return new Usuario(Nombre, Correo, NombreRol, Foto, NumeroEntidad,Id);
             } else {
                 throw new Exception("Credenciales incorrectas o usuario no encontrado");
             }
