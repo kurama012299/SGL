@@ -35,6 +35,18 @@ public class ControladorTrabajadorCentro {
     private Button Reportes;
     
     @FXML
+    private Button RegistrarExamen;
+    
+    @FXML
+    private Button RegistrarLicencia;
+    
+    @FXML
+    private Button RegistrarInfracciones;
+    
+    @FXML
+    private Button RegistrarConductores;
+    
+    @FXML
     private Pane PanelInicio;
     
     @FXML
@@ -91,4 +103,60 @@ public class ControladorTrabajadorCentro {
         GestorEscenas.MostrarOcultarPaneles(PanelInfracciones,PanelesOcultar);
     }
     
+    
+    @FXML
+    public void TransicionRegistrarExamen()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-examen.fxml";
+        Stage Padre = (Stage) RegistrarExamen.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
+    
+    @FXML
+    public void TransicionRegistrarLicencia()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-licencia.fxml";
+        Stage Padre = (Stage) RegistrarLicencia.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Licencia");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
+    
+    @FXML
+    public void TransicionRegistrarInfracciones()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-infraccion.fxml";
+        Stage Padre = (Stage) RegistrarInfracciones.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Infraccion");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
+    
+    @FXML
+    public void TransicionRegistrarConductores()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-conductor.fxml";
+        Stage Padre = (Stage) RegistrarConductores.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Conductor");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+           
+        }
+    }
 }
