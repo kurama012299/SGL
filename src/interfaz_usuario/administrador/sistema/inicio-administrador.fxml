@@ -22,13 +22,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.administrador.sistema.controladores.ControladorAdministradorSistema">
    <children>
       <VBox prefHeight="600.0" prefWidth="151.0" style="-fx-background-color: white;">
          <children>
             <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
                <children>
-                  <JFXButton layoutY="100.0" prefHeight="35.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
+                  <JFXButton fx:id="Inicio" layoutY="100.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -36,7 +36,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton layoutY="143.0" prefHeight="34.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Licencias     ">
+                  <JFXButton fx:id="Licencias" layoutY="143.0" onAction="#TransicionLicencias" prefHeight="34.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Licencias     ">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +44,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton layoutY="184.0" prefHeight="33.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Conductores">
+                  <JFXButton fx:id="Conductores" layoutY="184.0" onAction="#TransicionConductores" prefHeight="33.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Conductores">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -52,7 +52,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton layoutY="228.0" prefHeight="32.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes     ">
+                  <JFXButton fx:id="Examenes" layoutY="228.0" onAction="#TransicionExamenes" prefHeight="32.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes     ">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -60,7 +60,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton layoutY="353.0" prefHeight="33.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Autoescuela ">
+                  <JFXButton fx:id="Autoescuela" layoutY="353.0" onAction="#TransicionAutoescuela" prefHeight="33.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Autoescuela ">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -68,7 +68,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton layoutY="307.0" prefHeight="35.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Clínica          ">
+                  <JFXButton fx:id="Clinica" layoutY="307.0" onAction="#TransicionClinica" prefHeight="35.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Clínica          ">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -76,7 +76,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton layoutY="268.0" prefHeight="32.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Infracciones  ">
+                  <JFXButton fx:id="Infracciones" layoutY="268.0" onAction="#TransicionInfracciones" prefHeight="32.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Infracciones  ">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -123,7 +123,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-empresa.png" />
                      </image>
                   </ImageView>
-                  <JFXButton layoutX="-12.0" layoutY="395.0" prefHeight="33.0" prefWidth="169.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Entidades">
+                  <JFXButton fx:id="Entidades" layoutX="-12.0" layoutY="395.0" onAction="#TransicionEntidades" prefHeight="33.0" prefWidth="169.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Entidades">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -141,7 +141,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="843.0">
          <children>
-            <Pane prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -348,7 +348,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelAutoescuela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Autoescuela">
                      <font>
@@ -371,7 +371,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="552.0" layoutY="95.0" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
+                  <JFXButton fx:id="RegistrarAutoescuela" focusTraversable="false" layoutX="552.0" layoutY="95.0" onAction="#TransicionRegistrarAutoescuela" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -395,7 +395,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelClinica" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Clínica">
                      <font>
@@ -418,7 +418,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="552.0" layoutY="95.0" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
+                  <JFXButton fx:id="RegistrarClinica" focusTraversable="false" layoutX="552.0" layoutY="95.0" onAction="#TransicionRegistrarClinica" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -442,7 +442,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelEntidades" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Entidades">
                      <font>
@@ -504,7 +504,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="839.0" visible="false">
+            <Pane fx:id="PanelInfracciones" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="839.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Infracciones">
                      <font>
@@ -578,7 +578,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Exámenes">
                      <font>
@@ -661,7 +661,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Conductores">
                      <font>
@@ -739,7 +739,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="825.0" visible="false">
+            <Pane fx:id="PanelLicencias" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="825.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Licencias">
                      <font>
