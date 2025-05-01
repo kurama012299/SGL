@@ -8,10 +8,16 @@ package gestor_interfaces;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,36 +31,31 @@ import javafx.stage.Window;
  * @author Angel Hernandez
  */
 public class GestorEscenas  {
-    
-    
+
     public static void CargarMenu(String Direccion) throws Exception {
         try {
 
-         // Usar ruta relativa desde los recursos
-        URL Url = GestorEscenas.class.getResource(Direccion);
-        
-       
-        FXMLLoader Cargador = new FXMLLoader(Url);
-        Parent Ruta = Cargador.load();
-        
-        Stage Ventana = new Stage();
-        Ventana.setScene(new Scene(Ruta));
-        Ventana.setTitle("SGL");
-        Ventana.show();
-        
+            // Usar ruta relativa desde los recursos
+            URL Url = GestorEscenas.class.getResource(Direccion);
+
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+
+            Stage Ventana = new Stage();
+            Ventana.setScene(new Scene(Ruta));
+            Ventana.setTitle("SGL");
+            Ventana.show();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new Exception("No se encuentra la interfaz");
         }
     }
 
-     
-     public static void CargarAlertaError(Window Padre, String Direccion,String Titulo,String Mensaje) throws Exception
-     {
+    public static void CargarAlertaError(Window Padre, String Direccion, String Titulo, String Mensaje) throws Exception {
         CargarPanelAuxiliar(Padre, Direccion, true, Titulo);
-     } 
-     
-     
+    }
+
     public static void CargarPanelAuxiliar(Window Padre, String Direccion, boolean Modal, String Titulo) throws Exception {
         try {
 
@@ -84,25 +85,44 @@ public class GestorEscenas  {
             throw new Exception("Error al cargar la interfaz");
         }
     }
-     
-     public static void MostrarOcultarPaneles(Pane Mostrar,Pane... Ocultar)
-     {
-         Mostrar.setVisible(true);
-         for(Pane Panel: Ocultar)
-         {
-             if(Panel.isVisible())
+
+    public static void MostrarOcultarPaneles(Pane Mostrar, Pane... Ocultar) {
+        Mostrar.setVisible(true);
+        for (Pane Panel : Ocultar) {
+            if (Panel.isVisible()) {
                 Panel.setVisible(false);
-         }
-     }
-     
-   
-     public static void PintarBotones(JFXButton boton,JFXButton... botones)
-     {
-         boton.getStyleClass().add("active");
-         for(JFXButton bot: botones)
-         {
-             bot.getStyleClass().remove("active");
-         }
-     }
+            }
+        }
+    }
+
+    public static void PintarBotones(JFXButton boton, JFXButton... botones) {
+        boton.getStyleClass().add("active");
+        for (JFXButton bot : botones) {
+            bot.getStyleClass().remove("active");
+        }
+    }
+
+    public static void PonerIconoVentana(HBox box, String TituloVentana) {
+        Platform.runLater(() -> {
+            Stage stage = (Stage) box.getScene().getWindow();
+            try {
+                Image icon = new Image(GestorEscenas.class.getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-empresa.png"));
+                stage.getIcons().add(icon);
+                stage.setTitle(TituloVentana);
+            } catch (NullPointerException e) {
+                System.err.println("No se encontró el archivo de icono");
+            }
+        });
+    }
     
+    public static void ProgresoLabel(Label[] label, ProgressBar[] barra) {
+        int i=0;
+        for(Label l:label)
+        {
+            l.textProperty().bind(Bindings.concat(Bindings.format("%.0f",Bindings.multiply(barra[i].progressProperty(), 100)),"%"));
+            i++;
+        }
+    }
+    
+
 }

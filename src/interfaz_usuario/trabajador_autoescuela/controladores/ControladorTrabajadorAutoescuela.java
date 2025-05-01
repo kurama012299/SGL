@@ -86,26 +86,24 @@ public class ControladorTrabajadorAutoescuela {
    
     @FXML
     public void initialize() {
-        ImagenTeorico= (ImageView) ExamenesTeoricos.getGraphic();
-        ImagenPractico= (ImageView) ExamenesPracticos.getGraphic();
-        ImagenInicio= (ImageView) Inicio.getGraphic();
         
+        System.out.println("Controlador TrabajadorAutoescuela Iniciado");
+        ImagenTeorico = (ImageView) ExamenesTeoricos.getGraphic();
+        ImagenPractico = (ImageView) ExamenesPracticos.getGraphic();
+        ImagenInicio = (ImageView) Inicio.getGraphic();
+
         ConsumirEnter(Inicio);
         ConsumirEnter(ExamenesTeoricos);
         ConsumirEnter(ExamenesPracticos);
-        
+
         SaltoLineaLabel(LabelRol);
-        setWindowIcon(BoxRoot);
+        GestorEscenas.PonerIconoVentana(BoxRoot, "Trabajador autoescuela");
+
+        Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoTeorico,LabelProgresoPractico};
+        ProgressBar[] BarrasProgreso = {ProgressbarAprobado,ProgressbarReprobado,ProgressbarTeorico,ProgressbarPractico};
+        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
         
-        ProgresoLabel(LabelProgresoAprobado,ProgressbarAprobado);
-        ProgresoLabel(LabelProgresoReprobado,ProgressbarReprobado);
-        ProgresoLabel(LabelProgresoTeorico,ProgressbarTeorico);
-        ProgresoLabel(LabelProgresoPractico,ProgressbarPractico);
-        
-        System.out.println("Controlador TrabajadorAutoescuela Iniciado");
         this.TranscisionInicio();
-        
-        
     }
                  
     @FXML
@@ -136,8 +134,10 @@ public class ControladorTrabajadorAutoescuela {
     public void TranscisionInicio() {
         Pane[] PanelesOcultar={PanelExamenesPracticos,PanelExamenesTeoricos};
         GestorEscenas.MostrarOcultarPaneles(PanelInicio,PanelesOcultar);
+        
         JFXButton[] botones={ExamenesTeoricos,ExamenesPracticos};
         GestorEscenas.PintarBotones(Inicio, botones);
+        
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio_blanco.png")));
         Inicio.setGraphic(IconoActivo);  
         ExamenesTeoricos.setGraphic(ImagenTeorico);
@@ -147,7 +147,6 @@ public class ControladorTrabajadorAutoescuela {
     @FXML
     public void RegistrarExamenPractico()
     {
-        System.out.println("Pulso");
         String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
         Stage Padre = (Stage) RegistrarPractico.getScene().getWindow();
         
@@ -161,7 +160,6 @@ public class ControladorTrabajadorAutoescuela {
      @FXML
     public void RegistrarExamenTeorico()
     {
-        System.out.println("Pulso");
         String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-teorico.fxml";
         Stage Padre = (Stage) RegistrarPractico.getScene().getWindow();
         
@@ -172,25 +170,13 @@ public class ControladorTrabajadorAutoescuela {
         }
     }
     
-    @FXML
-    public void ProgresoLabel(Label label,ProgressBar barra)
-    {
-        label.textProperty().bind(
-        Bindings.concat(
-            Bindings.format("%.0f", 
-                Bindings.multiply(barra.progressProperty(), 100)
-            ),
-            "%"
-        )
-    );
-    }
     
     @FXML
     public void ConsumirEnter(JFXButton boton)
     {
         boton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
         if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.SPACE) {
-            event.consume(); // Consumir el evento Enter
+            event.consume(); 
         }
     });
     }
@@ -203,20 +189,7 @@ public class ControladorTrabajadorAutoescuela {
          
     }
     
-     private void setWindowIcon(HBox box) {
-        Platform.runLater(() -> {
-        Stage stage = (Stage) box.getScene().getWindow();
-        try {
-            Image icon = new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-empresa.png"));
-            stage.getIcons().add(icon);
-            
-            // Opcional: Cambiar título de la ventana
-            stage.setTitle("Administrador Autoescuela");
-        } catch (NullPointerException e) {
-            System.err.println("No se encontró el archivo de icono");
-        }
-    });
-    }
+    
 }
     
     
