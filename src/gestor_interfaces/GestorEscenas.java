@@ -17,6 +17,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -124,5 +127,23 @@ public class GestorEscenas  {
         }
     }
     
-
+    public static void ConsumirTecla(JFXButton... Boton)
+    {
+        for (JFXButton b : Boton) {
+            b.addEventFilter(KeyEvent.KEY_PRESSED, evento -> {
+                if (evento.getCode() == KeyCode.ENTER || evento.getCode() == KeyCode.SPACE) {
+                    evento.consume();
+                }
+            });
+        }
+    }
+    
+     public static void CambiarIconos(ImageView[] Imagenes, JFXButton... Botones) {
+        for (JFXButton b : Botones) {
+            for (ImageView i : Imagenes) {
+                b.setGraphic(i);
+            }
+        }
+    }
+    
 }
