@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
+import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Label;
@@ -27,7 +28,7 @@ import javafx.stage.Stage;
 public class ControladorTrabajadorAutoescuela {
     
     @FXML
-    private HBox BoxRoot;
+    private HBox VentanaPrincipal;
     
     @FXML
     private JFXButton Inicio;
@@ -78,7 +79,7 @@ public class ControladorTrabajadorAutoescuela {
     private Label LabelProgresoPractico;
     
     @FXML
-    private Label LabelRol;
+    private Label EtiquetaRol;
        
     private ImageView ImagenTeorico;
     private ImageView ImagenPractico;
@@ -92,17 +93,19 @@ public class ControladorTrabajadorAutoescuela {
         ImagenPractico = (ImageView) ExamenesPracticos.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
 
-        ConsumirEnter(Inicio);
-        ConsumirEnter(ExamenesTeoricos);
-        ConsumirEnter(ExamenesPracticos);
-
-        SaltoLineaLabel(LabelRol);
-        GestorEscenas.PonerIconoVentana(BoxRoot, "Trabajador autoescuela");
+        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Trabajador autoescuela");
 
         Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoTeorico,LabelProgresoPractico};
         ProgressBar[] BarrasProgreso = {ProgressbarAprobado,ProgressbarReprobado,ProgressbarTeorico,ProgressbarPractico};
         GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
         
+        JFXButton[] BotonesConsumirTecla={Inicio,ExamenesTeoricos,ExamenesPracticos};
+        GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
+        
+        SaltoLineaEtiqueta(EtiquetaRol);
+        
+        System.out.println("Controlador TrabajadorAutoescuela Iniciado");
+
         this.TranscisionInicio();
     }
                  
@@ -112,10 +115,11 @@ public class ControladorTrabajadorAutoescuela {
         GestorEscenas.MostrarOcultarPaneles(PanelExamenesTeoricos,PanelesOcultar);
         JFXButton[] botones={Inicio,ExamenesPracticos};
         GestorEscenas.PintarBotones(ExamenesTeoricos, botones);
-        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen_teorico_blanco.png")));
-        ExamenesTeoricos.setGraphic(IconoActivo); 
-        ExamenesPracticos.setGraphic(ImagenPractico);
-        Inicio.setGraphic(ImagenInicio);
+        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-teorico-blanco.png")));
+        ExamenesTeoricos.setGraphic(IconoActivo);
+        ImageView[]ImagenesCambiar={ImagenInicio,ImagenPractico};
+        JFXButton[] BotonesCambiar={Inicio,ExamenesPracticos};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -124,10 +128,12 @@ public class ControladorTrabajadorAutoescuela {
         GestorEscenas.MostrarOcultarPaneles(PanelExamenesPracticos,PanelesOcultar);
         JFXButton[] botones={Inicio,ExamenesTeoricos};
         GestorEscenas.PintarBotones(ExamenesPracticos, botones);
-        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer_blanco.png")));
+        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer-blanco.png")));
         ExamenesPracticos.setGraphic(IconoActivo);  
-        ExamenesTeoricos.setGraphic(ImagenTeorico);
-        Inicio.setGraphic(ImagenInicio);
+        ImageView[]ImagenesCambiar={ImagenInicio,ImagenTeorico};
+        JFXButton[] BotonesCambiar={Inicio,ExamenesTeoricos};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        
     }
     
     @FXML
@@ -138,7 +144,7 @@ public class ControladorTrabajadorAutoescuela {
         JFXButton[] botones={ExamenesTeoricos,ExamenesPracticos};
         GestorEscenas.PintarBotones(Inicio, botones);
         
-        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio_blanco.png")));
+        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
         Inicio.setGraphic(IconoActivo);  
         ExamenesTeoricos.setGraphic(ImagenTeorico);
         ExamenesPracticos.setGraphic(ImagenPractico);
@@ -172,23 +178,12 @@ public class ControladorTrabajadorAutoescuela {
     
     
     @FXML
-    public void ConsumirEnter(JFXButton boton)
+    public void SaltoLineaEtiqueta(Label Etiqueta)
     {
-        boton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-        if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.SPACE) {
-            event.consume(); 
-        }
-    });
-    }
-    
-    @FXML
-    public void SaltoLineaLabel(Label label)
-    {
-        label.setWrapText(true);
-        label.setMaxWidth(100);
+        Etiqueta.setWrapText(true);
+        Etiqueta.setMaxWidth(100);
          
     }
-    
     
 }
     
