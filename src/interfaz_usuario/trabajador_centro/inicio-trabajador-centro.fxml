@@ -28,7 +28,7 @@
          <children>
             <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
                <children>
-                  <JFXButton fx:id="Inicio" layoutY="100.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
+                  <JFXButton fx:id="Inicio" layoutX="1.0" layoutY="90.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Inicio           ">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -36,7 +36,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Licencias" layoutY="143.0" onAction="#TransicionLicencias" prefHeight="34.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Licencias     ">
+                  <JFXButton fx:id="Licencias" layoutY="143.0" onAction="#TransicionLicencias" prefHeight="34.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Licencias     ">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +44,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Conductores" layoutY="184.0" onAction="#TransicionConductores" prefHeight="33.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Conductores">
+                  <JFXButton fx:id="Conductores" layoutY="184.0" onAction="#TransicionConductores" prefHeight="33.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Conductores">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -52,7 +52,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Examenes" layoutY="228.0" onAction="#TransicionExamenes" prefHeight="32.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes     ">
+                  <JFXButton fx:id="Examenes" layoutY="228.0" onAction="#TransicionExamenes" prefHeight="32.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes     ">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -60,7 +60,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Infracciones" layoutY="268.0" onAction="#TransicionInfracciones" prefHeight="32.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Infracciones  ">
+                  <JFXButton fx:id="Infracciones" layoutY="268.0" onAction="#TransicionInfracciones" prefHeight="32.0" prefWidth="157.0" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Infracciones  ">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -69,7 +69,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="Reportes" layoutY="310.0" prefHeight="31.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Reportes      ">
+                  <JFXButton fx:id="Reportes" layoutY="310.0" onAction="#TransicionReportes" prefHeight="31.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Reportes      ">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
