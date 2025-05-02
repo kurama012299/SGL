@@ -28,7 +28,7 @@
          <children>
             <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
                <children>
-                  <JFXButton fx:id="Inicio" layoutY="100.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio           ">
+                  <JFXButton fx:id="Inicio" layoutY="100.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Inicio           ">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -36,7 +36,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Licencias" layoutY="143.0" onAction="#TransicionLicencias" prefHeight="34.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Licencias     ">
+                  <JFXButton fx:id="Licencias" layoutY="143.0" onAction="#TransicionLicencias" prefHeight="34.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Licencias     ">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +44,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Conductores" layoutY="184.0" onAction="#TransicionConductores" prefHeight="33.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Conductores">
+                  <JFXButton fx:id="Conductores" layoutY="184.0" onAction="#TransicionConductores" prefHeight="33.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Conductores">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -52,7 +52,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Examenes" layoutY="228.0" onAction="#TransicionExamenes" prefHeight="32.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes     ">
+                  <JFXButton fx:id="Examenes" layoutY="228.0" onAction="#TransicionExamenes" prefHeight="32.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes     ">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -60,7 +60,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Autoescuela" layoutY="353.0" onAction="#TransicionAutoescuela" prefHeight="33.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Autoescuela ">
+                  <JFXButton fx:id="Autoescuela" layoutY="353.0" onAction="#TransicionAutoescuela" prefHeight="33.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Autoescuela ">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -68,7 +68,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Clinica" layoutY="307.0" onAction="#TransicionClinica" prefHeight="35.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Clínica          ">
+                  <JFXButton fx:id="Clinica" layoutY="307.0" onAction="#TransicionClinica" prefHeight="35.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Clínica          ">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -76,7 +76,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Infracciones" layoutY="268.0" onAction="#TransicionInfracciones" prefHeight="32.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Infracciones  ">
+                  <JFXButton fx:id="Infracciones" layoutY="268.0" onAction="#TransicionInfracciones" prefHeight="32.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Infracciones  ">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -85,7 +85,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton layoutY="436.0" prefHeight="31.0" prefWidth="157.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Reportes      ">
+                  <JFXButton fx:id="Reportes" layoutY="436.0" onAction="#TransicionReportes" prefHeight="31.0" prefWidth="157.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Reportes      ">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -123,7 +123,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-empresa.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="Entidades" layoutX="-12.0" layoutY="395.0" onAction="#TransicionEntidades" prefHeight="33.0" prefWidth="169.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Entidades">
+                  <JFXButton fx:id="Entidades" layoutX="-12.0" layoutY="395.0" onAction="#TransicionEntidades" prefHeight="33.0" prefWidth="169.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Entidades">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -527,7 +527,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="620.0" layoutY="94.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
+                  <JFXButton fx:id="RegistrarInfracciones" focusTraversable="false" layoutX="620.0" layoutY="94.0" onAction="#TransicionRegistrarInfracciones" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -601,7 +601,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="500.0" layoutY="101.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
+                  <JFXButton fx:id="RegistrarExamen" focusTraversable="false" layoutX="500.0" layoutY="101.0" onAction="#TransicionRegistrarExamen" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -684,7 +684,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="521.0" layoutY="95.0" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
+                  <JFXButton fx:id="RegistrarConductores" focusTraversable="false" layoutX="521.0" layoutY="95.0" onAction="#TransicionRegistrarConductores" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -762,7 +762,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="367.0" layoutY="94.0" prefHeight="29.0" prefWidth="121.0" style="-fx-background-color: gainsboro;" text="Agregar Licencia" wrapText="true">
+                  <JFXButton fx:id="RegistrarLicencia" focusTraversable="false" layoutX="367.0" layoutY="94.0" onAction="#TransicionRegistrarLicencia" prefHeight="29.0" prefWidth="121.0" style="-fx-background-color: gainsboro;" text="Agregar Licencia" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>

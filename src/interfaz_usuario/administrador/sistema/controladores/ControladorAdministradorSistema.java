@@ -4,9 +4,12 @@
  */
 package interfaz_usuario.administrador.sistema.controladores;
 
+import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -17,31 +20,31 @@ import javafx.stage.Stage;
 public class ControladorAdministradorSistema {
     
     @FXML
-    private Button Inicio;
+    private JFXButton Inicio;
     
     @FXML
-    private Button Licencias;
+    private JFXButton Licencias;
     
     @FXML
-    private Button Conductores;
+    private JFXButton Conductores;
     
     @FXML
-    private Button Infracciones;
+    private JFXButton Infracciones;
     
     @FXML
-    private Button Examenes;
+    private JFXButton Examenes;
     
     @FXML
-    private Button Clinica;
+    private JFXButton Clinica;
     
     @FXML
-    private Button Autoescuela;
+    private JFXButton Autoescuela;
     
     @FXML
-    private Button Entidades;
+    private JFXButton Entidades;
     
     @FXML
-    private Button Reportes;
+    private JFXButton Reportes;
     
     @FXML
     private Pane PanelInicio;
@@ -85,11 +88,34 @@ public class ControladorAdministradorSistema {
     @FXML
     private Button RegistrarLicencia;
     
+    private ImageView ImagenLicencias;
+    private ImageView ImagenConductores;
+    private ImageView ImagenInicio;
+    private ImageView ImagenExamenes;
+    private ImageView ImagenInfracciones;
+    private ImageView ImagenReportes; 
+    private ImageView ImagenAutoescuela;
+    private ImageView ImagenClinica;
+    private ImageView ImagenEntidades; 
+    
     
     @FXML
     public void initialize()
     {
+        ImagenLicencias = (ImageView) Licencias.getGraphic();
+        ImagenConductores = (ImageView) Conductores.getGraphic();
+        ImagenInicio = (ImageView) Inicio.getGraphic();
+        ImagenExamenes = (ImageView) Examenes.getGraphic();
+        ImagenInfracciones = (ImageView) Infracciones.getGraphic();
+        ImagenReportes = (ImageView) Reportes.getGraphic();
+        ImagenAutoescuela = (ImageView) Autoescuela.getGraphic();
+        ImagenClinica = (ImageView) Clinica.getGraphic();
+        ImagenEntidades = (ImageView) Entidades.getGraphic();
+        JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes, Autoescuela, Clinica, Entidades};
+        GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
+        
         System.out.println("Controlador Administrador Sistema Iniciado");
+        this.TransicionInicio();
     }
     
     
@@ -98,6 +124,13 @@ public class ControladorAdministradorSistema {
     {
         Pane[] PanelesOcultar={PanelInfracciones, PanelInicio, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelLicencias,PanelesOcultar);
+        JFXButton[] botones = {Inicio, Conductores, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};
+        GestorEscenas.PintarBotones(Licencias, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-licencia-blanco.png")));
+        Licencias.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenInfracciones, ImagenInicio, ImagenConductores, ImagenExamenes, ImagenReportes, ImagenAutoescuela, ImagenClinica, ImagenEntidades};
+        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -105,6 +138,13 @@ public class ControladorAdministradorSistema {
     {
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelInicio, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelConductores,PanelesOcultar);
+        JFXButton[] botones = {Inicio, Licencias, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};
+        GestorEscenas.PintarBotones(Conductores, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-conductor-blanco.png")));
+        Conductores.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenInfracciones, ImagenInicio, ImagenLicencias, ImagenExamenes, ImagenReportes, ImagenAutoescuela, ImagenClinica, ImagenEntidades};
+        JFXButton[] BotonesCambiar = {Inicio, Licencias, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -112,6 +152,13 @@ public class ControladorAdministradorSistema {
     {
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelInicio,PanelesOcultar);
+        JFXButton[] botones = {Licencias, Conductores, Infracciones, Examenes, Reportes,Autoescuela,Clinica,Entidades};
+        GestorEscenas.PintarBotones(Inicio, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
+        Inicio.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenInfracciones, ImagenLicencias, ImagenConductores, ImagenExamenes, ImagenReportes,ImagenAutoescuela,ImagenClinica, ImagenEntidades};
+        JFXButton[] BotonesCambiar = {Licencias, Conductores, Infracciones, Examenes, Reportes, Autoescuela,Clinica,Entidades};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -119,6 +166,13 @@ public class ControladorAdministradorSistema {
     {
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelInicio, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
+        JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Clinica,Entidades};
+        GestorEscenas.PintarBotones(Examenes, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-blanco.png")));
+        Examenes.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenAutoescuela,ImagenClinica,ImagenEntidades,ImagenInfracciones, ImagenInicio, ImagenConductores, ImagenLicencias, ImagenReportes};
+        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Licencias,Autoescuela,Clinica,Entidades, Reportes};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -126,6 +180,13 @@ public class ControladorAdministradorSistema {
     {
         Pane[] PanelesOcultar={PanelInicio, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelInfracciones,PanelesOcultar);
+        JFXButton[] botones = {Inicio,Autoescuela,Clinica,Conductores,Entidades,Examenes,Licencias,Reportes};
+        GestorEscenas.PintarBotones(Infracciones, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-infraccion-blanco.png")));
+        Infracciones.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenInicio,ImagenAutoescuela,ImagenClinica,ImagenConductores,ImagenEntidades,ImagenExamenes,ImagenLicencias,ImagenReportes};
+        JFXButton[] BotonesCambiar = {Inicio,Autoescuela,Clinica,Conductores,Entidades,Examenes,Licencias,Reportes};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -133,6 +194,13 @@ public class ControladorAdministradorSistema {
     {
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelInicio, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelClinica,PanelesOcultar);
+        JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Entidades,Examenes};
+        GestorEscenas.PintarBotones(Clinica, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-clinica-blanco.png")));
+        Clinica.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenInfracciones,ImagenAutoescuela,ImagenExamenes,ImagenEntidades, ImagenInicio, ImagenConductores, ImagenLicencias, ImagenReportes};
+        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Entidades,Examenes};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
         
     }
     
@@ -141,6 +209,13 @@ public class ControladorAdministradorSistema {
     {
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelInicio, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelAutoescuela,PanelesOcultar);
+        JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Clinica,Entidades,Examenes};
+        GestorEscenas.PintarBotones(Autoescuela, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-autoescuela-blanco.png")));
+        Autoescuela.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenInfracciones,ImagenClinica,ImagenExamenes,ImagenEntidades, ImagenInicio, ImagenConductores, ImagenLicencias, ImagenReportes};
+        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Licencias, Reportes,Clinica,Entidades,Examenes};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -148,6 +223,24 @@ public class ControladorAdministradorSistema {
     {
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelEntidades,PanelesOcultar);
+        JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Clinica,Examenes};
+        GestorEscenas.PintarBotones(Entidades, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-entidades-blanco.png")));
+        Entidades.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenInfracciones,ImagenAutoescuela,ImagenExamenes,ImagenClinica, ImagenInicio, ImagenConductores, ImagenLicencias, ImagenReportes};
+        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Clinica,Examenes};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+    }
+    
+    @FXML
+    public void TransicionReportes() {
+        JFXButton[] botones = {Inicio, Conductores, Infracciones, Examenes, Licencias,Entidades,Clinica,Autoescuela};
+        GestorEscenas.PintarBotones(Reportes, botones);
+        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-reporte-blanco.png")));
+        Reportes.setGraphic(IconoActivo);
+        ImageView[] ImagenesCambiar = {ImagenAutoescuela,ImagenClinica,ImagenEntidades,ImagenInfracciones, ImagenInicio, ImagenConductores, ImagenExamenes, ImagenLicencias};
+        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Examenes, Licencias,Autoescuela,Entidades,Clinica};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     
