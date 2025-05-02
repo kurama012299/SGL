@@ -6,10 +6,14 @@ package interfaz_usuario.trabajador_centro.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -63,6 +67,57 @@ public class ControladorTrabajadorCentro {
 
     @FXML
     private Pane PanelConductores;
+    
+    @FXML
+    private HBox VentanaPrincipal;
+    
+    @FXML
+    private ProgressBar BarraProgresoLicenciaA;
+    
+    @FXML
+    private ProgressBar BarraProgresoLicenciaB;
+    
+    @FXML
+    private ProgressBar BarraProgresoLicenciaC;
+    
+    @FXML
+    private ProgressBar BarraProgresoLicenciaD;
+    
+    @FXML
+    private ProgressBar BarraProgresoLicenciaE;
+    
+    @FXML
+    private ProgressBar BarraProgresoInfraccionLeve;
+    
+    @FXML
+    private ProgressBar BarraProgresoInfraccionGrave;
+    
+    @FXML
+    private ProgressBar BarraProgresoInfraccionMGrave;
+    
+    @FXML
+    private Label LabelLicenciaA;
+    
+    @FXML
+    private Label LabelLicenciaB;
+    
+    @FXML
+    private Label LabelLicenciaC;
+    
+    @FXML
+    private Label LabelLicenciaD;
+    
+    @FXML
+    private Label LabelLicenciaE;
+    
+    @FXML
+    private Label LabelInfraccionLeve;
+    
+    @FXML
+    private Label LabelInfraccionGrave;
+    
+    @FXML
+    private Label LabelInfraccionMGrave;
 
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
@@ -81,8 +136,13 @@ public class ControladorTrabajadorCentro {
         ImagenInfracciones = (ImageView) Infracciones.getGraphic();
         ImagenReportes = (ImageView) Reportes.getGraphic();
 
+        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Gestor del centro");
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
+        
+        Label[] PorcentajesBarra = {LabelLicenciaA,LabelLicenciaB,LabelLicenciaC,LabelLicenciaD,LabelLicenciaE,LabelInfraccionLeve,LabelInfraccionGrave,LabelInfraccionMGrave};
+        ProgressBar[] BarrasProgreso = {BarraProgresoLicenciaA,BarraProgresoLicenciaB,BarraProgresoLicenciaC,BarraProgresoLicenciaD,BarraProgresoLicenciaE,BarraProgresoInfraccionLeve,BarraProgresoInfraccionGrave,BarraProgresoInfraccionMGrave};
+        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
         
         System.out.println("Controlador Administrador Trabajador Centro Iniciado");
         this.TransicionInicio();
@@ -96,8 +156,20 @@ public class ControladorTrabajadorCentro {
         GestorEscenas.PintarBotones(Licencias, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-licencia-blanco.png")));
         Licencias.setGraphic(IconoActivo);
-        ImageView[] ImagenesCambiar = {ImagenInfracciones, ImagenInicio, ImagenConductores, ImagenExamenes, ImagenReportes};
-        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Examenes, Reportes};
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInfracciones);
+                add(ImagenInicio);
+                add(ImagenConductores);
+                add(ImagenExamenes);
+                add(ImagenReportes);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Infracciones);
+                add(Inicio);
+                add(Conductores);
+                add(Examenes);
+                add(Reportes);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
@@ -109,8 +181,21 @@ public class ControladorTrabajadorCentro {
         GestorEscenas.PintarBotones(Conductores, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-conductor-blanco.png")));
         Conductores.setGraphic(IconoActivo);
-        ImageView[] ImagenesCambiar = {ImagenInfracciones, ImagenInicio, ImagenLicencias, ImagenExamenes, ImagenReportes};
-        JFXButton[] BotonesCambiar = {Inicio, Licencias, Infracciones, Examenes, Reportes};
+        
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInfracciones);
+                add(ImagenInicio);
+                add(ImagenLicencias);
+                add(ImagenExamenes);
+                add(ImagenReportes);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Infracciones);
+                add(Inicio);
+                add(Licencias);
+                add(Examenes);
+                add(Reportes);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
@@ -122,8 +207,21 @@ public class ControladorTrabajadorCentro {
         GestorEscenas.PintarBotones(Inicio, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
         Inicio.setGraphic(IconoActivo);
-        ImageView[] ImagenesCambiar = {ImagenInfracciones, ImagenLicencias, ImagenConductores, ImagenExamenes, ImagenReportes};
-        JFXButton[] BotonesCambiar = {Licencias, Conductores, Infracciones, Examenes, Reportes};
+        
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInfracciones);
+                add(ImagenConductores);
+                add(ImagenLicencias);
+                add(ImagenExamenes);
+                add(ImagenReportes);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Infracciones);
+                add(Conductores);
+                add(Licencias);
+                add(Examenes);
+                add(Reportes);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
@@ -135,8 +233,21 @@ public class ControladorTrabajadorCentro {
         GestorEscenas.PintarBotones(Examenes, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-blanco.png")));
         Examenes.setGraphic(IconoActivo);
-        ImageView[] ImagenesCambiar = {ImagenInfracciones, ImagenInicio, ImagenConductores, ImagenLicencias, ImagenReportes};
-        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Licencias, Reportes};
+        
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInfracciones);
+                add(ImagenConductores);
+                add(ImagenLicencias);
+                add(ImagenInicio);
+                add(ImagenReportes);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Infracciones);
+                add(Conductores);
+                add(Licencias);
+                add(Inicio);
+                add(Reportes);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
@@ -148,8 +259,21 @@ public class ControladorTrabajadorCentro {
         GestorEscenas.PintarBotones(Infracciones, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-infraccion-blanco.png")));
         Infracciones.setGraphic(IconoActivo);
-        ImageView[] ImagenesCambiar = {ImagenLicencias, ImagenInicio, ImagenConductores, ImagenExamenes, ImagenReportes};
-        JFXButton[] BotonesCambiar = {Inicio, Conductores, Licencias, Examenes, Reportes};
+        
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInicio);
+                add(ImagenConductores);
+                add(ImagenLicencias);
+                add(ImagenExamenes);
+                add(ImagenReportes);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Inicio);
+                add(Conductores);
+                add(Licencias);
+                add(Examenes);
+                add(Reportes);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
@@ -159,8 +283,21 @@ public class ControladorTrabajadorCentro {
         GestorEscenas.PintarBotones(Reportes, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-reporte-blanco.png")));
         Reportes.setGraphic(IconoActivo);
-        ImageView[] ImagenesCambiar = {ImagenInfracciones, ImagenInicio, ImagenConductores, ImagenExamenes, ImagenLicencias};
-        JFXButton[] BotonesCambiar = {Inicio, Conductores, Infracciones, Examenes, Licencias};
+        
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInfracciones);
+                add(ImagenConductores);
+                add(ImagenLicencias);
+                add(ImagenExamenes);
+                add(ImagenInicio);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Infracciones);
+                add(Conductores);
+                add(Licencias);
+                add(Examenes);
+                add(Inicio);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 

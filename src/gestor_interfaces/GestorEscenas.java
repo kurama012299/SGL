@@ -8,6 +8,7 @@ package gestor_interfaces;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 
@@ -103,7 +104,7 @@ public class GestorEscenas  {
     public static void PintarBotones(JFXButton boton, JFXButton... botones) {
         boton.getStyleClass().add("active");
         for (JFXButton bot : botones) {
-            bot.getStyleClass().remove("active");
+            bot.getStyleClass().removeAll("active");
         }
     }
 
@@ -144,11 +145,10 @@ public class GestorEscenas  {
     }
     
     //Funcion para cambiar iconos de ciertos botones con dos arreglos
-    public static void CambiarIconos(ImageView[] Imagenes, JFXButton... Botones) {
-        for (JFXButton b : Botones) {
-            for (ImageView i : Imagenes) {
-                b.setGraphic(i);
-            }
+    public static void CambiarIconos(ArrayList<ImageView> Imagenes, ArrayList<JFXButton> Botones) {
+        for(int i=0;i<Botones.size();i++)
+        {
+            Botones.get(i).setGraphic(Imagenes.get(i));
         }
     }
      

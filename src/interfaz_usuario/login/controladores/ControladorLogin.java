@@ -85,7 +85,7 @@ public class ControladorLogin {
     
     
     @FXML
-    private void EntrarTecla()
+    private void EntrarTeclaCorreo()
     {
         Usuario.setOnKeyPressed((t) -> {
             if(t.getCode()== KeyCode.ENTER){
@@ -93,5 +93,15 @@ public class ControladorLogin {
             }
         });
     }        
+    
+    @FXML
+    private void EntrarTeclaClave()
+    {
+        Clave.setOnKeyPressed((t) -> {
+            if(t.getCode()== KeyCode.ENTER){
+                Entrar.fire();
+            }
+        });
+    }       
 
 }

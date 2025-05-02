@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="BoxRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.trabajador_autoescuela.controladores.ControladorTrabajadorAutoescuela">
+<HBox fx:id="VentanaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.trabajador_autoescuela.controladores.ControladorTrabajadorAutoescuela">
    <children>
       <VBox prefHeight="600.0" prefWidth="151.0" style="-fx-background-color: white;">
          <children>
@@ -49,7 +49,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Label fx:id="EtiquetaRol" layoutX="52.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="105.0" text="Trabajador autoescuela" textFill="#919191">
+                  <Label fx:id="EtiquetaRol" layoutX="62.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="105.0" text="Trabajador autoescuela" textFill="#919191">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -237,7 +237,7 @@
                               <Image url="@../recursos_compartidos/imagenes/ico-configuracion.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="692.0" layoutY="10.0" prefHeight="17.0" prefWidth="133.0" text="Jho*****ter@gmail.com" />
+                        <Label fx:id="EtiquetaCorreo" layoutX="692.0" layoutY="10.0" prefHeight="17.0" prefWidth="133.0" text="Jho*****ter@gmail.com" />
                         <Label layoutX="571.0" layoutY="11.0" prefHeight="17.0" prefWidth="105.0" text="1/4/2025  5:44 AM" />
                         <Label layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="267.0" text="¡Transformando datos, en seguridad vial!" textFill="#919191">
                            <font>
@@ -252,7 +252,7 @@
                         <Font name="Arial" size="25.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="-10.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" />
+                  <Separator layoutX="-10.0" layoutY="37.0" orientation="VERTICAL" prefHeight="561.0" prefWidth="19.0" />
                   <Pane layoutX="26.0" layoutY="106.0" prefHeight="111.0" prefWidth="183.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
                      <children>
                         <Label layoutX="6.0" layoutY="72.0" prefHeight="25.0" prefWidth="157.0" text="Inicios de sesión este mes">
@@ -398,7 +398,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="249.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos_compartidos/imagenes/ico-examen_teorico.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-examen-teorico.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="23">

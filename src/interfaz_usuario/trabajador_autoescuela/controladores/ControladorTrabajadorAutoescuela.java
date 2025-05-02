@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
+import java.util.ArrayList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -75,6 +76,9 @@ public class ControladorTrabajadorAutoescuela {
     
     @FXML
     private Label EtiquetaRol;
+    
+    @FXML
+    private Label EtiquetaCorreo;
        
     private ImageView ImagenTeorico;
     private ImageView ImagenPractico;
@@ -90,7 +94,7 @@ public class ControladorTrabajadorAutoescuela {
         ImagenPractico = (ImageView) ExamenesPracticos.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
 
-        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Trabajador autoescuela");
+        
 
         Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoTeorico,LabelProgresoPractico};
         ProgressBar[] BarrasProgreso = {ProgressbarAprobado,ProgressbarReprobado,ProgressbarTeorico,ProgressbarPractico};
@@ -104,6 +108,7 @@ public class ControladorTrabajadorAutoescuela {
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
 
         this.TranscisionInicio();
+        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Trabajador autoescuela");
     }
                  
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesTeoricos)
@@ -118,8 +123,14 @@ public class ControladorTrabajadorAutoescuela {
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-teorico-blanco.png")));
         ExamenesTeoricos.setGraphic(IconoActivo);
         
-        ImageView[]ImagenesCambiar={ImagenInicio,ImagenPractico};
-        JFXButton[] BotonesCambiar={Inicio,ExamenesPracticos};
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInicio);
+                add(ImagenPractico);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Inicio);
+                add(ExamenesPracticos);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
@@ -135,8 +146,14 @@ public class ControladorTrabajadorAutoescuela {
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer-blanco.png")));
         ExamenesPracticos.setGraphic(IconoActivo);  
         
-        ImageView[]ImagenesCambiar={ImagenInicio,ImagenTeorico};
-        JFXButton[] BotonesCambiar={Inicio,ExamenesTeoricos};
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInicio);
+                add(ImagenTeorico);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Inicio);
+                add(ExamenesTeoricos);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
         
     }
@@ -152,9 +169,16 @@ public class ControladorTrabajadorAutoescuela {
         
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
         Inicio.setGraphic(IconoActivo);  
-        ImageView[]ImagenesCambiar={ImagenPractico,ImagenTeorico};
-        JFXButton[] BotonesCambiar={ExamenesPracticos,ExamenesTeoricos};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenPractico);
+                add(ImagenTeorico);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(ExamenesPracticos);
+                add(ExamenesTeoricos);
+                }};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);    
     }
     
     //Funcion para aparecer el menu de RegistrarExamen en este caso(Practico)

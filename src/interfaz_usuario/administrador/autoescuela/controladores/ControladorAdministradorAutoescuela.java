@@ -7,6 +7,9 @@ package interfaz_usuario.administrador.autoescuela.controladores;
 import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -40,11 +43,45 @@ public class ControladorAdministradorAutoescuela {
     @FXML
     private Button RegistrarExamenPractico;
     
+    @FXML
+    private Label EtiquetaRol;
+    
+    @FXML
+    private HBox VentanaPrincipal;
+    
+    @FXML
+    private ProgressBar BarraProgresoAprobado;
+    
+    @FXML
+    private ProgressBar BarraProgresoReprobado;
+    
+    @FXML
+    private Label LabelProgresoAprobado;
+    
+    @FXML
+    private Label LabelProgresoReprobado;
+    
+    @FXML
+    private ProgressBar BarraProgresoTeorico;
+    
+    @FXML
+    private ProgressBar BarraProgresoPractico;
+    
+    @FXML
+    private Label LabelProgresoTeorico;
+    
+    @FXML
+    private Label LabelProgresoPractico;
     
     @FXML
     public void initialize()
     {
         System.out.println("Controlador Administrador Autoescuela Iniciado");
+        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Administrador autoescuela");
+        GestorEscenas.SaltoLineaEtiqueta(EtiquetaRol);
+        Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoTeorico,LabelProgresoPractico};
+        ProgressBar[] BarrasProgreso = {BarraProgresoAprobado,BarraProgresoReprobado,BarraProgresoTeorico,BarraProgresoPractico};
+        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
     }
     
     
