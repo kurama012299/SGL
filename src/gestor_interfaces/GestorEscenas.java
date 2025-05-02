@@ -89,6 +89,7 @@ public class GestorEscenas  {
         }
     }
 
+    //Funcion para mostrar el primer panel y los demas ocultarlos
     public static void MostrarOcultarPaneles(Pane Mostrar, Pane... Ocultar) {
         Mostrar.setVisible(true);
         for (Pane Panel : Ocultar) {
@@ -98,6 +99,7 @@ public class GestorEscenas  {
         }
     }
 
+    //Funcion para pintar el primer boton y los demas ocultarlos
     public static void PintarBotones(JFXButton boton, JFXButton... botones) {
         boton.getStyleClass().add("active");
         for (JFXButton bot : botones) {
@@ -105,6 +107,7 @@ public class GestorEscenas  {
         }
     }
 
+    //Funcion para Ingresarle el icono a la ventana por parametro,asi como titulo
     public static void PonerIconoVentana(HBox box, String TituloVentana) {
         Platform.runLater(() -> {
             Stage stage = (Stage) box.getScene().getWindow();
@@ -118,6 +121,7 @@ public class GestorEscenas  {
         });
     }
     
+    //Funcion para Unir el los labels con las barras de progreso asi dicen mismo porcentaje
     public static void ProgresoLabel(Label[] label, ProgressBar[] barra) {
         int i=0;
         for(Label l:label)
@@ -127,6 +131,7 @@ public class GestorEscenas  {
         }
     }
     
+    //Funcion para evitar escribir las teclas de enter y espacio
     public static void ConsumirTecla(JFXButton... Boton)
     {
         for (JFXButton b : Boton) {
@@ -138,12 +143,21 @@ public class GestorEscenas  {
         }
     }
     
-     public static void CambiarIconos(ImageView[] Imagenes, JFXButton... Botones) {
+    //Funcion para cambiar iconos de ciertos botones con dos arreglos
+    public static void CambiarIconos(ImageView[] Imagenes, JFXButton... Botones) {
         for (JFXButton b : Botones) {
             for (ImageView i : Imagenes) {
                 b.setGraphic(i);
             }
         }
     }
+     
+    //Funcion para cuadno llegue a un extremo determinado de texto un label haga salto de linea
+    public static void SaltoLineaEtiqueta(Label Etiqueta)
+    {
+        Etiqueta.setWrapText(true);
+        Etiqueta.setMaxWidth(100);
+    }
+    
     
 }
