@@ -9,15 +9,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
-import java.util.ArrayList;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -89,6 +84,7 @@ public class ControladorTrabajadorAutoescuela {
     public void initialize() {
         
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
+        
         ImagenTeorico = (ImageView) ExamenesTeoricos.getGraphic();
         ImagenPractico = (ImageView) ExamenesPracticos.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
@@ -113,10 +109,13 @@ public class ControladorTrabajadorAutoescuela {
     public void TranscisionExamenesTeoricos() {
         Pane[] PanelesOcultar={PanelExamenesPracticos,PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenesTeoricos,PanelesOcultar);
+        
         JFXButton[] botones={Inicio,ExamenesPracticos};
         GestorEscenas.PintarBotones(ExamenesTeoricos, botones);
+        
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-teorico-blanco.png")));
         ExamenesTeoricos.setGraphic(IconoActivo);
+        
         ImageView[]ImagenesCambiar={ImagenInicio,ImagenPractico};
         JFXButton[] BotonesCambiar={Inicio,ExamenesPracticos};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
@@ -126,10 +125,13 @@ public class ControladorTrabajadorAutoescuela {
     public void TranscisionExamenesPracticos() {
         Pane[] PanelesOcultar={PanelExamenesTeoricos,PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenesPracticos,PanelesOcultar);
+        
         JFXButton[] botones={Inicio,ExamenesTeoricos};
         GestorEscenas.PintarBotones(ExamenesPracticos, botones);
+        
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer-blanco.png")));
         ExamenesPracticos.setGraphic(IconoActivo);  
+        
         ImageView[]ImagenesCambiar={ImagenInicio,ImagenTeorico};
         JFXButton[] BotonesCambiar={Inicio,ExamenesTeoricos};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);

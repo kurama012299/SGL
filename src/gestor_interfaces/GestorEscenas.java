@@ -127,8 +127,7 @@ public class GestorEscenas  {
         }
     }
     
-    public static void ConsumirTecla(JFXButton... Boton)
-    {
+    public static void ConsumirTecla(JFXButton... Boton){
         for (JFXButton b : Boton) {
             b.addEventFilter(KeyEvent.KEY_PRESSED, evento -> {
                 if (evento.getCode() == KeyCode.ENTER || evento.getCode() == KeyCode.SPACE) {
