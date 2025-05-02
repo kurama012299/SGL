@@ -5,10 +5,15 @@
 package interfaz_usuario.medico.controladores;
 
 
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -18,10 +23,13 @@ import javafx.stage.Stage;
 public class ControladorMedico {
     
     @FXML
-    private Button Inicio;
+    private HBox VentanaPrincipal;
     
     @FXML
-    private Button ExamenesMedicos;
+    private JFXButton Inicio;
+    
+    @FXML
+    private JFXButton ExamenesMedicos;
     
     @FXML
     private Pane PanelInicio;
@@ -32,21 +40,61 @@ public class ControladorMedico {
     @FXML
     private Button Registrar;
     
+
+    
+    private ImageView ImagenInicio;
+    private ImageView ImagenExamenesMedicos;
+    
     @FXML
     public void initialize() {
         System.out.println("Controlador Medico Iniciado");
+        
+        ImagenInicio = (ImageView) Inicio.getGraphic();
+        ImagenExamenesMedicos = (ImageView) ExamenesMedicos.getGraphic();
+        
+        JFXButton[] BotonesConsumirTecla={Inicio,ExamenesMedicos};
+        GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
+
+        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Medico");
+
+        this.TransicionInicio();
+
     }
     
     @FXML
     public void TransicionExamenesMedico() {
         Pane[] PanelesOcultar={PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
+        
+        JFXButton[] botones={Inicio};
+        GestorEscenas.PintarBotones(ExamenesMedicos, botones);
+        
+        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-medico-blanco.png")));
+        ExamenesMedicos.setGraphic(IconoActivo);
+        
+        
+        JFXButton[] BotonesPonerNormal={Inicio};
+        GestorEscenas.PintarBotones(ExamenesMedicos,BotonesPonerNormal);
+        
+        ImageView[]ImagenesCambiar={ImagenInicio};
+        JFXButton[] BotonesCambiar={Inicio};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
     public void TransicionInicio() {
        Pane[] PanelesOcultar={PanelExamenes};
        GestorEscenas.MostrarOcultarPaneles(PanelInicio,PanelesOcultar);
+       
+        JFXButton[] botones={ExamenesMedicos};
+        GestorEscenas.PintarBotones(Inicio, botones);
+        
+        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
+        Inicio.setGraphic(IconoActivo);
+        
+        ImageView[]ImagenesCambiar={ImagenExamenesMedicos};
+        JFXButton[] BotonesCambiar={ExamenesMedicos};
+        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML

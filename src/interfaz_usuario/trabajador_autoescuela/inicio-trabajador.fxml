@@ -398,7 +398,7 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="249.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../recursos_compartidos/imagenes/ico-examen_teorico.png" />
+                              <Image url="@../recursos_compartidos/imagenes/ico-examen-teorico.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="23">
