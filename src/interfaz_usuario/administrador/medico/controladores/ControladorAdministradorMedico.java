@@ -6,10 +6,14 @@ package interfaz_usuario.administrador.medico.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -34,7 +38,50 @@ public class ControladorAdministradorMedico {
     @FXML
     private Pane PanelExamenes;
     
-     private ImageView ImagenExamenes;
+    @FXML
+    private HBox VentanaPrincipal;
+    
+    @FXML
+    private Label EtiquetaRol;
+    
+    @FXML
+    private ProgressBar BarraProgresoAprobado;
+    
+    @FXML
+    private ProgressBar BarraProgresoReprobado;
+    
+    @FXML
+    private ProgressBar BarraProgresoAprobadoR;
+    
+    @FXML
+    private ProgressBar BarraProgresoJoven;
+    
+    @FXML
+    private ProgressBar BarraProgresoAdulto;
+    
+    @FXML
+    private ProgressBar BarraProgresoAnciano;
+    
+    @FXML
+    private Label LabelProgresoAprobado;
+    
+    @FXML
+    private Label LabelProgresoReprobado;
+    
+    @FXML
+    private Label LabelProgresoAprobadoR;
+    
+    @FXML
+    private Label LabelProgresoJoven;
+    
+    @FXML
+    private Label LabelProgresoAdulto;
+    
+    @FXML
+    private Label LabelProgresoAnciano;
+    
+    
+    private ImageView ImagenExamenes;
     private ImageView ImagenInicio;
     
     public void initialize() {
@@ -45,6 +92,14 @@ public class ControladorAdministradorMedico {
         
         JFXButton[] BotonesConsumirTecla={Inicio,Examenes};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
+        
+        GestorEscenas.SaltoLineaEtiqueta(EtiquetaRol);
+        
+        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Administrador Medico");
+        
+        Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoAprobadoR,LabelProgresoJoven,LabelProgresoAdulto,LabelProgresoAnciano};
+        ProgressBar[] BarrasProgreso = {BarraProgresoAprobado,BarraProgresoReprobado,BarraProgresoAprobadoR,BarraProgresoJoven,BarraProgresoAdulto,BarraProgresoAnciano};
+        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
         
         System.out.println("Controlador Administrador Medico Iniciado");
         this.TransicionInicio();
@@ -59,8 +114,14 @@ public class ControladorAdministradorMedico {
         GestorEscenas.PintarBotones(Inicio, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
         Inicio.setGraphic(IconoActivo);
-        ImageView[] ImagenesCambiar = {ImagenExamenes};
-        JFXButton[] BotonesCambiar = {Examenes};
+        
+        
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenExamenes);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Examenes);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
@@ -73,8 +134,14 @@ public class ControladorAdministradorMedico {
         GestorEscenas.PintarBotones(Examenes, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-blanco.png")));
         Examenes.setGraphic(IconoActivo);
-        ImageView[] ImagenesCambiar = {ImagenInicio};
-        JFXButton[] BotonesCambiar = {Inicio};
+        
+        
+        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
+                add(ImagenInicio);
+                }};
+        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
+                add(Inicio);
+                }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     

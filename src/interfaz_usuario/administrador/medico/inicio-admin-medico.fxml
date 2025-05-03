@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -21,7 +20,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.administrador.medico.controladores.ControladorAdministradorMedico">
+<HBox fx:id="VentanaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.administrador.medico.controladores.ControladorAdministradorMedico">
    <children>
       <VBox prefHeight="600.0" prefWidth="151.0" style="-fx-background-color: white;">
          <children>
@@ -35,7 +34,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Examenes" layoutY="181.0" onAction="#TransicionExamenes" prefHeight="35.0" prefWidth="165.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes médicos">
+                  <JFXButton fx:id="Examenes" layoutY="173.0" onAction="#TransicionExamenes" prefHeight="35.0" prefWidth="165.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes médicos">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,17 +61,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <Label layoutX="60.0" layoutY="56.0" prefHeight="21.0" prefWidth="105.0" text=" Administrador " textFill="#919191">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="20.0" fitWidth="23.0" layoutX="4.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../recursos_compartidos/imagenes/ico-empresa.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="60.0" layoutY="67.0" prefHeight="21.0" prefWidth="105.0" text=" médico" textFill="#919191">
+                  <Label fx:id="EtiquetaRol" layoutX="52.0" layoutY="67.0" prefHeight="35.0" prefWidth="105.0" text=" Administrador medico" textFill="#919191">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -117,7 +106,7 @@
                         <Font name="Arial" size="25.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="-10.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" />
+                  <Separator layoutX="-10.0" layoutY="38.0" orientation="VERTICAL" prefHeight="560.0" prefWidth="19.0" />
                   <Pane layoutX="44.0" layoutY="106.0" prefHeight="111.0" prefWidth="169.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
                      <children>
                         <Label layoutX="6.0" layoutY="72.0" prefHeight="25.0" prefWidth="157.0" text="Inicios de sesión este mes">
@@ -197,20 +186,20 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar layoutX="131.0" layoutY="11.0" prefHeight="23.0" prefWidth="133.0" progress="0.27" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <ProgressBar layoutX="131.0" layoutY="48.0" prefHeight="23.0" prefWidth="133.0" progress="0.56" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <ProgressBar layoutX="131.0" layoutY="92.0" prefHeight="23.0" prefWidth="133.0" progress="0.17" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <Label layoutX="185.0" layoutY="14.0" text="27%">
+                        <ProgressBar fx:id="BarraProgresoAprobado" layoutX="131.0" layoutY="11.0" prefHeight="23.0" prefWidth="133.0" progress="0.27" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar fx:id="BarraProgresoReprobado" layoutX="131.0" layoutY="48.0" prefHeight="23.0" prefWidth="133.0" progress="0.56" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar fx:id="BarraProgresoAprobadoR" layoutX="131.0" layoutY="92.0" prefHeight="23.0" prefWidth="133.0" progress="0.17" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <Label fx:id="LabelProgresoAprobado" layoutX="185.0" layoutY="14.0" text="27%">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label layoutX="185.0" layoutY="51.0" text="56%">
+                        <Label fx:id="LabelProgresoReprobado" layoutX="185.0" layoutY="51.0" text="56%">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label layoutX="185.0" layoutY="94.0" text="17%">
+                        <Label fx:id="LabelProgresoAprobadoR" layoutX="185.0" layoutY="94.0" text="17%">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -224,17 +213,17 @@
                   </Label>
                   <Pane layoutX="439.0" layoutY="249.0" prefHeight="194.0" prefWidth="312.0">
                      <children>
-                        <Label layoutX="19.0" layoutY="54.0" prefHeight="25.0" prefWidth="61.0" text="    18-40">
+                        <Label layoutX="19.0" layoutY="36.0" prefHeight="25.0" prefWidth="61.0" text="    18-40">
                            <font>
                               <Font name="Arial" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="123.0" layoutY="54.0" prefHeight="25.0" prefWidth="61.0" text="   40-60">
+                        <Label layoutX="123.0" layoutY="36.0" prefHeight="25.0" prefWidth="61.0" text="   40-60">
                            <font>
                               <Font name="Arial" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="222.0" layoutY="54.0" prefHeight="25.0" prefWidth="72.0" text="    60-70">
+                        <Label layoutX="222.0" layoutY="36.0" prefHeight="25.0" prefWidth="72.0" text="    60-70">
                            <font>
                               <Font name="Arial" size="14.0" />
                            </font>
@@ -245,9 +234,24 @@
                               <Font name="Arial Bold" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressIndicator layoutX="38.0" layoutY="87.0" progress="0.0" />
-                        <ProgressIndicator layoutX="142.0" layoutY="87.0" progress="0.0" />
-                        <ProgressIndicator layoutX="247.0" layoutY="87.0" progress="0.0" />
+                        <ProgressBar fx:id="BarraProgresoJoven" layoutX="2.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar fx:id="BarraProgresoAdulto" layoutX="104.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar fx:id="BarraProgresoAnciano" layoutX="208.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <Label fx:id="LabelProgresoAdulto" alignment="CENTER" layoutX="139.0" layoutY="110.0" text="64%">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="LabelProgresoJoven" alignment="CENTER" layoutX="33.0" layoutY="110.0" text="64%">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="LabelProgresoAnciano" alignment="CENTER" layoutX="243.0" layoutY="111.0" text="64%">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Label layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
@@ -283,7 +287,7 @@
                         <Font name="Arial" size="25.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="-10.0" layoutY="42.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="19.0" />
+                  <Separator layoutX="-10.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" />
                   <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
                      <font>
                         <Font size="14.0" />
