@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import logica.autentificacion.Autentificador;
 
@@ -19,6 +20,9 @@ public class ControladorLogin {
     
     @FXML
     private Button Entrar;
+    
+    @FXML
+    private HBox VentanaPrincipal;
     
     @FXML
     private TextField Usuario;
@@ -32,6 +36,8 @@ public class ControladorLogin {
     @FXML
     public void initialize() {
         System.out.println("Controlador Login Iniciado");
+        
+        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Medico");
     }
     
     @FXML
