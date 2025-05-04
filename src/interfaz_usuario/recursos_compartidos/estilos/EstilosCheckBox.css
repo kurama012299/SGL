@@ -10,15 +10,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .check-box:focused
 {
     -fx-color:  #8000ff;
-    -fx-focused-color: white;
+    -fx-focused-color: #8000ff;
 }
 
 .check-box .box
 {
-    -fx-background-color: #8000ff;
-    -fx-shadow-hightlight-color: #ce9dff;
-    -fx-outer-border: #ce9dff;
-    -fx-body-color: #9a9a9a;
+    -fx-background-color: white;
+    -fx-shadow-hightlight-color: #8000ff;
+    -fx-outer-border-color: #8000ff;
+    -fx-body-color: #8000ff;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
     -fx-background-radius: 2,2,1,1;
     
@@ -26,14 +26,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .check-box:focused .box
 {
-    -fx-background-insets: -1.4,0,1,2;
+  
     -fx-background-radius: 3,4,2,1,1;
 }
 
 .check-box:hover .box
 {
-    -fx-color: #9d4024;
-    -fx-hover-base: #7ebcea;
+    -fx-color: #8000ff	;
+    -fx-hover-base: #8000ff	;
 }
 
 .check-box .mark
@@ -43,13 +43,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .check-box:indeterminate .mark
 {
-    -fx-background-color: #2a2b2a;
-    -fx-mark-highlight-color: #395cab;
+    -fx-background-color: #8000ff;
+    -fx-mark-highlight-color: #8000ff;
     -fx-scale-shape: true;
 }
 
 .check-box:selected .mark
 {
-    -fx-background-color: white;
+    -fx-background-color: #8000ff;
 }
 
