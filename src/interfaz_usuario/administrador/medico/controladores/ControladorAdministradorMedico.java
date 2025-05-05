@@ -80,6 +80,9 @@ public class ControladorAdministradorMedico {
     @FXML
     private Label LabelProgresoAnciano;
     
+    @FXML
+    private JFXButton BotonCerrarSesion;
+    
     
     private ImageView ImagenExamenes;
     private ImageView ImagenInicio;
@@ -89,6 +92,11 @@ public class ControladorAdministradorMedico {
         
         ImagenInicio = (ImageView) Inicio.getGraphic();
         ImagenExamenes = (ImageView) Examenes.getGraphic();
+        
+        BotonCerrarSesion.setOnAction(e ->
+        {
+            GestorEscenas.CerrarPrograma();
+        });
         
         JFXButton[] BotonesConsumirTecla={Inicio,Examenes};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);

@@ -1,0 +1,61 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 5 may 2025, 9:59:38
+    Author     : Kris
+*/
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-font-family: "Arial";
+}
+
+/* Encabezados de columna */
+.table-view .column-header-background {
+    -fx-background-color: #8000FF;
+    -fx-background-radius: 8;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+/* Celdas */
+.table-view .table-cell {
+    -fx-padding: 8px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Filas alternadas (Zebra Stripe) */
+.table-row-cell:even {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: white;
+}
+
+/* Hover y selección */
+.table-row-cell:hover {
+    -fx-background-color: rgba(128, 0, 255, 0.1);
+    -fx-background-radius: 8;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #8000FF;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white !important;
+    -fx-font-weight: bold;
+    -fx-padding: 2px;
+}
