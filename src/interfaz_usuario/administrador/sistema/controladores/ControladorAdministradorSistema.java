@@ -143,6 +143,9 @@ public class ControladorAdministradorSistema {
     @FXML
     private Label LabelInfraccionMGrave;
     
+    @FXML
+    private JFXButton BotonCerrarSesion;
+    
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
     private ImageView ImagenInicio;
@@ -166,6 +169,11 @@ public class ControladorAdministradorSistema {
         ImagenAutoescuela = (ImageView) Autoescuela.getGraphic();
         ImagenClinica = (ImageView) Clinica.getGraphic();
         ImagenEntidades = (ImageView) Entidades.getGraphic();
+        
+        BotonCerrarSesion.setOnAction(e ->
+        {
+            GestorEscenas.CerrarPrograma();
+        });
         
         GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Administrador");
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes, Autoescuela, Clinica, Entidades};

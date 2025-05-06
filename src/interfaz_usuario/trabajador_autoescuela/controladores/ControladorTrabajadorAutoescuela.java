@@ -79,6 +79,9 @@ public class ControladorTrabajadorAutoescuela {
     
     @FXML
     private Label EtiquetaCorreo;
+    
+    @FXML
+    private JFXButton BotonCerrarSesion;
        
     private ImageView ImagenTeorico;
     private ImageView ImagenPractico;
@@ -94,7 +97,10 @@ public class ControladorTrabajadorAutoescuela {
         ImagenPractico = (ImageView) ExamenesPracticos.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
 
-        
+        BotonCerrarSesion.setOnAction(e ->
+        {
+            GestorEscenas.CerrarPrograma();
+        });
 
         Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoTeorico,LabelProgresoPractico};
         ProgressBar[] BarrasProgreso = {ProgressbarAprobado,ProgressbarReprobado,ProgressbarTeorico,ProgressbarPractico};
@@ -109,6 +115,13 @@ public class ControladorTrabajadorAutoescuela {
 
         this.TranscisionInicio();
         GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Trabajador autoescuela");
+        VentanaPrincipal.setStyle(
+                        "-fx-background-color: #ffffff;"+ 
+                        "-fx-background-radius: 20px;"+
+                        "-fx-border-radius: 20px;"+
+                        "-fx-border-color: #8000FF;"+
+                        "-fx-border-width: 2px;"
+                );
     }
                  
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesTeoricos)
@@ -208,6 +221,8 @@ public class ControladorTrabajadorAutoescuela {
             //CAPTURAR ERROR
         }
     }
+    
+   
     
 }
     

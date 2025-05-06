@@ -1,0 +1,16 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 5 may 2025, 11:28:14
+    Author     : Kris
+*/
+
+.root {
+    -fx-background-color: #ffffff; /* Fondo blanco (o tu color) */
+    -fx-background-radius: 20px;   /* Bordes redondeados */
+    -fx-border-radius: 20px;       /* Para compatibilidad */
+    -fx-border-color: #8000FF;     /* Borde morado (opcional) */
+    -fx-border-width: 2px;
+}
