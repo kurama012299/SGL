@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
@@ -66,6 +67,14 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
+                  <JFXButton layoutX="45.0" layoutY="533.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #8000ff; -fx-background-radius: 9;" text="Cerrar sesión" textFill="#fffcfc">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
                </children>
                <opaqueInsets>
                   <Insets right="2.0" />

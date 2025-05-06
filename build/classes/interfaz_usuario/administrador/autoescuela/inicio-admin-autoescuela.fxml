@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
@@ -26,7 +27,7 @@
          <children>
             <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
                <children>
-                  <JFXButton fx:id="Inicio" layoutX="-1.0" layoutY="146.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="175.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Inicio" />
+                  <JFXButton fx:id="Inicio" layoutX="-1.0" layoutY="146.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Inicio" />
                   <Label layoutX="29.0" layoutY="7.0" prefHeight="27.0" prefWidth="121.0" text="        S.G.L" textFill="#8000ff">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
@@ -51,29 +52,37 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="ExamenTeorico" layoutX="-1.0" layoutY="181.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#TransicionExamenTeorico" prefHeight="33.0" prefWidth="175.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes Teóricos">
+                  <JFXButton fx:id="ExamenTeorico" layoutX="-1.0" layoutY="181.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#TransicionExamenTeorico" prefHeight="33.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes Teóricos">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenExamenesTeoricos" fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../recursos_compartidos/imagenes/ico-examen-teorico.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="ExamenPractico" layoutX="-1.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#TransicionExamenPractico" prefHeight="33.0" prefWidth="175.0" style="-fx-border-style: solid; -fx-border-radius: 20; -fx-border-color: ghostwhite;" text="Exámenes Prácticos">
+                  <JFXButton fx:id="ExamenPractico" layoutX="-1.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#TransicionExamenPractico" prefHeight="33.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes Prácticos">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenExamenesPracticos" fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../recursos_compartidos/imagenes/ico-chofer.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="23.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="ImagenInicio" fitHeight="24.0" fitWidth="26.0" layoutX="23.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../recursos_compartidos/imagenes/ico-inicio.png" />
                      </image>
                   </ImageView>
+                  <JFXButton layoutX="45.0" layoutY="533.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #8000ff; -fx-background-radius: 9;" text="Cerrar sesión" textFill="#fffcfc">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
                </children>
                <opaqueInsets>
                   <Insets right="2.0" />

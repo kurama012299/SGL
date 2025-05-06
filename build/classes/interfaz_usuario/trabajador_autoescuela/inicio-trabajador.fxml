@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
@@ -56,7 +57,7 @@
                   </Label>
                   <JFXButton fx:id="ExamenesTeoricos" layoutX="-1.0" layoutY="180.0" onAction="#TranscisionExamenesTeoricos" prefHeight="37.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes Teóricos">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenTeorico" fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-examen-teorico.png" />
                            </image>
@@ -65,7 +66,7 @@
                   </JFXButton>
                   <JFXButton fx:id="ExamenesPracticos" layoutY="216.0" onAction="#TranscisionExamenesPracticos" prefHeight="37.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes Prácticos">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenPractico" fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-chofer.png" />
                            </image>
@@ -77,6 +78,14 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </Label>
+                  <JFXButton layoutX="45.0" layoutY="533.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #8000ff; -fx-background-radius: 9;" text="Cerrar sesión" textFill="#fffcfc">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
                </children>
                <opaqueInsets>
                   <Insets right="2.0" />

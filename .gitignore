@@ -41,3 +41,8 @@ build/classes/interfaz_usuario/trabajador_autoescuela/inicio-trabajador.fxml
 nbproject/private/private.properties
 nbproject/private/private.xml
 nbproject/project.properties
+build/built-jar.properties
+build/built-jar.properties
+nbproject/private/private.xml
+nbproject/project.properties
+src/infraestructura/ConectorBaseDato.java
