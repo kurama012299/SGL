@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
@@ -77,9 +76,6 @@ public class ControladorAdministradorAutoescuela {
 
     @FXML
     private Label LabelProgresoPractico;
-    
-    @FXML
-    private JFXButton BotonCerrarSesion;
 
     private ImageView ImagenExamenesTeoricos;
     private ImageView ImagenExamenesPracticos;
@@ -91,11 +87,6 @@ public class ControladorAdministradorAutoescuela {
         ImagenInicio = (ImageView) Inicio.getGraphic();
         ImagenExamenesTeoricos = (ImageView) ExamenTeorico.getGraphic();
         ImagenExamenesPracticos = (ImageView) ExamenPractico.getGraphic();
-         
-        BotonCerrarSesion.setOnAction(e ->
-        {
-            GestorEscenas.CerrarPrograma();
-        });
         
         JFXButton[] BotonesConsumirTecla={Inicio,ExamenTeorico,ExamenPractico};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
@@ -107,9 +98,6 @@ public class ControladorAdministradorAutoescuela {
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado, BarraProgresoReprobado, BarraProgresoTeorico, BarraProgresoPractico};
         GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
         
-        Stage stage=(Stage)VentanaPrincipal.getScene().getWindow();
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.initStyle(StageStyle.UNDECORATED);
         this.TransicionInicio();
     }
 
