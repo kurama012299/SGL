@@ -119,6 +119,9 @@ public class ControladorTrabajadorCentro {
     @FXML
     private Label LabelInfraccionMGrave;
 
+    @FXML
+    private JFXButton BotonCerrarSesion;
+    
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
     private ImageView ImagenInicio;
@@ -136,6 +139,11 @@ public class ControladorTrabajadorCentro {
         ImagenInfracciones = (ImageView) Infracciones.getGraphic();
         ImagenReportes = (ImageView) Reportes.getGraphic();
 
+        BotonCerrarSesion.setOnAction(e ->
+        {
+            GestorEscenas.CerrarPrograma();
+        });
+        
         GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Gestor del centro");
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);

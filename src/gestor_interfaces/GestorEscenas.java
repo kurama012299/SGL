@@ -25,6 +25,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 
@@ -45,8 +46,9 @@ public class GestorEscenas  {
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
 
-            Stage Ventana = new Stage();
+            Stage Ventana = new Stage(); 
             Ventana.setScene(new Scene(Ruta));
+            Ventana.initStyle(StageStyle.TRANSPARENT);
             Ventana.setTitle("SGL");
             Ventana.show();
 
@@ -159,5 +161,9 @@ public class GestorEscenas  {
         Etiqueta.setMaxWidth(100);
     }
     
-    
+    //Funcion para cerrar el programa
+    public static void CerrarPrograma()
+    {
+        Platform.exit();
+    }
 }
