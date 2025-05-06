@@ -57,7 +57,7 @@
                   </Label>
                   <JFXButton fx:id="ExamenesTeoricos" layoutX="-1.0" layoutY="180.0" onAction="#TranscisionExamenesTeoricos" prefHeight="37.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes Teóricos">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenTeorico" fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-examen-teorico.png" />
                            </image>
@@ -66,7 +66,7 @@
                   </JFXButton>
                   <JFXButton fx:id="ExamenesPracticos" layoutY="216.0" onAction="#TranscisionExamenesPracticos" prefHeight="37.0" prefWidth="175.0" styleClass="jfx-button" stylesheets="@../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes Prácticos">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenPractico" fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-chofer.png" />
                            </image>

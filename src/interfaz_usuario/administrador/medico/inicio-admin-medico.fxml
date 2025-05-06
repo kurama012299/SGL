@@ -29,7 +29,7 @@
                <children>
                   <JFXButton fx:id="Inicio" layoutX="-34.0" layoutY="138.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="199.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Inicio           ">
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenInicio" fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../recursos_compartidos/imagenes/ico-inicio.png" />
                            </image>
@@ -37,7 +37,7 @@
                      </graphic></JFXButton>
                   <JFXButton fx:id="Examenes" layoutY="173.0" onAction="#TransicionExamenes" prefHeight="35.0" prefWidth="165.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes médicos">
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenExamenes" fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../recursos_compartidos/imagenes/ico-examen%20-medico.png" />
                            </image>

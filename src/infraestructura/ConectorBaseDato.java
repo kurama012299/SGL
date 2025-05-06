@@ -14,7 +14,7 @@ public class ConectorBaseDato {
     
     private static final String URL = "jdbc:postgresql://localhost:5432/sistemaGestionLicencias";
     private static final String USUARIO = "postgres";
-    private static final String CLAVE = "Asbeel*04";
+    private static final String CLAVE = "4622";
 
     public static Connection Conectar() throws Exception{
         try {

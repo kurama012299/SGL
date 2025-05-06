@@ -7,18 +7,23 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="301.0" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="35.0" layoutY="41.0" prefHeight="40.0" prefWidth="242.0" text="Ha ocurrido un errror en el sistema">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="66.0" fitWidth="75.0" layoutX="293.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="68.0" fitWidth="84.0" layoutX="117.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagenes/ico-error.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="156.0" layoutY="134.0" opacity="0.4" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #8000ff;" text="Aceptar" textFill="WHITE" />
+      <Label alignment="CENTER" layoutX="117.0" layoutY="124.0" prefHeight="17.0" prefWidth="68.0" text="Error" textFill="RED">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="109.0" layoutY="232.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: red;" text="Aceptar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="52.0" layoutY="156.0" prefHeight="58.0" prefWidth="207.0" text="El sistema a fallado por muchas causas" />
    </children>
 </Pane>
