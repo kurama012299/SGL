@@ -135,6 +135,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
+                  <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="18.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../recursos_compartidos/imagenes/ico-empresa.png" />
+                     </image>
+                  </ImageView>
                </children>
                <opaqueInsets>
                   <Insets right="2.0" />
@@ -179,7 +184,7 @@
                   </JFXButton>
                   <TextField layoutX="54.0" layoutY="97.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
                   <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
-                  <TableView layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0">
+                  <TableView layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
                       <TableColumn prefWidth="154.0" text="Director" />
                       <TableColumn prefWidth="153.0" text="Nombre" />
@@ -226,7 +231,7 @@
                   </JFXButton>
                   <TextField layoutX="54.0" layoutY="97.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
                   <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
-                  <TableView layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0">
+                  <TableView layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
                         <TableColumn prefWidth="154.0" text="Director" />
                         <TableColumn prefWidth="153.0" text="Nombre" />
@@ -288,7 +293,7 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="16.0" layoutY="133.0" prefHeight="456.0" prefWidth="819.0">
+                  <TableView layoutX="16.0" layoutY="133.0" prefHeight="456.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
                         <TableColumn prefWidth="154.0" text="Director" />
                         <TableColumn prefWidth="153.0" text="Nombre" />
@@ -359,7 +364,7 @@
                         <Color red="0.8196078538894653" green="0.05882352963089943" blue="0.05882352963089943" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="14.0" layoutY="140.0" prefHeight="444.0" prefWidth="808.0">
+                  <TableView layoutX="14.0" layoutY="140.0" prefHeight="444.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
                       <TableColumn prefWidth="54.0" text="Foto" />
                       <TableColumn prefWidth="247.0" text="Nombre" />
@@ -444,7 +449,7 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="19.0" layoutY="128.0" prefHeight="466.0" prefWidth="808.0">
+                  <TableView layoutX="19.0" layoutY="128.0" prefHeight="466.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
                       <TableColumn prefWidth="75.0" text="Foto" />
                       <TableColumn prefWidth="198.4000015258789" text="Examinado" />
@@ -522,7 +527,7 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="14.0" layoutY="134.0" prefHeight="456.0" prefWidth="819.0">
+                  <TableView layoutX="14.0" layoutY="134.0" prefHeight="456.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
                       <TableColumn prefWidth="75.0" text="Foto" />
                       <TableColumn prefWidth="167.19998931884766" text="Nombre" />
@@ -626,7 +631,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-carro.png" />
                      </image>
                   </ImageView>
-                  <TableView layoutX="18.0" layoutY="136.0" prefHeight="452.0" prefWidth="785.0">
+                  <TableView layoutX="18.0" layoutY="136.0" prefHeight="452.0" prefWidth="785.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
                         <TableColumn prefWidth="75.0" text="Foto" />
                         <TableColumn prefWidth="285.0" text="Nombre" />

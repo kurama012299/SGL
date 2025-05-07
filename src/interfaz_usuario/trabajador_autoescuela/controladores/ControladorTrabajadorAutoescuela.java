@@ -101,7 +101,7 @@ public class ControladorTrabajadorAutoescuela {
         {
             GestorEscenas.CerrarPrograma();
         });
-
+        
         Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoTeorico,LabelProgresoPractico};
         ProgressBar[] BarrasProgreso = {ProgressbarAprobado,ProgressbarReprobado,ProgressbarTeorico,ProgressbarPractico};
         GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
@@ -115,13 +115,6 @@ public class ControladorTrabajadorAutoescuela {
 
         this.TranscisionInicio();
         GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Trabajador autoescuela");
-        VentanaPrincipal.setStyle(
-                        "-fx-background-color: #ffffff;"+ 
-                        "-fx-background-radius: 20px;"+
-                        "-fx-border-radius: 20px;"+
-                        "-fx-border-color: #8000FF;"+
-                        "-fx-border-width: 2px;"
-                );
     }
                  
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesTeoricos)
@@ -200,7 +193,6 @@ public class ControladorTrabajadorAutoescuela {
     {
         String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
         Stage Padre = (Stage) RegistrarPractico.getScene().getWindow();
-        
         try {
             GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen practico");
         } catch (Exception ex) {
@@ -221,6 +213,20 @@ public class ControladorTrabajadorAutoescuela {
             //CAPTURAR ERROR
         }
     }
+    
+    /*
+    @FXML
+    public void MensajeCerrarSesion()
+    {
+        String Direccion = "/interfaz_usuario/recursos_compartidos/errores/mensaje-cerrar-sesion.fxml";
+        Stage Padre = (Stage) BotonCerrarSesion.getScene().getWindow();
+        
+        try {
+            GestorEscenas.CargarAlertaError(Padre, Direccion, "Cerrar sesión", "Desea cerrar Sesion?");
+        } catch (Exception ex) {
+            //CAPTURAR ERROR
+        }
+    }*/
     
    
     

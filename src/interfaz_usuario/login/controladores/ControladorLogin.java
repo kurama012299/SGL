@@ -6,13 +6,20 @@ package interfaz_usuario.login.controladores;
 
 
 import gestor_interfaces.GestorEscenas;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import logica.autentificacion.Autentificador;
 import logica.inicios_sesion.consultas.ConsultasInicioSesion;
 
@@ -35,10 +42,18 @@ public class ControladorLogin {
     private Label OlvidasteClave;
     
     @FXML
+    private Line LineaUsuario;
+    
+    @FXML
+    private Line LineaClave;
+    
+    @FXML
     public void initialize() {
         System.out.println("Controlador Login Iniciado");
-        
         GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Login");
+        ConfigurarNavegacionConTeclas(Usuario, Clave);
+        ConfigurarEfectoLinea(Clave, LineaClave);
+        ConfigurarEfectoLinea(Usuario, LineaUsuario);
     }
     
     @FXML
@@ -110,5 +125,79 @@ public class ControladorLogin {
             }
         });
     }       
+    
+    //funcion para navegar con las teclas arriba y abajo
+    @FXML
+    private void ConfigurarNavegacionConTeclas(TextField Usuario,TextField Clave) {
+        // Evento para el field usuario
+        Usuario.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            switch (event.getCode()) {
+                case DOWN:
+                    Clave.requestFocus();
+                    Usuario.setStyle("-fx-background-color: transparent");
+                    event.consume();
+                    break;
+                case UP:
+                    event.consume();
+                    break;
+                default:
+                    break;
+            }
+        });
 
+        // Evento para el field contraseña
+        Clave.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            switch (event.getCode()) {
+                case UP:
+                    Usuario.requestFocus();
+                    Clave.setStyle("-fx-background-color: transparent");
+                    event.consume();
+                    break;
+                case DOWN:
+                    event.consume();
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+    
+    //Funcion para el efecto de las lineas bajo los textfield
+    @FXML
+    private void ConfigurarEfectoLinea(TextField CajaTexto, Line Linea) {
+        Linea.setStroke(Color.GRAY);
+        Linea.setStrokeWidth(1);
+        
+        // Cuando el TextField recibe foco
+        CajaTexto.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal) {
+                
+                Timeline LineaTiempo = new Timeline(
+                    new KeyFrame(Duration.ZERO,
+                        new KeyValue(Linea.strokeProperty(), Color.GRAY),
+                        new KeyValue(Linea.strokeWidthProperty(), 1)
+                    ),
+                    new KeyFrame(Duration.millis(300),
+                        new KeyValue(Linea.strokeProperty(), Color.valueOf("#8000ff")),
+                        new KeyValue(Linea.strokeWidthProperty(), 2)
+                    )
+                );
+                LineaTiempo.play();
+            } else {
+                Timeline LineaTiempo = new Timeline(
+                    new KeyFrame(Duration.ZERO,
+                        new KeyValue(Linea.strokeProperty(), Color.valueOf("#8000ff")),
+                        new KeyValue(Linea.strokeWidthProperty(), 2)
+                    ),
+                    new KeyFrame(Duration.millis(300),
+                        new KeyValue(Linea.strokeProperty(), Color.GRAY),
+                        new KeyValue(Linea.strokeWidthProperty(), 1)
+                    )
+                );
+                LineaTiempo.play();
+            }
+        });
+    }
 }
+
+
