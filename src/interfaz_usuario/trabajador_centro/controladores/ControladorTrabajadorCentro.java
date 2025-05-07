@@ -144,7 +144,6 @@ public class ControladorTrabajadorCentro {
             GestorEscenas.CerrarPrograma();
         });
         
-        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Gestor del centro");
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
