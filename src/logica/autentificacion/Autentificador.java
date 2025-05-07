@@ -4,6 +4,7 @@
  */
 package logica.autentificacion;
 
+import logica.inicios_sesion.consultas.ConsultasInicioSesion;
 import logica.usuario.consultas.ConsultasUsuario;
 import logica.usuario.modelos.Usuario;
 
@@ -20,6 +21,7 @@ public class Autentificador {
     {
         Usuario = ConsultasUsuario.ObtenerUsuario(Correo, Clave);
         System.out.println(Usuario);
+        ConsultasInicioSesion.CrearInicioSesion(Usuario.getId());
         return Usuario.getRol();
     }
 }
