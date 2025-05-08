@@ -7,6 +7,8 @@ package interfaz_usuario.administrador.sistema.controladores;
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.persona.implementaciones.ServicioConductor;
 
 /**
  *
@@ -224,6 +227,12 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionConductores()
     {
+        try {
+            System.out.println(ServicioConductor.ObtenerConductores());
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelInicio, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelConductores,PanelesOcultar);
         JFXButton[] botones = {Inicio, Licencias, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};
