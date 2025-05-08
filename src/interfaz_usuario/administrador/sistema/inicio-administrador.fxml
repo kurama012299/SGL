@@ -7,6 +7,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -462,7 +463,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Conductores">
                      <font>
@@ -527,17 +528,25 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="14.0" layoutY="134.0" prefHeight="456.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="Foto" />
-                      <TableColumn prefWidth="167.19998931884766" text="Nombre" />
-                        <TableColumn prefWidth="130.4000244140625" text="CI" />
-                        <TableColumn prefWidth="106.39996337890625" text="Telefono" />
-                        <TableColumn prefWidth="123.20004272460938" text="Correo" />
-                        <TableColumn prefWidth="116.79998779296875" text="Estado licencia" />
-                        <TableColumn prefWidth="103.20001220703125" text="Detalles" />
-                    </columns>
-                  </TableView>
+                  <ScrollPane layoutX="13.0" layoutY="136.0" prefHeight="452.0" prefWidth="825.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="451.0" prefWidth="419.0">
+                           <children>
+                              <TableView fx:id="TablaConductor" layoutX="1.0" prefHeight="452.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                                <columns>
+                                  <TableColumn fx:id="ColumnaFoto" prefWidth="75.0" text="Foto" />
+                                  <TableColumn fx:id="ColumnaNombre" prefWidth="167.19998931884766" text="Nombre" />
+                                    <TableColumn fx:id="ColumnaId" prefWidth="120.0" text="CI" />
+                                    <TableColumn fx:id="ColumnaTelefono" prefWidth="90.0" text="Telefono" />
+                                    <TableColumn fx:id="ColumnaCorreo" prefWidth="190.0" resizable="false" text="Correo" />
+                                    <TableColumn fx:id="ColumnaEstado" prefWidth="100.0" text="Estado LI" />
+                                    <TableColumn fx:id="ColumnaDetalles" prefWidth="90.0" text="Detalles" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </Pane>
             <Pane fx:id="PanelLicencias" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="825.0" visible="false">
@@ -648,7 +657,7 @@
                   <CheckBox layoutX="437.0" layoutY="60.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>

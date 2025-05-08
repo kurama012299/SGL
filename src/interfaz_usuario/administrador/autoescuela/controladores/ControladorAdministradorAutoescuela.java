@@ -101,7 +101,6 @@ public class ControladorAdministradorAutoescuela {
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
         System.out.println("Controlador Administrador Autoescuela Iniciado");
-        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Administrador autoescuela");
         GestorEscenas.SaltoLineaEtiqueta(EtiquetaRol);
         Label[] PorcentajesBarra = {LabelProgresoAprobado, LabelProgresoReprobado, LabelProgresoTeorico, LabelProgresoPractico};
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado, BarraProgresoReprobado, BarraProgresoTeorico, BarraProgresoPractico};

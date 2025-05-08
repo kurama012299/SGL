@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import logica.persona.modelos.Conductor;
 
 
@@ -19,8 +21,8 @@ import logica.persona.modelos.Conductor;
  */
 public class ConsultasPersona {
     
-    public static ArrayList<Conductor> ObtenerConductoresConsulta() throws Exception {
-        ArrayList<Conductor> Conductores = new ArrayList<>();
+    public static ObservableList<Conductor> ObtenerConductoresConsulta() throws Exception {
+        ObservableList<Conductor> Conductores = FXCollections.observableArrayList();
         
         String consulta = "SELECT * FROM \"Persona\" WHERE \"Id_Licencia\"<>0"; 
         

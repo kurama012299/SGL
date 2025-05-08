@@ -7,18 +7,30 @@ package interfaz_usuario.administrador.sistema.controladores;
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.persona.consultas.ConsultasPersona;
 import logica.persona.implementaciones.ServicioConductor;
+import logica.persona.modelos.Conductor;
 
 /**
  *
@@ -149,6 +161,29 @@ public class ControladorAdministradorSistema {
     @FXML
     private JFXButton BotonCerrarSesion;
     
+    @FXML
+    private TableView<Conductor> TablaConductor;
+    
+    @FXML
+    private TableColumn<Conductor, String> ColumnaNombre;
+    
+    @FXML
+    private TableColumn<Conductor, Long> ColumnaId;
+    
+    @FXML
+    private TableColumn<Conductor, String> ColumnaTelefono;
+    
+    @FXML
+    private TableColumn<Conductor, String> ColumnaDetalles;
+    
+    @FXML
+    private TableColumn<Conductor, String> ColumnaCorreo;
+    
+    @FXML
+    private TableColumn<Conductor, String> ColumnaFoto;
+    
+    private ObservableList<Conductor> datos= FXCollections.observableArrayList();
+    
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
     private ImageView ImagenInicio;
@@ -161,8 +196,18 @@ public class ControladorAdministradorSistema {
     
     
     @FXML
-    public void initialize()
+    public void initialize() 
     {
+        
+        ColumnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        ColumnaId.setCellValueFactory(new PropertyValueFactory<>("CI"));
+        ColumnaTelefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
+        ColumnaCorreo.setCellValueFactory(new PropertyValueFactory<>("Correo"));
+          
+        LLenarTabla();
+
+        GestorEscenas.LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
+
         ImagenLicencias = (ImageView) Licencias.getGraphic();
         ImagenConductores = (ImageView) Conductores.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
@@ -178,7 +223,6 @@ public class ControladorAdministradorSistema {
             GestorEscenas.CerrarPrograma();
         });
         
-        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Administrador");
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes, Autoescuela, Clinica, Entidades};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
@@ -190,6 +234,21 @@ public class ControladorAdministradorSistema {
         this.TransicionInicio();
     }
     
+    private void cargarDatos(ObservableList<Conductor> dat)
+    {
+        datos.clear();
+        datos.addAll(dat);
+    }
+    
+    private void LLenarTabla()
+    {
+         try {
+            datos = ServicioConductor.ObtenerConductores();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        TablaConductor.setItems(datos);
+    }
     
     @FXML
     public void TransicionLicencias()
