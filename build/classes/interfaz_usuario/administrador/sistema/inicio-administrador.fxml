@@ -534,13 +534,12 @@
                            <children>
                               <TableView fx:id="TablaConductor" layoutX="1.0" prefHeight="452.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                                 <columns>
-                                  <TableColumn fx:id="ColumnaFoto" prefWidth="75.0" text="Foto" />
-                                  <TableColumn fx:id="ColumnaNombre" prefWidth="167.19998931884766" text="Nombre" />
-                                    <TableColumn fx:id="ColumnaId" prefWidth="120.0" text="CI" />
-                                    <TableColumn fx:id="ColumnaTelefono" prefWidth="90.0" text="Telefono" />
-                                    <TableColumn fx:id="ColumnaCorreo" prefWidth="190.0" resizable="false" text="Correo" />
-                                    <TableColumn fx:id="ColumnaEstado" prefWidth="100.0" text="Estado LI" />
-                                    <TableColumn fx:id="ColumnaDetalles" prefWidth="90.0" text="Detalles" />
+                                  <TableColumn fx:id="ColumnaFoto" prefWidth="72.80001735687256" text="Foto" />
+                                  <TableColumn fx:id="ColumnaNombre" prefWidth="183.99999237060547" text="Nombre" />
+                                    <TableColumn fx:id="ColumnaCI" prefWidth="108.0" text="CI" />
+                                    <TableColumn fx:id="ColumnaTelefono" prefWidth="120.0" text="Telefono" />
+                                    <TableColumn fx:id="ColumnaCorreo" prefWidth="223.19998168945312" resizable="false" text="Correo" />
+                                    <TableColumn fx:id="ColumnaDetalles" prefWidth="87.2000732421875" text="Detalles" />
                                 </columns>
                               </TableView>
                            </children>

@@ -5,6 +5,10 @@
 package logica.examen.modelos;
 
 import java.util.Date;
+import logica.entidad.modelos.EntidadRelacionada;
+import logica.persona.modelos.Aprendiz;
+import logica.persona.modelos.Persona;
+import logica.usuario.modelos.Usuario;
 
 /**
  *
@@ -14,19 +18,33 @@ public class Examen {
     protected Long Id;
     protected Date Fecha;
     protected boolean Aprobado;
-    protected Long IdEntidad;
-    protected Long IdPersona;
-    protected Long IdExaminador;
+    protected EntidadRelacionada Entidad;
+    protected Persona Persona;
+    protected Usuario Examinador;
 
-    public Examen(Long Id, Date Fecha, boolean Aprobado, Long IdEntidad, Long IdPersona, Long IdExaminador) {
+    public Examen(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador) {
         this.Id = Id;
         this.Fecha = Fecha;
         this.Aprobado = Aprobado;
-        this.IdEntidad = IdEntidad;
-        this.IdPersona = IdPersona;
-        this.IdExaminador = IdExaminador;
+        setEntidad(Entidad);
+        setExaminador(Examinador);
+        setPersona(Persona);
+        
     }
+    
 
+    public void setEntidad(EntidadRelacionada Entidad)
+    {
+        this.Entidad=Entidad;
+    }
+    public void setPersona(Persona Persona)
+    {
+        this.Persona=Persona;
+    }
+    public void setExaminador(Usuario Examinador)
+    {
+        this.Examinador=Examinador;
+    }
     public Long getId() {
         return Id;
     }
@@ -39,16 +57,16 @@ public class Examen {
         return Aprobado;
     }
 
-    public Long getIdEntidad() {
-        return IdEntidad;
+    public EntidadRelacionada getEntidad() {
+        return Entidad;
     }
 
-    public Long getIdPersona() {
-        return IdPersona;
+    public Persona getPersona() {
+        return Persona;
     }
 
-    public Long getIdExaminador() {
-        return IdExaminador;
+    public Usuario getExaminador() {
+        return Examinador;
     }
     
     @Override
@@ -57,8 +75,8 @@ public class Examen {
          return "Id: "+ Id +"\n"+
                 "Fecha: "+ Fecha +"\n"+
                 "Aprobado: "+ Aprobado +"\n"+
-                "IdEntidad: " + IdEntidad +"\n"+
-                "IdPersona: " + IdPersona +"\n"+
-                "IdExaminador: " + IdExaminador+"\n";
+                "Entidad: " + Entidad.getNombre() +"\n"+
+                "Persona: " + Persona.getNombre() +"\n"+
+                "Examinador: " + Examinador.getNombre()+"\n";
     }
 }

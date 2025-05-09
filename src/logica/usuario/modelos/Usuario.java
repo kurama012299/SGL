@@ -26,6 +26,11 @@ public class Usuario {
         this.EntidadPerteneciente = EntidadPerteneciente;
         this.Id=Id;
     }
+    
+    public Usuario(String Nombre)
+    {
+        this.Nombre=Nombre;
+    }
 
     public String getNombre() {
         return Nombre;

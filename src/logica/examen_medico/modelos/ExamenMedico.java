@@ -6,7 +6,10 @@ package logica.examen_medico.modelos;
 
 import java.util.ArrayList;
 import java.util.Date;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen.modelos.Examen;
+import logica.persona.modelos.Persona;
+import logica.usuario.modelos.Usuario;
 
 /**
  *
@@ -16,11 +19,12 @@ public class ExamenMedico extends Examen{
     
     private ArrayList<String> Restricciones;
     
-    public ExamenMedico(Long Id, Date Fecha, boolean Aprobado, Long IdEntidad, Long IdPersona, Long IdExaminador,ArrayList<String> Restricciones) {
-        super(Id, Fecha, Aprobado, IdEntidad, IdPersona, IdExaminador);
+    public ExamenMedico(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,ArrayList<String> Restricciones) {
+        super(Id, Fecha, Aprobado, Entidad, Persona, Examinador);
         
         this.Restricciones=Restricciones;
     }
+    
 
     public ArrayList<String> getRestricciones() {
         return Restricciones;
@@ -34,9 +38,9 @@ public class ExamenMedico extends Examen{
          return "Id: "+ Id +"\n"+
                 "Fecha: "+ Fecha +"\n"+
                 "Aprobado: "+ Aprobado +"\n"+
-                "IdEntidad: " + IdEntidad +"\n"+
-                "IdPersona: " + IdPersona +"\n"+
-                "IdExaminador: " + IdExaminador+"\n"+
+                "Entidad: " + Entidad +"\n"+
+                "Persona: " + Persona +"\n"+
+                "Examinador: " + Examinador+"\n"+
                 "Restricciones" + Restricciones ;
     }
     
