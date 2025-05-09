@@ -19,4 +19,9 @@ public class ServicioConductor{
     public static ObservableList<Conductor> ObtenerConductores() throws Exception {
         return ConsultasPersona.ObtenerConductoresConsulta();
     }
+    
+    public static Conductor ObtenerConductorPorId(long Id) throws Exception
+    {
+        return ConsultasPersona.ObtenerConductorPorIdConsulta(Id);
+    }
 }
