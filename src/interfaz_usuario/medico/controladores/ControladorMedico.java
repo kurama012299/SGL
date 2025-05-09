@@ -105,7 +105,6 @@ public class ControladorMedico {
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado,BarraProgresoReprobado,BarraProgresoAprobadoR,BarraProgresoJoven,BarraProgresoAdulto,BarraProgresoAnciano};
         GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
 
-        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Medico");
 
         this.TransicionInicio();
 

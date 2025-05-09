@@ -9,14 +9,19 @@ package gestor_interfaces;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Set;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -165,5 +170,28 @@ public class GestorEscenas  {
     public static void CerrarPrograma()
     {
         Platform.exit();
+    }
+    
+    //Funcion para llenar la columna de detalles para cada tabla en especifico
+    public static <T> void LlenarColumnaDetalles(TableView<T> Tabla,int cantidadFilas)
+    {
+        TableColumn<T, ?> ultimaColumna = (TableColumn<T, ?>)Tabla.getColumns().get(Tabla.getColumns().size() - 1);
+        Platform.runLater(() -> {
+            // Buscar TODAS las celdas visibles
+            Set<Node> todasLasCeldas = Tabla.lookupAll(".table-cell");
+            for (Node nodo : todasLasCeldas) {
+                if (nodo instanceof TableCell) {
+                    TableCell<T, ?> celda = (TableCell<T, ?>) nodo;
+                    if (celda.getTableColumn().equals(ultimaColumna)) {
+                        Label label = new Label("Ver más");
+                        label.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                        celda.setGraphic(label);
+                        if (celda.getIndex() == cantidadFilas) {
+                            break;
+                        }             // Salir del bucle una vez encontrada
+                    }
+                }
+            }
+        });
     }
 }

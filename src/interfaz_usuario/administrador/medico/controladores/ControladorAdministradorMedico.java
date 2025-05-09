@@ -103,7 +103,6 @@ public class ControladorAdministradorMedico {
         
         GestorEscenas.SaltoLineaEtiqueta(EtiquetaRol);
         
-        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Administrador Medico");
         
         Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoAprobadoR,LabelProgresoJoven,LabelProgresoAdulto,LabelProgresoAnciano};
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado,BarraProgresoReprobado,BarraProgresoAprobadoR,BarraProgresoJoven,BarraProgresoAdulto,BarraProgresoAnciano};

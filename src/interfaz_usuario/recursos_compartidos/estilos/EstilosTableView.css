@@ -9,21 +9,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .table-view {
     -fx-background-color: transparent;
-    -fx-padding: 0;
+    -fx-padding: 5px;
     -fx-font-family: "Arial";
 }
 
 /* Encabezados de columna */
 .table-view .column-header-background {
     -fx-background-color: #8000FF;
-    -fx-background-radius: 8;
+    -fx-background-radius: 0;
 }
 
 .table-view .column-header {
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-padding: 10px;
+    -fx-padding: 5px;
+   
 }
 
 /* Celdas */
@@ -39,6 +40,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #f9f9f9;
 }
 
+.table-cell{
+    -fx-font-weight: bold;
+}
+
 .table-row-cell:odd {
     -fx-background-color: white;
 }
@@ -50,12 +55,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #8000FF;
+    -fx-background-color: #ce9dff;
     -fx-text-fill: white;
 }
 
+
 .table-view .column-header .label {
     -fx-text-fill: white !important;
+    -fx-alignment: CENTER_LEFT !important;
     -fx-font-weight: bold;
-    -fx-padding: 2px;
+    -fx-padding: 5px;
 }

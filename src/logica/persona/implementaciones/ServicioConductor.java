@@ -5,6 +5,7 @@
 package logica.persona.implementaciones;
 
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
 import logica.persona.consultas.ConsultasPersona;
 import logica.persona.modelos.Conductor;
 
@@ -15,7 +16,7 @@ import logica.persona.modelos.Conductor;
 public class ServicioConductor{
 
     
-    public static ArrayList<Conductor> ObtenerConductores() throws Exception {
+    public static ObservableList<Conductor> ObtenerConductores() throws Exception {
         return ConsultasPersona.ObtenerConductoresConsulta();
     }
 }
