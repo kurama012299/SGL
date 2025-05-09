@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -38,6 +39,10 @@ public class GestorTablas {
                     if (celda.getTableColumn().equals(ultimaColumna)) {
                         Label label = new Label("Ver más");
                         label.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                        label.setOnMouseClicked(event -> {
+                            T objetoFila = Tabla.getItems().get(celda.getIndex());
+                            MostrarDetalles(objetoFila);
+                        });                        
                         celda.setGraphic(label);
                         if (celda.getIndex() == cantidadFilas) {
                             break;
@@ -46,6 +51,15 @@ public class GestorTablas {
                 }
             }
         });
+    }
+    
+    private static void MostrarDetalles(Object Objeto)
+    {
+        if(Objeto instanceof Conductor)
+        {
+            Conductor Conductor = (Conductor) Objeto;
+            System.out.println(Conductor);
+        }
     }
     
     

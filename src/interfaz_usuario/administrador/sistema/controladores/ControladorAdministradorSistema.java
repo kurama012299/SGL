@@ -198,10 +198,7 @@ public class ControladorAdministradorSistema {
     @FXML
     public void initialize() 
     {
-        
-
-        
-
+ 
         ImagenLicencias = (ImageView) Licencias.getGraphic();
         ImagenConductores = (ImageView) Conductores.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
@@ -268,6 +265,7 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionConductores()
     {
+        //Llenado de tabla
         GestorTablas.ConfigurarColumnasConductores(ColumnaFoto, ColumnaNombre, ColumnaCI, ColumnaTelefono, ColumnaCorreo);
         GestorTablas.CargarTablaConductores(TablaConductor);
         GestorTablas.LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
