@@ -91,6 +91,7 @@ public class ControladorAdministradorAutoescuela {
         ImagenInicio = (ImageView) Inicio.getGraphic();
         ImagenExamenesTeoricos = (ImageView) ExamenTeorico.getGraphic();
         ImagenExamenesPracticos = (ImageView) ExamenPractico.getGraphic();
+
          
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -101,7 +102,6 @@ public class ControladorAdministradorAutoescuela {
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
         System.out.println("Controlador Administrador Autoescuela Iniciado");
-        GestorEscenas.SaltoLineaEtiqueta(EtiquetaRol);
         Label[] PorcentajesBarra = {LabelProgresoAprobado, LabelProgresoReprobado, LabelProgresoTeorico, LabelProgresoPractico};
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado, BarraProgresoReprobado, BarraProgresoTeorico, BarraProgresoPractico};
         GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);

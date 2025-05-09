@@ -21,7 +21,7 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logica.autentificacion.Autentificador;
-import logica.inicios_sesion.consultas.ConsultasInicioSesion;
+
 
 
 public class ControladorLogin {
@@ -57,7 +57,7 @@ public class ControladorLogin {
     }
     
     @FXML
-    private void IniciarSesion() {
+    private void IniciarSesion() throws Exception {
         System.out.println("Intentando iniciar sesión...");
 
         String tipoUsuario;
@@ -94,7 +94,7 @@ public class ControladorLogin {
             }
         } catch (Exception ex) 
         {
-            System.out.println(ex.getMessage());
+            GestorEscenas.CargarError(Entrar.getScene().getWindow(),ex);
         }
     }
     

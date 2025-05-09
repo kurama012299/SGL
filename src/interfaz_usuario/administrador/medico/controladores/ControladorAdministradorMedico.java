@@ -92,6 +92,7 @@ public class ControladorAdministradorMedico {
         
         ImagenInicio = (ImageView) Inicio.getGraphic();
         ImagenExamenes = (ImageView) Examenes.getGraphic();
+
         
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -101,7 +102,6 @@ public class ControladorAdministradorMedico {
         JFXButton[] BotonesConsumirTecla={Inicio,Examenes};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
-        GestorEscenas.SaltoLineaEtiqueta(EtiquetaRol);
         
         
         Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoAprobadoR,LabelProgresoJoven,LabelProgresoAdulto,LabelProgresoAnciano};

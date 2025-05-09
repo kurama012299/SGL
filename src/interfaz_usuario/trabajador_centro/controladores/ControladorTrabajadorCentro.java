@@ -138,6 +138,8 @@ public class ControladorTrabajadorCentro {
         ImagenExamenes = (ImageView) Examenes.getGraphic();
         ImagenInfracciones = (ImageView) Infracciones.getGraphic();
         ImagenReportes = (ImageView) Reportes.getGraphic();
+        
+ 
 
         BotonCerrarSesion.setOnAction(e ->
         {

@@ -7,21 +7,19 @@ package gestor_interfaces;
 
 
 import com.jfoenix.controls.JFXButton;
+import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarUnaAccion;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Set;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -53,8 +51,7 @@ public class GestorEscenas  {
 
             Stage Ventana = new Stage(); 
             Ventana.setScene(new Scene(Ruta));
-            Ventana.initStyle(StageStyle.TRANSPARENT);
-            Ventana.setTitle("SGL");
+            Ventana.initStyle(StageStyle.UTILITY);
             Ventana.show();
 
         } catch (Exception e) {
@@ -63,8 +60,35 @@ public class GestorEscenas  {
         }
     }
 
-    public static void CargarAlertaError(Window Padre, String Direccion, String Titulo, String Mensaje) throws Exception {
-        CargarPanelAuxiliar(Padre, Direccion, true, Titulo);
+    public static void CargarError(Window padre, Exception ex) {
+        try {
+            // Cargar el panel de error
+            URL Url = GestorEscenas.class.getResource("/interfaz_usuario/recursos_compartidos/errores/mensaje-error.fxml");
+            FXMLLoader cargador = new FXMLLoader(Url);
+            Parent root = cargador.load();
+
+            // Obtener el controlador y configurar el mensaje
+            ControladorMenuAuxiliarUnaAccion controlador = cargador.getController();
+            controlador.Iniciar(ex.getMessage()); 
+
+            // Configurar la ventana
+            Stage ventana = new Stage();
+            ventana.initStyle(StageStyle.UTILITY);
+            ventana.initOwner(padre);
+            ventana.initModality(Modality.WINDOW_MODAL);
+            ventana.setScene(new Scene(root));
+
+            // Mostrar la ventana
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+            // Fallback básico si falla la carga del FXML
+            Alert alertaSimple = new Alert(Alert.AlertType.ERROR);
+            alertaSimple.setTitle("Error crítico");
+            alertaSimple.setHeaderText("No se pudo cargar el panel de error");
+            alertaSimple.setContentText(e.getMessage());
+            alertaSimple.showAndWait();
+        }
     }
 
     public static void CargarPanelAuxiliar(Window Padre, String Direccion, boolean Modal, String Titulo) throws Exception {
@@ -159,12 +183,6 @@ public class GestorEscenas  {
         }
     }
      
-    //Funcion para cuadno llegue a un extremo determinado de texto un label haga salto de linea
-    public static void SaltoLineaEtiqueta(Label Etiqueta)
-    {
-        Etiqueta.setWrapText(true);
-        Etiqueta.setMaxWidth(100);
-    }
     
     //Funcion para cerrar el programa
     public static void CerrarPrograma()

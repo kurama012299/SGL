@@ -96,6 +96,7 @@ public class ControladorTrabajadorAutoescuela {
         ImagenTeorico = (ImageView) ExamenesTeoricos.getGraphic();
         ImagenPractico = (ImageView) ExamenesPracticos.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
+        
 
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -109,7 +110,6 @@ public class ControladorTrabajadorAutoescuela {
         JFXButton[] BotonesConsumirTecla={Inicio,ExamenesTeoricos,ExamenesPracticos};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
-        GestorEscenas.SaltoLineaEtiqueta(EtiquetaRol);
         
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
 

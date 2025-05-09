@@ -4,6 +4,7 @@
  */
 package gestor_tablas;
 
+import gestor_interfaces.GestorEscenas;
 import java.io.File;
 import java.util.Objects;
 import java.util.Set;
@@ -52,6 +53,7 @@ public class GestorTablas {
             }
         });
     }
+    
     
     private static void MostrarDetalles(Object Objeto)
     {
