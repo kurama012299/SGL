@@ -254,8 +254,7 @@ public class ControladorAdministradorSistema {
         //Llenado de tabla
         GestorTablas.ConfigurarColumnasConductores(ColumnaFoto, ColumnaNombre, ColumnaCI, ColumnaTelefono, ColumnaCorreo);
         GestorTablas.CargarTablaConductores(TablaConductor);
-        GestorTablas.LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
-        GestorTablas.LlenarColumnaFotos(TablaConductor, TablaConductor.getItems().size()-1);
+        
         
         
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelInicio, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};

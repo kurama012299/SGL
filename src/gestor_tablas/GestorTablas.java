@@ -4,15 +4,12 @@
  */
 package gestor_tablas;
 
-import gestor_interfaces.GestorEscenas;
-import java.io.File;
-import java.util.Objects;
+
 import java.util.Set;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -29,7 +26,7 @@ import logica.persona.modelos.Conductor;
  */
 public class GestorTablas {
 
-    public static <T> void LlenarColumnaDetalles(TableView<T> Tabla, int cantidadFilas) {
+    private static <T> void LlenarColumnaDetalles(TableView<T> Tabla, int cantidadFilas) {
         TableColumn<T, ?> ultimaColumna = (TableColumn<T, ?>) Tabla.getColumns().get(Tabla.getColumns().size() - 1);
         Platform.runLater(() -> {
             // Buscar TODAS las celdas visibles
@@ -65,7 +62,7 @@ public class GestorTablas {
     }
     
     
-    public static <T> void LlenarColumnaFotos(TableView<T> Tabla, int cantidadFilas) {
+    private static <T> void LlenarColumnaFotos(TableView<T> Tabla, int cantidadFilas) {
         Image defaultIcon = new Image(
         Thread.currentThread().getContextClassLoader().getResourceAsStream(
             "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
@@ -129,8 +126,11 @@ public class GestorTablas {
     public static void CargarTablaConductores(TableView<Conductor> TablaConductor) {
         try {
             ObservableList<Conductor> Conductores = ServicioConductor.ObtenerConductores();
-            TablaConductor.getItems().clear();
+            
+            
             TablaConductor.setItems(Conductores);
+            LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
+            LlenarColumnaFotos(TablaConductor, TablaConductor.getItems().size()-1);
         } catch (Exception ex) {
             //Capturar Error
         }
