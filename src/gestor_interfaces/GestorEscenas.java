@@ -171,27 +171,4 @@ public class GestorEscenas  {
     {
         Platform.exit();
     }
-    
-    //Funcion para llenar la columna de detalles para cada tabla en especifico
-    public static <T> void LlenarColumnaDetalles(TableView<T> Tabla,int cantidadFilas)
-    {
-        TableColumn<T, ?> ultimaColumna = (TableColumn<T, ?>)Tabla.getColumns().get(Tabla.getColumns().size() - 1);
-        Platform.runLater(() -> {
-            // Buscar TODAS las celdas visibles
-            Set<Node> todasLasCeldas = Tabla.lookupAll(".table-cell");
-            for (Node nodo : todasLasCeldas) {
-                if (nodo instanceof TableCell) {
-                    TableCell<T, ?> celda = (TableCell<T, ?>) nodo;
-                    if (celda.getTableColumn().equals(ultimaColumna)) {
-                        Label label = new Label("Ver más");
-                        label.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
-                        celda.setGraphic(label);
-                        if (celda.getIndex() == cantidadFilas) {
-                            break;
-                        }             // Salir del bucle una vez encontrada
-                    }
-                }
-            }
-        });
-    }
 }

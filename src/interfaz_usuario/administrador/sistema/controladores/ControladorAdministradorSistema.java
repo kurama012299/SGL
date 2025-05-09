@@ -6,11 +6,13 @@ package interfaz_usuario.administrador.sistema.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -107,8 +109,6 @@ public class ControladorAdministradorSistema {
     @FXML
     private Button RegistrarLicencia;
     
-    @FXML
-    private HBox VentanaPrincipal;
     
     @FXML
     private ProgressBar BarraProgresoLicenciaA;
@@ -164,25 +164,25 @@ public class ControladorAdministradorSistema {
     @FXML
     private TableView<Conductor> TablaConductor;
     
+    
+    @FXML
+    private TableColumn<Conductor, String> ColumnaFoto;
+    
     @FXML
     private TableColumn<Conductor, String> ColumnaNombre;
     
     @FXML
-    private TableColumn<Conductor, Long> ColumnaId;
+    private TableColumn<Conductor, String> ColumnaCI;
     
     @FXML
     private TableColumn<Conductor, String> ColumnaTelefono;
     
     @FXML
-    private TableColumn<Conductor, String> ColumnaDetalles;
-    
-    @FXML
     private TableColumn<Conductor, String> ColumnaCorreo;
     
-    @FXML
-    private TableColumn<Conductor, String> ColumnaFoto;
     
-    private ObservableList<Conductor> datos= FXCollections.observableArrayList();
+    
+
     
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
@@ -199,14 +199,8 @@ public class ControladorAdministradorSistema {
     public void initialize() 
     {
         
-        ColumnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        ColumnaId.setCellValueFactory(new PropertyValueFactory<>("CI"));
-        ColumnaTelefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
-        ColumnaCorreo.setCellValueFactory(new PropertyValueFactory<>("Correo"));
-          
-        LLenarTabla();
 
-        GestorEscenas.LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
+        
 
         ImagenLicencias = (ImageView) Licencias.getGraphic();
         ImagenConductores = (ImageView) Conductores.getGraphic();
@@ -234,21 +228,9 @@ public class ControladorAdministradorSistema {
         this.TransicionInicio();
     }
     
-    private void cargarDatos(ObservableList<Conductor> dat)
-    {
-        datos.clear();
-        datos.addAll(dat);
-    }
+ 
     
-    private void LLenarTabla()
-    {
-         try {
-            datos = ServicioConductor.ObtenerConductores();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        TablaConductor.setItems(datos);
-    }
+    
     
     @FXML
     public void TransicionLicencias()
@@ -286,11 +268,11 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionConductores()
     {
-        try {
-            System.out.println(ServicioConductor.ObtenerConductores());
-        } catch (Exception ex) {
-            Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GestorTablas.ConfigurarColumnasConductores(ColumnaFoto, ColumnaNombre, ColumnaCI, ColumnaTelefono, ColumnaCorreo);
+        GestorTablas.CargarTablaConductores(TablaConductor);
+        GestorTablas.LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
+        GestorTablas.LlenarColumnaFotos(TablaConductor, TablaConductor.getItems().size()-1);
+        
         
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelInicio, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelConductores,PanelesOcultar);
