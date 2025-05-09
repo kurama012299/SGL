@@ -9,7 +9,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .table-view {
     -fx-background-color: transparent;
-    -fx-padding: 5px;
     -fx-font-family: "Arial";
 }
 
@@ -23,13 +22,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-padding: 5px;
    
 }
 
 /* Celdas */
 .table-view .table-cell {
-    -fx-padding: 8px;
+    -fx-padding: 0px;
     -fx-border-color: transparent;
     -fx-border-radius: 8;
     -fx-alignment: CENTER_LEFT;
@@ -42,8 +40,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .table-cell{
     -fx-font-weight: bold;
+    -fx-text-overflow: "";
 }
 
+.table-view .scroll-bar:horizontal
+{
+    -fx-opacity: 0;
+    -fx-pref-height: 0;
+}
 .table-row-cell:odd {
     -fx-background-color: white;
 }

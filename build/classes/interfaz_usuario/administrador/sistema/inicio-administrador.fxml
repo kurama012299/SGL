@@ -7,11 +7,11 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -380,7 +380,7 @@
                   <Separator layoutX="-10.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="723.0" prefWidth="19.0" translateX="-4.0" />
                </children>
             </Pane>
-            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="850.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Exámenes">
                      <font>
@@ -450,20 +450,20 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="19.0" layoutY="128.0" prefHeight="466.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                  <TableView fx:id="TablaExamenes" layoutX="19.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="800.0" styleClass="table-cell" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Foto" />
-                      <TableColumn prefWidth="198.4000015258789" text="Examinado" />
-                        <TableColumn prefWidth="88.0" text="Tipo" />
-                        <TableColumn prefWidth="86.39996337890625" text="Fecha" />
-                        <TableColumn prefWidth="164.80001831054688" text="Examinador" />
-                        <TableColumn prefWidth="76.00006103515625" text="Resultado" />
-                        <TableColumn prefWidth="121.59991455078125" text="Detalles" />
+                      <TableColumn fx:id="ColumnaFotoExamen" prefWidth="50.0" text="Foto" />
+                      <TableColumn fx:id="ColumnaExaminadoExamen" prefWidth="190.0" text="Examinado" />
+                        <TableColumn fx:id="ColumnaTipoExamen" prefWidth="88.0" text="Tipo" />
+                        <TableColumn fx:id="ColumnaFechaExamen" prefWidth="86.39996337890625" text="Fecha" />
+                        <TableColumn fx:id="ColumnaExaminadorExamen" prefWidth="170.0" text="Examinador" />
+                        <TableColumn fx:id="ColumnaResultadoExamen" prefWidth="130.0" text="Resultado" />
+                        <TableColumn fx:id="ColumnaDetallesExamen" prefWidth="85.0" text="Detalles" />
                     </columns>
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0">
+            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Conductores">
                      <font>
@@ -512,40 +512,35 @@
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="FiltroEstadoLicencia" />
+                     </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="731.0" layoutY="18.0" prefHeight="17.0" prefWidth="75.0" text="Vencida">
+                  <JFXRadioButton layoutX="731.0" layoutY="18.0" prefHeight="17.0" prefWidth="75.0" text="Vencida" toggleGroup="$FiltroEstadoLicencia">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="731.0" layoutY="48.0" prefHeight="17.0" prefWidth="96.0" text="Suspendida">
+                  <JFXRadioButton layoutX="731.0" layoutY="48.0" prefHeight="17.0" prefWidth="96.0" text="Suspendida" toggleGroup="$FiltroEstadoLicencia">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="731.0" layoutY="108.0" prefHeight="17.0" prefWidth="88.0" text="Revocada">
+                  <JFXRadioButton layoutX="731.0" layoutY="108.0" prefHeight="17.0" prefWidth="88.0" text="Revocada" toggleGroup="$FiltroEstadoLicencia">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <ScrollPane layoutX="13.0" layoutY="136.0" prefHeight="452.0" prefWidth="825.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="451.0" prefWidth="419.0">
-                           <children>
-                              <TableView fx:id="TablaConductor" layoutX="1.0" prefHeight="452.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
-                                <columns>
-                                  <TableColumn fx:id="ColumnaFoto" prefWidth="72.80001735687256" text="Foto" />
-                                  <TableColumn fx:id="ColumnaNombre" prefWidth="183.99999237060547" text="Nombre" />
-                                    <TableColumn fx:id="ColumnaCI" prefWidth="108.0" text="CI" />
-                                    <TableColumn fx:id="ColumnaTelefono" prefWidth="120.0" text="Telefono" />
-                                    <TableColumn fx:id="ColumnaCorreo" prefWidth="223.19998168945312" resizable="false" text="Correo" />
-                                    <TableColumn fx:id="ColumnaDetalles" prefWidth="87.2000732421875" text="Detalles" />
-                                </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
+                  <TableView fx:id="TablaConductor" layoutX="13.0" layoutY="136.0" prefHeight="452.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                    <columns>
+                      <TableColumn fx:id="ColumnaFoto" prefWidth="72.80001735687256" text="Foto" />
+                      <TableColumn fx:id="ColumnaNombre" prefWidth="183.99999237060547" text="Nombre" />
+                        <TableColumn fx:id="ColumnaCI" prefWidth="108.0" text="CI" />
+                        <TableColumn fx:id="ColumnaTelefono" prefWidth="120.0" text="Telefono" />
+                        <TableColumn fx:id="ColumnaCorreo" prefWidth="223.19998168945312" resizable="false" text="Correo" />
+                        <TableColumn fx:id="ColumnaDetalles" prefWidth="98.0" text="Detalles" />
+                    </columns>
+                  </TableView>
                </children>
             </Pane>
             <Pane fx:id="PanelLicencias" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="825.0" visible="false">

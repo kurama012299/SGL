@@ -14,7 +14,7 @@ import logica.examen_medico.modelos.ExamenMedico;
  */
 public class ServiciosExamenesMedicos {
     
-    public static ObservableList<ExamenMedico> ObtenerConductores() throws Exception {
+    public static ObservableList<ExamenMedico> ObtenerExamenesMedico() throws Exception {
         return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionConsulta();
     }
 }

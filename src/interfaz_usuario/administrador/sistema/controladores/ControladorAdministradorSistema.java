@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.examen.modelos.Examen;
 import logica.persona.modelos.Conductor;
 
 /**
@@ -150,6 +152,29 @@ public class ControladorAdministradorSistema {
     @FXML
     private TableView<Conductor> TablaConductor;
     
+    @FXML
+    private TableView<Examen> TablaExamenes;
+    
+    @FXML
+    private TableColumn<Examen, String> ColumnaFotoExamen;
+    
+    @FXML
+    private TableColumn<Examen, String> ColumnaExaminadoExamen;
+    
+    @FXML
+    private TableColumn<Examen, String> ColumnaTipoExamen;
+
+    @FXML
+    private TableColumn<Examen, Date> ColumnaFechaExamen;
+    
+    @FXML
+    private TableColumn<Examen, String> ColumnaExaminadorExamen;
+    
+    @FXML
+    private TableColumn<Examen, String> ColumnaResultadoExamen;
+    
+    @FXML
+    private TableColumn<Examen, String> ColumnaDetallesExamen;
     
     @FXML
     private TableColumn<Conductor, String> ColumnaFoto;
@@ -321,6 +346,9 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionExamenes()
     {
+        GestorTablas.ConfigurarColumnasExamenes(ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen,ColumnaResultadoExamen,ColumnaDetallesExamen);
+        GestorTablas.CargarTablaExamenes(TablaExamenes);
+        
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelInicio, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Clinica,Entidades};

@@ -5,9 +5,11 @@
 package gestor_tablas;
 
 
+import java.util.Date;
 import java.util.Set;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -17,8 +19,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import logica.examen.implementaciones.ServiciosExamenes;
+import logica.examen.modelos.Examen;
+import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
+import logica.examen_medico.modelos.ExamenMedico;
 import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
+import logica.persona.modelos.Persona;
 
 /**
  *
@@ -90,6 +97,46 @@ public class GestorTablas {
             }
         });
     }
+    
+    public static void ConfigurarColumnasExamenes(
+            TableColumn<Examen, String> ColumnaFotoExamen,
+            TableColumn<Examen, String> ColumnaExaminadoExamen,
+            TableColumn<Examen, String> ColumnaTipoExamen,
+            TableColumn<Examen, Date> ColumnaFechaExamen,
+            TableColumn<Examen, String> ColumnaExaminadorExamen,
+            TableColumn<Examen, String> ColumnaResultadoExamen,
+            TableColumn<Examen, String> ColumnaDetallesExamen) {
+
+        // Configuración de la columna de nombre completo
+        ColumnaExaminadoExamen.setCellValueFactory(cellData -> {
+            Examen Persona = cellData.getValue();
+            return new SimpleStringProperty(
+                    String.format("%s %s", Persona.getPersona().getNombre(), Persona.getPersona().getApellidos())
+            );
+        });
+        ColumnaExaminadorExamen.setCellValueFactory(cellData -> {
+            Examen Persona = cellData.getValue();
+            return new SimpleStringProperty(Persona.getExaminador().getNombre()
+                    );
+        });
+
+        ColumnaTipoExamen.setCellValueFactory(cellData -> {
+            Examen Examen = cellData.getValue();
+            return new SimpleStringProperty(Examen.getTipo());
+        });
+        
+        ColumnaResultadoExamen.setCellValueFactory(cellData -> {
+            Examen Examen = cellData.getValue();
+            if(Examen.isAprobado())
+               return new SimpleStringProperty("Aprobado");
+            return new SimpleStringProperty("Reprobado");
+        });
+        
+ 
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
+    }
 
     public static void ConfigurarColumnasConductores(
             TableColumn<Conductor, String> ColumnaFoto,
@@ -123,6 +170,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void CargarTablaConductores(TableView<Conductor> TablaConductor) {
         try {
             ObservableList<Conductor> Conductores = ServicioConductor.ObtenerConductores();
@@ -131,6 +179,27 @@ public class GestorTablas {
             TablaConductor.setItems(Conductores);
             LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
             LlenarColumnaFotos(TablaConductor, TablaConductor.getItems().size()-1);
+        } catch (Exception ex) {
+            //Capturar Error
+        }
+    }
+    
+    public static void CargarTablaExamenes(TableView<Examen> TablaExamenes) {
+        try {
+            ObservableList<Examen> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
+            ObservableList<Examen> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
+            ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+            ObservableList<Examen>ExamenesMedicosNuevos=FXCollections.observableArrayList();
+            for(int i=0;i<ExamenesMedicos.size();i++)
+            {
+                Examen exa= new Examen(ExamenesMedicos.get(i).getId(), ExamenesMedicos.get(i).getFecha(), ExamenesMedicos.get(i).isAprobado(), ExamenesMedicos.get(i).getEntidad(), ExamenesMedicos.get(i).getPersona(),ExamenesMedicos.get(i).getExaminador(),ExamenesMedicos.get(i).getTipo());
+                ExamenesMedicosNuevos.add(exa);
+            }
+            
+            ObservableList<Examen>Examenes= FXCollections.concat(ExamenesTeoricos,ExamenesPracticos,ExamenesMedicosNuevos);
+            TablaExamenes.setItems(Examenes);
+            LlenarColumnaDetalles(TablaExamenes, TablaExamenes.getItems().size()-1);
+            LlenarColumnaFotos(TablaExamenes, TablaExamenes.getItems().size()-1);
         } catch (Exception ex) {
             //Capturar Error
         }
