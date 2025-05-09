@@ -300,7 +300,7 @@
                   <Label layoutX="67.0" layoutY="260.0" prefHeight="23.0" prefWidth="169.0" text="+10% mayor índice aprobados" textFill="#2d9f11" />
                </children>
             </Pane>
-            <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">
+            <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Prácticos">
                      <font>
@@ -360,18 +360,18 @@
                   </JFXRadioButton>
                   <TableView fx:id="TablaExamenesPracticos" layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
-                      <TableColumn fx:id="ColumnaFotoPractico" prefWidth="75.0" text="Foto" />
-                      <TableColumn fx:id="ColumnaExaminadoPractico" prefWidth="156.0" text="Examinado" />
-                        <TableColumn fx:id="ColumnaFechaPractico" prefWidth="61.0" text="Fecha" />
-                        <TableColumn fx:id="ColumnaExaminadorPractico" prefWidth="166.0" text="Examinador" />
+                      <TableColumn fx:id="ColumnaFotoPractico" prefWidth="50.0" text="Foto" />
+                      <TableColumn fx:id="ColumnaExaminadoPractico" prefWidth="200.0" text="Examinado" />
+                        <TableColumn fx:id="ColumnaFechaPractico" text="Fecha" />
+                        <TableColumn fx:id="ColumnaExaminadorPractico" prefWidth="170.0" text="Examinador" />
                         <TableColumn fx:id="ColumnaResultadoPractico" prefWidth="101.0" text="Resultado" />
-                        <TableColumn fx:id="ColumnaAutoescuela" prefWidth="134.0" text="Autoescuela" />
+                        <TableColumn fx:id="ColumnaAutoescuela" prefWidth="110.0" text="Autoescuela" />
                         <TableColumn fx:id="ColumnaDetallesPractico" prefWidth="87.0" text="Detalles" />
                     </columns>
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelExamenesTeoricos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0">
+            <Pane fx:id="PanelExamenesTeoricos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Teóricos">
                      <font>
@@ -426,15 +426,15 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView fx:id="TablaExamenesTeoricos" layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                  <TableView fx:id="TablaExamenesTeoricos" layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="788.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
-                        <TableColumn fx:id="ColumnaFotoTeorico" prefWidth="75.0" text="Foto" />
-                        <TableColumn fx:id="ColumnaExaminadoTeorico" prefWidth="156.0" text="Examinado" />
-                        <TableColumn fx:id="ColumnaFechaTeorico" prefWidth="61.0" text="Fecha" />
-                        <TableColumn fx:id="ColumnaExaminadorTeorico" prefWidth="166.0" text="Examinador" />
-                        <TableColumn fx:id="ColumnaResultadoTeorico" prefWidth="101.0" text="Resultado" />
-                        <TableColumn fx:id="ColumnaAutoescuelaTeorico" prefWidth="134.0" text="Autoescuela" />
-                        <TableColumn fx:id="ColumnaDetallesTeorico" prefWidth="87.0" text="Detalles" />
+                        <TableColumn fx:id="ColumnaFotoTeorico" prefWidth="55.0" text="Foto" />
+                        <TableColumn fx:id="ColumnaExaminadoTeorico" prefWidth="200.0" text="Examinado" />
+                        <TableColumn fx:id="ColumnaFechaTeorico" text="Fecha" />
+                        <TableColumn fx:id="ColumnaExaminadorTeorico" prefWidth="170.0" text="Examinador" />
+                        <TableColumn fx:id="ColumnaResultadoTeorico" prefWidth="90.0" text="Resultado" />
+                        <TableColumn fx:id="ColumnaAutoescuelaTeorico" prefWidth="120.0" text="Autoescuela" />
+                        <TableColumn fx:id="ColumnaDetallesTeorico" prefWidth="90.0" text="Detalles" />
                      </columns>
                   </TableView>
                </children>
