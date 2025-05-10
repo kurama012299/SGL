@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Angel Hernandez
  */
-public abstract class Persona {
+public class Persona {
     protected Long Id;
     protected String Nombre;
     protected String Apellidos;
@@ -33,6 +33,12 @@ public abstract class Persona {
         this.Foto = Foto;
     }
 
+    public Persona(String nombre,String apellidos,String CI)
+    {
+        this.Nombre = Nombre;
+        this.Apellidos= apellidos;
+        this.CI=CI;
+    }
     public Long getId() {
         return Id;
     }

@@ -26,6 +26,10 @@ public class EntidadRelacionada {
         this.NombreDirector = NombreDirector;
         this.TipoEntidad = TipoEntidad;
     }
+    public EntidadRelacionada(String nombre)
+    {
+        this.Nombre = nombre;
+    }
 
     public Long getId() {
         return Id;

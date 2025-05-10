@@ -167,7 +167,6 @@ public class ControladorAdministradorSistema {
     private TableColumn<Conductor, String> ColumnaCorreo;
     
     
-    
 
     
     private ImageView ImagenLicencias;
@@ -182,7 +181,7 @@ public class ControladorAdministradorSistema {
     
     
     @FXML
-    public void initialize() 
+    public void initialize() throws Exception 
     {
  
         ImagenLicencias = (ImageView) Licencias.getGraphic();
@@ -194,7 +193,6 @@ public class ControladorAdministradorSistema {
         ImagenAutoescuela = (ImageView) Autoescuela.getGraphic();
         ImagenClinica = (ImageView) Clinica.getGraphic();
         ImagenEntidades = (ImageView) Entidades.getGraphic();
-        
         
         
         BotonCerrarSesion.setOnAction(e ->
