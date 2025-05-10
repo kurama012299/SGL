@@ -20,7 +20,7 @@ public class ExamenMedico extends Examen{
     private ArrayList<String> Restricciones;
     
     public ExamenMedico(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,ArrayList<String> Restricciones) {
-        super(Id, Fecha, Aprobado, Entidad, Persona, Examinador);
+        super(Id, Fecha, Aprobado, Entidad, Persona, Examinador,"Médico");
         
         this.Restricciones=Restricciones;
     }
@@ -38,6 +38,7 @@ public class ExamenMedico extends Examen{
          return "Id: "+ Id +"\n"+
                 "Fecha: "+ Fecha +"\n"+
                 "Aprobado: "+ Aprobado +"\n"+
+                "Tipo: "+Tipo+"\n"+ 
                 "Entidad: " + Entidad +"\n"+
                 "Persona: " + Persona +"\n"+
                 "Examinador: " + Examinador+"\n"+

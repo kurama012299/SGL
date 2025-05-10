@@ -51,7 +51,8 @@ public class ConsultaExamen {
                             rs.getBoolean("Aprobado"),
                             entidad,
                             persona,
-                            examinador
+                            examinador,
+                            "Teórico"
                             );              
                     examenes.add(teorico);
                     
@@ -59,6 +60,7 @@ public class ConsultaExamen {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            examenes.get(0).getPersona().getNombre();
             return examenes;
         }
     }
@@ -85,15 +87,16 @@ public class ConsultaExamen {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
                     Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
-                    Examen teorico = new Examen(
+                    Examen practico = new Examen(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
                             rs.getBoolean("Aprobado"),
                             entidad,
                             persona,
-                            examinador
+                            examinador,
+                            "Práctico"
                             );              
-                    examenes.add(teorico);  
+                    examenes.add(practico);  
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -35,7 +35,7 @@ public class Persona {
 
     public Persona(String nombre,String apellidos,String CI)
     {
-        this.Nombre = Nombre;
+        this.Nombre = nombre;
         this.Apellidos= apellidos;
         this.CI=CI;
     }

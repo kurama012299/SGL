@@ -6,7 +6,6 @@ package logica.examen.modelos;
 
 import java.util.Date;
 import logica.entidad.modelos.EntidadRelacionada;
-import logica.persona.modelos.Aprendiz;
 import logica.persona.modelos.Persona;
 import logica.usuario.modelos.Usuario;
 
@@ -21,11 +20,13 @@ public class Examen {
     protected EntidadRelacionada Entidad;
     protected Persona Persona;
     protected Usuario Examinador;
+    public String Tipo;
 
-    public Examen(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador) {
+    public Examen(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,String Tipo) {
         this.Id = Id;
         this.Fecha = Fecha;
         this.Aprobado = Aprobado;
+        this.Tipo = Tipo;
         setEntidad(Entidad);
         setExaminador(Examinador);
         setPersona(Persona);
@@ -68,6 +69,11 @@ public class Examen {
     public Usuario getExaminador() {
         return Examinador;
     }
+
+    public String getTipo() {
+        return Tipo;
+    }
+    
     
     @Override
     public String toString()
@@ -75,6 +81,7 @@ public class Examen {
          return "Id: "+ Id +"\n"+
                 "Fecha: "+ Fecha +"\n"+
                 "Aprobado: "+ Aprobado +"\n"+
+                "Tipo"+Tipo+"\n"+
                 "Entidad: " + Entidad.getNombre() +"\n"+
                 "Persona: " + Persona.getNombre() +"\n"+
                 "Examinador: " + Examinador.getNombre()+"\n";
