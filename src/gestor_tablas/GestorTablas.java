@@ -204,4 +204,66 @@ public class GestorTablas {
             //Capturar Error
         }
     }
+    
+    public static void CargarTablaExamenesPracticosAdminAutoescuela(TableView<Examen> TablaExamenes) {
+        try {
+            ObservableList<Examen> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
+            TablaExamenes.setItems(ExamenesPracticos);
+            LlenarColumnaDetalles(TablaExamenes, TablaExamenes.getItems().size()-1);
+            LlenarColumnaFotos(TablaExamenes, TablaExamenes.getItems().size()-1);
+        } catch (Exception ex) {
+            //Capturar Error
+        }
+    }
+    
+     public static void CargarTablaExamenesTeoricosAdminAutoescuela(TableView<Examen> TablaExamenes) {
+        try {
+            ObservableList<Examen> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
+            TablaExamenes.setItems(ExamenesTeoricos);
+            LlenarColumnaDetalles(TablaExamenes, TablaExamenes.getItems().size()-1);
+            LlenarColumnaFotos(TablaExamenes, TablaExamenes.getItems().size()-1);
+        } catch (Exception ex) {
+            //Capturar Error
+        }
+    }
+    
+    public static void ConfigurarColumnasExamenesAdminAutoescuela(
+            TableColumn<Examen, String> ColumnaFotoExamen,
+            TableColumn<Examen, String> ColumnaExaminadoExamen,
+            TableColumn<Examen, Date> ColumnaFechaExamen,
+            TableColumn<Examen, String> ColumnaExaminadorExamen,
+            TableColumn<Examen, String> ColumnaResultadoExamen,
+            TableColumn<Examen, String> ColumnaAutoescuelaExamen,
+            TableColumn<Examen, String> ColumnaDetallesExamen) {
+
+        // Configuración de la columna de nombre completo
+        ColumnaExaminadoExamen.setCellValueFactory(cellData -> {
+            Examen Persona = cellData.getValue();
+            return new SimpleStringProperty(
+                    String.format("%s %s", Persona.getPersona().getNombre(), Persona.getPersona().getApellidos())
+            );
+        });
+        ColumnaExaminadorExamen.setCellValueFactory(cellData -> {
+            Examen Persona = cellData.getValue();
+            return new SimpleStringProperty(Persona.getExaminador().getNombre()
+                    );
+        });
+
+        ColumnaAutoescuelaExamen.setCellValueFactory(cellData -> {
+            Examen Examen = cellData.getValue();
+            return new SimpleStringProperty(Examen.getEntidad().getNombre());
+        });
+        
+        ColumnaResultadoExamen.setCellValueFactory(cellData -> {
+            Examen Examen = cellData.getValue();
+            if(Examen.isAprobado())
+               return new SimpleStringProperty("Aprobado");
+            return new SimpleStringProperty("Reprobado");
+        });
+        
+ 
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
+    }
 }

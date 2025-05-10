@@ -39,8 +39,7 @@ public class ConsultasUsuario {
                 String Correo = rs.getString("Correo");
                 String NombreRol = rs.getString("NombreRol");
                 String Foto = rs.getString("Foto");
-                Long NumeroEntidad = rs.getObject("Id_Entidad_Perteneciente", Long.class);
-
+                Long NumeroEntidad = rs.getObject("Id_Entidad_Perteneciente", Long.class);            
                 return new Usuario(Nombre, Correo, NombreRol, Foto, NumeroEntidad,Id);
             } else {
                 throw new Exception("Credenciales incorrectas o usuario no encontrado");

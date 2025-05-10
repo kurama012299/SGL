@@ -6,17 +6,22 @@ package interfaz_usuario.administrador.autoescuela.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import logica.examen.modelos.Examen;
 
 /**
  *
@@ -80,6 +85,59 @@ public class ControladorAdministradorAutoescuela {
     
     @FXML
     private JFXButton BotonCerrarSesion;
+    
+    @FXML
+    private TableView<Examen>TablaExamenesPracticos;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaFotoPractico;
+    
+    @FXML
+    private TableColumn<Examen, Date>ColumnaFechaPractico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaExaminadorPractico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaExaminadoPractico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaResultadoPractico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaAutoescuela;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaDetallesPractico;
+    
+    
+    @FXML
+    private TableView<Examen>TablaExamenesTeoricos;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaFotoTeorico;
+    
+    @FXML
+    private TableColumn<Examen, Date>ColumnaFechaTeorico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaExaminadorTeorico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaExaminadoTeorico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaResultadoTeorico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaAutoescuelaTeorico;
+    
+    @FXML
+    private TableColumn<Examen, String>ColumnaDetallesTeorico;
+    
+    
+    
+    
 
     private ImageView ImagenExamenesTeoricos;
     private ImageView ImagenExamenesPracticos;
@@ -106,9 +164,7 @@ public class ControladorAdministradorAutoescuela {
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado, BarraProgresoReprobado, BarraProgresoTeorico, BarraProgresoPractico};
         GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
         
-        Stage stage=(Stage)VentanaPrincipal.getScene().getWindow();
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.initStyle(StageStyle.UNDECORATED);
+        
         this.TransicionInicio();
     }
 
@@ -135,6 +191,11 @@ public class ControladorAdministradorAutoescuela {
 
     @FXML
     public void TransicionExamenPractico() {
+        
+        GestorTablas.ConfigurarColumnasExamenesAdminAutoescuela(ColumnaFotoPractico, ColumnaExaminadoPractico, ColumnaFechaPractico, ColumnaExaminadorPractico, ColumnaResultadoPractico, ColumnaAutoescuela, ColumnaDetallesPractico);
+        GestorTablas.CargarTablaExamenesPracticosAdminAutoescuela(TablaExamenesPracticos);
+        
+        
         Pane[] PanelesOcultar = {PanelInicio, PanelExamenesTeoricos};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenesPracticos, PanelesOcultar);
         JFXButton[] botones = {ExamenTeorico,Inicio};
@@ -156,6 +217,10 @@ public class ControladorAdministradorAutoescuela {
 
     @FXML
     public void TransicionExamenTeorico() {
+        
+        GestorTablas.ConfigurarColumnasExamenesAdminAutoescuela(ColumnaFotoTeorico, ColumnaExaminadoTeorico, ColumnaFechaTeorico, ColumnaExaminadorTeorico, ColumnaResultadoTeorico, ColumnaAutoescuelaTeorico, ColumnaDetallesTeorico);
+        GestorTablas.CargarTablaExamenesTeoricosAdminAutoescuela(TablaExamenesTeoricos);
+        
         Pane[] PanelesOcultar = {PanelInicio, PanelExamenesPracticos};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenesTeoricos, PanelesOcultar);
         JFXButton[] botones = {ExamenPractico,Inicio};

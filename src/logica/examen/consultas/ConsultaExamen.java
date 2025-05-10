@@ -76,7 +76,7 @@ public class ConsultaExamen {
                      "p.\"CI\" as ci_persona, "+ 
                      "u.\"Nombre\" as nombre_examinador, "+
                      "ent.\"Nombre\" as nombre_entidad "+ 
-                     "FROM \"ExamenTeorico\" ep  "+
+                     "FROM \"ExamenPractico\" ep  "+
                      "LEFT JOIN \"Persona\" p ON ep.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON ep.\"Id_Entidad\" = ent.\"Id\"" ;
