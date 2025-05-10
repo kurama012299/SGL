@@ -22,7 +22,7 @@ public class Licencia {
     private ArrayList<String> Restricciones;
     private ArrayList<String> Categorias;
 
-    public Licencia(Long Id, Date FechaEmision, Date FechaVencimiento, boolean Renovada, int CantPuntos, String Tipo, String Estado, ArrayList<String> Restricciones, ArrayList<String> Categorias) {
+    public Licencia(Long Id, Date FechaEmision, Date FechaVencimiento, boolean Renovada, int CantPuntos, String Tipo, String Estado) {
         this.Id = Id;
         this.FechaEmision = FechaEmision;
         this.FechaVencimiento = FechaVencimiento;
@@ -30,8 +30,6 @@ public class Licencia {
         this.CantPuntos = CantPuntos;
         this.Tipo = Tipo;
         this.Estado = Estado;
-        this.Restricciones = Restricciones;
-        this.Categorias = Categorias;
     }
 
     public Long getId() {
@@ -70,6 +68,14 @@ public class Licencia {
         return Categorias;
     }
     
+    public void agregarRestriccion(String Restriccion){
+        Restricciones.add(Restriccion);
+    }
+    
+    public void agregarCategoria(String Categoria){
+        Categorias.add(Categoria);
+    }
+    
     
      @Override
     public String toString()
@@ -80,7 +86,7 @@ public class Licencia {
                 "Renovada: " + Renovada +"\n"+
                 "CantPuntos: " + CantPuntos +"\n"+
                 "Tipo: "+ Tipo +"\n"+
-                "Estado: " + Estado +"\n"+
+                "Estado: " + Estado +"\n" +
                 "Restricciones: " + Restricciones +"\n"+
                 "Categorias: " + Categorias+"\n";
     }
