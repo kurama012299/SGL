@@ -30,4 +30,8 @@ public class Aprendiz extends Persona{
                 "Foto: "+ Foto + "\n";
     }
     
+    public Aprendiz(String nombre,String apellido,String Ci)
+    {
+        super(nombre,apellido,Ci);
+    }
 }
