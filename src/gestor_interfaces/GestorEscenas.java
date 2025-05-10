@@ -8,6 +8,7 @@ package gestor_interfaces;
 
 import com.jfoenix.controls.JFXButton;
 import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarUnaAccion;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasConductor;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import logica.persona.modelos.Conductor;
 
 
 
@@ -60,26 +62,26 @@ public class GestorEscenas  {
         }
     }
 
-    public static void CargarError(Window padre, Exception ex) {
+    public static void CargarError(Window VentanaPadre, Exception Ex) {
         try {
             // Cargar el panel de error
             URL Url = GestorEscenas.class.getResource("/interfaz_usuario/recursos_compartidos/errores/mensaje-error.fxml");
             FXMLLoader cargador = new FXMLLoader(Url);
-            Parent root = cargador.load();
+            Parent Root = cargador.load();
 
             // Obtener el controlador y configurar el mensaje
             ControladorMenuAuxiliarUnaAccion controlador = cargador.getController();
-            controlador.Iniciar(ex.getMessage()); 
+            controlador.Iniciar(Ex.getMessage()); 
 
             // Configurar la ventana
-            Stage ventana = new Stage();
-            ventana.initStyle(StageStyle.UTILITY);
-            ventana.initOwner(padre);
-            ventana.initModality(Modality.WINDOW_MODAL);
-            ventana.setScene(new Scene(root));
+            Stage Ventana = new Stage();
+            Ventana.initStyle(StageStyle.UTILITY);
+            Ventana.initOwner(VentanaPadre);
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            Ventana.setScene(new Scene(Root));
 
             // Mostrar la ventana
-            ventana.showAndWait();
+            Ventana.showAndWait();
 
         } catch (IOException e) {
             // Fallback básico si falla la carga del FXML
@@ -101,6 +103,7 @@ public class GestorEscenas  {
             Scene Escena = new Scene(Ruta);
             Stage Ventana = new Stage();
             Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
 
             if (Modal) {
                 Ventana.initModality(Modality.WINDOW_MODAL);
@@ -114,6 +117,38 @@ public class GestorEscenas  {
             } else {
                 Ventana.show();
             }
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+    
+    public static void CargarVerMasConductor(Window Padre, Conductor Conductor) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-conductores.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasConductor controlador = Cargador.getController();
+            controlador.SetDatos(Conductor); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -48,8 +48,8 @@ public class ConsultasPersona {
             }
             
         } catch (SQLException e) {
-            System.err.println("Error al obtener conductores: " + e.getMessage());
-            e.printStackTrace();
+            System.out.println("Error al obtener conductores: "+e.getMessage());
+            throw new Exception("Error al obtener conductores");
         }
         
         return Conductores;
@@ -84,7 +84,8 @@ public class ConsultasPersona {
             }
 
         } catch (SQLException e) {
-            throw new Exception("Error al obtener el conductor de la base de datos", e);
+            System.out.println("Error al obtener conductores: "+e.getMessage());
+            throw new Exception("Error al obtener el conductor");
         }
 
         return Conductor;

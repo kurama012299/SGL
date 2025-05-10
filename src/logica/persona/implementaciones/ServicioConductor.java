@@ -4,7 +4,6 @@
  */
 package logica.persona.implementaciones;
 
-import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import logica.persona.consultas.ConsultasPersona;
 import logica.persona.modelos.Conductor;

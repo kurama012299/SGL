@@ -27,9 +27,9 @@ public class Examen {
         this.Fecha = Fecha;
         this.Aprobado = Aprobado;
         this.Tipo = Tipo;
-        setEntidad(Entidad);
-        setExaminador(Examinador);
-        setPersona(Persona);
+        this.Entidad = Entidad;
+        this.Examinador=Examinador;
+        this.Persona=Persona;
         
     }
     

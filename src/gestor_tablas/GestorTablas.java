@@ -5,8 +5,12 @@
 package gestor_tablas;
 
 
+import gestor_interfaces.GestorEscenas;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasConductor;
 import java.util.Date;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +23,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import logica.examen.implementaciones.ServiciosExamenes;
 import logica.examen.modelos.Examen;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
@@ -46,7 +52,12 @@ public class GestorTablas {
                         label.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
                         label.setOnMouseClicked(event -> {
                             T objetoFila = Tabla.getItems().get(celda.getIndex());
-                            MostrarDetalles(objetoFila);
+                            try {
+                                MostrarDetalles(objetoFila, label.getScene().getWindow());
+                            } catch (Exception ex) {
+                                System.out.println("Error al cargar el ver mas de conductor: "+ex.getMessage());
+                                GestorEscenas.CargarError(label.getScene().getWindow(), ex);
+                            }
                         });                        
                         celda.setGraphic(label);
                         if (celda.getIndex() == cantidadFilas) {
@@ -59,12 +70,12 @@ public class GestorTablas {
     }
     
     
-    private static void MostrarDetalles(Object Objeto)
+    private static void MostrarDetalles(Object Objeto,Window Ventana) throws Exception
     {
         if(Objeto instanceof Conductor)
         {
             Conductor Conductor = (Conductor) Objeto;
-            System.out.println(Conductor);
+            GestorEscenas.CargarVerMasConductor(Ventana, Conductor);
         }
     }
     
@@ -174,13 +185,11 @@ public class GestorTablas {
     public static void CargarTablaConductores(TableView<Conductor> TablaConductor) {
         try {
             ObservableList<Conductor> Conductores = ServicioConductor.ObtenerConductores();
-            
-            
             TablaConductor.setItems(Conductores);
             LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
             LlenarColumnaFotos(TablaConductor, TablaConductor.getItems().size()-1);
         } catch (Exception ex) {
-            //Capturar Error
+            //
         }
     }
     
