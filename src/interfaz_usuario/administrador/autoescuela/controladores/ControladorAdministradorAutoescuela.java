@@ -21,7 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import logica.examen.modelos.Examen;
+import logica.examen_conduccion.modelos.ExamenConduccion;
 
 /**
  *
@@ -87,53 +87,53 @@ public class ControladorAdministradorAutoescuela {
     private JFXButton BotonCerrarSesion;
     
     @FXML
-    private TableView<Examen>TablaExamenesPracticos;
+    private TableView<ExamenConduccion>TablaExamenesPracticos;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaFotoPractico;
+    private TableColumn<ExamenConduccion, String>ColumnaFotoPractico;
     
     @FXML
-    private TableColumn<Examen, Date>ColumnaFechaPractico;
+    private TableColumn<ExamenConduccion, Date>ColumnaFechaPractico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaExaminadorPractico;
+    private TableColumn<ExamenConduccion, String>ColumnaExaminadorPractico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaExaminadoPractico;
+    private TableColumn<ExamenConduccion, String>ColumnaExaminadoPractico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaResultadoPractico;
+    private TableColumn<ExamenConduccion, String>ColumnaResultadoPractico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaAutoescuela;
+    private TableColumn<ExamenConduccion, String>ColumnaAutoescuela;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaDetallesPractico;
+    private TableColumn<ExamenConduccion, String>ColumnaDetallesPractico;
     
     
     @FXML
-    private TableView<Examen>TablaExamenesTeoricos;
+    private TableView<ExamenConduccion>TablaExamenesTeoricos;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaFotoTeorico;
+    private TableColumn<ExamenConduccion, String>ColumnaFotoTeorico;
     
     @FXML
-    private TableColumn<Examen, Date>ColumnaFechaTeorico;
+    private TableColumn<ExamenConduccion, Date>ColumnaFechaTeorico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaExaminadorTeorico;
+    private TableColumn<ExamenConduccion, String>ColumnaExaminadorTeorico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaExaminadoTeorico;
+    private TableColumn<ExamenConduccion, String>ColumnaExaminadoTeorico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaResultadoTeorico;
+    private TableColumn<ExamenConduccion, String>ColumnaResultadoTeorico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaAutoescuelaTeorico;
+    private TableColumn<ExamenConduccion, String>ColumnaAutoescuelaTeorico;
     
     @FXML
-    private TableColumn<Examen, String>ColumnaDetallesTeorico;
+    private TableColumn<ExamenConduccion, String>ColumnaDetallesTeorico;
     
     
     

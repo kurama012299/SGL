@@ -89,7 +89,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="835.0">
          <children>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="835.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -294,7 +294,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="832.0" visible="false">
+            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="832.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Médicos">
                      <font>
@@ -354,15 +354,15 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="14.0" layoutY="144.0" prefHeight="449.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                  <TableView fx:id="TablaExamenesMedico" layoutX="14.0" layoutY="144.0" prefHeight="449.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Foto" />
-                      <TableColumn prefWidth="221.0" text="Examinado" />
-                        <TableColumn prefWidth="79.0" text="Fecha" />
-                        <TableColumn prefWidth="127.0" text="Examinador" />
-                        <TableColumn prefWidth="122.0" text="Resultado" />
-                        <TableColumn prefWidth="114.0" text="Clinica" />
-                        <TableColumn prefWidth="69.0" text="Detalles" />
+                      <TableColumn fx:id="ColumnaFoto" prefWidth="50.0" text="Foto" />
+                      <TableColumn fx:id="ColumnaExaminado" prefWidth="195.0" text="Examinado" />
+                        <TableColumn fx:id="ColumnaFecha" prefWidth="70.0" text="Fecha" />
+                        <TableColumn fx:id="ColumnaExaminador" prefWidth="155.0" text="Examinador" />
+                        <TableColumn fx:id="ColumnaResultado" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Resultado" />
+                        <TableColumn fx:id="ColumnaClinica" prefWidth="125.0" text="Clinica" />
+                        <TableColumn fx:id="ColumnaDetalles" prefWidth="70.0" text="Detalles" />
                     </columns>
                   </TableView>
                </children>

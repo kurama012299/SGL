@@ -41,7 +41,7 @@ public class ConsultaCentro {
                 }
             }
         } catch (SQLException e) {
-            throw new Exception("Error al obtener el conductor de la base de datos", e);
+            throw new Exception("Error al obtener el centro de la base de datos", e);
         }
         System.out.println(Centro);
         return Centro;

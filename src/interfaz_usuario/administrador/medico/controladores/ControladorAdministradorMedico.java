@@ -6,16 +6,22 @@ package interfaz_usuario.administrador.medico.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
+import java.util.Date;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.examen_medico.modelos.ExamenMedico;
 
 /**
  *
@@ -83,6 +89,29 @@ public class ControladorAdministradorMedico {
     @FXML
     private JFXButton BotonCerrarSesion;
     
+    @FXML
+    private TableView<ExamenMedico>TablaExamenesMedico;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaFoto;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaExaminado;
+    
+    @FXML
+    private TableColumn<ExamenMedico, Date>ColumnaFecha;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaExaminador;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaResultado;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaClinica;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaDetalles;
     
     private ImageView ImagenExamenes;
     private ImageView ImagenInicio;
@@ -135,6 +164,13 @@ public class ControladorAdministradorMedico {
     @FXML
     public void TransicionExamenes()
     {
+        
+        GestorTablas.ConfigurarColumnasExamenesMedicosAdminMedico(ColumnaFoto, ColumnaExaminado, ColumnaFecha, ColumnaExaminador, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
+        GestorTablas.CargarTablaExamenesMedicosAdminMedico(TablaExamenesMedico);
+        Platform.runLater(() -> {
+            ColumnaResultado.getTableView().setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        });
+        
         Pane[] PanelesOcultar={PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenes, PanelesOcultar);
         JFXButton[] botones = {Inicio};
