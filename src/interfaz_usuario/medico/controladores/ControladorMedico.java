@@ -10,13 +10,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
+import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import logica.examen_medico.modelos.ExamenMedico;
 
 /**
  *
@@ -81,6 +86,26 @@ public class ControladorMedico {
     @FXML
     private JFXButton BotonCerrarSesion;
     
+    @FXML
+    private TableView<ExamenMedico>TablaExamenesMedicos;
+    
+    @FXML
+    private TableColumn<ExamenMedico, Date>ColumnaFecha;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaResultado;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaExaminado;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaClinica;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaDetalles;
+    
+    @FXML
+    private TableColumn<ExamenMedico, String>ColumnaFoto;
 
     
     private ImageView ImagenInicio;
@@ -114,6 +139,10 @@ public class ControladorMedico {
     
     @FXML
     public void TransicionExamenesMedico() {
+        
+        GestorTablas.ConfigurarColumnasExamenesMedicosMedicoUnico(ColumnaFoto,ColumnaExaminado, ColumnaFecha, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
+        GestorTablas.CargarTablaExamenesMedicosMedicoUnico(TablaExamenesMedicos, Long.parseLong("6"));
+        
         Pane[] PanelesOcultar={PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
         

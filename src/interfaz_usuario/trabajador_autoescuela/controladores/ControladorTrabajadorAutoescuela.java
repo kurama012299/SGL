@@ -9,13 +9,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
+import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import logica.examen_conduccion.modelos.ExamenConduccion;
 
 /**
  *
@@ -82,6 +87,49 @@ public class ControladorTrabajadorAutoescuela {
     
     @FXML
     private JFXButton BotonCerrarSesion;
+    
+    @FXML
+    private TableView<ExamenConduccion>TablaExamenesTeoricos;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaFotoTeorico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaExaminadoTeorico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, Date>ColumnaFechaTeorico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaResultadoTeorico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaAutoescuelaTeorico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaDetallesTeorico;
+    
+    @FXML
+    private TableView<ExamenConduccion>TablaExamenesPracticos;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaFotoPractico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaExaminadoPractico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, Date>ColumnaFechaPractico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaResultadoPractico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaAutoescuelaPractico;
+    
+    @FXML
+    private TableColumn<ExamenConduccion, String>ColumnaDetallesPractico;
+       
        
     private ImageView ImagenTeorico;
     private ImageView ImagenPractico;
@@ -120,6 +168,10 @@ public class ControladorTrabajadorAutoescuela {
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesTeoricos)
     @FXML
     public void TranscisionExamenesTeoricos() {
+        
+        GestorTablas.ConfigurarColumnasExamenesTraAutoescuela(ColumnaFotoTeorico, ColumnaExaminadoTeorico, ColumnaFechaTeorico, ColumnaResultadoTeorico, ColumnaAutoescuelaTeorico, ColumnaDetallesTeorico);
+        GestorTablas.CargarTablaExamenesTeoricosTraAutoescuela(TablaExamenesTeoricos, Long.parseLong("5"));
+        
         Pane[] PanelesOcultar={PanelExamenesPracticos,PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenesTeoricos,PanelesOcultar);
         
@@ -143,6 +195,10 @@ public class ControladorTrabajadorAutoescuela {
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesPracticos)
     @FXML
     public void TranscisionExamenesPracticos() {
+        
+        GestorTablas.ConfigurarColumnasExamenesTraAutoescuela(ColumnaFotoPractico, ColumnaExaminadoPractico, ColumnaFechaPractico, ColumnaResultadoPractico, ColumnaAutoescuelaPractico, ColumnaDetallesPractico);
+        GestorTablas.CargarTablaExamenesPracticosTraAutoescuela(TablaExamenesPracticos, Long.parseLong("5"));
+        
         Pane[] PanelesOcultar={PanelExamenesTeoricos,PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenesPracticos,PanelesOcultar);
         

@@ -101,7 +101,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="827.0">
          <children>
-            <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">
+            <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Prácticos">
                      <font>
@@ -158,13 +158,12 @@
                   </JFXRadioButton>
                   <TableView fx:id="TablaExamenesPracticos" layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0" stylesheets="@../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
-                        <TableColumn fx:id="TableColumnFoto" prefWidth="75.0" text="Foto" />
-                        <TableColumn fx:id="TableColumnExaminado" prefWidth="156.0" text="Examinado" />
-                        <TableColumn fx:id="TableColumnFecha" prefWidth="70.0" text="Fecha" />
-                        <TableColumn fx:id="TableColumnExaminador" prefWidth="166.0" text="Examinador" />
-                        <TableColumn fx:id="TableColumnResultado" prefWidth="101.0" text="Resultado" />
-                        <TableColumn fx:id="TableColumnAutoescuela" prefWidth="134.0" text="Autoescuela" />
-                        <TableColumn fx:id="TableColumnDetalles" prefWidth="87.0" text="Detalles" />
+                        <TableColumn fx:id="ColumnaFotoPractico" prefWidth="75.0" text="Foto" />
+                        <TableColumn fx:id="ColumnaExaminadoPractico" prefWidth="200.0" text="Examinado" />
+                        <TableColumn fx:id="ColumnaFechaPractico" prefWidth="110.0" text="Fecha" />
+                        <TableColumn fx:id="ColumnaResultadoPractico" prefWidth="150.0" text="Resultado" />
+                        <TableColumn fx:id="ColumnaAutoescuelaPractico" prefWidth="160.0" text="Autoescuela" />
+                        <TableColumn fx:id="ColumnaDetallesPractico" prefWidth="90.0" text="Detalles" />
                      </columns>
                      <styleClass>
                         <String fx:value="column-header" />
@@ -230,20 +229,19 @@
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0" stylesheets="@../recursos_compartidos/estilos/EstilosTableView.css">
+                  <TableView fx:id="TablaExamenesTeoricos" layoutX="27.0" layoutY="144.0" prefHeight="444.0" prefWidth="781.0" stylesheets="@../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="Foto" />
-                        <TableColumn prefWidth="156.0" text="Examinado" />
-                        <TableColumn prefWidth="61.0" text="Fecha" />
-                        <TableColumn prefWidth="166.0" text="Examinador" />
-                        <TableColumn prefWidth="101.0" text="Resultado" />
-                        <TableColumn prefWidth="134.0" text="Autoescuela" />
-                        <TableColumn prefWidth="87.0" text="Detalles" />
+                        <TableColumn fx:id="ColumnaFotoTeorico" prefWidth="75.0" text="Foto" />
+                        <TableColumn fx:id="ColumnaExaminadoTeorico" prefWidth="200.0" text="Examinado" />
+                        <TableColumn fx:id="ColumnaFechaTeorico" prefWidth="100.0" text="Fecha" />
+                        <TableColumn fx:id="ColumnaResultadoTeorico" prefWidth="140.0" text="Resultado" />
+                        <TableColumn fx:id="ColumnaAutoescuelaTeorico" prefWidth="180.0" text="Autoescuela" />
+                        <TableColumn fx:id="ColumnaDetallesTeorico" prefWidth="120.0" text="Detalles" />
                      </columns>
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0">
+            <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0" visible="false">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="825.0" style="-fx-background-color: ghostwhite; -fx-background-radius: 20; -fx-border-radius: 20;">
                      <children>

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package logica.examen.modelos;
+package logica.examen_conduccion.modelos;
 
 import java.util.Date;
 import logica.entidad.modelos.EntidadRelacionada;
@@ -13,7 +13,7 @@ import logica.usuario.modelos.Usuario;
  *
  * @author Angel Hernandez
  */
-public class Examen {
+public class ExamenConduccion {
     protected Long Id;
     protected Date Fecha;
     protected boolean Aprobado;
@@ -22,7 +22,7 @@ public class Examen {
     protected Usuario Examinador;
     public String Tipo;
 
-    public Examen(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,String Tipo) {
+    public ExamenConduccion(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,String Tipo) {
         this.Id = Id;
         this.Fecha = Fecha;
         this.Aprobado = Aprobado;

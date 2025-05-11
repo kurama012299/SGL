@@ -85,5 +85,87 @@ public class ConsultaExamenMedico {
             e.printStackTrace();
         }
     }
+    
+    public static ExamenMedico ObtenerExamenesMedicosRestriccionPorIdConsulta(Long Id) throws Exception {
+        
+         ExamenMedico examen=null;
+         
+         String consulta = "SELECT em.\"Id\",em.\"Fecha\",em.\"Aprobado\","+
+                     "p.\"Nombre\" as nombre_persona, "+ 
+                     "p.\"Apellidos\" as apellidos_persona, "+ 
+                     "p.\"CI\" as ci_persona, "+ 
+                     "u.\"Nombre\" as nombre_examinador, "+
+                     "ent.\"Nombre\" as nombre_entidad "+ 
+                     "FROM \"ExamenMedico\" em  "+
+                     "LEFT JOIN \"Persona\" p ON em.\"Id_Persona\" = p.\"Id\"" +
+                     "LEFT JOIN \"Usuario\" u ON em.\"Id_Examinador\" = u.\"Id\"" + 
+                     "LEFT JOIN \"Entidad\" ent ON em.\"Id_Entidad\" = ent.\"Id\"" +
+                     "WHERE em.\"Id_Examinador\" = ? " ;
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+            try{
+                stmt.setLong(1, Id);
+                ResultSet rs = stmt.executeQuery();         
+                if (rs.next()) {
+                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
+                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    examen = new ExamenMedico(
+                            rs.getLong("Id"),
+                            rs.getDate("Fecha"),
+                            rs.getBoolean("Aprobado"),
+                            entidad,
+                            persona,
+                            examinador,
+                            new ArrayList<String>());
+                    // 2. Cargar restricciones para este examen
+                    CargarRestriccionesParaExamen(examen, conn);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return examen;
+        }
+    }
+    
+    public static ObservableList<ExamenMedico> ObtenerExamenesMedicosRestriccionPorIdRolConsulta(Long Id) throws Exception {
+        ObservableList<ExamenMedico> examenes = FXCollections.observableArrayList();
+
+         String consulta = "SELECT em.\"Id\",em.\"Fecha\",em.\"Aprobado\","+
+                     "p.\"Nombre\" as nombre_persona, "+ 
+                     "p.\"Apellidos\" as apellidos_persona, "+ 
+                     "p.\"CI\" as ci_persona, "+ 
+                     "u.\"Nombre\" as nombre_examinador, "+
+                     "ent.\"Nombre\" as nombre_entidad "+ 
+                     "FROM \"ExamenMedico\" em  "+
+                     "LEFT JOIN \"Persona\" p ON em.\"Id_Persona\" = p.\"Id\"" +
+                     "LEFT JOIN \"Usuario\" u ON em.\"Id_Examinador\" = u.\"Id\"" + 
+                     "LEFT JOIN \"Entidad\" ent ON em.\"Id_Entidad\" = ent.\"Id\"" +
+                     "WHERE em.\"Id_Examinador\" = ? " ;
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+            try{
+                stmt.setLong(1, Id);
+                ResultSet rs = stmt.executeQuery();         
+                while (rs.next()) {
+                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
+                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    ExamenMedico examen = new ExamenMedico(
+                            rs.getLong("Id"),
+                            rs.getDate("Fecha"),
+                            rs.getBoolean("Aprobado"),
+                            entidad,
+                            persona,
+                            examinador,
+                            new ArrayList<String>());
+                    // 2. Cargar restricciones para este examen
+                    CargarRestriccionesParaExamen(examen, conn);
+                    examenes.add(examen);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return examenes;
+        }
+    }
 }
 

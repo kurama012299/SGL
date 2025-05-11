@@ -17,4 +17,12 @@ public class ServiciosExamenesMedicos {
     public static ObservableList<ExamenMedico> ObtenerExamenesMedico() throws Exception {
         return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionConsulta();
     }
+    
+    public static ObservableList<ExamenMedico> ObtenerExamenesMedicoPorIdRol(Long Id) throws Exception {
+        return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionPorIdRolConsulta(Id);
+    }
+    
+    public static ExamenMedico ObtenerExamenesMedicoPorId(Long Id) throws Exception {
+        return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionPorIdConsulta(Id);
+    }
 }
