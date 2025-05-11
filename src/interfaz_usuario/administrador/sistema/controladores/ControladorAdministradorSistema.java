@@ -19,7 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import logica.examen.modelos.Examen;
+import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.persona.modelos.Conductor;
 
 /**
@@ -153,28 +153,28 @@ public class ControladorAdministradorSistema {
     private TableView<Conductor> TablaConductor;
     
     @FXML
-    private TableView<Examen> TablaExamenes;
+    private TableView<ExamenConduccion> TablaExamenes;
     
     @FXML
-    private TableColumn<Examen, String> ColumnaFotoExamen;
+    private TableColumn<ExamenConduccion, String> ColumnaFotoExamen;
     
     @FXML
-    private TableColumn<Examen, String> ColumnaExaminadoExamen;
+    private TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen;
     
     @FXML
-    private TableColumn<Examen, String> ColumnaTipoExamen;
+    private TableColumn<ExamenConduccion, String> ColumnaTipoExamen;
 
     @FXML
-    private TableColumn<Examen, Date> ColumnaFechaExamen;
+    private TableColumn<ExamenConduccion, Date> ColumnaFechaExamen;
     
     @FXML
-    private TableColumn<Examen, String> ColumnaExaminadorExamen;
+    private TableColumn<ExamenConduccion, String> ColumnaExaminadorExamen;
     
     @FXML
-    private TableColumn<Examen, String> ColumnaResultadoExamen;
+    private TableColumn<ExamenConduccion, String> ColumnaResultadoExamen;
     
     @FXML
-    private TableColumn<Examen, String> ColumnaDetallesExamen;
+    private TableColumn<ExamenConduccion, String> ColumnaDetallesExamen;
     
     @FXML
     private TableColumn<Conductor, String> ColumnaFoto;
