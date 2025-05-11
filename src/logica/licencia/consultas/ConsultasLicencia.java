@@ -165,6 +165,7 @@ public class ConsultasLicencia {
         }
         
     } catch (SQLException e) {
+        System.out.println(e.getLocalizedMessage());
         throw new Exception("Error al obtener la licencia de la base de datos: ", e);
     }
     

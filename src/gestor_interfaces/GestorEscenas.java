@@ -31,6 +31,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 
 
@@ -126,14 +127,14 @@ public class GestorEscenas  {
     }
     
     
-    public static void CargarVerMasConductor(Window Padre, Conductor Conductor) throws Exception {
+    public static void CargarVerMasConductor(Window Padre, Conductor Conductor,Licencia Licencia) throws Exception {
         try {
             String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-conductores.fxml";
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
             ControladorVerMasConductor controlador = Cargador.getController();
-            controlador.SetDatos(Conductor); 
+            controlador.SetDatos(Conductor,Licencia); 
 
             Scene Escena = new Scene(Ruta);
             Stage Ventana = new Stage();

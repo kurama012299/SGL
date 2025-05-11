@@ -5,7 +5,10 @@
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 
 /**
@@ -15,6 +18,7 @@ import logica.persona.modelos.Conductor;
 public class ControladorVerMasConductor {
     
     private Conductor Conductor;
+    private Licencia Licencia;
     
     @FXML
     TextField TextFieldCI;
@@ -30,6 +34,33 @@ public class ControladorVerMasConductor {
     
     @FXML
     TextField TextFieldDireccion;
+    
+    @FXML
+    TextField TextFieldIdLicencia;
+    
+    @FXML
+    TextField TextFieldEstadoLicencia;
+    
+    @FXML
+    TextField TextFieldFechaEmision;
+    
+    @FXML
+    TextField TextFieldFechaVencimiento;
+    
+    @FXML
+    Label LabelTipoLicencia;
+    
+    @FXML
+    ImageView CategoriaCarro;
+    
+    @FXML
+    ImageView CategoriaMoto;
+    
+    @FXML
+    ImageView CategoriaOmnibus;
+    
+    @FXML
+    ImageView CategoriaCamion;
 
 
     @FXML
@@ -38,9 +69,10 @@ public class ControladorVerMasConductor {
         System.out.println("Controlador ver mas conductor iniciado");
     }
     
-    public void SetDatos(Conductor Conductor)
+    public void SetDatos(Conductor Conductor,Licencia Licencia)
     {
         this.Conductor=Conductor;
+        this.Licencia = Licencia;
         Iniciar();
     }
     
@@ -52,5 +84,10 @@ public class ControladorVerMasConductor {
         TextFieldCorreo.setText(Conductor.getCorreo());
         TextFieldDireccion.setText(Conductor.getDireccion());
         TextFieldNombre.setText(Conductor.getNombre()+" "+ Conductor.getApellidos());
+        TextFieldEstadoLicencia.setText(Licencia.getEstado());
+        TextFieldFechaEmision.setText(Licencia.getFechaEmision().toString());
+        TextFieldFechaVencimiento.setText(Licencia.getFechaVencimiento().toString());
+        LabelTipoLicencia.setText(Licencia.getTipo());
+        TextFieldIdLicencia.setText(Licencia.getId().toString());
     }
 }

@@ -29,6 +29,8 @@ import logica.examen.implementaciones.ServiciosExamenes;
 import logica.examen.modelos.Examen;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
+import logica.licencia.implementaciones.ServicioLicencia;
+import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
 import logica.persona.modelos.Persona;
@@ -75,7 +77,9 @@ public class GestorTablas {
         if(Objeto instanceof Conductor)
         {
             Conductor Conductor = (Conductor) Objeto;
-            GestorEscenas.CargarVerMasConductor(Ventana, Conductor);
+            Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Conductor.getIdLicencia());
+            
+            GestorEscenas.CargarVerMasConductor(Ventana, Conductor,Licencia);
         }
     }
     

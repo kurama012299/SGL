@@ -19,7 +19,7 @@ public class ServicioLicencia {
         return ConsultasLicencia.ObtenerLicenciasConsulta();
     }
     
-    public static Licencia ObtenerConductorPorId(long Id) throws Exception
+    public static Licencia ObtenerLicenciaPorId(long Id) throws Exception
     {
         return ConsultasLicencia.ObtenerLicenciaPorIdConsulta(Id);
     }
