@@ -23,5 +23,5 @@ public class ServicioLicencia {
     {
         return ConsultasLicencia.ObtenerLicenciaPorIdConsulta(Id);
     }
-    
+      
 }

@@ -9,6 +9,7 @@ import gestor_interfaces.GestorEscenas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.licencia.implementaciones.ServicioLicencia;
 import logica.pdf_gestion.GestorPDF;
 import logica.persona.modelos.Conductor;
 
@@ -193,7 +195,6 @@ public class ControladorAdministradorSistema {
     private TableColumn<Conductor, String> ColumnaCorreo;
     
     
-
     
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
@@ -209,7 +210,7 @@ public class ControladorAdministradorSistema {
     @FXML
     public void initialize() throws Exception 
     {
- 
+        
         ImagenLicencias = (ImageView) Licencias.getGraphic();
         ImagenConductores = (ImageView) Conductores.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
@@ -234,7 +235,7 @@ public class ControladorAdministradorSistema {
         GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
         
         System.out.println("Controlador Administrador Sistema Iniciado");
-        this.TransicionInicio();
+        this.TransicionInicio();   
     }
     
 
@@ -629,6 +630,5 @@ public class ControladorAdministradorSistema {
             //CAPTURAR ERROR
            
         }
-    }
-    
+    }  
 }

@@ -55,9 +55,9 @@ public class GestorTablas {
                         label.setOnMouseClicked(event -> {
                             T objetoFila = Tabla.getItems().get(celda.getIndex());
                             try {
-                                MostrarDetalles(objetoFila, label.getScene().getWindow());
+                                MostrarDetalles(objetoFila,label.getScene().getWindow());
                             } catch (Exception ex) {
-                                System.out.println("Error al cargar el ver mas de conductor: "+ex.getMessage());
+                                System.out.println("Error al cargar el menu ver mas: "+ex.getMessage());
                                 GestorEscenas.CargarError(label.getScene().getWindow(), ex);
                             }
                         });                        
@@ -81,6 +81,31 @@ public class GestorTablas {
             
             GestorEscenas.CargarVerMasConductor(Ventana, Conductor,Licencia);
         }
+        else if(Objeto instanceof ExamenConduccion)
+        {
+            if(((ExamenConduccion)Objeto).getTipo().equalsIgnoreCase("Práctico") || ((ExamenConduccion)Objeto).getTipo().equalsIgnoreCase("Teórico"))
+            {
+                ExamenConduccion ExamenConduccion =(ExamenConduccion) Objeto;
+                GestorEscenas.CargarVerMasExamenes(Ventana, ExamenConduccion, null);
+            }
+            else
+            {
+                ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+                for(ExamenMedico Examen: ExamenesMedicos)
+                {
+                    if(Examen.getId().equals(((ExamenConduccion)Objeto).getId()))
+                    {
+                        ExamenMedico ExamenMedico =(ExamenMedico) Examen;
+                        GestorEscenas.CargarVerMasExamenes(Ventana, null, ExamenMedico);
+                    }
+                }
+                
+            }
+            
+            
+            
+        }
+        
     }
     
     
@@ -206,8 +231,8 @@ public class GestorTablas {
             ObservableList<ExamenConduccion>ExamenesMedicosNuevos=FXCollections.observableArrayList();
             for(int i=0;i<ExamenesMedicos.size();i++)
             {
-                ExamenConduccion exa= new ExamenConduccion(ExamenesMedicos.get(i).getId(), ExamenesMedicos.get(i).getFecha(), ExamenesMedicos.get(i).isAprobado(), ExamenesMedicos.get(i).getEntidad(), ExamenesMedicos.get(i).getPersona(),ExamenesMedicos.get(i).getExaminador(),ExamenesMedicos.get(i).getTipo());
-                ExamenesMedicosNuevos.add(exa);
+                ExamenConduccion Examen= new ExamenConduccion(ExamenesMedicos.get(i).getId(), ExamenesMedicos.get(i).getFecha(), ExamenesMedicos.get(i).isAprobado(), ExamenesMedicos.get(i).getEntidad(), ExamenesMedicos.get(i).getPersona(),ExamenesMedicos.get(i).getExaminador(),ExamenesMedicos.get(i).getTipo());
+                ExamenesMedicosNuevos.add(Examen);
             }
             
             ObservableList<ExamenConduccion>Examenes= FXCollections.concat(ExamenesTeoricos,ExamenesPracticos,ExamenesMedicosNuevos);
