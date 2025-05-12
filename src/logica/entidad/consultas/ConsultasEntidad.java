@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -54,7 +54,7 @@ public class ConsultasEntidad {
     public static EntidadRelacionada ObtenerEntidadPorIdConsulta(long Id )throws Exception {
         EntidadRelacionada Entidad = null;
 
-        String consulta = "SELECT * FROM \"Entidad\" WHERE id = ?";
+        String consulta = "SELECT * FROM \"Entidad\" WHERE Id = ?";
 
         try (Connection conn = ConectorBaseDato.Conectar(); 
                 PreparedStatement stmt = conn.prepareStatement(consulta)) {

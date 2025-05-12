@@ -5,6 +5,7 @@
 package logica.infraccion.modelos;
 
 import java.util.Date;
+import logica.persona.modelos.Persona;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Infraccion {
     private Long IdLicencia;
     private String Gravedad;
     private String NombreOficial;
+    private Infraccion NombreGravedad;
+    private Persona NombrePersona;
 
     public Infraccion(Long Id, Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, Long IdLicencia, String Gravedad, String NombreOficial) {
         this.Id = Id;
@@ -31,6 +34,24 @@ public class Infraccion {
         this.IdLicencia = IdLicencia;
         this.Gravedad = Gravedad;
         this.NombreOficial = NombreOficial;
+    }
+    
+    public Infraccion(Long Id, Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, Long IdLicencia, String NombreOficial, Infraccion NombreGravedad, Persona NombrePersona) {
+        this.Id = Id;
+        this.Fecha = Fecha;
+        this.Lugar = Lugar;
+        this.Descripcion = Descripcion;
+        this.PuntosDeducidos = PuntosDeducidos;
+        this.Pagada = Pagada;
+        this.IdLicencia = IdLicencia;
+        this.NombreOficial = NombreOficial;
+        this.NombreGravedad = NombreGravedad;
+        this.NombrePersona = NombrePersona;
+        
+    }
+    
+    public Infraccion(String Gravedad){
+        this.Gravedad = Gravedad;
     }
 
     public Long getId() {
@@ -67,6 +88,14 @@ public class Infraccion {
 
     public String getNombreOficial() {
         return NombreOficial;
+    }
+    
+    public Persona getNombrePersona(){
+            return NombrePersona;
+}
+    
+    public Infraccion getNombreGravedad(){
+        return NombreGravedad;
     }
     
     @Override

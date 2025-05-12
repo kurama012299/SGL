@@ -13,7 +13,7 @@ import logica.infraccion.modelos.Infraccion;
  */
 public class ServicioInfraccion {
     
-    public static ObservableList<Infraccion> ObtenerEntidadRelacionadas() throws Exception {
+    public static ObservableList<Infraccion> ObtenerInfracciones() throws Exception {
         return ConsultasInfraccion.ObtenerInfraccionesConsulta();
     }
     

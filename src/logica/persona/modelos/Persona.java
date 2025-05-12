@@ -39,6 +39,10 @@ public class Persona {
         this.Apellidos= apellidos;
         this.CI=CI;
     }
+    public Persona(String Nombre, String Apellidos){
+        this.Nombre = Nombre;
+        this.Apellidos = Apellidos;
+    }
     public Long getId() {
         return Id;
     }

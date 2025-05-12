@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Angel Hernandez
  */
 public class Licencia {
+
     private Long Id;
     private Date FechaEmision;
     private Date FechaVencimiento;
@@ -30,6 +31,10 @@ public class Licencia {
         this.CantPuntos = CantPuntos;
         this.Tipo = Tipo;
         this.Estado = Estado;
+    }
+    
+    public Licencia(){
+
     }
 
     public Long getId() {
@@ -67,27 +72,70 @@ public class Licencia {
     public ArrayList<String> getCategorias() {
         return Categorias;
     }
-    
-    public void agregarRestriccion(String Restriccion){
+
+    public void agregarRestriccion(String Restriccion) {
         Restricciones.add(Restriccion);
     }
-    
-    public void agregarCategoria(String Categoria){
+
+    public void agregarCategoria(String Categoria) {
         Categorias.add(Categoria);
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + Id + "\n"
+                + "FechaEmision: " + FechaEmision + "\n"
+                + "FechaVencimiento: " + FechaVencimiento + "\n"
+                + "Renovada: " + Renovada + "\n"
+                + "CantPuntos: " + CantPuntos + "\n"
+                + "Tipo: " + Tipo + "\n"
+                + "Estado: " + Estado + "\n"
+                + "Restricciones: " + Restricciones + "\n"
+                + "Categorias: " + Categorias + "\n";
+    }
+
     
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+
     
-     @Override
-    public String toString()
-    {
-         return "Id: "+ Id +"\n"+
-                "FechaEmision: "+ FechaEmision +"\n"+
-                "FechaVencimiento: "+ FechaVencimiento +"\n"+
-                "Renovada: " + Renovada +"\n"+
-                "CantPuntos: " + CantPuntos +"\n"+
-                "Tipo: "+ Tipo +"\n"+
-                "Estado: " + Estado +"\n" +
-                "Restricciones: " + Restricciones +"\n"+
-                "Categorias: " + Categorias+"\n";
+    public void setFechaEmision(Date FechaEmision) {
+        this.FechaEmision = FechaEmision;
+    }
+
+    
+    public void setFechaVencimiento(Date FechaVencimiento) {
+        this.FechaVencimiento = FechaVencimiento;
+    }
+
+    
+    public void setRenovada(boolean Renovada) {
+        this.Renovada = Renovada;
+    }
+
+ 
+    public void setCantPuntos(int CantPuntos) {
+        this.CantPuntos = CantPuntos;
+    }
+
+    
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+
+    
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+
+    
+    public void setRestricciones(ArrayList<String> Restricciones) {
+        this.Restricciones = Restricciones;
+    }
+
+    
+    public void setCategorias(ArrayList<String> Categorias) {
+        this.Categorias = Categorias;
     }
 }
