@@ -470,4 +470,34 @@ public class GestorTablas {
             
         }
     }
+      
+      public static void ConfigurarColumnasAutoescuelas(
+             
+    TableColumn<EntidadRelacionada, String> ColumnaDirectorAE,
+     TableColumn<EntidadRelacionada, String> ColumnaNombreAE,
+    TableColumn<EntidadRelacionada, String> ColumnaDireccionAE,
+    TableColumn<EntidadRelacionada, String> ColumnaTelefonoAE,
+    TableColumn<EntidadRelacionada, String> ColumnaCorreoAE,
+    TableColumn<EntidadRelacionada, String> ColumnaDetallesAE){
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaDirectorAE, "NombreDirector");
+        ConfigurarColumnaStandard(ColumnaNombreAE, "Nombre");
+        ConfigurarColumnaStandard(ColumnaDireccionAE, "Direccion");
+        ConfigurarColumnaStandard(ColumnaTelefonoAE, "Telefono");
+        ConfigurarColumnaStandard(ColumnaCorreoAE, "Correo");
+    }
+     
+      public static void CargarTablaAutoescuelas(TableView<EntidadRelacionada> TablaAE) {
+        try {
+            ObservableList<EntidadRelacionada> Autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
+            TablaAE.setItems(Autoescuelas);
+            LlenarColumnaDetalles(TablaAE, TablaAE.getItems().size()-1);
+            LlenarColumnaFotos(TablaAE, TablaAE.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
+      
+      
 }

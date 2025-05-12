@@ -25,4 +25,13 @@ public class ServicioEntidad {
         return ConsultasEntidad.ObtenerEntidadPorIdConsulta(Id);
     }
     
+    public static ObservableList<EntidadRelacionada> ObtenerAutoescuelas() throws Exception {
+        return ConsultasEntidad.ObtenerAutoescuelasConsulta();
+    }
+    
+    public static EntidadRelacionada ObtenerAutoescuelaPorId(long Id) throws Exception
+    {
+        return ConsultasEntidad.ObtenerAutoescuelaPorIdConsulta(Id);
+    }
+    
 }
