@@ -12,7 +12,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.modelos.Infraccion;
+import logica.persona.modelos.Persona;
 
 /**
  *
@@ -23,15 +25,22 @@ public class ConsultasInfraccion {
    public static ObservableList<Infraccion> ObtenerInfraccionesConsulta() throws Exception {
         ObservableList<Infraccion> Infracciones = FXCollections.observableArrayList();
         
-        String consulta = "SELECT \"Infraccion\".*, \"Gravedad\".\"Nombre\" " +
-                 "FROM \"Infraccion\" " +
-                 "LEFT JOIN \"Gravedad\" ON \"Infraccion\".\"Id_Gravedad\" = \"Gravedad\".\"Id\"";
+        String consulta = "SELECT \"Infraccion\".*, "+
+                "\"Gravedad\".\"Nombre\" as nombre_gravedad, "+
+                "\"Persona\".\"Nombre\" as nombre_persona, "+
+                "\"Persona\".\"Apellidos\" as apellidos_persona "+
+                 "FROM \"Infraccion\" "+
+                 "LEFT JOIN \"Gravedad\" ON \"Infraccion\".\"Id_Gravedad\" = \"Gravedad\".\"Id\""+ 
+                "LEFT JOIN \"Persona\" ON \"Infraccion\".\"Id_Licencia\" = \"Persona\".\"Id_Licencia\"";
+                
                 
         try (Connection conn = ConectorBaseDato.Conectar();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(consulta)) {
             
             while (rs.next()) {
+                Infraccion Gravedad = new Infraccion(rs.getString("nombre_gravedad"));
+                Persona Persona = new Persona(rs.getString("nombre_persona"), rs.getString("apellidos_persona"));
                 Infraccion Infraccion = new Infraccion(
                         rs.getLong("Id"),
                         rs.getDate("Fecha"),
@@ -40,8 +49,11 @@ public class ConsultasInfraccion {
                         rs.getInt("PuntosDeducidos"),
                         rs.getBoolean("Pagada"),
                         rs.getLong("Id_Licencia"),
-                        rs.getString("Id_Gravedad"),
-                        rs.getString("Nombre"));          
+                        rs.getString("Nombre_Oficial"),
+                        Gravedad,
+                        Persona);
+                        
+                                   
                 
                 Infracciones.add(Infraccion);
             }
@@ -50,7 +62,6 @@ public class ConsultasInfraccion {
             System.err.println("Error al obtener infracciones: " + e.getMessage());
             e.printStackTrace();
         }
-        
         return Infracciones;
     }
     
@@ -58,9 +69,13 @@ public class ConsultasInfraccion {
     public static Infraccion ObtenerInfraccionPorIdConsulta(long Id) throws Exception {
         Infraccion Infraccion = null;
 
-        String consulta = "SELECT \"Infraccion\".*, \"Gravedad\".\"Nombre\" " +
-                 "FROM \"Infraccion\" " +
-                 "LEFT JOIN \"Gravedad\" ON \"Infraccion\".\"Id_Gravedad\" = \"Gravedad\".\"Id\" " +
+        String consulta = "SELECT \"Infraccion\".*, "+
+                "\"Gravedad\".\"Nombre\" as nombre_gravedad, "+
+                "\"Persona\".\"Nombre\" as nombre_persona, "+
+                "\"Persona\".\"Apellidos\" as apellidos_persona "+
+                 "FROM \"Infraccion\" "+
+                 "LEFT JOIN \"Gravedad\" ON \"Infraccion\".\"Id_Gravedad\" = \"Gravedad\".\"Id\""+ 
+                "LEFT JOIN \"Persona\" ON \"Infraccion\".\"Id_Licencia\" = \"Persona\".\"Id_Licencia\""+
                  "WHERE \"Infraccion\".\"Id\" = ?";
 
         try (Connection conn = ConectorBaseDato.Conectar(); 
@@ -78,8 +93,8 @@ public class ConsultasInfraccion {
                         rs.getInt("PuntosDeducidos"),
                         rs.getBoolean("Pagada"),
                         rs.getLong("Id_Licencia"),
-                        rs.getString("Id_Gravedad"),
-                        rs.getString("Nombre")); 
+                        rs.getString("Nombre"),//Nombre de Gravedad
+                        rs.getString("Nombre_Oficial")); 
                 }
             }
 

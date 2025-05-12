@@ -19,7 +19,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.infraccion.modelos.Infraccion;
 import logica.pdf_gestion.GestorPDF;
 import logica.persona.modelos.Conductor;
 
@@ -191,6 +193,54 @@ public class ControladorAdministradorSistema {
     
     @FXML
     private TableColumn<Conductor, String> ColumnaCorreo;
+    
+    @FXML
+    private TableView<EntidadRelacionada> TablaEntidad;
+    
+    @FXML
+    private TableView<Infraccion> TablaInfraccion;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDirectorEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaNombreEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDireccionEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaTelefonoEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaCorreoEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDetallesEntidad;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaFotoInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaNombreInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaTipoInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, Date> ColumnaFechaInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaLugarInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaDetallesInfraccion;
     
     
 
@@ -483,6 +533,9 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionEntidades()
     {
+        
+        GestorTablas.ConfigurarColumnasEntidades(ColumnaDirectorEntidad, ColumnaNombreEntidad,ColumnaDireccionEntidad, ColumnaTelefonoEntidad, ColumnaCorreoEntidad, ColumnaDetallesEntidad);
+        GestorTablas.CargarTablaEntidades(TablaEntidad);
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelEntidades,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Clinica,Examenes};

@@ -25,6 +25,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import logica.entidad.implementaciones.ServicioEntidad;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.implementaciones.ServiciosExamenes;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
@@ -439,5 +441,33 @@ public class GestorTablas {
 
         // Configuración estándar para otras columnas
         ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
+    }
+    
+    public static void ConfigurarColumnasEntidades(
+             
+    TableColumn<EntidadRelacionada, String> ColumnaDirectorEntidad,
+     TableColumn<EntidadRelacionada, String> ColumnaNombreEntidad,
+    TableColumn<EntidadRelacionada, String> ColumnaDireccionEntidad,
+    TableColumn<EntidadRelacionada, String> ColumnaTelefonoEntidad,
+    TableColumn<EntidadRelacionada, String> ColumnaCorreoEntidad,
+    TableColumn<EntidadRelacionada, String> ColumnaDetallesEntidad){
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaDirectorEntidad, "NombreDirector");
+        ConfigurarColumnaStandard(ColumnaNombreEntidad, "Nombre");
+        ConfigurarColumnaStandard(ColumnaDireccionEntidad, "Direccion");
+        ConfigurarColumnaStandard(ColumnaTelefonoEntidad, "Telefono");
+        ConfigurarColumnaStandard(ColumnaCorreoEntidad, "Correo");
+    }
+     
+      public static void CargarTablaEntidades(TableView<EntidadRelacionada> TablaEntidad) {
+        try {
+            ObservableList<EntidadRelacionada> Entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
+            TablaEntidad.setItems(Entidades);
+            LlenarColumnaDetalles(TablaEntidad, TablaEntidad.getItems().size()-1);
+            LlenarColumnaFotos(TablaEntidad, TablaEntidad.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
     }
 }
