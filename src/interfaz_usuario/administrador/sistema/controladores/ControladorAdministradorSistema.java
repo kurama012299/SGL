@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.pdf_gestion.GestorPDF;
 import logica.persona.modelos.Conductor;
 
 /**
@@ -540,6 +541,8 @@ public class ControladorAdministradorSistema {
                 add(Autoescuela);
                 }};
         GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        
+        GestorPDF.GenerarMostrarPDF("Prueba", "Reporte.pdf");
     }
     
     
