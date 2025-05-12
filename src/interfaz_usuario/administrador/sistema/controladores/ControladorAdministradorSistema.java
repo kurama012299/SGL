@@ -242,6 +242,27 @@ public class ControladorAdministradorSistema {
     @FXML
     private TableColumn<Infraccion, String> ColumnaDetallesInfraccion;
     
+    @FXML
+    private TableView<EntidadRelacionada> TablaAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDirectorAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaNombreAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDireccionAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaTelefonoAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaCorreoAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDetallesAE;
+    
     
 
     
@@ -500,6 +521,8 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionAutoescuela()
     {
+        GestorTablas.ConfigurarColumnasAutoescuelas(ColumnaDirectorAE, ColumnaNombreAE,ColumnaDireccionAE, ColumnaTelefonoAE, ColumnaCorreoAE, ColumnaDetallesAE);
+        GestorTablas.CargarTablaAutoescuelas(TablaAE);
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelInicio, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelAutoescuela,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Clinica,Entidades,Examenes};
