@@ -307,7 +307,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelInfracciones" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="839.0">
+            <Pane fx:id="PanelInfracciones" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="839.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Infracciones">
                      <font>
@@ -635,15 +635,15 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-carro.png" />
                      </image>
                   </ImageView>
-                  <TableView layoutX="18.0" layoutY="136.0" prefHeight="452.0" prefWidth="785.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                  <TableView fx:id="TablaLicencia" layoutX="18.0" layoutY="136.0" prefHeight="452.0" prefWidth="785.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="Foto" />
-                        <TableColumn prefWidth="285.0" text="Nombre" />
-                        <TableColumn prefWidth="66.0" text="Tipo" />
-                        <TableColumn prefWidth="102.0" text="Emision" />
-                        <TableColumn prefWidth="118.0" text="Vencimiento" />
-                        <TableColumn prefWidth="55.0" text="Puntos" />
-                        <TableColumn prefWidth="83.0" text="Detalles" />
+                        <TableColumn fx:id="ColumnaFotoLicencia" prefWidth="75.0" text="Foto" />
+                        <TableColumn fx:id="ColumnaNombreLicencia" prefWidth="285.0" text="Nombre" />
+                        <TableColumn fx:id="ColumnaTipoLicencia" prefWidth="66.0" text="Tipo" />
+                        <TableColumn fx:id="ColumnaEmisionLicencia" prefWidth="102.0" text="Emision" />
+                        <TableColumn fx:id="ColumnaVencimientoLicencia" prefWidth="118.0" text="Vencimiento" />
+                        <TableColumn fx:id="ColumnaPuntosLicencia" prefWidth="55.0" text="Puntos" />
+                        <TableColumn fx:id="ColumnaDetallesLicencia" prefWidth="83.0" text="Detalles" />
                      </columns>
                   </TableView>
                   <CheckBox layoutX="380.0" layoutY="34.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
@@ -652,7 +652,7 @@
                   <CheckBox layoutX="437.0" layoutY="60.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>
