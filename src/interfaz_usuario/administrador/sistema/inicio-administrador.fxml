@@ -187,12 +187,12 @@
                   <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <TableView fx:id="TablaAE" layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
-                      <TableColumn fx:id="ColumnaDirectorAE" prefWidth="154.0" text="Director" />
-                      <TableColumn fx:id="ColumnaNombreAE" prefWidth="153.0" text="Nombre" />
-                        <TableColumn fx:id="ColumnaDireccionAE" prefWidth="186.0" text="Direccion" />
-                        <TableColumn fx:id="ColumnaTelefonoAE" prefWidth="103.0" text="Telefono" />
-                        <TableColumn fx:id="ColumnaCorreoAE" prefWidth="128.0" text="Correo" />
-                        <TableColumn fx:id="ColumnaDetallesAE" prefWidth="94.0" text="Detalles" />
+                      <TableColumn fx:id="ColumnaDirectorAE" prefWidth="201.0" text="Director" />
+                      <TableColumn fx:id="ColumnaNombreAE" prefWidth="140.0" text="Nombre" />
+                        <TableColumn fx:id="ColumnaDireccionAE" prefWidth="152.0" text="Direccion" />
+                        <TableColumn fx:id="ColumnaTelefonoAE" prefWidth="93.0" text="Telefono" />
+                        <TableColumn fx:id="ColumnaCorreoAE" prefWidth="168.0" text="Correo" />
+                        <TableColumn fx:id="ColumnaDetallesAE" prefWidth="64.0" text="Detalles" />
                     </columns>
                   </TableView>
                </children>
@@ -234,12 +234,12 @@
                   <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <TableView fx:id="TablaClinica" layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
-                        <TableColumn fx:id="ColumnaDirectorClinica" prefWidth="154.0" text="Director" />
-                        <TableColumn fx:id="ColumnaNombreClinica" prefWidth="153.0" text="Nombre" />
-                        <TableColumn fx:id="ColumnaDireccionClinica" prefWidth="186.0" text="Direccion" />
-                        <TableColumn fx:id="ColumnaTelefonoClinica" prefWidth="103.0" text="Telefono" />
-                        <TableColumn fx:id="ColumnaCorreoClinica" prefWidth="128.0" text="Correo" />
-                        <TableColumn fx:id="ColumnaDetallesClinica" prefWidth="94.0" text="Detalles" />
+                        <TableColumn fx:id="ColumnaDirectorClinica" prefWidth="204.0" text="Director" />
+                        <TableColumn fx:id="ColumnaNombreClinica" prefWidth="135.0" text="Nombre" />
+                        <TableColumn fx:id="ColumnaDireccionClinica" prefWidth="141.0" text="Direccion" />
+                        <TableColumn fx:id="ColumnaTelefonoClinica" prefWidth="83.0" text="Telefono" />
+                        <TableColumn fx:id="ColumnaCorreoClinica" prefWidth="187.0" text="Correo" />
+                        <TableColumn fx:id="ColumnaDetallesClinica" prefWidth="68.0" text="Detalles" />
                      </columns>
                   </TableView>
                </children>
@@ -296,12 +296,12 @@
                   </JFXRadioButton>
                   <TableView fx:id="TablaEntidad" layoutX="16.0" layoutY="133.0" prefHeight="456.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
-                        <TableColumn fx:id="ColumnaDirectorEntidad" prefWidth="154.0" text="Director" />
-                        <TableColumn fx:id="ColumnaNombreEntidad" prefWidth="153.0" text="Nombre" />
-                        <TableColumn fx:id="ColumnaDireccionEntidad" prefWidth="186.0" text="Direccion" />
-                        <TableColumn fx:id="ColumnaTelefonoEntidad" prefWidth="103.0" text="Telefono" />
-                        <TableColumn fx:id="ColumnaCorreoEntidad" prefWidth="128.0" text="Correo" />
-                        <TableColumn fx:id="ColumnaDetallesEntidad" prefWidth="94.0" text="Detalles" />
+                        <TableColumn fx:id="ColumnaDirectorEntidad" prefWidth="202.0" text="Director" />
+                        <TableColumn fx:id="ColumnaNombreEntidad" prefWidth="127.0" text="Nombre" />
+                        <TableColumn fx:id="ColumnaDireccionEntidad" prefWidth="151.0" text="Direccion" />
+                        <TableColumn fx:id="ColumnaTelefonoEntidad" prefWidth="93.0" text="Telefono" />
+                        <TableColumn fx:id="ColumnaCorreoEntidad" prefWidth="184.0" text="Correo" />
+                        <TableColumn fx:id="ColumnaDetallesEntidad" prefWidth="61.0" text="Detalles" />
                         <TableColumn prefWidth="186.0" text="Direccion" />
                      </columns>
                   </TableView>
@@ -369,13 +369,13 @@
                   <TableView fx:id="TablaInfraccion" layoutX="14.0" layoutY="140.0" prefHeight="444.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
                       <TableColumn fx:id="ColumnaFotoInfraccion" prefWidth="54.0" text="Foto" />
-                      <TableColumn fx:id="ColumnaNombreInfraccion" prefWidth="247.0" text="Nombre" />
-                        <TableColumn fx:id="ColumnaTipoInfraccion" prefWidth="72.0" text="Tipo" />
-                        <TableColumn fx:id="ColumnaFechaInfraccion" prefWidth="67.0" text="Fecha" />
-                        <TableColumn fx:id="ColumnaLugarInfraccion" prefWidth="86.0" text="Lugar" />
-                        <TableColumn fx:id="ColumnaLicenciaInfraccion" prefWidth="82.0" text="Licencia" />
-                        <TableColumn fx:id="ColumnaPtosDeducidosInfraccion" prefWidth="112.0" text="Puntos deducidos" />
-                        <TableColumn fx:id="ColumnaDetallesInfraccion" prefWidth="87.0" text="Detalles" />
+                      <TableColumn fx:id="ColumnaNombreInfraccion" prefWidth="192.0" text="Nombre" />
+                        <TableColumn fx:id="ColumnaTipoInfraccion" prefWidth="86.0" text="Tipo" />
+                        <TableColumn fx:id="ColumnaFechaInfraccion" prefWidth="100.0" text="Fecha" />
+                        <TableColumn fx:id="ColumnaLugarInfraccion" prefWidth="167.0" text="Lugar" />
+                        <TableColumn fx:id="ColumnaLicenciaInfraccion" prefWidth="70.0" text="Licencia" />
+                        <TableColumn fx:id="ColumnaPtosDeducidosInfraccion" prefWidth="64.0" text="Puntos" />
+                        <TableColumn fx:id="ColumnaDetallesInfraccion" prefWidth="74.0" text="Detalles" />
                     </columns>
                   </TableView>
                   <Separator layoutX="-10.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="723.0" prefWidth="19.0" translateX="-4.0" />
@@ -637,13 +637,13 @@
                   </ImageView>
                   <TableView fx:id="TablaLicencia" layoutX="18.0" layoutY="136.0" prefHeight="452.0" prefWidth="785.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
-                        <TableColumn fx:id="ColumnaFotoLicencia" prefWidth="75.0" text="Foto" />
-                        <TableColumn fx:id="ColumnaNombreLicencia" prefWidth="285.0" text="Nombre" />
-                        <TableColumn fx:id="ColumnaTipoLicencia" prefWidth="66.0" text="Tipo" />
-                        <TableColumn fx:id="ColumnaEmisionLicencia" prefWidth="102.0" text="Emision" />
+                        <TableColumn fx:id="ColumnaFotoLicencia" prefWidth="87.0" text="Foto" />
+                        <TableColumn fx:id="ColumnaNombreLicencia" prefWidth="200.0" text="Nombre" />
+                        <TableColumn fx:id="ColumnaTipoLicencia" prefWidth="89.0" text="Tipo" />
+                        <TableColumn fx:id="ColumnaEmisionLicencia" prefWidth="126.0" text="Emision" />
                         <TableColumn fx:id="ColumnaVencimientoLicencia" prefWidth="118.0" text="Vencimiento" />
-                        <TableColumn fx:id="ColumnaPuntosLicencia" prefWidth="55.0" text="Puntos" />
-                        <TableColumn fx:id="ColumnaDetallesLicencia" prefWidth="83.0" text="Detalles" />
+                        <TableColumn fx:id="ColumnaPuntosLicencia" prefWidth="67.0" text="Puntos" />
+                        <TableColumn fx:id="ColumnaDetallesLicencia" prefWidth="97.0" text="Detalles" />
                      </columns>
                   </TableView>
                   <CheckBox layoutX="380.0" layoutY="34.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
