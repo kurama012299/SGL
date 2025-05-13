@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.infraccion.modelos.Infraccion;
+import logica.licencia.modelos.Licencia;
 import logica.pdf_gestion.GestorPDF;
 import logica.persona.modelos.Conductor;
 
@@ -283,6 +284,33 @@ public class ControladorAdministradorSistema {
     
     @FXML
     private TableColumn<EntidadRelacionada, String> ColumnaDetallesClinica;
+    
+    
+     @FXML
+    private TableView<Licencia> TablaLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, String> ColumnaFotoLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, String> ColumnaNombreLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, String> ColumnaTipoLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, Date> ColumnaEmisionLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, Date> ColumnaVencimientoLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, Integer> ColumnaPuntosLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, String> ColumnaDetallesLicencia;
+    
+   
         
     
 
@@ -334,6 +362,9 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionLicencias()
     {
+        
+        GestorTablas.ConfigurarColumnasLicencias(ColumnaFotoLicencia, ColumnaNombreLicencia, ColumnaTipoLicencia, ColumnaEmisionLicencia, ColumnaVencimientoLicencia, ColumnaPuntosLicencia, ColumnaDetallesLicencia);
+        GestorTablas.CargarTablaLicencias(TablaLicencia);
         Pane[] PanelesOcultar={PanelInfracciones, PanelInicio, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelLicencias,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};

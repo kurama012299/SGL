@@ -6,6 +6,7 @@ package logica.licencia.modelos;
 
 import java.util.ArrayList;
 import java.util.Date;
+import logica.persona.modelos.Persona;
 
 /**
  *
@@ -22,6 +23,8 @@ public class Licencia {
     private String Estado;
     private ArrayList<String> Restricciones;
     private ArrayList<String> Categorias;
+    private Persona Persona;
+    private Licencia TipoLic;
 
     public Licencia(Long Id, Date FechaEmision, Date FechaVencimiento, boolean Renovada, int CantPuntos, String Tipo, String Estado) {
         this.Id = Id;
@@ -36,10 +39,31 @@ public class Licencia {
     public Licencia(){
 
     }
+    
+    public Licencia(Long Id,Date FechaEmision,Date FechaVencimiento,int CantPuntos, Licencia TipoLic, Persona Persona){
+        this.Id = Id;
+        this.FechaEmision = FechaEmision;
+        this.FechaVencimiento = FechaVencimiento;
+        this.CantPuntos = CantPuntos;
+        this.TipoLic = TipoLic;
+        this.Persona = Persona;
+    }
+    
+    public Licencia(String Tipo){
+        this.Tipo = Tipo;
+    }
 
     public Long getId() {
         return Id;
     }
+    
+    public Licencia getTipoLic(){
+        return TipoLic;
+    }
+    
+    public Persona getPersona(){
+        return Persona;
+    } 
 
     public Date getFechaEmision() {
         return FechaEmision;

@@ -587,6 +587,56 @@ public class GestorTablas {
             
         }
     }
+     
+       
+       public static void ConfigurarColumnasLicencias(
+             
+    TableColumn<Licencia, String> ColumnaFotoLicencia,
+    TableColumn<Licencia, String> ColumnaNombreLicencia,
+    TableColumn<Licencia, String> ColumnaTipoLicencia,
+    TableColumn<Licencia, Date> ColumnaEmisionLicencia,
+    TableColumn<Licencia, Date> ColumnaVencimientoLicencia,
+    TableColumn<Licencia, Integer> ColumnaPuntosLicencia,
+    TableColumn<Licencia, String> ColumnaDetallesLicencia)
+             {
+                 
+             ColumnaTipoLicencia.setCellValueFactory(cellData -> {
+            Licencia Tipo = cellData.getValue();
+            return new SimpleStringProperty(Tipo.getTipoLic().getTipo()
+                    );
+        });
+             
+             ColumnaNombreLicencia.setCellValueFactory(cellData -> {
+            Licencia Persona = cellData.getValue();
+            return new SimpleStringProperty(
+                    String.format("%s %s", Persona.getPersona().getNombre(), Persona.getPersona().getApellidos())
+            );
+        });
+             
+              ColumnaFotoLicencia.setCellValueFactory(cellData -> {
+            Licencia Persona = cellData.getValue();
+            return new SimpleStringProperty(Persona.getPersona().getFoto()
+                    );
+        });
+              
+              
+                 // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaEmisionLicencia, "FechaEmision");
+        ConfigurarColumnaStandard(ColumnaVencimientoLicencia, "FechaVencimiento");
+        ConfigurarColumnaStandard(ColumnaPuntosLicencia, "CantPuntos");
+
+             }
       
+      
+       public static void CargarTablaLicencias(TableView<Licencia> TablaLicencia) {
+        try {
+            ObservableList<Licencia> Licencias = ServicioLicencia.ObtenerLicencias();
+            TablaLicencia.setItems(Licencias);
+            LlenarColumnaDetalles(TablaLicencia, TablaLicencia.getItems().size()-1);
+            LlenarColumnaFotos(TablaLicencia, TablaLicencia.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
       
 }

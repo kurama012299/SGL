@@ -9,13 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.modelos.Infraccion;
 import logica.persona.modelos.Conductor;
-import logica.persona.modelos.Persona;
 
 /**
  *
@@ -112,7 +109,7 @@ public class ConsultasInfraccion {
             }
 
         } catch (SQLException e) {
-            throw new Exception("Error al obtener la entidad de la base de datos", e);
+            throw new Exception("Error al obtener la infraccion de la base de datos", e);
         }
 
         return Infraccion;
