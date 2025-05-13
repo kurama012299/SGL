@@ -6,6 +6,8 @@ package interfaz_usuario.administrador.sistema.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.EstadisticaUsuario;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +32,7 @@ import logica.persona.modelos.Conductor;
  *
  * @author Angel Hernandez
  */
-public class ControladorAdministradorSistema {
+public class ControladorAdministradorSistema extends Controlador{
     
     @FXML
     private JFXButton Inicio;
@@ -762,6 +764,11 @@ public class ControladorAdministradorSistema {
             //CAPTURAR ERROR
            
         }
+    }
+
+    @Override
+    public void Iniciar(EstadisticaUsuario EU) {
+        System.out.println(EU);
     }
     
 }

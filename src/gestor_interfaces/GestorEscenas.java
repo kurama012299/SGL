@@ -7,6 +7,9 @@ package gestor_interfaces;
 
 
 import com.jfoenix.controls.JFXButton;
+import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.EstadisticaUsuario;
+import gestor_interfaces.modelos.MenuAdministradorEstadisticas;
 import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarUnaAccion;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasConductor;
 import java.io.IOException;
@@ -31,6 +34,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 
@@ -50,7 +54,12 @@ public class GestorEscenas  {
             URL Url = GestorEscenas.class.getResource(Direccion);
 
             FXMLLoader Cargador = new FXMLLoader(Url);
+
             Parent Ruta = Cargador.load();
+
+            Controlador controlador = Cargador.getController();
+
+            controlador.Iniciar(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.Usuario.getId()));
 
             Stage Ventana = new Stage(); 
             Ventana.setScene(new Scene(Ruta));

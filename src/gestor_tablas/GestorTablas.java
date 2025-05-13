@@ -200,7 +200,7 @@ public class GestorTablas {
             LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
             LlenarColumnaFotos(TablaConductor, TablaConductor.getItems().size()-1);
         } catch (Exception ex) {
-            //
+            //Capturar Error
         }
     }
     
