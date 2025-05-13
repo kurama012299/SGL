@@ -499,5 +499,33 @@ public class GestorTablas {
         }
     }
       
+      public static void ConfigurarColumnasClinicas(
+             
+    TableColumn<EntidadRelacionada, String> ColumnaDirectorClinica,
+     TableColumn<EntidadRelacionada, String> ColumnaNombreClinica,
+    TableColumn<EntidadRelacionada, String> ColumnaDireccionClinica,
+    TableColumn<EntidadRelacionada, String> ColumnaTelefonoClinica,
+    TableColumn<EntidadRelacionada, String> ColumnaCorreoClinica,
+    TableColumn<EntidadRelacionada, String> ColumnaDetallesClinica){
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaDirectorClinica, "NombreDirector");
+        ConfigurarColumnaStandard(ColumnaNombreClinica, "Nombre");
+        ConfigurarColumnaStandard(ColumnaDireccionClinica, "Direccion");
+        ConfigurarColumnaStandard(ColumnaTelefonoClinica, "Telefono");
+        ConfigurarColumnaStandard(ColumnaCorreoClinica, "Correo");
+    }
+     
+      public static void CargarTablaClinicas(TableView<EntidadRelacionada> TablaClinica) {
+        try {
+            ObservableList<EntidadRelacionada> Clinicas = ServicioEntidad.ObtenerClinicas();
+            TablaClinica.setItems(Clinicas);
+            LlenarColumnaDetalles(TablaClinica, TablaClinica.getItems().size()-1);
+            LlenarColumnaFotos(TablaClinica, TablaClinica.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
+      
       
 }

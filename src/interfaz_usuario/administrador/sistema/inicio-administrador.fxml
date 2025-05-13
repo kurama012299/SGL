@@ -197,7 +197,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelClinica" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelClinica" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Clínica">
                      <font>
@@ -232,14 +232,14 @@
                   </JFXButton>
                   <TextField layoutX="54.0" layoutY="97.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
                   <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
-                  <TableView layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                  <TableView fx:id="TablaClinica" layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
-                        <TableColumn prefWidth="154.0" text="Director" />
-                        <TableColumn prefWidth="153.0" text="Nombre" />
-                        <TableColumn prefWidth="186.0" text="Direccion" />
-                        <TableColumn prefWidth="103.0" text="Telefono" />
-                        <TableColumn prefWidth="128.0" text="Correo" />
-                        <TableColumn prefWidth="94.0" text="Detalles" />
+                        <TableColumn fx:id="ColumnaDirectorClinica" prefWidth="154.0" text="Director" />
+                        <TableColumn fx:id="ColumnaNombreClinica" prefWidth="153.0" text="Nombre" />
+                        <TableColumn fx:id="ColumnaDireccionClinica" prefWidth="186.0" text="Direccion" />
+                        <TableColumn fx:id="ColumnaTelefonoClinica" prefWidth="103.0" text="Telefono" />
+                        <TableColumn fx:id="ColumnaCorreoClinica" prefWidth="128.0" text="Correo" />
+                        <TableColumn fx:id="ColumnaDetallesClinica" prefWidth="94.0" text="Detalles" />
                      </columns>
                   </TableView>
                </children>
@@ -652,7 +652,7 @@
                   <CheckBox layoutX="437.0" layoutY="60.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>
