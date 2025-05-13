@@ -283,7 +283,7 @@ public class ControladorAdministradorSistema {
     
     @FXML
     private TableColumn<EntidadRelacionada, String> ColumnaDetallesClinica;
-    
+        
     
 
     
@@ -475,6 +475,9 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionInfracciones()
     {
+        
+        GestorTablas.ConfigurarColumnasInfracciones(ColumnaFotoInfraccion, ColumnaNombreInfraccion, ColumnaTipoInfraccion, ColumnaFechaInfraccion, ColumnaLugarInfraccion, ColumnaLicenciaInfraccion, ColumnaPtosDeducidosInfraccion, ColumnaDetallesInfraccion);
+        GestorTablas.CargarTablaInfracciones(TablaInfraccion);
         Pane[] PanelesOcultar={PanelInicio, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelInfracciones,PanelesOcultar);
         JFXButton[] botones = {Inicio,Autoescuela,Clinica,Conductores,Entidades,Examenes,Licencias,Reportes};

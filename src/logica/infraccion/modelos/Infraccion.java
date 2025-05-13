@@ -5,6 +5,7 @@
 package logica.infraccion.modelos;
 
 import java.util.Date;
+import logica.persona.modelos.Conductor;
 import logica.persona.modelos.Persona;
 
 /**
@@ -22,7 +23,7 @@ public class Infraccion {
     private String Gravedad;
     private String NombreOficial;
     private Infraccion NombreGravedad;
-    private Persona NombrePersona;
+    private Conductor NombrePersona;
 
     public Infraccion(Long Id, Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, Long IdLicencia, String Gravedad, String NombreOficial) {
         this.Id = Id;
@@ -36,14 +37,12 @@ public class Infraccion {
         this.NombreOficial = NombreOficial;
     }
     
-    public Infraccion(Long Id, Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, Long IdLicencia, String NombreOficial, Infraccion NombreGravedad, Persona NombrePersona) {
-        this.Id = Id;
+    public Infraccion(Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, String NombreOficial, Infraccion NombreGravedad, Conductor NombrePersona) {
         this.Fecha = Fecha;
         this.Lugar = Lugar;
         this.Descripcion = Descripcion;
         this.PuntosDeducidos = PuntosDeducidos;
         this.Pagada = Pagada;
-        this.IdLicencia = IdLicencia;
         this.NombreOficial = NombreOficial;
         this.NombreGravedad = NombreGravedad;
         this.NombrePersona = NombrePersona;
@@ -90,7 +89,7 @@ public class Infraccion {
         return NombreOficial;
     }
     
-    public Persona getNombrePersona(){
+    public Conductor getNombrePersona(){
             return NombrePersona;
 }
     
