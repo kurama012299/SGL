@@ -197,7 +197,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelClinica" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0">
+            <Pane fx:id="PanelClinica" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Clínica">
                      <font>
@@ -307,7 +307,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelInfracciones" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="839.0" visible="false">
+            <Pane fx:id="PanelInfracciones" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="839.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Infracciones">
                      <font>
@@ -366,16 +366,16 @@
                         <Color red="0.8196078538894653" green="0.05882352963089943" blue="0.05882352963089943" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView layoutX="14.0" layoutY="140.0" prefHeight="444.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                  <TableView fx:id="TablaInfraccion" layoutX="14.0" layoutY="140.0" prefHeight="444.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
-                      <TableColumn prefWidth="54.0" text="Foto" />
-                      <TableColumn prefWidth="247.0" text="Nombre" />
-                        <TableColumn prefWidth="72.0" text="Tipo" />
-                        <TableColumn prefWidth="67.0" text="Fecha" />
-                        <TableColumn prefWidth="86.0" text="Lugar" />
-                        <TableColumn prefWidth="82.0" text="Licencia" />
-                        <TableColumn prefWidth="112.0" text="Puntos deducidos" />
-                        <TableColumn prefWidth="87.0" text="Detalles" />
+                      <TableColumn fx:id="ColumnaFotoInfraccion" prefWidth="54.0" text="Foto" />
+                      <TableColumn fx:id="ColumnaNombreInfraccion" prefWidth="247.0" text="Nombre" />
+                        <TableColumn fx:id="ColumnaTipoInfraccion" prefWidth="72.0" text="Tipo" />
+                        <TableColumn fx:id="ColumnaFechaInfraccion" prefWidth="67.0" text="Fecha" />
+                        <TableColumn fx:id="ColumnaLugarInfraccion" prefWidth="86.0" text="Lugar" />
+                        <TableColumn fx:id="ColumnaLicenciaInfraccion" prefWidth="82.0" text="Licencia" />
+                        <TableColumn fx:id="ColumnaPtosDeducidosInfraccion" prefWidth="112.0" text="Puntos deducidos" />
+                        <TableColumn fx:id="ColumnaDetallesInfraccion" prefWidth="87.0" text="Detalles" />
                     </columns>
                   </TableView>
                   <Separator layoutX="-10.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="723.0" prefWidth="19.0" translateX="-4.0" />

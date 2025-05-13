@@ -12,6 +12,8 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +33,8 @@ import logica.examen_conduccion.implementaciones.ServiciosExamenes;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
+import logica.infraccion.implementaciones.ServicioInfraccion;
+import logica.infraccion.modelos.Infraccion;
 import logica.licencia.implementaciones.ServicioLicencia;
 import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
@@ -522,6 +526,63 @@ public class GestorTablas {
             TablaClinica.setItems(Clinicas);
             LlenarColumnaDetalles(TablaClinica, TablaClinica.getItems().size()-1);
             LlenarColumnaFotos(TablaClinica, TablaClinica.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
+      
+      public static void ConfigurarColumnasInfracciones(
+             
+    TableColumn<Infraccion, String> ColumnaFotoInfraccion,
+    TableColumn<Infraccion, String> ColumnaNombreInfraccion,
+    TableColumn<Infraccion, String> ColumnaTipoInfraccion,
+    TableColumn<Infraccion, Date> ColumnaFechaInfraccion,
+    TableColumn<Infraccion, String> ColumnaLugarInfraccion,
+    TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion,
+    TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion,
+    TableColumn<Infraccion, String> ColumnaDetallesInfraccion)
+             {
+                 
+             ColumnaTipoInfraccion.setCellValueFactory(cellData -> {
+            Infraccion Gravedad = cellData.getValue();
+            return new SimpleStringProperty(Gravedad.getNombreGravedad().getGravedad()
+                    );
+        });
+             
+             ColumnaNombreInfraccion.setCellValueFactory(cellData -> {
+            Infraccion Persona = cellData.getValue();
+            return new SimpleStringProperty(
+                    String.format("%s %s", Persona.getNombrePersona().getNombre(), Persona.getNombrePersona().getApellidos())
+            );
+        });
+             
+              ColumnaFotoInfraccion.setCellValueFactory(cellData -> {
+            Infraccion Persona = cellData.getValue();
+            return new SimpleStringProperty(Persona.getNombrePersona().getFoto()
+                    );
+        });
+              
+              
+              ColumnaLicenciaInfraccion.setCellValueFactory((TableColumn.CellDataFeatures<Infraccion, Long> cellData) -> {
+            Infraccion Persona = cellData.getValue();
+            return new SimpleObjectProperty<>(Persona.getNombrePersona().getIdLicencia()
+                    );
+        });
+              
+                 // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaFechaInfraccion, "Fecha");
+        ConfigurarColumnaStandard(ColumnaLugarInfraccion, "Lugar");
+        ConfigurarColumnaStandard(ColumnaPtosDeducidosInfraccion, "PuntosDeducidos");
+
+             }
+      
+      
+       public static void CargarTablaInfracciones(TableView<Infraccion> TablaInfraccion) {
+        try {
+            ObservableList<Infraccion> Infracciones = ServicioInfraccion.ObtenerInfracciones();
+            TablaInfraccion.setItems(Infracciones);
+            LlenarColumnaDetalles(TablaInfraccion, TablaInfraccion.getItems().size()-1);
+            LlenarColumnaFotos(TablaInfraccion, TablaInfraccion.getItems().size()-1);
         } catch (Exception ex) {
             
         }

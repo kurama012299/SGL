@@ -39,10 +39,16 @@ public class Persona {
         this.Apellidos= apellidos;
         this.CI=CI;
     }
-    public Persona(String Nombre, String Apellidos){
+    
+     public Persona(String Nombre,String Apellidos, String CI, String Foto)
+    {
         this.Nombre = Nombre;
-        this.Apellidos = Apellidos;
+        this.Apellidos= Apellidos;
+        this.CI = CI;
+        this.Foto = Foto;
     }
+    
+    
     public Long getId() {
         return Id;
     }
@@ -78,6 +84,7 @@ public class Persona {
     public String getFoto() {
         return Foto;
     }
+    
     
     
 }
