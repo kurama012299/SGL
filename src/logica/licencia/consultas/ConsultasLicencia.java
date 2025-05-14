@@ -72,16 +72,16 @@ public class ConsultasLicencia {
         Licencia Licencia = null;
 
         String consulta = "SELECT \"Licencia\".*, " +
-                    "\"Tipo\".\"Nombre\" AS nombre_tipo, " +
-                    "\"Persona\".\"Nombre\" AS nombre_persona, " +
-                    "\"Persona\".\"Apellidos\" AS apellidos_persona, " +
-                    "\"Persona\".\"Foto\" AS foto_persona, " +
-                    "\"Persona\".\"Id_Licencia\" AS id_licencia, " +
-                    "\"Persona\".\"CI\" AS ci_persona " +
-                    "FROM \"Licencia\" " +
-                    "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" " + 
-                    "LEFT JOIN \"Persona\" ON \"Licencia\".\"Id\" = \"Persona\".\"Id_Licencia\""+
-                    "WHERE \"Id\" = ?";
+                          "\"Tipo\".\"Nombre\" AS nombre_tipo, " +
+                          "\"Persona\".\"Nombre\" AS nombre_persona, " +
+                          "\"Persona\".\"Apellidos\" AS apellidos_persona, " +
+                          "\"Persona\".\"Foto\" AS foto_persona, " +
+                          "\"Persona\".\"Id_Licencia\" AS id_licencia, " +
+                          "\"Persona\".\"CI\" AS ci_persona " +
+                          "FROM \"Licencia\" " +
+                          "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" " + 
+                          "LEFT JOIN \"Persona\" ON \"Licencia\".\"Id\" = \"Persona\".\"Id_Licencia\" " +
+                          "WHERE \"Licencia\".\"Id\" = ?";
 
         try (Connection conn = ConectorBaseDato.Conectar(); 
                 PreparedStatement stmt = conn.prepareStatement(consulta)) {
