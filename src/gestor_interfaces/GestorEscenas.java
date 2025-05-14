@@ -13,6 +13,7 @@ import gestor_interfaces.modelos.EstadisticaUsuario;
 import gestor_interfaces.modelos.MenuEstadisticas;
 import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarUnaAccion;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasConductor;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasExamenes;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.examen_medico.modelos.ExamenMedico;
 import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
@@ -200,6 +203,38 @@ public class GestorEscenas  {
         }
     }
 
+    
+    public static void CargarVerMasExamenes(Window Padre, ExamenConduccion ExamenConduccion,ExamenMedico ExamenMedico) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-examenes.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasExamenes controlador = Cargador.getController();
+            controlador.SetDatos(ExamenConduccion,ExamenMedico); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+    
     //Funcion para mostrar el primer panel y los demas ocultarlos
     public static void MostrarOcultarPaneles(Pane Mostrar, Pane... Ocultar) {
         Mostrar.setVisible(true);

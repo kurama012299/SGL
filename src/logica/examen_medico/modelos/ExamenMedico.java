@@ -17,7 +17,7 @@ import logica.usuario.modelos.Usuario;
  */
 public class ExamenMedico extends ExamenConduccion{
     
-    private ArrayList<String> Restricciones;
+    private ArrayList<String> Restricciones= new ArrayList<>();
     
     public ExamenMedico(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,ArrayList<String> Restricciones) {
         super(Id, Fecha, Aprobado, Entidad, Persona, Examinador,"Médico");
