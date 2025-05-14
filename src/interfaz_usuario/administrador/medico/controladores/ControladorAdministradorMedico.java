@@ -6,6 +6,8 @@ package interfaz_usuario.administrador.medico.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,7 +29,7 @@ import logica.examen_medico.modelos.ExamenMedico;
  *
  * @author Angel Hernandez
  */
-public class ControladorAdministradorMedico {
+public class ControladorAdministradorMedico extends Controlador{
     
     @FXML
     private JFXButton Inicio;
@@ -167,9 +169,6 @@ public class ControladorAdministradorMedico {
         
         GestorTablas.ConfigurarColumnasExamenesMedicosAdminMedico(ColumnaFoto, ColumnaExaminado, ColumnaFecha, ColumnaExaminador, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
         GestorTablas.CargarTablaExamenesMedicosAdminMedico(TablaExamenesMedico);
-        Platform.runLater(() -> {
-            ColumnaResultado.getTableView().setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
-        });
         
         Pane[] PanelesOcultar={PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenes, PanelesOcultar);
@@ -200,6 +199,16 @@ public class ControladorAdministradorMedico {
             //CAPTURAR ERROR
            
         }
+    }
+
+    @Override
+    public void Iniciar(MenuEstadisticas MenuEstadisticas) {
+        
+    }
+
+    @Override
+    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
+        
     }
     
     

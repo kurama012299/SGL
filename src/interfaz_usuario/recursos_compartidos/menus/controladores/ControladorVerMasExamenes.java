@@ -126,7 +126,7 @@ public class ControladorVerMasExamenes {
         else
         {
             TextFieldResultado.setText("Reprobado");
-            TextFieldRestricciones.setText("Restricciones que impiden +\"\\n\"+conducir "+"\n"+"Pendiente");
+            TextFieldRestricciones.setText("Restricciones que impiden "+"\n"+"conducir "+"\n"+"Pendiente");
         }
         TextFieldEntidad.setText(ExamenMedico.getEntidad().getNombre());
         TextFieldFecha.setText(ExamenMedico.getFecha().toString());

@@ -107,10 +107,15 @@ public class GestorTablas {
                 }
                 
             }
-            
-            
-            
         }
+        else if(Objeto instanceof ExamenMedico)    
+        {
+            ExamenMedico ExamenMedico =(ExamenMedico) Objeto;
+            GestorEscenas.CargarVerMasExamenesMedicosAdmin(Ventana,ExamenMedico);
+        }
+            
+            
+            
         
     }
     
