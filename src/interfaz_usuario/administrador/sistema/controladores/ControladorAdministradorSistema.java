@@ -7,7 +7,9 @@ package interfaz_usuario.administrador.sistema.controladores;
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.EstadisticaUsuario;
+import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -312,7 +314,20 @@ public class ControladorAdministradorSistema extends Controlador{
     @FXML
     private TableColumn<Licencia, String> ColumnaDetallesLicencia;
     
+    @FXML
+    private Label LabelUltimoInicioSesion;
+    
+    @FXML
+    private Label LabelIniciosSesion;
+    
+   @FXML
+   private Label LabelTotalConductores;
    
+   @FXML
+   private Label LabelExamenesReprobados;
+   
+   @FXML
+   private Label LabelTotalEntidades;
         
     
 
@@ -351,9 +366,7 @@ public class ControladorAdministradorSistema extends Controlador{
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes, Autoescuela, Clinica, Entidades};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
-        Label[] PorcentajesBarra = {LabelLicenciaA,LabelLicenciaB,LabelLicenciaC,LabelLicenciaD,LabelLicenciaE,LabelInfraccionLeve,LabelInfraccionGrave,LabelInfraccionMGrave};
-        ProgressBar[] BarrasProgreso = {BarraProgresoLicenciaA,BarraProgresoLicenciaB,BarraProgresoLicenciaC,BarraProgresoLicenciaD,BarraProgresoLicenciaE,BarraProgresoInfraccionLeve,BarraProgresoInfraccionGrave,BarraProgresoInfraccionMGrave};
-        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
+        
         
         System.out.println("Controlador Administrador Sistema Iniciado");
         this.TransicionInicio();
@@ -767,8 +780,60 @@ public class ControladorAdministradorSistema extends Controlador{
     }
 
     @Override
-    public void Iniciar(EstadisticaUsuario EU) {
-        System.out.println(EU);
+    public void Iniciar(MenuEstadisticas MenuEstadisticas) 
+    {
+        CargarEstadisticas(MenuEstadisticas);
+    }
+    
+    @FXML
+    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas)
+    {
+        
+        LabelUltimoInicioSesion.setText("Último inicio sesion hace " + MenuEstadisticas.getEstadisticaUsuario().getUltimoInicioSesion());
+        LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.getEstadisticaUsuario().getCantidadIniciosSesion()));
+        for(Estadistica e : MenuEstadisticas.getEstadisticas())
+        {
+            System.out.println(e);
+            switch(e.getCategoria())
+            {
+                case "Cantidad Conductores":
+                    LabelTotalConductores.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Cantidad Entidades":
+                    LabelTotalEntidades.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Examenes reprobados":
+                    LabelExamenesReprobados.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Leve":
+                    LabelInfraccionLeve.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "Grave":
+                    LabelInfraccionGrave.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "Muy grave":
+                    LabelInfraccionMGrave.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "A":
+                    LabelLicenciaA.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "B":
+                    LabelLicenciaB.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "C":
+                    LabelLicenciaC.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "D":
+                    LabelLicenciaD.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "E":
+                    LabelLicenciaE.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+            }
+        }
+        Label[] PorcentajesBarra = {LabelLicenciaA,LabelLicenciaB,LabelLicenciaC,LabelLicenciaD,LabelLicenciaE,LabelInfraccionLeve,LabelInfraccionGrave,LabelInfraccionMGrave};
+        ProgressBar[] BarrasProgreso = {BarraProgresoLicenciaA,BarraProgresoLicenciaB,BarraProgresoLicenciaC,BarraProgresoLicenciaD,BarraProgresoLicenciaE,BarraProgresoInfraccionLeve,BarraProgresoInfraccionGrave,BarraProgresoInfraccionMGrave};
+        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
     }
     
 }

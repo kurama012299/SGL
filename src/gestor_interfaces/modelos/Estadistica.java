@@ -10,7 +10,7 @@ package gestor_interfaces.modelos;
  */
 public class Estadistica {
     private String Categoria;
-    private int Valor;
+    private double Valor;
 
     public String getCategoria() {
         return Categoria;
@@ -20,13 +20,24 @@ public class Estadistica {
         this.Categoria = Categoria;
     }
 
-    public int getValor() {
+    public double getValor() {
         return Valor;
     }
 
-    public void setValor(int Valor) {
+    public void setValor(double Valor) {
+        this.Valor = Valor;
+    }
+
+    public Estadistica(String Categoria, double Valor) {
+        this.Categoria = Categoria;
         this.Valor = Valor;
     }
     
+    
+    @Override 
+    public String toString()
+    {
+        return Categoria+": "+Valor;
+    }
     
 }

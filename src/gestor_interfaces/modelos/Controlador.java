@@ -9,5 +9,7 @@ package gestor_interfaces.modelos;
  * @author Angel Hernandez
  */
 public abstract class Controlador {
-    public abstract void Iniciar(EstadisticaUsuario EU);
+    public abstract void Iniciar(MenuEstadisticas MenuEstadisticas);
+    
+    protected abstract void CargarEstadisticas(MenuEstadisticas MenuEstadisticas);
 }

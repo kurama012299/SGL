@@ -692,7 +692,7 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="11.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="   24">
+                        <Label fx:id="LabelIniciosSesion" layoutX="29.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="1" textAlignment="CENTER">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -711,7 +711,7 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="12.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   120">
+                        <Label fx:id="LabelTotalConductores" layoutX="12.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   120">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -725,7 +725,7 @@
                   </Pane>
                   <Pane layoutX="437.0" layoutY="118.0" prefHeight="111.0" prefWidth="169.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
                      <children>
-                        <Label layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   25">
+                        <Label fx:id="LabelExamenesReprobados" layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   25">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -848,14 +848,14 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="33.0" layoutY="83.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
+                  <Label fx:id="LabelUltimoInicioSesion" layoutX="33.0" layoutY="83.0" prefHeight="20.0" prefWidth="397.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Pane layoutX="640.0" layoutY="118.0" prefHeight="111.0" prefWidth="169.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
                      <children>
-                        <Label layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="  34">
+                        <Label fx:id="LabelTotalEntidades" layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="  34">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
