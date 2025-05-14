@@ -6,12 +6,14 @@ package logica.licencia.modelos;
 
 import java.util.ArrayList;
 import java.util.Date;
+import logica.persona.modelos.Persona;
 
 /**
  *
  * @author Angel Hernandez
  */
 public class Licencia {
+
     private Long Id;
     private Date FechaEmision;
     private Date FechaVencimiento;
@@ -21,6 +23,8 @@ public class Licencia {
     private String Estado;
     private ArrayList<String> Restricciones;
     private ArrayList<String> Categorias;
+    private Persona Persona;
+    private Licencia TipoLic;
 
     public Licencia(Long Id, Date FechaEmision, Date FechaVencimiento, boolean Renovada, int CantPuntos, String Tipo, String Estado) {
         this.Id = Id;
@@ -31,10 +35,35 @@ public class Licencia {
         this.Tipo = Tipo;
         this.Estado = Estado;
     }
+    
+    public Licencia(){
+
+    }
+    
+    public Licencia(Long Id,Date FechaEmision,Date FechaVencimiento,int CantPuntos, Licencia TipoLic, Persona Persona){
+        this.Id = Id;
+        this.FechaEmision = FechaEmision;
+        this.FechaVencimiento = FechaVencimiento;
+        this.CantPuntos = CantPuntos;
+        this.TipoLic = TipoLic;
+        this.Persona = Persona;
+    }
+    
+    public Licencia(String Tipo){
+        this.Tipo = Tipo;
+    }
 
     public Long getId() {
         return Id;
     }
+    
+    public Licencia getTipoLic(){
+        return TipoLic;
+    }
+    
+    public Persona getPersona(){
+        return Persona;
+    } 
 
     public Date getFechaEmision() {
         return FechaEmision;
@@ -67,27 +96,70 @@ public class Licencia {
     public ArrayList<String> getCategorias() {
         return Categorias;
     }
-    
-    public void agregarRestriccion(String Restriccion){
+
+    public void agregarRestriccion(String Restriccion) {
         Restricciones.add(Restriccion);
     }
-    
-    public void agregarCategoria(String Categoria){
+
+    public void agregarCategoria(String Categoria) {
         Categorias.add(Categoria);
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + Id + "\n"
+                + "FechaEmision: " + FechaEmision + "\n"
+                + "FechaVencimiento: " + FechaVencimiento + "\n"
+                + "Renovada: " + Renovada + "\n"
+                + "CantPuntos: " + CantPuntos + "\n"
+                + "Tipo: " + Tipo + "\n"
+                + "Estado: " + Estado + "\n"
+                + "Restricciones: " + Restricciones + "\n"
+                + "Categorias: " + Categorias + "\n";
+    }
+
     
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+
     
-     @Override
-    public String toString()
-    {
-         return "Id: "+ Id +"\n"+
-                "FechaEmision: "+ FechaEmision +"\n"+
-                "FechaVencimiento: "+ FechaVencimiento +"\n"+
-                "Renovada: " + Renovada +"\n"+
-                "CantPuntos: " + CantPuntos +"\n"+
-                "Tipo: "+ Tipo +"\n"+
-                "Estado: " + Estado +"\n" +
-                "Restricciones: " + Restricciones +"\n"+
-                "Categorias: " + Categorias+"\n";
+    public void setFechaEmision(Date FechaEmision) {
+        this.FechaEmision = FechaEmision;
+    }
+
+    
+    public void setFechaVencimiento(Date FechaVencimiento) {
+        this.FechaVencimiento = FechaVencimiento;
+    }
+
+    
+    public void setRenovada(boolean Renovada) {
+        this.Renovada = Renovada;
+    }
+
+ 
+    public void setCantPuntos(int CantPuntos) {
+        this.CantPuntos = CantPuntos;
+    }
+
+    
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+
+    
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+
+    
+    public void setRestricciones(ArrayList<String> Restricciones) {
+        this.Restricciones = Restricciones;
+    }
+
+    
+    public void setCategorias(ArrayList<String> Categorias) {
+        this.Categorias = Categorias;
     }
 }

@@ -12,6 +12,8 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,10 +27,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import logica.entidad.implementaciones.ServicioEntidad;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.implementaciones.ServiciosExamenes;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
+import logica.infraccion.implementaciones.ServicioInfraccion;
+import logica.infraccion.modelos.Infraccion;
 import logica.licencia.implementaciones.ServicioLicencia;
 import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
@@ -219,7 +225,7 @@ public class GestorTablas {
             LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size()-1);
             LlenarColumnaFotos(TablaConductor, TablaConductor.getItems().size()-1);
         } catch (Exception ex) {
-            //
+            //Capturar Error
         }
     }
     
@@ -465,4 +471,197 @@ public class GestorTablas {
         // Configuración estándar para otras columnas
         ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
     }
+    
+    public static void ConfigurarColumnasEntidades(
+             
+    TableColumn<EntidadRelacionada, String> ColumnaDirectorEntidad,
+     TableColumn<EntidadRelacionada, String> ColumnaNombreEntidad,
+    TableColumn<EntidadRelacionada, String> ColumnaDireccionEntidad,
+    TableColumn<EntidadRelacionada, String> ColumnaTelefonoEntidad,
+    TableColumn<EntidadRelacionada, String> ColumnaCorreoEntidad,
+    TableColumn<EntidadRelacionada, String> ColumnaDetallesEntidad){
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaDirectorEntidad, "NombreDirector");
+        ConfigurarColumnaStandard(ColumnaNombreEntidad, "Nombre");
+        ConfigurarColumnaStandard(ColumnaDireccionEntidad, "Direccion");
+        ConfigurarColumnaStandard(ColumnaTelefonoEntidad, "Telefono");
+        ConfigurarColumnaStandard(ColumnaCorreoEntidad, "Correo");
+    }
+     
+      public static void CargarTablaEntidades(TableView<EntidadRelacionada> TablaEntidad) {
+        try {
+            ObservableList<EntidadRelacionada> Entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
+            TablaEntidad.setItems(Entidades);
+            LlenarColumnaDetalles(TablaEntidad, TablaEntidad.getItems().size()-1);
+            LlenarColumnaFotos(TablaEntidad, TablaEntidad.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
+      
+      public static void ConfigurarColumnasAutoescuelas(
+             
+    TableColumn<EntidadRelacionada, String> ColumnaDirectorAE,
+     TableColumn<EntidadRelacionada, String> ColumnaNombreAE,
+    TableColumn<EntidadRelacionada, String> ColumnaDireccionAE,
+    TableColumn<EntidadRelacionada, String> ColumnaTelefonoAE,
+    TableColumn<EntidadRelacionada, String> ColumnaCorreoAE,
+    TableColumn<EntidadRelacionada, String> ColumnaDetallesAE){
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaDirectorAE, "NombreDirector");
+        ConfigurarColumnaStandard(ColumnaNombreAE, "Nombre");
+        ConfigurarColumnaStandard(ColumnaDireccionAE, "Direccion");
+        ConfigurarColumnaStandard(ColumnaTelefonoAE, "Telefono");
+        ConfigurarColumnaStandard(ColumnaCorreoAE, "Correo");
+    }
+     
+      public static void CargarTablaAutoescuelas(TableView<EntidadRelacionada> TablaAE) {
+        try {
+            ObservableList<EntidadRelacionada> Autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
+            TablaAE.setItems(Autoescuelas);
+            LlenarColumnaDetalles(TablaAE, TablaAE.getItems().size()-1);
+            LlenarColumnaFotos(TablaAE, TablaAE.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
+      
+      public static void ConfigurarColumnasClinicas(
+             
+    TableColumn<EntidadRelacionada, String> ColumnaDirectorClinica,
+     TableColumn<EntidadRelacionada, String> ColumnaNombreClinica,
+    TableColumn<EntidadRelacionada, String> ColumnaDireccionClinica,
+    TableColumn<EntidadRelacionada, String> ColumnaTelefonoClinica,
+    TableColumn<EntidadRelacionada, String> ColumnaCorreoClinica,
+    TableColumn<EntidadRelacionada, String> ColumnaDetallesClinica){
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaDirectorClinica, "NombreDirector");
+        ConfigurarColumnaStandard(ColumnaNombreClinica, "Nombre");
+        ConfigurarColumnaStandard(ColumnaDireccionClinica, "Direccion");
+        ConfigurarColumnaStandard(ColumnaTelefonoClinica, "Telefono");
+        ConfigurarColumnaStandard(ColumnaCorreoClinica, "Correo");
+    }
+     
+      public static void CargarTablaClinicas(TableView<EntidadRelacionada> TablaClinica) {
+        try {
+            ObservableList<EntidadRelacionada> Clinicas = ServicioEntidad.ObtenerClinicas();
+            TablaClinica.setItems(Clinicas);
+            LlenarColumnaDetalles(TablaClinica, TablaClinica.getItems().size()-1);
+            LlenarColumnaFotos(TablaClinica, TablaClinica.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
+      
+      public static void ConfigurarColumnasInfracciones(
+             
+    TableColumn<Infraccion, String> ColumnaFotoInfraccion,
+    TableColumn<Infraccion, String> ColumnaNombreInfraccion,
+    TableColumn<Infraccion, String> ColumnaTipoInfraccion,
+    TableColumn<Infraccion, Date> ColumnaFechaInfraccion,
+    TableColumn<Infraccion, String> ColumnaLugarInfraccion,
+    TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion,
+    TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion,
+    TableColumn<Infraccion, String> ColumnaDetallesInfraccion)
+             {
+                 
+             ColumnaTipoInfraccion.setCellValueFactory(cellData -> {
+            Infraccion Gravedad = cellData.getValue();
+            return new SimpleStringProperty(Gravedad.getNombreGravedad().getGravedad()
+                    );
+        });
+             
+             ColumnaNombreInfraccion.setCellValueFactory(cellData -> {
+            Infraccion Persona = cellData.getValue();
+            return new SimpleStringProperty(
+                    String.format("%s %s", Persona.getNombrePersona().getNombre(), Persona.getNombrePersona().getApellidos())
+            );
+        });
+             
+              ColumnaFotoInfraccion.setCellValueFactory(cellData -> {
+            Infraccion Persona = cellData.getValue();
+            return new SimpleStringProperty(Persona.getNombrePersona().getFoto()
+                    );
+        });
+              
+              
+              ColumnaLicenciaInfraccion.setCellValueFactory((TableColumn.CellDataFeatures<Infraccion, Long> cellData) -> {
+            Infraccion Persona = cellData.getValue();
+            return new SimpleObjectProperty<>(Persona.getNombrePersona().getIdLicencia()
+                    );
+        });
+              
+                 // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaFechaInfraccion, "Fecha");
+        ConfigurarColumnaStandard(ColumnaLugarInfraccion, "Lugar");
+        ConfigurarColumnaStandard(ColumnaPtosDeducidosInfraccion, "PuntosDeducidos");
+
+             }
+      
+      
+       public static void CargarTablaInfracciones(TableView<Infraccion> TablaInfraccion) {
+        try {
+            ObservableList<Infraccion> Infracciones = ServicioInfraccion.ObtenerInfracciones();
+            TablaInfraccion.setItems(Infracciones);
+            LlenarColumnaDetalles(TablaInfraccion, TablaInfraccion.getItems().size()-1);
+            LlenarColumnaFotos(TablaInfraccion, TablaInfraccion.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
+     
+       
+       public static void ConfigurarColumnasLicencias(
+             
+    TableColumn<Licencia, String> ColumnaFotoLicencia,
+    TableColumn<Licencia, String> ColumnaNombreLicencia,
+    TableColumn<Licencia, String> ColumnaTipoLicencia,
+    TableColumn<Licencia, Date> ColumnaEmisionLicencia,
+    TableColumn<Licencia, Date> ColumnaVencimientoLicencia,
+    TableColumn<Licencia, Integer> ColumnaPuntosLicencia,
+    TableColumn<Licencia, String> ColumnaDetallesLicencia)
+             {
+                 
+             ColumnaTipoLicencia.setCellValueFactory(cellData -> {
+            Licencia Tipo = cellData.getValue();
+            return new SimpleStringProperty(Tipo.getTipoLic().getTipo()
+                    );
+        });
+             
+             ColumnaNombreLicencia.setCellValueFactory(cellData -> {
+            Licencia Persona = cellData.getValue();
+            return new SimpleStringProperty(
+                    String.format("%s %s", Persona.getPersona().getNombre(), Persona.getPersona().getApellidos())
+            );
+        });
+             
+              ColumnaFotoLicencia.setCellValueFactory(cellData -> {
+            Licencia Persona = cellData.getValue();
+            return new SimpleStringProperty(Persona.getPersona().getFoto()
+                    );
+        });
+              
+              
+                 // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaEmisionLicencia, "FechaEmision");
+        ConfigurarColumnaStandard(ColumnaVencimientoLicencia, "FechaVencimiento");
+        ConfigurarColumnaStandard(ColumnaPuntosLicencia, "CantPuntos");
+
+             }
+      
+      
+       public static void CargarTablaLicencias(TableView<Licencia> TablaLicencia) {
+        try {
+            ObservableList<Licencia> Licencias = ServicioLicencia.ObtenerLicencias();
+            TablaLicencia.setItems(Licencias);
+            LlenarColumnaDetalles(TablaLicencia, TablaLicencia.getItems().size()-1);
+            LlenarColumnaFotos(TablaLicencia, TablaLicencia.getItems().size()-1);
+        } catch (Exception ex) {
+            
+        }
+    }
+      
 }

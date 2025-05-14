@@ -7,6 +7,10 @@ package gestor_interfaces;
 
 
 import com.jfoenix.controls.JFXButton;
+import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.Estadistica;
+import gestor_interfaces.modelos.EstadisticaUsuario;
+import gestor_interfaces.modelos.MenuEstadisticas;
 import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarUnaAccion;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasConductor;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasExamenes;
@@ -34,6 +38,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.modelos.ExamenMedico;
+import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 
@@ -53,7 +58,44 @@ public class GestorEscenas  {
             URL Url = GestorEscenas.class.getResource(Direccion);
 
             FXMLLoader Cargador = new FXMLLoader(Url);
+
             Parent Ruta = Cargador.load();
+
+            Controlador controlador = Cargador.getController();
+            MenuEstadisticas MenuEstadisticas = new MenuEstadisticas();
+            MenuEstadisticas.setEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.Usuario.getId()));
+            
+            ArrayList<Estadistica> Estadisticas = new ArrayList<>();
+            
+            switch (Autentificador.Usuario.getRol()) 
+            {
+                case "Administrador":
+                    Estadisticas = GestorEstadisticas.ObtenerEstadisticasMenuAdministrador();
+                    
+                    break;
+
+                case "Administrador autoescuela":
+                    
+                    break;
+
+                case "Administrador médico":
+                    
+                    break;
+
+                case "Trabajador autoescuela":
+                    
+                    break;
+
+                case "Trabajador centro":
+                    
+                    break;
+
+                case "Médico":
+                    
+                    break;
+            }
+            MenuEstadisticas.setEstadisticas(Estadisticas);
+            controlador.Iniciar(MenuEstadisticas);
 
             Stage Ventana = new Stage(); 
             Ventana.setScene(new Scene(Ruta));
@@ -61,6 +103,7 @@ public class GestorEscenas  {
             Ventana.show();
 
         } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
             System.out.println(e.getMessage());
             throw new Exception("No se encuentra la interfaz");
         }
@@ -225,12 +268,34 @@ public class GestorEscenas  {
     }
     
     //Funcion para Unir el los labels con las barras de progreso asi dicen mismo porcentaje
-    public static void ProgresoLabel(Label[] label, ProgressBar[] barra) {
-        int i=0;
-        for(Label l:label)
-        {
-            l.textProperty().bind(Bindings.concat(Bindings.format("%.0f",Bindings.multiply(barra[i].progressProperty(), 100)),"%"));
-            i++;
+    public static void ProgresoLabel(Label[] labels, ProgressBar[] progressBars) {
+        if (progressBars == null || labels == null || progressBars.length != labels.length) {
+            throw new IllegalArgumentException("Los arrays no pueden ser nulos y deben tener la misma longitud");
+        }
+
+        for (int i = 0; i < progressBars.length; i++) {
+            final int index = i;
+            // Listener para cambios en el Label
+            labels[i].textProperty().addListener((obs, oldVal, newVal) -> {
+                try {
+                    // Eliminar el símbolo % si existe y convertir a double
+                    String text = newVal.replace("%", "").trim();
+                    double value = Double.parseDouble(text) / 100.0;
+                    progressBars[index].setProgress(value);
+                } catch (NumberFormatException e) {
+                    // Manejar error si el texto no es un número válido
+                    progressBars[index].setProgress(0);
+                }
+            });
+
+            // Establecer valor inicial
+            try {
+                String text = labels[i].getText().replace("%", "").trim();
+                double value = Double.parseDouble(text) / 100.0;
+                progressBars[i].setProgress(value);
+            } catch (NumberFormatException e) {
+                progressBars[i].setProgress(0);
+            }
         }
     }
     

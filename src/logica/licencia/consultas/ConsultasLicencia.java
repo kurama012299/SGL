@@ -15,6 +15,7 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.licencia.modelos.Licencia;
+import logica.persona.modelos.Conductor;
 
 /**
  *
@@ -23,152 +24,101 @@ import logica.licencia.modelos.Licencia;
 public class ConsultasLicencia {
     
     public static ObservableList<Licencia> ObtenerLicenciasConsulta() throws Exception {
-    ObservableList<Licencia> licencias = FXCollections.observableArrayList();
-    Map<Long, Licencia> mapaLicencias = new HashMap<>();
+    ObservableList<Licencia> Licencias = FXCollections.observableArrayList();
     
-    //  Consulta para datos básicos de licencias
-    String consultaLicencias = "SELECT \"Licencia\".*, \"Tipo\".\"Nombre\", \"Estado\".\"Nombre\" " +
-                             "FROM \"Licencia\" " +
-                             "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" " +  
-                             "LEFT JOIN \"Estado\" ON \"Licencia\".\"Id_Estado\" = \"Estado\".\"Id\"";
+    String consulta = "SELECT \"Licencia\".*, " +
+                    "\"Tipo\".\"Nombre\" AS nombre_tipo, " +
+                    "\"Persona\".\"Nombre\" AS nombre_persona, " +
+                    "\"Persona\".\"Apellidos\" AS apellidos_persona, " +
+                    "\"Persona\".\"Foto\" AS foto_persona, " +
+                    "\"Persona\".\"Id_Licencia\" AS id_licencia, " +
+                    "\"Persona\".\"CI\" AS ci_persona " +
+                    "FROM \"Licencia\" " +
+                    "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" " + 
+                    "LEFT JOIN \"Persona\" ON \"Licencia\".\"Id\" = \"Persona\".\"Id_Licencia\"";
     
-    // Consulta para restricciones (a través del examen médico)
-    String consultaRestricciones = "SELECT \"Licencia\".\"Id_Examen_Medico\", \"ExamenMedicoRestriccion\".\"Id_Restriccion\" " +
-                                 "FROM \"Licencia\" " +
-                                 "JOIN \"ExamenMedicoRestriccion\" ON \"Licencia\".\"Id_Examen_Medico\" = \"ExamenMedicoRestriccion\".\"Id_Restriccion\"";
-    
-    // Consulta para categorías(a traves del id de la licencia)
-    String consultaCategorias = "SELECT \"Licencia\".\"Id\", \"Licencia_Categoria\".\"Id_Categoria\" " +
-                                 "FROM \"Licencia\" " +
-                                 "JOIN \"Licencia_Categoria\" ON \"Licencia\".\"Id\" = \"Licencia_Categoria\".\"Id\"";
-    
-    try (Connection conn = ConectorBaseDato.Conectar()) {
-        // Obtener licencias básicas
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(consultaLicencias)) {
-            
-            while (rs.next()) {
-                Licencia licencia = new Licencia(
-                    rs.getLong("Id"),
-                    rs.getDate("Fecha_Emision"),
-                    rs.getDate("Fecha_Vencimiento"),
-                    rs.getBoolean("Renovada"),
-                    rs.getInt("CantPuntos"),
-                    rs.getString("Nombre"), // Nombre del Tipo
-                    rs.getString("Nombre")); // Nombre del Estado
-               
-                mapaLicencias.put(licencia.getId(), licencia);
-                licencias.add(licencia);
-            }
-        }
+    try (Connection conn = ConectorBaseDato.Conectar();
+         PreparedStatement pstmt = conn.prepareStatement(consulta);
+         ResultSet rs = pstmt.executeQuery()) {
         
-        // Obtener restricciones
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(consultaRestricciones)) {
+        while (rs.next()) {
             
-            while (rs.next()) {
-                Long idLicencia = rs.getLong("Id");
-                String restriccion = rs.getString("Nombre");
+            Licencia Tipo = new Licencia(rs.getString("nombre_tipo"));
+             Conductor Persona = new Conductor(
+                rs.getString("nombre_persona"), 
+                rs.getString("apellidos_persona"), 
+                rs.getLong("id_licencia"), 
+                rs.getString("ci_persona"),  
+                rs.getString("foto_persona"));
+            
+            Licencia Licencia = new Licencia(
+                rs.getLong("Id"), 
+                rs.getDate("Fecha_Emision"), 
+                rs.getDate("Fecha_Vencimiento"), 
+                rs.getInt("CantPuntos"),  
+                Tipo,
+                Persona);
                 
-                if (mapaLicencias.containsKey(idLicencia)) {
-                    mapaLicencias.get(idLicencia).agregarRestriccion(restriccion);
-                }
-            }
-        }
-        
-        // Obtener categorías
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(consultaCategorias)) {
             
-            while (rs.next()) {
-                Long idLicencia = rs.getLong("Id_Licencia");
-                String categoria = rs.getString("Categoria");
-                
-                if (mapaLicencias.containsKey(idLicencia)) {
-                    mapaLicencias.get(idLicencia).agregarCategoria(categoria);
-                }
-            }
+            
+            Licencias.add(Licencia);
         }
-        
     } catch (SQLException e) {
-        throw new Exception("Error al obtener licencias: " + e.getMessage(), e);
+        throw new SQLException("Error al obtener el listado de Licencias", e);
     }
     
-    return licencias;
+    return Licencias;
 }
-
     
-    public static Licencia ObtenerLicenciaPorIdConsulta(long Id) throws Exception {
+    
+     public static Licencia ObtenerLicenciaPorIdConsulta(long Id )throws Exception {
         Licencia Licencia = null;
-    
-    // Consulta para datos básicos de la licencia
-    String consultaLicencia = "SELECT \"Licencia\".*, \"Tipo\".\"Nombre\", \"Estado\".\"Nombre\" " +
-                            "FROM \"Licencia\" " +
-                            "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" " +
-                            "LEFT JOIN \"Estado\" ON \"Licencia\".\"Id_Estado\" = \"Estado\".\"Id\" " +
-                            "WHERE \"Licencia\".\"Id\" = ?";
-    
-    //  Consulta para restricciones (a través del examen médico)
-    String consultaRestricciones = "SELECT \"ExamenMedicoRestriccion\".\"Nombre\" " +
-                                  "FROM \"Licencia\" " +
-                                  "JOIN \"ExamenMedicoRestriccion\" ON \"Licencia\".\"Id_Examen_Medico\" = \"ExamenMedicoRestriccion\".\"Id\" " +
-                                  "WHERE \"Licencia\".\"Id\" = ?";
-    
-    //  Consulta para categorías
-    String consultaCategorias = "SELECT \"Licencia_Categoria\".\"Id_Categoria\" " +
-                                  "FROM \"Licencia\" " +
-                                  "JOIN \"Licencia_Categoria\" ON \"Licencia\".\"Id\" = \"Licencia_Categoria\".\"Id_Categoria\" " +
-                                  "WHERE \"Licencia\".\"Id\" = ?";
-    
-    try (Connection conn = ConectorBaseDato.Conectar()) {
-        // Obtener datos básicos de la licencia
-        try (PreparedStatement stmt = conn.prepareStatement(consultaLicencia)) {
+
+        String consulta = "SELECT \"Licencia\".*, " +
+                          "\"Tipo\".\"Nombre\" AS nombre_tipo, " +
+                          "\"Persona\".\"Nombre\" AS nombre_persona, " +
+                          "\"Persona\".\"Apellidos\" AS apellidos_persona, " +
+                          "\"Persona\".\"Foto\" AS foto_persona, " +
+                          "\"Persona\".\"Id_Licencia\" AS id_licencia, " +
+                          "\"Persona\".\"CI\" AS ci_persona " +
+                          "FROM \"Licencia\" " +
+                          "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" " + 
+                          "LEFT JOIN \"Persona\" ON \"Licencia\".\"Id\" = \"Persona\".\"Id_Licencia\" " +
+                          "WHERE \"Licencia\".\"Id\" = ?";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); 
+                PreparedStatement stmt = conn.prepareStatement(consulta)) {
+
             stmt.setLong(1, Id);
-            
+
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    Licencia = new Licencia(
-                        rs.getLong("Id"),
-                        rs.getDate("Fecha_Emision"),
-                        rs.getDate("Fecha_Vencimiento"),
-                        rs.getBoolean("Renovada"),
-                        rs.getInt("CantPuntos"),
-                        rs.getString("Nombre"), // Nombre del Tipo
-                        rs.getString("Nombre")); // Nombre del Estado
-                }
-            }
-        }
-        
-        if (Licencia != null) {
-            // Obtener restricciones
-            try (PreparedStatement stmt = conn.prepareStatement(consultaRestricciones)) {
-                stmt.setLong(1, Id);
-                
-                try (ResultSet rs = stmt.executeQuery()) {
-                    while (rs.next()) {
-                        Licencia.agregarRestriccion(rs.getString("Nombre"));
-                    }
-                }
-            }
+                   Licencia Tipo = new Licencia(rs.getString("nombre_tipo"));
+             Conductor Persona = new Conductor(
+                rs.getString("nombre_persona"), 
+                rs.getString("apellidos_persona"), 
+                rs.getLong("id_licencia"), 
+                rs.getString("ci_persona"),  
+                rs.getString("foto_persona"));
             
-            // Obtener categorías
-            try (PreparedStatement stmt = conn.prepareStatement(consultaCategorias)) {
-                stmt.setLong(1, Id);
-                
-                try (ResultSet rs = stmt.executeQuery()) {
-                    while (rs.next()) {
-                        Licencia.agregarCategoria(rs.getString("Categoria"));
-                    }
+            Licencia = new Licencia(
+                rs.getLong("Id"), 
+                rs.getDate("Fecha_Emision"), 
+                rs.getDate("Fecha_Vencimiento"), 
+                rs.getInt("CantPuntos"),  
+                Tipo,
+                Persona);
                 }
             }
+
+        } catch (SQLException e) {
+            throw new Exception("Error al obtener la Licencia de la base de datos", e);
         }
-        
-    } catch (SQLException e) {
-        System.out.println(e.getLocalizedMessage());
-        throw new Exception("Error al obtener la licencia de la base de datos: ", e);
+
+        return Licencia;
     }
     
     return Licencia;
+    }
 }
-    
-}
+

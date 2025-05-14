@@ -6,6 +6,10 @@ package interfaz_usuario.administrador.sistema.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.Estadistica;
+import gestor_interfaces.modelos.EstadisticaUsuario;
+import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,8 +24,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.licencia.implementaciones.ServicioLicencia;
+import logica.infraccion.modelos.Infraccion;
+import logica.licencia.modelos.Licencia;
 import logica.pdf_gestion.GestorPDF;
 import logica.persona.modelos.Conductor;
 
@@ -29,7 +36,7 @@ import logica.persona.modelos.Conductor;
  *
  * @author Angel Hernandez
  */
-public class ControladorAdministradorSistema {
+public class ControladorAdministradorSistema extends Controlador{
     
     @FXML
     private JFXButton Inicio;
@@ -194,6 +201,136 @@ public class ControladorAdministradorSistema {
     @FXML
     private TableColumn<Conductor, String> ColumnaCorreo;
     
+    @FXML
+    private TableView<EntidadRelacionada> TablaEntidad;
+    
+    @FXML
+    private TableView<Infraccion> TablaInfraccion;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDirectorEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaNombreEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDireccionEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaTelefonoEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaCorreoEntidad;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDetallesEntidad;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaFotoInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaNombreInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaTipoInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, Date> ColumnaFechaInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaLugarInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion;
+    
+    @FXML
+    private TableColumn<Infraccion, String> ColumnaDetallesInfraccion;
+    
+    @FXML
+    private TableView<EntidadRelacionada> TablaAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDirectorAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaNombreAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDireccionAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaTelefonoAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaCorreoAE;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDetallesAE;
+    
+    @FXML
+    private TableView<EntidadRelacionada> TablaClinica;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDirectorClinica;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaNombreClinica;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDireccionClinica;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaTelefonoClinica;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaCorreoClinica;
+    
+    @FXML
+    private TableColumn<EntidadRelacionada, String> ColumnaDetallesClinica;
+    
+    
+     @FXML
+    private TableView<Licencia> TablaLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, String> ColumnaFotoLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, String> ColumnaNombreLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, String> ColumnaTipoLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, Date> ColumnaEmisionLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, Date> ColumnaVencimientoLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, Integer> ColumnaPuntosLicencia;
+    
+    @FXML
+    private TableColumn<Licencia, String> ColumnaDetallesLicencia;
+    
+    @FXML
+    private Label LabelUltimoInicioSesion;
+    
+    @FXML
+    private Label LabelIniciosSesion;
+    
+   @FXML
+   private Label LabelTotalConductores;
+   
+   @FXML
+   private Label LabelExamenesReprobados;
+   
+   @FXML
+   private Label LabelTotalEntidades;
+        
     
     
     private ImageView ImagenLicencias;
@@ -230,9 +367,7 @@ public class ControladorAdministradorSistema {
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes, Autoescuela, Clinica, Entidades};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
-        Label[] PorcentajesBarra = {LabelLicenciaA,LabelLicenciaB,LabelLicenciaC,LabelLicenciaD,LabelLicenciaE,LabelInfraccionLeve,LabelInfraccionGrave,LabelInfraccionMGrave};
-        ProgressBar[] BarrasProgreso = {BarraProgresoLicenciaA,BarraProgresoLicenciaB,BarraProgresoLicenciaC,BarraProgresoLicenciaD,BarraProgresoLicenciaE,BarraProgresoInfraccionLeve,BarraProgresoInfraccionGrave,BarraProgresoInfraccionMGrave};
-        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
+        
         
         System.out.println("Controlador Administrador Sistema Iniciado");
         this.TransicionInicio();   
@@ -243,6 +378,9 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionLicencias()
     {
+        
+        GestorTablas.ConfigurarColumnasLicencias(ColumnaFotoLicencia, ColumnaNombreLicencia, ColumnaTipoLicencia, ColumnaEmisionLicencia, ColumnaVencimientoLicencia, ColumnaPuntosLicencia, ColumnaDetallesLicencia);
+        GestorTablas.CargarTablaLicencias(TablaLicencia);
         Pane[] PanelesOcultar={PanelInfracciones, PanelInicio, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelLicencias,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};
@@ -384,6 +522,9 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionInfracciones()
     {
+        
+        GestorTablas.ConfigurarColumnasInfracciones(ColumnaFotoInfraccion, ColumnaNombreInfraccion, ColumnaTipoInfraccion, ColumnaFechaInfraccion, ColumnaLugarInfraccion, ColumnaLicenciaInfraccion, ColumnaPtosDeducidosInfraccion, ColumnaDetallesInfraccion);
+        GestorTablas.CargarTablaInfracciones(TablaInfraccion);
         Pane[] PanelesOcultar={PanelInicio, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelInfracciones,PanelesOcultar);
         JFXButton[] botones = {Inicio,Autoescuela,Clinica,Conductores,Entidades,Examenes,Licencias,Reportes};
@@ -417,6 +558,8 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionClinica()
     {
+        GestorTablas.ConfigurarColumnasClinicas(ColumnaDirectorClinica, ColumnaNombreClinica,ColumnaDireccionClinica, ColumnaTelefonoClinica, ColumnaCorreoClinica, ColumnaDetallesClinica);
+        GestorTablas.CargarTablaClinicas(TablaClinica);
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelInicio, PanelAutoescuela, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelClinica,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Entidades,Examenes};
@@ -451,6 +594,8 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionAutoescuela()
     {
+        GestorTablas.ConfigurarColumnasAutoescuelas(ColumnaDirectorAE, ColumnaNombreAE,ColumnaDireccionAE, ColumnaTelefonoAE, ColumnaCorreoAE, ColumnaDetallesAE);
+        GestorTablas.CargarTablaAutoescuelas(TablaAE);
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelInicio, PanelEntidades};
         GestorEscenas.MostrarOcultarPaneles(PanelAutoescuela,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Clinica,Entidades,Examenes};
@@ -484,6 +629,9 @@ public class ControladorAdministradorSistema {
     @FXML
     public void TransicionEntidades()
     {
+        
+        GestorTablas.ConfigurarColumnasEntidades(ColumnaDirectorEntidad, ColumnaNombreEntidad,ColumnaDireccionEntidad, ColumnaTelefonoEntidad, ColumnaCorreoEntidad, ColumnaDetallesEntidad);
+        GestorTablas.CargarTablaEntidades(TablaEntidad);
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelEntidades,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Clinica,Examenes};
@@ -630,5 +778,63 @@ public class ControladorAdministradorSistema {
             //CAPTURAR ERROR
            
         }
-    }  
+        
+    }
+
+    @Override
+    public void Iniciar(MenuEstadisticas MenuEstadisticas) 
+    {
+        CargarEstadisticas(MenuEstadisticas);
+    }
+    
+    @FXML
+    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas)
+    {
+        
+        LabelUltimoInicioSesion.setText("Último inicio sesion hace " + MenuEstadisticas.getEstadisticaUsuario().getUltimoInicioSesion());
+        LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.getEstadisticaUsuario().getCantidadIniciosSesion()));
+        for(Estadistica e : MenuEstadisticas.getEstadisticas())
+        {
+            System.out.println(e);
+            switch(e.getCategoria())
+            {
+                case "Cantidad Conductores":
+                    LabelTotalConductores.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Cantidad Entidades":
+                    LabelTotalEntidades.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Examenes reprobados":
+                    LabelExamenesReprobados.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Leve":
+                    LabelInfraccionLeve.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "Grave":
+                    LabelInfraccionGrave.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "Muy grave":
+                    LabelInfraccionMGrave.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "A":
+                    LabelLicenciaA.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "B":
+                    LabelLicenciaB.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "C":
+                    LabelLicenciaC.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "D":
+                    LabelLicenciaD.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "E":
+                    LabelLicenciaE.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+            }
+        }
+        Label[] PorcentajesBarra = {LabelLicenciaA,LabelLicenciaB,LabelLicenciaC,LabelLicenciaD,LabelLicenciaE,LabelInfraccionLeve,LabelInfraccionGrave,LabelInfraccionMGrave};
+        ProgressBar[] BarrasProgreso = {BarraProgresoLicenciaA,BarraProgresoLicenciaB,BarraProgresoLicenciaC,BarraProgresoLicenciaD,BarraProgresoLicenciaE,BarraProgresoInfraccionLeve,BarraProgresoInfraccionGrave,BarraProgresoInfraccionMGrave};
+        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
+    }
 }

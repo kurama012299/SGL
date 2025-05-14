@@ -15,7 +15,7 @@ import logica.licencia.modelos.Licencia;
  */
 public class ServicioLicencia {
     
-    public static ObservableList<Licencia> ObtenerConductores() throws Exception {
+    public static ObservableList<Licencia> ObtenerLicencias() throws Exception {
         return ConsultasLicencia.ObtenerLicenciasConsulta();
     }
     
