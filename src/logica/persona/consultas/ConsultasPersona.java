@@ -90,4 +90,39 @@ public class ConsultasPersona {
 
         return Conductor;
     }
+    
+    public static Conductor ObtenerConductorPorIdLicenciaConsulta(long IdLicencia) throws Exception {
+        Conductor Conductor = null;
+
+        String consulta = "SELECT * FROM \"Persona\" WHERE \"Id_Licencia\" = ?";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); 
+                PreparedStatement stmt = conn.prepareStatement(consulta)) {
+
+            stmt.setLong(1, IdLicencia);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Conductor = new Conductor(
+                        rs.getLong("Id"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
+                        rs.getString("CI"),
+                        rs.getDate("FechaNacimiento"),
+                        rs.getString("Direccion"),
+                        rs.getString("Telefono"),
+                        rs.getString("Correo"),
+                        rs.getString("Foto"),
+                        rs.getLong("Id_Licencia")
+                    );
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener conductores: "+e.getMessage());
+            throw new Exception("Error al obtener el conductor");
+        }
+
+        return Conductor;
+    }
 }

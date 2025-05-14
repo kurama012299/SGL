@@ -23,4 +23,9 @@ public class ServicioConductor{
     {
         return ConsultasPersona.ObtenerConductorPorIdConsulta(Id);
     }
+    
+     public static Conductor ObtenerConductorPorIdLicencia(long IdLicencia) throws Exception
+    {
+        return ConsultasPersona.ObtenerConductorPorIdLicenciaConsulta(IdLicencia);
+    }
 }
