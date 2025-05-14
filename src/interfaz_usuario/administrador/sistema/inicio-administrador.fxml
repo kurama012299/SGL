@@ -464,7 +464,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Conductores">
                      <font>
@@ -482,7 +482,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="417.0" layoutY="95.0" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                  <JFXButton fx:id="BotonExportarConductores" focusTraversable="false" layoutX="417.0" layoutY="95.0" onAction="#ExportarConductores" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -652,7 +652,7 @@
                   <CheckBox layoutX="437.0" layoutY="60.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>

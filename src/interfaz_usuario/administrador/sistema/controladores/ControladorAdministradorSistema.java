@@ -13,6 +13,8 @@ import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,11 +25,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.GestorExcel;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.modelos.Licencia;
 import logica.pdf_gestion.GestorPDF;
+import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
 
 /**
@@ -328,6 +332,9 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML
    private Label LabelTotalEntidades;
+   
+   @FXML
+   private Button BotonExportarConductores;
         
     
 
@@ -834,6 +841,16 @@ public class ControladorAdministradorSistema extends Controlador{
         Label[] PorcentajesBarra = {LabelLicenciaA,LabelLicenciaB,LabelLicenciaC,LabelLicenciaD,LabelLicenciaE,LabelInfraccionLeve,LabelInfraccionGrave,LabelInfraccionMGrave};
         ProgressBar[] BarrasProgreso = {BarraProgresoLicenciaA,BarraProgresoLicenciaB,BarraProgresoLicenciaC,BarraProgresoLicenciaD,BarraProgresoLicenciaE,BarraProgresoInfraccionLeve,BarraProgresoInfraccionGrave,BarraProgresoInfraccionMGrave};
         GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
+    }
+    
+    @FXML
+    public void ExportarConductores()
+    {
+        try {
+            GestorExcel.ExportarConductoresExcel(TablaConductor.getItems(), "Tabla conductores SGL",(Stage)BotonExportarConductores.getScene().getWindow());
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
