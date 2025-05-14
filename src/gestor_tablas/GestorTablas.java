@@ -87,7 +87,7 @@ public class GestorTablas {
             
             GestorEscenas.CargarVerMasConductor(Ventana, Conductor,Licencia);
         }
-        else if(Objeto instanceof ExamenConduccion)
+        else if(Objeto instanceof ExamenConduccion && !(Objeto instanceof ExamenMedico))
         {
             if(((ExamenConduccion)Objeto).getTipo().equalsIgnoreCase("Práctico") || ((ExamenConduccion)Objeto).getTipo().equalsIgnoreCase("Teórico"))
             {
@@ -112,11 +112,7 @@ public class GestorTablas {
         {
             ExamenMedico ExamenMedico =(ExamenMedico) Objeto;
             GestorEscenas.CargarVerMasExamenesMedicosAdmin(Ventana,ExamenMedico);
-        }
-            
-            
-            
-        
+        }   
     }
     
     

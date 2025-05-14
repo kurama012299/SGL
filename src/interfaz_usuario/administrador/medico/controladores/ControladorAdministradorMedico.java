@@ -115,6 +115,12 @@ public class ControladorAdministradorMedico extends Controlador{
     @FXML
     private TableColumn<ExamenMedico, String>ColumnaDetalles;
     
+    @FXML
+    private Label LabelUltimoInicioSesion;
+    
+    @FXML
+    private Label LabelIniciosSesion;
+    
     private ImageView ImagenExamenes;
     private ImageView ImagenInicio;
     
@@ -202,7 +208,8 @@ public class ControladorAdministradorMedico extends Controlador{
     }
 
     @Override
-    public void Iniciar(MenuEstadisticas MenuEstadisticas) {
+    public void Iniciar(MenuEstadisticas MenuEstadisticas) 
+    {
         
     }
 
