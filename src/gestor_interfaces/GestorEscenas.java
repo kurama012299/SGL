@@ -41,6 +41,7 @@ import logica.examen_medico.modelos.ExamenMedico;
 import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
+import interfaz_usuario.administrador.medico.controladores.ControladorVerMasExamenesMedicos;
 
 
 
@@ -234,6 +235,36 @@ public class GestorEscenas  {
         }
     }
     
+    
+    public static void CargarVerMasExamenesMedicosAdmin(Window Padre,ExamenMedico ExamenMedico) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/administrador/medico/menu_auxiliares/ver-mas/menu-ver-mas-examenes-medicos.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasExamenesMedicos controlador = (ControladorVerMasExamenesMedicos)Cargador.getController();
+            controlador.setDatos(ExamenMedico); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
     
     //Funcion para mostrar el primer panel y los demas ocultarlos
     public static void MostrarOcultarPaneles(Pane Mostrar, Pane... Ocultar) {
