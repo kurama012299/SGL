@@ -56,7 +56,7 @@ public class GestorExcel {
             WritableSheet hoja = libro.createSheet("Conductores", 0);
 
             // Escribir encabezados
-            String[] encabezados = {"ID", "Nombre Completo", "Carnet Identidad", "Correo Electronico", "Dirección Completa"};
+            String[] encabezados = {"ID", "Nombre Completo", "Carnet identidad", "Correo electronico", "Dirección residencia"};
             for (int col = 0; col < encabezados.length; col++) {
                 hoja.addCell(new Label(col, 0, encabezados[col]));
             }
