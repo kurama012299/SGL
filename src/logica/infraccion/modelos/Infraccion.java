@@ -22,8 +22,6 @@ public class Infraccion {
     private Long IdLicencia;
     private String Gravedad;
     private String NombreOficial;
-    private Infraccion NombreGravedad;
-    private Conductor NombrePersona;
 
     public Infraccion(Long Id, Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, Long IdLicencia, String Gravedad, String NombreOficial) {
         this.Id = Id;
@@ -37,17 +35,6 @@ public class Infraccion {
         this.NombreOficial = NombreOficial;
     }
     
-    public Infraccion(Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, String NombreOficial, Infraccion NombreGravedad, Conductor NombrePersona) {
-        this.Fecha = Fecha;
-        this.Lugar = Lugar;
-        this.Descripcion = Descripcion;
-        this.PuntosDeducidos = PuntosDeducidos;
-        this.Pagada = Pagada;
-        this.NombreOficial = NombreOficial;
-        this.NombreGravedad = NombreGravedad;
-        this.NombrePersona = NombrePersona;
-        
-    }
     
     public Infraccion(String Gravedad){
         this.Gravedad = Gravedad;
@@ -87,14 +74,6 @@ public class Infraccion {
 
     public String getNombreOficial() {
         return NombreOficial;
-    }
-    
-    public Conductor getNombrePersona(){
-            return NombrePersona;
-}
-    
-    public Infraccion getNombreGravedad(){
-        return NombreGravedad;
     }
     
     @Override
