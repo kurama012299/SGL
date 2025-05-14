@@ -13,6 +13,7 @@ import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.collections.ObservableList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 import logica.excel_gestor.GestorExcel;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.licencia.implementaciones.ServicioLicencia;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.modelos.Licencia;
 import logica.pdf_gestion.GestorPDF;
@@ -142,7 +144,7 @@ public class ControladorAdministradorSistema extends Controlador{
     
     @FXML
     private Label LabelLicenciaC;
-    
+  
     @FXML
     private Label LabelLicenciaD;
     
@@ -337,7 +339,6 @@ public class ControladorAdministradorSistema extends Controlador{
    private Button BotonExportarConductores;
         
     
-
     
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
@@ -353,7 +354,7 @@ public class ControladorAdministradorSistema extends Controlador{
     @FXML
     public void initialize() throws Exception 
     {
- 
+        
         ImagenLicencias = (ImageView) Licencias.getGraphic();
         ImagenConductores = (ImageView) Conductores.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
@@ -376,7 +377,7 @@ public class ControladorAdministradorSistema extends Controlador{
         
         
         System.out.println("Controlador Administrador Sistema Iniciado");
-        this.TransicionInicio();
+        this.TransicionInicio();   
     }
     
 
@@ -784,6 +785,7 @@ public class ControladorAdministradorSistema extends Controlador{
             //CAPTURAR ERROR
            
         }
+        
     }
 
     @Override
@@ -852,5 +854,4 @@ public class ControladorAdministradorSistema extends Controlador{
             Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

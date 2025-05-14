@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.administrador.medico.controladores.ControladorVerMasExamenesMedicos">
    <children>
       <ImageView fitHeight="78.0" fitWidth="103.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../recursos_compartidos/imagenes/ico-cuenta-usuario.png" />
          </image>
       </ImageView>
-      <TextField disable="true" editable="false" layoutX="312.0" layoutY="110.0" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: transparent;" text="Juan Martínez Ocasio Martínez" />
+      <TextField fx:id="TextFieldExaminador" disable="true" editable="false" layoutX="312.0" layoutY="110.0" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: transparent;" text="Juan Martínez Ocasio Martínez" />
       <Label layoutX="156.0" layoutY="53.0" prefHeight="25.0" prefWidth="159.0" text="Nombres del examinado:">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -27,7 +27,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="38.0" layoutY="123.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="04112767283" />
+      <TextField fx:id="TextFieldId" disable="true" editable="false" layoutX="38.0" layoutY="123.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="04112767283" />
       <JFXButton cancelButton="true" layoutX="16.0" layoutY="277.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
       <JFXButton cancelButton="true" layoutX="418.0" layoutY="277.0" opacity="0.4" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: red;" text="       Eliminar" textFill="WHITE" />
       <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="429.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
@@ -45,7 +45,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextArea disable="true" editable="false" layoutX="345.0" layoutY="158.0" prefHeight="78.0" prefWidth="152.0" style="-fx-background-color: transparent;" text="gajas_Conduccion diurna" />
+      <TextArea fx:id="TextFieldRestricciones" disable="true" editable="false" layoutX="345.0" layoutY="158.0" prefHeight="78.0" prefWidth="152.0" style="-fx-background-color: transparent;" text="gajas_Conduccion diurna" />
       <JFXButton cancelButton="true" layoutX="313.0" layoutY="277.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="    Editar" />
       <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="324.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -57,24 +57,24 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="312.0" layoutY="53.0" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: transparent;" text="Juan Martínez Ocasio Martínez" />
+      <TextField fx:id="TextFieldExaminado" disable="true" editable="false" layoutX="312.0" layoutY="53.0" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: transparent;" text="Juan Martínez Ocasio Martínez" />
       <Label layoutX="16.0" layoutY="160.0" prefHeight="25.0" prefWidth="67.0" text="Resultado:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label disable="true" layoutX="81.0" layoutY="160.0" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: whit´;" text="Aprobado condicional" />
       <Label layoutX="16.0" layoutY="197.0" prefHeight="25.0" prefWidth="142.0" text="Nombre de la clínica:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label disable="true" layoutX="156.0" layoutY="197.0" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: whit´;" text="Wilfredo Perez" />
       <Label layoutX="16.0" layoutY="234.0" prefHeight="25.0" prefWidth="48.0" text="Fecha:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label disable="true" layoutX="60.0" layoutY="234.0" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: whit´;" text="12-12-2024" />
+      <TextField fx:id="TextFieldResultado" disable="true" editable="false" layoutX="82.0" layoutY="160.0" prefHeight="25.0" prefWidth="142.0" style="-fx-background-color: transparent;" text="Aprobado condicional" />
+      <TextField fx:id="TextFieldClinica" disable="true" editable="false" layoutX="148.0" layoutY="197.0" prefHeight="25.0" prefWidth="142.0" style="-fx-background-color: transparent;" text="Wilfredo Perez" />
+      <TextField fx:id="TextFieldFecha" disable="true" editable="false" layoutX="60.0" layoutY="234.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="12-12-2020" />
    </children>
 </Pane>
