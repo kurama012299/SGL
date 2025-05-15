@@ -4,6 +4,7 @@
  */
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
+import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -121,7 +122,7 @@ public class ControladorVerMasExamenes {
         else if(ExamenMedico.isAprobado() && ExamenMedico.getRestricciones().size()!=0)
         {
             TextFieldResultado.setText("Aprobado condicional");
-            TextFieldRestricciones.setText(ExamenMedico.getRestricciones().toString());
+            TextFieldRestricciones.setText(GestorEscenas.MostrarRestricciones(ExamenMedico.getRestricciones()).toString());
         }
         else
         {

@@ -11,11 +11,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.autentificacion.Autentificador;
 
 /**
  *
@@ -122,6 +124,12 @@ public class ControladorTrabajadorCentro {
     @FXML
     private JFXButton BotonCerrarSesion;
     
+    @FXML
+    private Label LabelUsuarioNombre;
+    
+    @FXML
+    private Label LabelCorreoUsuario;
+    
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
     private ImageView ImagenInicio;
@@ -139,7 +147,11 @@ public class ControladorTrabajadorCentro {
         ImagenInfracciones = (ImageView) Infracciones.getGraphic();
         ImagenReportes = (ImageView) Reportes.getGraphic();
         
- 
+        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setTooltip(new Tooltip(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setMaxWidth(100);
+        
+        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
 
         BotonCerrarSesion.setOnAction(e ->
         {

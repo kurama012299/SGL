@@ -7,7 +7,7 @@ package logica.examen_medico.modelos;
 import java.util.ArrayList;
 import java.util.Date;
 import logica.entidad.modelos.EntidadRelacionada;
-import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.examen.modelos.Examen;
 import logica.persona.modelos.Persona;
 import logica.usuario.modelos.Usuario;
 
@@ -15,7 +15,7 @@ import logica.usuario.modelos.Usuario;
  *
  * @author Angel Hernandez
  */
-public class ExamenMedico extends ExamenConduccion{
+public class ExamenMedico extends Examen{
     
     private ArrayList<String> Restricciones= new ArrayList<>();
     

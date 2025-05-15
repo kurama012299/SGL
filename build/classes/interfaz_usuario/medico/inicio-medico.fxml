@@ -58,11 +58,6 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <JFXButton layoutX="60.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: white;" text="Jhon Carter">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
                   <Label layoutX="60.0" layoutY="59.0" prefHeight="21.0" prefWidth="105.0" text=" Médico" textFill="#919191">
                      <font>
                         <Font size="11.0" />
@@ -81,6 +76,11 @@
                         <Image url="@../recursos_compartidos/imagenes/ico-empresa.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="LabelUsuarioNombre" alignment="CENTER" layoutX="52.0" layoutY="39.0" prefHeight="17.0" prefWidth="96.0" text="Juan Perez">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
                </children>
                <opaqueInsets>
                   <Insets right="2.0" />
@@ -90,7 +90,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="843.0">
          <children>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="835.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -106,7 +106,7 @@
                               <Image url="@../recursos_compartidos/imagenes/ico-configuracion.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="693.0" layoutY="8.0" prefHeight="17.0" prefWidth="133.0" text="Jho*****ter@gmail.com" />
+                        <Label fx:id="LabelCorreoUsuario" layoutX="680.0" layoutY="8.0" prefHeight="17.0" prefWidth="146.0" text="Jho*****ter@gmail.com" />
                         <Label layoutX="550.0" layoutY="12.0" prefHeight="17.0" prefWidth="105.0" text="1/4/2025  5:44 AM" />
                         <Label layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="267.0" text="¡Transformando datos, en seguridad vial!" textFill="#919191">
                            <font>
@@ -295,7 +295,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="831.0">
+            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="831.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Médicos">
                      <font>

@@ -1,0 +1,29 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package gestor_interfaces;
+
+
+/**
+ *
+ * @author Kris
+ */
+public class GestorFXML {
+                 
+    public static String RutaVerMasConductores="/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-conductores.fxml";
+    public static String RutaVerMasExamenes="/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-examenes.fxml";
+    public static String RutaVerMasInfracciones="/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-infraccion.fxml";
+    public static String RutaVerMasLicencias="/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-licencias.fxml";
+    public static String RutaVerMasEntidades="/interfaz_usuario/administrador/sistema/menu-auxiliares/ver-mas/menu-ver-mas-entidades.fxml";
+    public static String RutaVerMasClinicas="/interfaz_usuario/administrador/sistema/menu-auxiliares/ver-mas/menu-ver-mas-clinicas.fxml";
+    public static String RutaVerMasAutoescuelas="/interfaz_usuario/administrador/sistema/menu-auxiliares/ver-mas/menu-ver-mas-autoescuelas.fxml";
+    public static String RutaVerMasExamenesMedicosAdmin="/interfaz_usuario/administrador/medico/menu_auxiliares/ver-mas/menu-ver-mas-examenes-medicos.fxml";
+    public static String RutaVerMasExamenesTeoricosAdmin="/interfaz_usuario/administrador/autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-teoricos.fxml";
+    public static String RutaVerMasExamenesPracticosAdmin="/interfaz_usuario/administrador/autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-practicos.fxml";
+    public static String RutaVerMasExamenesMedicosDoctor="/interfaz_usuario/medico/menu_auxiliares/ver-mas/menu-ver-mas-examenes-medicos.fxml";
+    public static String RutaVerMasExamenesTeoricosTrabajador="/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-teoricos.fxml";
+    public static String RutaVerMasExamenesPracticosTrabajador="/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-practicos.fxml";
+    
+}
+

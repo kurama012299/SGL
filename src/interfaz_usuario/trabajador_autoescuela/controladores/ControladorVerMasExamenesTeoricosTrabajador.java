@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package interfaz_usuario.administrador.autoescuela.controladores;
+package interfaz_usuario.trabajador_autoescuela.controladores;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -10,17 +10,14 @@ import logica.examen_conduccion.modelos.ExamenConduccion;
 
 /**
  *
- * @author Angel Hernandez
+ * @author Kris
  */
-public class ControladorVerMasExamenesTeoricos {
+public class ControladorVerMasExamenesTeoricosTrabajador {
     
     private ExamenConduccion ExamenTeorico;
     
     @FXML
     private TextField TextFieldExaminado;
-    
-    @FXML
-    private TextField TextFieldExaminador;
     
     @FXML
     private TextField TextFieldId;
@@ -51,7 +48,6 @@ public class ControladorVerMasExamenesTeoricos {
     private void Iniciar()
     {
         TextFieldExaminado.setText(ExamenTeorico.getPersona().getNombre()+ExamenTeorico.getPersona().getApellidos());
-        TextFieldExaminador.setText(ExamenTeorico.getExaminador().getNombre());
         TextFieldId.setText(ExamenTeorico.getPersona().getCI());
         TextFieldFecha.setText(ExamenTeorico.getFecha().toString());
         TextFieldEntidad.setText(ExamenTeorico.getEntidad().getNombre());
@@ -64,4 +60,5 @@ public class ControladorVerMasExamenesTeoricos {
             TextFieldResultado.setText("Reprobado");
         }
     }
+    
 }

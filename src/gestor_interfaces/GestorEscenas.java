@@ -11,6 +11,8 @@ import gestor_interfaces.modelos.Controlador;
 import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.EstadisticaUsuario;
 import gestor_interfaces.modelos.MenuEstadisticas;
+import interfaz_usuario.administrador.autoescuela.controladores.ControladorVerMasExamenesPracticos;
+import interfaz_usuario.administrador.autoescuela.controladores.ControladorVerMasExamenesTeoricos;
 import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarUnaAccion;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasConductor;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasExamenes;
@@ -41,6 +43,9 @@ import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 import interfaz_usuario.administrador.medico.controladores.ControladorVerMasExamenesMedicos;
+import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
+import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesPracticosTrabajador;
+import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesTeoricosTrabajador;
 
 
 
@@ -50,6 +55,8 @@ import interfaz_usuario.administrador.medico.controladores.ControladorVerMasExam
  * @author Angel Hernandez
  */
 public class GestorEscenas  {
+    
+    
 
     public static void CargarMenu(String Direccion) throws Exception {
         try {
@@ -271,6 +278,160 @@ public class GestorEscenas  {
         }
     }
     
+    
+    public static void CargarVerMasExamenesPracticosAdmin(Window Padre,ExamenConduccion ExamenConduccion) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-practicos.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasExamenesPracticos controlador = (ControladorVerMasExamenesPracticos)Cargador.getController();
+            controlador.setDatos(ExamenConduccion); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+    
+    public static void CargarVerMasExamenesTeoricosAdmin(Window Padre,ExamenConduccion ExamenConduccion) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-teoricos.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasExamenesTeoricos controlador = (ControladorVerMasExamenesTeoricos)Cargador.getController();
+            controlador.setDatos(ExamenConduccion); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+    
+    public static void CargarVerMasExamenesMedicosDoctor(Window Padre,ExamenMedico ExamenMedico) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/medico/menu_auxiliares/ver-mas/menu-ver-mas-examenes-medicos.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasExamenesMedicosDoctor controlador = (ControladorVerMasExamenesMedicosDoctor)Cargador.getController();
+            controlador.setDatos(ExamenMedico); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+    
+    public static void CargarVerMasExamenesTeoricosTrabajador(Window Padre,ExamenConduccion ExamenConduccion) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-teoricos.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasExamenesTeoricosTrabajador controlador = (ControladorVerMasExamenesTeoricosTrabajador)Cargador.getController();
+            controlador.setDatos(ExamenConduccion); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+    public static void CargarVerMasExamenesPracticosTrabajador(Window Padre,ExamenConduccion ExamenConduccion) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-practicos.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasExamenesPracticosTrabajador controlador = (ControladorVerMasExamenesPracticosTrabajador)Cargador.getController();
+            controlador.setDatos(ExamenConduccion); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
     //Funcion para mostrar el primer panel y los demas ocultarlos
     public static void MostrarOcultarPaneles(Pane Mostrar, Pane... Ocultar) {
         Mostrar.setVisible(true);
@@ -355,7 +516,46 @@ public class GestorEscenas  {
         }
     }
      
+    public static String AbreviarNombre(String NombreCompleto) {
+        String[] Partes = NombreCompleto.split(" ");
+        if (Partes.length >= 2) {
+            return Partes[0] + " " + Partes[1].charAt(0) + "."; // Ej: "Juan P."
+        }
+        return NombreCompleto;
+    }
     
+    //Funcion para convertir el correo del usaurio en uno con ****
+    public static String SeguridadCorreo(String Correo) {
+        // Dividir el correo en nombre y dominio
+        String[] Partes = Correo.split("@");
+        if (Partes.length != 2) {
+            return Correo; // Si no es un correo válido, devolver original
+        }
+        String Nombre = Partes[0];
+        String Mail = Partes[1];
+        // Reemplazar parte del nombre con asteriscos (manteniendo al menos 1 carácter)
+        int visibleChars = Math.max(1, Nombre.length() - 6); // Mostrar al menos 1 carácter
+        String securedUsername = Nombre.substring(0, visibleChars) + "******";
+        return securedUsername + "@" + Mail;
+    }
+    
+    public static StringBuilder MostrarRestricciones(ArrayList<String> Restricciones) {
+       
+        StringBuilder Transformado = new StringBuilder();
+        for (String Elemento : Restricciones) {
+            if (Transformado.length() > 0) {
+                Transformado.append("\n");
+            }
+            Transformado.append(Elemento);
+
+        }
+        return Transformado;
+    }
+    
+
+
+
+
     //Funcion para cerrar el programa
     public static void CerrarPrograma()
     {
