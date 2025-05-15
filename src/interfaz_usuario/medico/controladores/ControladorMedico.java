@@ -127,11 +127,6 @@ public class ControladorMedico extends Controlador{
         ImagenInicio = (ImageView) Inicio.getGraphic();
         ImagenExamenesMedicos = (ImageView) ExamenesMedicos.getGraphic();
         
-        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
-        LabelUsuarioNombre.setTooltip(new Tooltip(Autentificador.Usuario.getNombre()));
-        LabelUsuarioNombre.setMaxWidth(100);
-        
-        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
         
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -214,6 +209,13 @@ public class ControladorMedico extends Controlador{
 
     @Override
     public void Iniciar(MenuEstadisticas MenuEstadisticas) {
+        
+        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        Tooltip MouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
+        MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+        LabelUsuarioNombre.setTooltip(MouseNombre);
+        LabelUsuarioNombre.setMaxWidth(100);
+        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
         
     }
 

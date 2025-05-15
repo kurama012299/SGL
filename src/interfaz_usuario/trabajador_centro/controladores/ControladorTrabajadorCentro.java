@@ -6,6 +6,8 @@ package interfaz_usuario.trabajador_centro.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.MenuEstadisticas;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +25,7 @@ import logica.autentificacion.Autentificador;
  *
  * @author Angel Hernandez
  */
-public class ControladorTrabajadorCentro {
+public class ControladorTrabajadorCentro extends Controlador{
 
     @FXML
     private JFXButton Inicio;
@@ -147,11 +149,6 @@ public class ControladorTrabajadorCentro {
         ImagenInfracciones = (ImageView) Infracciones.getGraphic();
         ImagenReportes = (ImageView) Reportes.getGraphic();
         
-        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
-        LabelUsuarioNombre.setTooltip(new Tooltip(Autentificador.Usuario.getNombre()));
-        LabelUsuarioNombre.setMaxWidth(100);
-        
-        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
 
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -372,6 +369,23 @@ public class ControladorTrabajadorCentro {
             //CAPTURAR ERROR
 
         }
+    }
+
+    @Override
+    public void Iniciar(MenuEstadisticas MenuEstadisticas) {
+        
+        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        Tooltip MouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
+        MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+        LabelUsuarioNombre.setTooltip(MouseNombre);
+        LabelUsuarioNombre.setMaxWidth(100);
+        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
+        
+    }
+
+    @Override
+    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
+        
     }
 
 }
