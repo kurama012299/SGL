@@ -89,7 +89,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="835.0">
          <children>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="835.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -128,7 +128,7 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="11.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="   7">
+                        <Label fx:id="LabelIniciosSesion" layoutX="11.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="   7">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -268,7 +268,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
+                  <Label fx:id="LabelUltimoInicioSesion" layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="490.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -294,7 +294,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="832.0">
+            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="832.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Médicos">
                      <font>

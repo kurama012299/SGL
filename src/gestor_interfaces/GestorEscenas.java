@@ -19,7 +19,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -55,13 +54,11 @@ public class GestorEscenas  {
     public static void CargarMenu(String Direccion) throws Exception {
         try {
 
-            // Usar ruta relativa desde los recursos
+            // Usar ruta relativa desde los recurso
             URL Url = GestorEscenas.class.getResource(Direccion);
-
             FXMLLoader Cargador = new FXMLLoader(Url);
-
             Parent Ruta = Cargador.load();
-
+     
             Controlador controlador = Cargador.getController();
             MenuEstadisticas MenuEstadisticas = new MenuEstadisticas();
             MenuEstadisticas.setEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.Usuario.getId()));
@@ -99,7 +96,13 @@ public class GestorEscenas  {
             controlador.Iniciar(MenuEstadisticas);
 
             Stage Ventana = new Stage(); 
-            Ventana.setScene(new Scene(Ruta));
+            
+            Scene scene= new Scene(Ruta);
+            scene.setUserData(Ruta);
+            Ventana.setScene(scene);
+            
+            
+            
             Ventana.initStyle(StageStyle.UTILITY);
             Ventana.show();
 
@@ -109,6 +112,8 @@ public class GestorEscenas  {
             throw new Exception("No se encuentra la interfaz");
         }
     }
+    
+    
 
     public static void CargarError(Window VentanaPadre, Exception Ex) {
         try {
