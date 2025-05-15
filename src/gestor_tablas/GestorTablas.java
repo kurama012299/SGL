@@ -101,6 +101,11 @@ public class GestorTablas {
                         }
                     }
                 }
+                else if(Objeto instanceof Infraccion){
+                    Infraccion Infraccion = (Infraccion) Objeto;
+                    Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Infraccion.getIdLicencia());
+                    GestorEscenas.CargarVerMasInfraccion(Ventana, Infraccion, Licencia);
+                }
 
                 break;
             case "Administrador autoescuela":
@@ -142,7 +147,6 @@ public class GestorTablas {
             default:
                 //capturar error
         }
-
     }
     
     
