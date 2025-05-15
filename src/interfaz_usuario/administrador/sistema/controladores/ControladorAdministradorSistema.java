@@ -5,6 +5,7 @@
 package interfaz_usuario.administrador.sistema.controladores;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTooltip;
 import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.modelos.Controlador;
 import gestor_interfaces.modelos.Estadistica;
@@ -379,12 +380,7 @@ public class ControladorAdministradorSistema extends Controlador{
         ImagenClinica = (ImageView) Clinica.getGraphic();
         ImagenEntidades = (ImageView) Entidades.getGraphic();
         
-        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
-        LabelUsuarioNombre.setTooltip(new Tooltip(Autentificador.Usuario.getNombre()));
-        LabelUsuarioNombre.setMaxWidth(100);
-        
-        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
-        
+    
         BotonCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.CerrarPrograma();
@@ -812,6 +808,12 @@ public class ControladorAdministradorSistema extends Controlador{
     @Override
     public void Iniciar(MenuEstadisticas MenuEstadisticas) 
     {
+        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        Tooltip MouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
+        MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+        LabelUsuarioNombre.setTooltip(MouseNombre);
+        LabelUsuarioNombre.setMaxWidth(100);
+        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
         CargarEstadisticas(MenuEstadisticas);
     }
     
