@@ -18,11 +18,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.autentificacion.Autentificador;
 import logica.examen_medico.modelos.ExamenMedico;
 
 /**
@@ -121,6 +123,12 @@ public class ControladorAdministradorMedico extends Controlador{
     @FXML
     private Label LabelIniciosSesion;
     
+    @FXML
+    private Label LabelUsuarioNombre;
+    
+    @FXML
+    private Label LabelCorreoUsuario;
+    
     private ImageView ImagenExamenes;
     private ImageView ImagenInicio;
     
@@ -130,6 +138,11 @@ public class ControladorAdministradorMedico extends Controlador{
         ImagenInicio = (ImageView) Inicio.getGraphic();
         ImagenExamenes = (ImageView) Examenes.getGraphic();
 
+        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setTooltip(new Tooltip(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setMaxWidth(100);
+        
+        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
         
         BotonCerrarSesion.setOnAction(e ->
         {

@@ -6,11 +6,10 @@ package gestor_tablas;
 
 
 import gestor_interfaces.GestorEscenas;
+import gestor_interfaces.GestorFXML;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasConductor;
 import java.util.Date;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -18,6 +17,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -25,8 +25,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.stage.Window;
+import logica.autentificacion.Autentificador;
 import logica.entidad.implementaciones.ServicioEntidad;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.implementaciones.ServiciosExamenes;
@@ -47,28 +47,28 @@ import logica.persona.modelos.Persona;
  */
 public class GestorTablas {
 
-    private static <T> void LlenarColumnaDetalles(TableView<T> Tabla, int cantidadFilas) {
-        TableColumn<T, ?> ultimaColumna = (TableColumn<T, ?>) Tabla.getColumns().get(Tabla.getColumns().size() - 1);
+    private static <T> void LlenarColumnaDetalles(TableView<T> Tabla, int CantidadFilas) {
+        TableColumn<T, ?> UltimaColumna = (TableColumn<T, ?>) Tabla.getColumns().get(Tabla.getColumns().size() - 1);
         Platform.runLater(() -> {
             // Buscar TODAS las celdas visibles
             Set<Node> todasLasCeldas = Tabla.lookupAll(".table-cell");
-            for (Node nodo : todasLasCeldas) {
-                if (nodo instanceof TableCell) {
-                    TableCell<T, ?> celda = (TableCell<T, ?>) nodo;
-                    if (celda.getTableColumn().equals(ultimaColumna)) {
-                        Label label = new Label("Ver más");
-                        label.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
-                        label.setOnMouseClicked(event -> {
-                            T objetoFila = Tabla.getItems().get(celda.getIndex());
+            for (Node Nodo : todasLasCeldas) {
+                if (Nodo instanceof TableCell) {
+                    TableCell<T, ?> Celda = (TableCell<T, ?>) Nodo;
+                    if (Celda.getTableColumn().equals(UltimaColumna)) {
+                        Label Etiqueta = new Label("Ver más");
+                        Etiqueta.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                        Etiqueta.setOnMouseClicked(event -> {
+                            T ObjetoFila = Tabla.getItems().get(Celda.getIndex());
                             try {
-                                MostrarDetalles(objetoFila,label.getScene().getWindow());
+                                MostrarDetalles(ObjetoFila,Etiqueta.getScene().getWindow());
                             } catch (Exception ex) {
                                 System.out.println("Error al cargar el menu ver mas: "+ex.getMessage());
-                                GestorEscenas.CargarError(label.getScene().getWindow(), ex);
+                                GestorEscenas.CargarError(Etiqueta.getScene().getWindow(), ex);
                             }
                         });                        
-                        celda.setGraphic(label);
-                        if (celda.getIndex() == cantidadFilas) {
+                        Celda.setGraphic(Etiqueta);
+                        if (Celda.getIndex() == CantidadFilas) {
                             break;
                         }             // Salir del bucle una vez encontrada
                     }
@@ -80,50 +80,78 @@ public class GestorTablas {
     
     private static void MostrarDetalles(Object Objeto,Window Ventana) throws Exception
     {
-        if(Objeto instanceof Conductor)
-        {
-            Conductor Conductor = (Conductor) Objeto;
-            Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Conductor.getIdLicencia());
-            
-            GestorEscenas.CargarVerMasConductor(Ventana, Conductor,Licencia);
-        }
-        else if(Objeto instanceof ExamenConduccion && !(Objeto instanceof ExamenMedico))
-        {
-            if(((ExamenConduccion)Objeto).getTipo().equalsIgnoreCase("Práctico") || ((ExamenConduccion)Objeto).getTipo().equalsIgnoreCase("Teórico"))
-            {
-                ExamenConduccion ExamenConduccion =(ExamenConduccion) Objeto;
-                GestorEscenas.CargarVerMasExamenes(Ventana, ExamenConduccion, null);
-            }
-            else
-            {
-                ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
-                for(ExamenMedico Examen: ExamenesMedicos)
-                {
-                    if(Examen.getId().equals(((ExamenConduccion)Objeto).getId()))
-                    {
-                        ExamenMedico ExamenMedico =(ExamenMedico) Examen;
-                        GestorEscenas.CargarVerMasExamenes(Ventana, null, ExamenMedico);
+        switch (Autentificador.Usuario.getRol()) {
+            case "Administrador":
+                if (Objeto instanceof Conductor) {
+                    Conductor Conductor = (Conductor) Objeto;
+                    Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Conductor.getIdLicencia());
+
+                    GestorEscenas.CargarVerMasConductor(Ventana, Conductor, Licencia);
+                } else if (Objeto instanceof ExamenConduccion && !(Objeto instanceof ExamenMedico)) {
+                    if (((ExamenConduccion) Objeto).getTipo().equalsIgnoreCase("Práctico") || ((ExamenConduccion) Objeto).getTipo().equalsIgnoreCase("Teórico")) {
+                        ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
+                        GestorEscenas.CargarVerMasExamenes(Ventana, ExamenConduccion, null);
+                    } else {
+                        ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+                        for (ExamenMedico Examen : ExamenesMedicos) {
+                            if (Examen.getId().equals(((ExamenConduccion) Objeto).getId())) {
+                                ExamenMedico ExamenMedico = (ExamenMedico) Examen;
+                                GestorEscenas.CargarVerMasExamenes(Ventana, null, ExamenMedico);
+                            }
+                        }
                     }
                 }
-                
-            }
-        }
-        else if(Objeto instanceof ExamenMedico)    
-        {
-            ExamenMedico ExamenMedico =(ExamenMedico) Objeto;
-            GestorEscenas.CargarVerMasExamenesMedicosAdmin(Ventana,ExamenMedico);
-       
-        }else if(Objeto instanceof Infraccion){
-            
-            Infraccion Infraccion = (Infraccion) Objeto;
-            Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Infraccion.getIdLicencia());
-            GestorEscenas.CargarVerMasInfraccion(Ventana, Infraccion, Licencia);
+                else if(Objeto instanceof Infraccion){
+                    Infraccion Infraccion = (Infraccion) Objeto;
+                    Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Infraccion.getIdLicencia());
+                    GestorEscenas.CargarVerMasInfraccion(Ventana, Infraccion, Licencia);
+                }
+
+                break;
+            case "Administrador autoescuela":
+                if (Objeto instanceof ExamenConduccion) {
+                    ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
+                    if (ExamenConduccion.getTipo().equalsIgnoreCase("Práctico")) {
+                        GestorEscenas.CargarVerMasExamenesPracticosAdmin(Ventana, ExamenConduccion);
+                    } else {
+                        GestorEscenas.CargarVerMasExamenesTeoricosAdmin(Ventana, ExamenConduccion);
+                    }
+                }
+                break;
+            case "Administrador médico":
+                if (Objeto instanceof ExamenMedico) {
+                    ExamenMedico ExamenMedico = (ExamenMedico) Objeto;
+                    GestorEscenas.CargarVerMasExamenesMedicosAdmin(Ventana, ExamenMedico);
+                }
+
+                break;
+            case "Trabajador autoescuela":
+                if (Objeto instanceof ExamenConduccion) {
+                    ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
+                    if (ExamenConduccion.getTipo().equalsIgnoreCase("Práctico")) {
+                        GestorEscenas.CargarVerMasExamenesPracticosTrabajador(Ventana, ExamenConduccion);
+                    } else {
+                        GestorEscenas.CargarVerMasExamenesTeoricosTrabajador(Ventana, ExamenConduccion);
+                    }
+                }
+                break;
+            case "Médico":
+                if (Objeto instanceof ExamenMedico) {
+                    ExamenMedico ExamenMedico = (ExamenMedico) Objeto;
+                    GestorEscenas.CargarVerMasExamenesMedicosDoctor(Ventana, ExamenMedico);
+                }
+                break;
+            case "Trabajador centro":
+
+                break;
+            default:
+                //capturar error
         }
     }
     
     
-    private static <T> void LlenarColumnaFotos(TableView<T> Tabla, int cantidadFilas) {
-        Image defaultIcon = new Image(
+    private static <T> void LlenarColumnaFotos(TableView<T> Tabla, int CantidadFilas) {
+        Image Icono = new Image(
         Thread.currentThread().getContextClassLoader().getResourceAsStream(
             "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
         )
@@ -132,17 +160,17 @@ public class GestorTablas {
         Platform.runLater(() -> {
             // Buscar TODAS las celdas visibles
             Set<Node> todasLasCeldas = Tabla.lookupAll(".table-cell");
-            for (Node nodo : todasLasCeldas) {
-                if (nodo instanceof TableCell) {
-                    TableCell<T, ?> celda = (TableCell<T, ?>) nodo;
-                    if (celda.getTableColumn().equals(PrimeraColumna)) {
+            for (Node Nodo : todasLasCeldas) {
+                if (Nodo instanceof TableCell) {
+                    TableCell<T, ?> Celda = (TableCell<T, ?>) Nodo;
+                    if (Celda.getTableColumn().equals(PrimeraColumna)) {
                         ImageView imageView = new ImageView();
                         imageView.setFitHeight(40);
                         imageView.setFitWidth(40);
                         imageView.setPreserveRatio(true);
-                        imageView.setImage(defaultIcon);
-                        celda.setGraphic(imageView);
-                        if (celda.getIndex() == cantidadFilas) {
+                        imageView.setImage(Icono);
+                        Celda.setGraphic(imageView);
+                        if (Celda.getIndex() == CantidadFilas) {
                             break;
                         }
                     }
@@ -573,7 +601,7 @@ public class GestorTablas {
                  try {
                      Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia());
                  } catch (Exception ex) {
-                     Logger.getLogger(GestorTablas.class.getName()).log(Level.SEVERE, null, ex);
+                     
                  }
 
             return new SimpleStringProperty(
@@ -640,7 +668,7 @@ public class GestorTablas {
                      return new SimpleStringProperty(
                              String.format("%s %s", Conductor.getNombre(), Conductor.getApellidos())
                      );   } catch (Exception ex) {
-                     Logger.getLogger(GestorTablas.class.getName()).log(Level.SEVERE, null, ex);
+                     
                      return null;
                  }
         });
@@ -651,7 +679,7 @@ public class GestorTablas {
                      return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId()).getFoto()
                      );
                  } catch (Exception ex) {
-                     Logger.getLogger(GestorTablas.class.getName()).log(Level.SEVERE, null, ex);
+                     
                      return null;
                  }
         });

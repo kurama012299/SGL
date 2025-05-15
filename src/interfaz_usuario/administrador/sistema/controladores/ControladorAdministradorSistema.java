@@ -22,11 +22,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logica.autentificacion.Autentificador;
+import logica.entidad.modelos.EntidadRelacionada;
+import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.infraccion.modelos.Infraccion;
+import logica.licencia.modelos.Licencia;
+import logica.persona.modelos.Conductor;
 import logica.excel_gestor.GestorExcel;
+import logica.autentificacion.Autentificador;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.licencia.implementaciones.ServicioLicencia;
@@ -337,6 +345,12 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML
    private Button BotonExportarConductores;
+   
+   @FXML
+   private Label LabelUsuarioNombre;
+   
+   @FXML
+   private Label LabelCorreoUsuario;
         
     
     
@@ -365,6 +379,11 @@ public class ControladorAdministradorSistema extends Controlador{
         ImagenClinica = (ImageView) Clinica.getGraphic();
         ImagenEntidades = (ImageView) Entidades.getGraphic();
         
+        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setTooltip(new Tooltip(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setMaxWidth(100);
+        
+        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
         
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -379,6 +398,8 @@ public class ControladorAdministradorSistema extends Controlador{
         System.out.println("Controlador Administrador Sistema Iniciado");
         this.TransicionInicio();   
     }
+    
+    
     
 
     

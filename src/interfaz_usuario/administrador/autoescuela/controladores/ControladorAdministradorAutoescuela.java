@@ -5,7 +5,10 @@
 package interfaz_usuario.administrador.autoescuela.controladores;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTooltip;
 import gestor_interfaces.GestorEscenas;
+import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,19 +18,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import logica.autentificacion.Autentificador;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 
 /**
  *
  * @author Angel Hernandez
  */
-public class ControladorAdministradorAutoescuela {
+public class ControladorAdministradorAutoescuela extends Controlador{
 
     @FXML
     private JFXButton Inicio;
@@ -135,7 +140,11 @@ public class ControladorAdministradorAutoescuela {
     @FXML
     private TableColumn<ExamenConduccion, String>ColumnaDetallesTeorico;
     
+    @FXML
+    private Label LabelUsuarioNombre;
     
+    @FXML
+    private Label LabelCorreoUsuario;
     
     
 
@@ -150,7 +159,12 @@ public class ControladorAdministradorAutoescuela {
         ImagenExamenesTeoricos = (ImageView) ExamenTeorico.getGraphic();
         ImagenExamenesPracticos = (ImageView) ExamenPractico.getGraphic();
 
-         
+        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setTooltip(new Tooltip(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setMaxWidth(100);
+        
+        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
+        
         BotonCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.CerrarPrograma();
@@ -263,5 +277,15 @@ public class ControladorAdministradorAutoescuela {
             //CAPTURAR ERROR
 
         }
+    }
+
+    @Override
+    public void Iniciar(MenuEstadisticas MenuEstadisticas) {
+        
+    }
+
+    @Override
+    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
+        
     }
 }

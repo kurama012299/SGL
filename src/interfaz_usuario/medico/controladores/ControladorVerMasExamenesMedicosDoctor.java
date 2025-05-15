@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package interfaz_usuario.administrador.medico.controladores;
+package interfaz_usuario.medico.controladores;
 
 import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
@@ -14,15 +14,12 @@ import logica.examen_medico.modelos.ExamenMedico;
  *
  * @author Kris
  */
-public class ControladorVerMasExamenesMedicos {
+public class ControladorVerMasExamenesMedicosDoctor {
     
     private ExamenMedico ExamenMedico;
     
     @FXML
     private TextField TextFieldExaminado;
-    
-    @FXML
-    private TextField TextFieldExaminador;
     
     @FXML
     private TextField TextFieldId;
@@ -56,7 +53,6 @@ public class ControladorVerMasExamenesMedicos {
     public void Iniciar()
     {
         TextFieldExaminado.setText(ExamenMedico.getPersona().getNombre()+ExamenMedico.getPersona().getApellidos());
-        TextFieldExaminador.setText(ExamenMedico.getExaminador().getNombre());
         TextFieldId.setText(ExamenMedico.getPersona().getCI());
         if(ExamenMedico.isAprobado() && ExamenMedico.getRestricciones().size()==0)
         {

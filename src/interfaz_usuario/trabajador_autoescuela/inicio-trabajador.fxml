@@ -74,7 +74,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <Label alignment="CENTER" layoutX="52.0" layoutY="39.0" prefHeight="21.0" prefWidth="105.0" text="Jhon Carter">
+                  <Label fx:id="LabelUsuarioNombre" alignment="CENTER" layoutX="52.0" layoutY="39.0" prefHeight="21.0" prefWidth="105.0" text="Jhon Carter">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -101,7 +101,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="827.0">
          <children>
-            <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0">
+            <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Prácticos">
                      <font>
@@ -241,29 +241,29 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0" visible="false">
+            <Pane fx:id="PanelInicio" prefHeight="600.0" prefWidth="1000.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="825.0" style="-fx-background-color: ghostwhite; -fx-background-radius: 20; -fx-border-radius: 20;">
                      <children>
                         <JFXButton layoutX="442.0" layoutY="7.0" prefHeight="25.0" prefWidth="18.0" text=" " />
-                        <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="514.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="469.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-notificacion.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="541.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="496.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-configuracion.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="EtiquetaCorreo" layoutX="692.0" layoutY="10.0" prefHeight="17.0" prefWidth="133.0" text="Jho*****ter@gmail.com" />
-                        <Label layoutX="571.0" layoutY="11.0" prefHeight="17.0" prefWidth="105.0" text="1/4/2025  5:44 AM" />
+                        <Label fx:id="LabelCorreoUsuario" layoutX="642.0" layoutY="10.0" prefHeight="17.0" prefWidth="183.0" text="Jho*****ter@gmail.com" />
+                        <Label layoutX="526.0" layoutY="11.0" prefHeight="17.0" prefWidth="105.0" text="1/4/2025  5:44 AM" />
                         <Label layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="267.0" text="¡Transformando datos, en seguridad vial!" textFill="#919191">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Line endX="-100.0" endY="20.333335876464844" layoutX="783.0" layoutY="9.0" startX="-100.0" />
+                        <Line endX="-100.0" endY="20.333335876464844" layoutX="738.0" layoutY="9.0" startX="-100.0" />
                      </children>
                   </Pane>
                   <Label layoutX="26.0" layoutY="54.0" prefHeight="33.0" prefWidth="253.0">

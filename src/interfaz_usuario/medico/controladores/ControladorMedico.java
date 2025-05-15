@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
+import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,17 +19,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import logica.autentificacion.Autentificador;
 import logica.examen_medico.modelos.ExamenMedico;
 
 /**
  *
  * @author Angel Hernandez
  */
-public class ControladorMedico {
+public class ControladorMedico extends Controlador{
     
     @FXML
     private HBox VentanaPrincipal;
@@ -107,6 +111,11 @@ public class ControladorMedico {
     @FXML
     private TableColumn<ExamenMedico, String>ColumnaFoto;
 
+    @FXML
+    private Label LabelUsuarioNombre;
+    
+    @FXML
+    private Label LabelCorreoUsuario;
     
     private ImageView ImagenInicio;
     private ImageView ImagenExamenesMedicos;
@@ -118,7 +127,11 @@ public class ControladorMedico {
         ImagenInicio = (ImageView) Inicio.getGraphic();
         ImagenExamenesMedicos = (ImageView) ExamenesMedicos.getGraphic();
         
-
+        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setTooltip(new Tooltip(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setMaxWidth(100);
+        
+        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
         
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -141,7 +154,7 @@ public class ControladorMedico {
     public void TransicionExamenesMedico() {
         
         GestorTablas.ConfigurarColumnasExamenesMedicosMedicoUnico(ColumnaFoto,ColumnaExaminado, ColumnaFecha, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
-        GestorTablas.CargarTablaExamenesMedicosMedicoUnico(TablaExamenesMedicos, Long.parseLong("6"));
+        GestorTablas.CargarTablaExamenesMedicosMedicoUnico(TablaExamenesMedicos, Autentificador.Usuario.getId());
         
         Pane[] PanelesOcultar={PanelInicio};
         GestorEscenas.MostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
@@ -197,6 +210,16 @@ public class ControladorMedico {
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }
+    }
+
+    @Override
+    public void Iniciar(MenuEstadisticas MenuEstadisticas) {
+        
+    }
+
+    @Override
+    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
+        
     }
 
 }
