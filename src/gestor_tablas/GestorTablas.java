@@ -112,7 +112,13 @@ public class GestorTablas {
         {
             ExamenMedico ExamenMedico =(ExamenMedico) Objeto;
             GestorEscenas.CargarVerMasExamenesMedicosAdmin(Ventana,ExamenMedico);
-        }   
+       
+        }else if(Objeto instanceof Infraccion){
+            
+            Infraccion Infraccion = (Infraccion) Objeto;
+            Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Infraccion.getIdLicencia());
+            GestorEscenas.CargarVerMasInfraccion(Ventana, Infraccion, Licencia);
+        }
     }
     
     

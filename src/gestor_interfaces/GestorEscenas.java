@@ -41,6 +41,8 @@ import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 import interfaz_usuario.administrador.medico.controladores.ControladorVerMasExamenesMedicos;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasInfracciones;
+import logica.infraccion.modelos.Infraccion;
 
 
 
@@ -360,5 +362,35 @@ public class GestorEscenas  {
     public static void CerrarPrograma()
     {
         Platform.exit();
+    }
+    
+    public static void CargarVerMasInfraccion(Window Padre, Infraccion Infraccion , Licencia Licencia) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-infraccion.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasInfracciones controlador = Cargador.getController();
+            controlador.SetDatos(Infraccion, Licencia); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            throw new Exception("Error al cargar la interfaz");
+        }
     }
 }
