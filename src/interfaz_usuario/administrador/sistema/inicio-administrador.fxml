@@ -298,11 +298,10 @@
                      <columns>
                         <TableColumn fx:id="ColumnaDirectorEntidad" prefWidth="202.0" text="Director" />
                         <TableColumn fx:id="ColumnaNombreEntidad" prefWidth="127.0" text="Nombre" />
-                        <TableColumn fx:id="ColumnaDireccionEntidad" prefWidth="151.0" text="Direccion" />
-                        <TableColumn fx:id="ColumnaTelefonoEntidad" prefWidth="93.0" text="Telefono" />
-                        <TableColumn fx:id="ColumnaCorreoEntidad" prefWidth="184.0" text="Correo" />
+                        <TableColumn fx:id="ColumnaDireccionEntidad" prefWidth="142.0" text="Direccion" />
+                        <TableColumn fx:id="ColumnaTelefonoEntidad" prefWidth="94.0" text="Telefono" />
+                        <TableColumn fx:id="ColumnaCorreoEntidad" prefWidth="192.0" text="Correo" />
                         <TableColumn fx:id="ColumnaDetallesEntidad" prefWidth="61.0" text="Detalles" />
-                        <TableColumn prefWidth="186.0" text="Direccion" />
                      </columns>
                   </TableView>
                </children>
@@ -464,7 +463,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0">
+            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Conductores">
                      <font>
@@ -652,7 +651,7 @@
                   <CheckBox layoutX="437.0" layoutY="60.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>

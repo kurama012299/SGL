@@ -542,43 +542,56 @@ public class GestorTablas {
 
         }
     }
-
-    public static void ConfigurarColumnasInfracciones(
-            TableColumn<Infraccion, String> ColumnaFotoInfraccion,
-            TableColumn<Infraccion, String> ColumnaNombreInfraccion,
-            TableColumn<Infraccion, String> ColumnaTipoInfraccion,
-            TableColumn<Infraccion, Date> ColumnaFechaInfraccion,
-            TableColumn<Infraccion, String> ColumnaLugarInfraccion,
-            TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion,
-            TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion,
-            TableColumn<Infraccion, String> ColumnaDetallesInfraccion) {
-
-        ColumnaTipoInfraccion.setCellValueFactory(cellData -> {
-            Infraccion Gravedad = cellData.getValue();
-            return new SimpleStringProperty(Gravedad.getNombreGravedad().getGravedad()
-            );
+      
+      public static void ConfigurarColumnasInfracciones(
+             
+    TableColumn<Infraccion, String> ColumnaFotoInfraccion,
+    TableColumn<Infraccion, String> ColumnaNombreInfraccion,
+    TableColumn<Infraccion, String> ColumnaTipoInfraccion,
+    TableColumn<Infraccion, Date> ColumnaFechaInfraccion,
+    TableColumn<Infraccion, String> ColumnaLugarInfraccion,
+    TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion,
+    TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion,
+    TableColumn<Infraccion, String> ColumnaDetallesInfraccion)
+             {
+                 
+             ColumnaTipoInfraccion.setCellValueFactory(cellData -> {
+            Infraccion Infraccion = cellData.getValue();
+            return new SimpleStringProperty(Infraccion.getGravedad()
+                    );
         });
+             
+             ColumnaNombreInfraccion.setCellValueFactory(cellData -> {
+            Infraccion Infraccion = cellData.getValue();
+            Conductor Conductor = null;
+                 try {
+                     Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia());
+                 } catch (Exception ex) {
+                     Logger.getLogger(GestorTablas.class.getName()).log(Level.SEVERE, null, ex);
+                 }
 
-        ColumnaNombreInfraccion.setCellValueFactory(cellData -> {
-            Infraccion Persona = cellData.getValue();
             return new SimpleStringProperty(
-                    String.format("%s %s", Persona.getNombrePersona().getNombre(), Persona.getNombrePersona().getApellidos())
-            );
-        });
-
-        ColumnaFotoInfraccion.setCellValueFactory(cellData -> {
-            Infraccion Persona = cellData.getValue();
-            return new SimpleStringProperty(Persona.getNombrePersona().getFoto()
-            );
-        });
-
-        ColumnaLicenciaInfraccion.setCellValueFactory((TableColumn.CellDataFeatures<Infraccion, Long> cellData) -> {
-            Infraccion Persona = cellData.getValue();
-            return new SimpleObjectProperty<>(Persona.getNombrePersona().getIdLicencia()
+                    String.format("%s %s", Conductor.getNombre(),Conductor.getApellidos())
             );
         });
 
         // Configuración estándar para otras columnas
+ 
+              ColumnaFotoInfraccion.setCellValueFactory(cellData -> {
+                 try {
+                     Infraccion Infraccion = cellData.getValue();
+                     
+                     return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia()).getFoto()
+                     );
+                 } catch (Exception ex) {
+                     return null;
+                 }
+        });
+              
+              
+              
+                 // Configuración estándar para otras columnas
+                 ConfigurarColumnaStandard(ColumnaLicenciaInfraccion, "IdLicencia");
         ConfigurarColumnaStandard(ColumnaFechaInfraccion, "Fecha");
         ConfigurarColumnaStandard(ColumnaLugarInfraccion, "Lugar");
         ConfigurarColumnaStandard(ColumnaPtosDeducidosInfraccion, "PuntosDeducidos");
@@ -595,39 +608,54 @@ public class GestorTablas {
 
         }
     }
-
-    public static void ConfigurarColumnasLicencias(
-            TableColumn<Licencia, String> ColumnaFotoLicencia,
-            TableColumn<Licencia, String> ColumnaNombreLicencia,
-            TableColumn<Licencia, String> ColumnaTipoLicencia,
-            TableColumn<Licencia, Date> ColumnaEmisionLicencia,
-            TableColumn<Licencia, Date> ColumnaVencimientoLicencia,
-            TableColumn<Licencia, Integer> ColumnaPuntosLicencia,
-            TableColumn<Licencia, String> ColumnaDetallesLicencia) {
-
-        ColumnaTipoLicencia.setCellValueFactory(cellData -> {
-            Licencia Tipo = cellData.getValue();
-            return new SimpleStringProperty(Tipo.getTipoLic().getTipo()
-            );
+            
+       public static void ConfigurarColumnasLicencias(
+             
+    TableColumn<Licencia, String> ColumnaFotoLicencia,
+    TableColumn<Licencia, String> ColumnaNombreLicencia,
+    TableColumn<Licencia, String> ColumnaTipoLicencia,
+    TableColumn<Licencia, Date> ColumnaEmisionLicencia,
+    TableColumn<Licencia, Date> ColumnaVencimientoLicencia,
+    TableColumn<Licencia, Integer> ColumnaPuntosLicencia,
+    TableColumn<Licencia, String> ColumnaDetallesLicencia)
+             {
+                 
+             ColumnaTipoLicencia.setCellValueFactory(cellData -> {
+            Licencia Licencia = cellData.getValue();
+            return new SimpleStringProperty(Licencia.getTipo()
+                    );
         });
-
-        ColumnaNombreLicencia.setCellValueFactory(cellData -> {
-            Licencia Persona = cellData.getValue();
-            return new SimpleStringProperty(
-                    String.format("%s %s", Persona.getPersona().getNombre(), Persona.getPersona().getApellidos())
-            );
+             
+             ColumnaNombreLicencia.setCellValueFactory(cellData -> {
+                 try {
+                     Licencia Licencia = cellData.getValue();
+                     Conductor Conductor = null;
+                     Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
+                     return new SimpleStringProperty(
+                             String.format("%s %s", Conductor.getNombre(), Conductor.getApellidos())
+                     );   } catch (Exception ex) {
+                     Logger.getLogger(GestorTablas.class.getName()).log(Level.SEVERE, null, ex);
+                     return null;
+                 }
         });
-
-        ColumnaFotoLicencia.setCellValueFactory(cellData -> {
-            Licencia Persona = cellData.getValue();
-            return new SimpleStringProperty(Persona.getPersona().getFoto()
-            );
+             
+              ColumnaFotoLicencia.setCellValueFactory(cellData -> {
+                 try {
+                     Licencia Licencia = cellData.getValue();
+                     return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId()).getFoto()
+                     );
+                 } catch (Exception ex) {
+                     Logger.getLogger(GestorTablas.class.getName()).log(Level.SEVERE, null, ex);
+                     return null;
+                 }
         });
 
         // Configuración estándar para otras columnas
         ConfigurarColumnaStandard(ColumnaEmisionLicencia, "FechaEmision");
         ConfigurarColumnaStandard(ColumnaVencimientoLicencia, "FechaVencimiento");
         ConfigurarColumnaStandard(ColumnaPuntosLicencia, "CantPuntos");
+        
+        
 
     }
 

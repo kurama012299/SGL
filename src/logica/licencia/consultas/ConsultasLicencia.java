@@ -22,41 +22,30 @@ import logica.persona.modelos.Conductor;
  * @author Adrian
  */
 public class ConsultasLicencia {
-    
+
     public static ObservableList<Licencia> ObtenerLicenciasConsulta() throws Exception {
         ObservableList<Licencia> Licencias = FXCollections.observableArrayList();
 
         String consulta = "SELECT \"Licencia\".*, "
                 + "\"Tipo\".\"Nombre\" AS nombre_tipo, "
-                + "\"Persona\".\"Nombre\" AS nombre_persona, "
-                + "\"Persona\".\"Apellidos\" AS apellidos_persona, "
-                + "\"Persona\".\"Foto\" AS foto_persona, "
-                + "\"Persona\".\"Id_Licencia\" AS id_licencia, "
-                + "\"Persona\".\"CI\" AS ci_persona "
+                + "\"Estado\".\"Nombre\" AS nombre_estado "
                 + "FROM \"Licencia\" "
                 + "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" "
-                + "LEFT JOIN \"Persona\" ON \"Licencia\".\"Id\" = \"Persona\".\"Id_Licencia\"";
+                + "LEFT JOIN \"Estado\" ON \"Licencia\".\"Id_Estado\" = \"Estado\".\"Id\" ";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta); ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
 
-                Licencia Tipo = new Licencia(rs.getString("nombre_tipo"));
-                Conductor Persona = new Conductor(
-                        rs.getString("nombre_persona"),
-                        rs.getString("apellidos_persona"),
-                        rs.getLong("id_licencia"),
-                        rs.getString("ci_persona"),
-                        rs.getString("foto_persona"));
-
                 Licencia Licencia = new Licencia(
                         rs.getLong("Id"),
                         rs.getDate("Fecha_Emision"),
                         rs.getDate("Fecha_Vencimiento"),
+                        rs.getBoolean("Renovada"),
                         rs.getInt("CantPuntos"),
-                        Tipo,
-                        Persona);
-
+                        rs.getString("nombre_tipo"),
+                        rs.getString("nombre_estado"));
+                
                 Licencias.add(Licencia);
             }
         } catch (SQLException e) {
@@ -71,14 +60,10 @@ public class ConsultasLicencia {
 
         String consulta = "SELECT \"Licencia\".*, "
                 + "\"Tipo\".\"Nombre\" AS nombre_tipo, "
-                + "\"Persona\".\"Nombre\" AS nombre_persona, "
-                + "\"Persona\".\"Apellidos\" AS apellidos_persona, "
-                + "\"Persona\".\"Foto\" AS foto_persona, "
-                + "\"Persona\".\"Id_Licencia\" AS id_licencia, "
-                + "\"Persona\".\"CI\" AS ci_persona "
+                + "\"Estado\".\"Nombre\" AS nombre_estado "
                 + "FROM \"Licencia\" "
                 + "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" "
-                + "LEFT JOIN \"Persona\" ON \"Licencia\".\"Id\" = \"Persona\".\"Id_Licencia\" "
+                + "LEFT JOIN \"Estado\" ON \"Licencia\".\"Id_Estado\" = \"Estado\".\"Id\" "
                 + "WHERE \"Licencia\".\"Id\" = ?";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
@@ -87,21 +72,14 @@ public class ConsultasLicencia {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    Licencia Tipo = new Licencia(rs.getString("nombre_tipo"));
-                    Conductor Persona = new Conductor(
-                            rs.getString("nombre_persona"),
-                            rs.getString("apellidos_persona"),
-                            rs.getLong("id_licencia"),
-                            rs.getString("ci_persona"),
-                            rs.getString("foto_persona"));
-
                     Licencia = new Licencia(
-                            rs.getLong("Id"),
-                            rs.getDate("Fecha_Emision"),
-                            rs.getDate("Fecha_Vencimiento"),
-                            rs.getInt("CantPuntos"),
-                            Tipo,
-                            Persona);
+                        rs.getLong("Id"),
+                        rs.getDate("Fecha_Emision"),
+                        rs.getDate("Fecha_Vencimiento"),
+                        rs.getBoolean("Renovada"),
+                        rs.getInt("CantPuntos"),
+                        rs.getString("nombre_tipo"),
+                        rs.getString("nombre_estado"));
                 }
             }
 
@@ -111,5 +89,5 @@ public class ConsultasLicencia {
 
         return Licencia;
     }
-}
 
+}
