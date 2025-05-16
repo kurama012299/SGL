@@ -22,4 +22,8 @@ public class ServicioInfraccion {
         return ConsultasInfraccion.ObtenerInfraccionPorIdConsulta(Id);
     }
     
+    public static int ObtenerCantidadInfraccionesPorId(long Id) throws Exception
+    {
+        return ConsultasInfraccion.ObtenerCantidadInfraccionesPorIdConsulta(Id);
+    }
 }

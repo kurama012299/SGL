@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.infraccion.modelos.Infraccion;
-import logica.persona.modelos.Conductor;
 
 /**
  *
@@ -86,6 +85,15 @@ public class ConsultasInfraccion {
         }
 
         return Infraccion;
+    }
+    
+    public static int ObtenerCantidadInfraccionesPorIdConsulta(Long Id) throws Exception{
+        ObservableList<Infraccion> Infracciones =  ObtenerInfraccionesConsulta();
+        int contador = 0;
+        for(int i = 0; i<Infracciones.size(); i++)
+            if(Infracciones.get(i).getIdLicencia().equals(Id))
+                contador++;
+        return contador;
     }
 
 }
