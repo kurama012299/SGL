@@ -101,10 +101,15 @@ public class GestorTablas {
                         }
                     }
                 }
+
                 else if(Objeto instanceof Infraccion){
                     Infraccion Infraccion = (Infraccion) Objeto;
                     Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Infraccion.getIdLicencia());
                     GestorEscenas.CargarVerMasInfraccion(Ventana, Infraccion, Licencia);
+                }else if(Objeto instanceof Licencia){
+                    Licencia Licencia = (Licencia) Objeto;
+                    Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
+                    GestorEscenas.CargarVerMasLicencias(Ventana, Conductor, Licencia);
                 }
 
                 break;
@@ -146,8 +151,8 @@ public class GestorTablas {
                 break;
             default:
                 //capturar error
+            }
         }
-    }
     
     
     private static <T> void LlenarColumnaFotos(TableView<T> Tabla, int CantidadFilas) {

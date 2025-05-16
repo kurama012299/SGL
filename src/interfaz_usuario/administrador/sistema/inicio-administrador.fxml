@@ -102,7 +102,7 @@
                   </Label>
                   <Pane layoutX="14.0" layoutY="37.0" prefHeight="39.0" prefWidth="46.0" style="-fx-border-color: black; -fx-border-radius: 20;">
                      <children>
-                        <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="6.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImagenUsuario" fitHeight="33.0" fitWidth="35.0" layoutX="9.0" layoutY="3.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../recursos_compartidos/imagenes/ico-usuario.png" />
                            </image>

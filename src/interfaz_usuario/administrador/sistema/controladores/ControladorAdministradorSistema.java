@@ -12,6 +12,7 @@ import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.EstadisticaUsuario;
 import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.ObservableList;
@@ -38,6 +39,7 @@ import logica.excel_gestor.GestorExcel;
 import logica.autentificacion.Autentificador;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.gestion_imagenes.GestorImagenes;
 import logica.licencia.implementaciones.ServicioLicencia;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.modelos.Licencia;
@@ -352,6 +354,9 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML
    private Label LabelCorreoUsuario;
+   
+    @FXML
+   private ImageView ImagenUsuario;
         
     
     
@@ -379,6 +384,8 @@ public class ControladorAdministradorSistema extends Controlador{
         ImagenAutoescuela = (ImageView) Autoescuela.getGraphic();
         ImagenClinica = (ImageView) Clinica.getGraphic();
         ImagenEntidades = (ImageView) Entidades.getGraphic();
+        
+        ImagenUsuario.setImage(GestorImagenes.CargarImagen(Autentificador.Usuario.getFoto()));
         
     
         BotonCerrarSesion.setOnAction(e ->

@@ -78,7 +78,7 @@ public class ControladorVerMasInfracciones {
         TextFieldIdLicencia.setText(Licencia.getId().toString());
     }
     
-    private String Pagado(boolean Pagado){
+    public static String Pagado(boolean Pagado){
         if(Pagado){
             return "Si";
         }else
