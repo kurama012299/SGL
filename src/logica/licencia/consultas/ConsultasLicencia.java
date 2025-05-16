@@ -9,13 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.licencia.modelos.Licencia;
-import logica.persona.modelos.Conductor;
+
 
 /**
  *
@@ -30,8 +27,8 @@ public class ConsultasLicencia {
                 + "\"Tipo\".\"Nombre\" AS nombre_tipo, "
                 + "\"Estado\".\"Nombre\" AS nombre_estado "
                 + "FROM \"Licencia\" "
-                + "LEFT JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" "
-                + "LEFT JOIN \"Estado\" ON \"Licencia\".\"Id_Estado\" = \"Estado\".\"Id\" ";
+                + "INNER JOIN \"Tipo\" ON \"Licencia\".\"Id_Tipo\" = \"Tipo\".\"Id\" "
+                + "INNER JOIN \"Estado\" ON \"Licencia\".\"Id_Estado\" = \"Estado\".\"Id\" ";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta); ResultSet rs = pstmt.executeQuery()) {
 

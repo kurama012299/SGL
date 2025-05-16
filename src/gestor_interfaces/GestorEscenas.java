@@ -11,6 +11,7 @@ import gestor_interfaces.modelos.Controlador;
 import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.EstadisticaUsuario;
 import gestor_interfaces.modelos.MenuEstadisticas;
+import infraestructura.ConectorBaseDato;
 import interfaz_usuario.administrador.autoescuela.controladores.ControladorVerMasExamenesPracticos;
 import interfaz_usuario.administrador.autoescuela.controladores.ControladorVerMasExamenesTeoricos;
 import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarUnaAccion;
@@ -191,7 +192,7 @@ public class GestorEscenas  {
     
     public static void CargarVerMasConductor(Window Padre, Conductor Conductor,Licencia Licencia) throws Exception {
         try {
-            String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-conductores.fxml";
+            String Direccion = GestorFXML.RutaVerMasConductores;
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
@@ -222,7 +223,7 @@ public class GestorEscenas  {
     
     public static void CargarVerMasExamenes(Window Padre, ExamenConduccion ExamenConduccion,ExamenMedico ExamenMedico) throws Exception {
         try {
-            String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-examenes.fxml";
+            String Direccion = GestorFXML.RutaVerMasExamenes;
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
@@ -253,7 +254,7 @@ public class GestorEscenas  {
     
     public static void CargarVerMasExamenesMedicosAdmin(Window Padre,ExamenMedico ExamenMedico) throws Exception {
         try {
-            String Direccion = "/interfaz_usuario/administrador/medico/menu_auxiliares/ver-mas/menu-ver-mas-examenes-medicos.fxml";
+            String Direccion = GestorFXML.RutaVerMasExamenesMedicosAdmin;
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
@@ -284,7 +285,7 @@ public class GestorEscenas  {
     
     public static void CargarVerMasExamenesPracticosAdmin(Window Padre,ExamenConduccion ExamenConduccion) throws Exception {
         try {
-            String Direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-practicos.fxml";
+            String Direccion = GestorFXML.RutaVerMasExamenesPracticosAdmin;
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
@@ -315,7 +316,7 @@ public class GestorEscenas  {
     
     public static void CargarVerMasExamenesTeoricosAdmin(Window Padre,ExamenConduccion ExamenConduccion) throws Exception {
         try {
-            String Direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-teoricos.fxml";
+            String Direccion = GestorFXML.RutaVerMasExamenesTeoricosAdmin;
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
@@ -346,7 +347,7 @@ public class GestorEscenas  {
     
     public static void CargarVerMasExamenesMedicosDoctor(Window Padre,ExamenMedico ExamenMedico) throws Exception {
         try {
-            String Direccion = "/interfaz_usuario/medico/menu_auxiliares/ver-mas/menu-ver-mas-examenes-medicos.fxml";
+            String Direccion = GestorFXML.RutaVerMasExamenesMedicosDoctor;
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
@@ -377,7 +378,7 @@ public class GestorEscenas  {
     
     public static void CargarVerMasExamenesTeoricosTrabajador(Window Padre,ExamenConduccion ExamenConduccion) throws Exception {
         try {
-            String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-teoricos.fxml";
+            String Direccion =GestorFXML.RutaVerMasExamenesTeoricosTrabajador;
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
@@ -407,7 +408,7 @@ public class GestorEscenas  {
     
     public static void CargarVerMasExamenesPracticosTrabajador(Window Padre,ExamenConduccion ExamenConduccion) throws Exception {
         try {
-            String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-practicos.fxml";
+            String Direccion = GestorFXML.RutaVerMasExamenesPracticosTrabajador;
             URL Url = GestorEscenas.class.getResource(Direccion);
             FXMLLoader Cargador = new FXMLLoader(Url);
             Parent Ruta = Cargador.load();
@@ -562,6 +563,7 @@ public class GestorEscenas  {
     //Funcion para cerrar el programa
     public static void CerrarPrograma()
     {
+        ConectorBaseDato.CerrarConexionBD();
         Platform.exit();
     }
     

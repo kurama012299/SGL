@@ -24,6 +24,13 @@ public class GestorFXML {
     public static String RutaVerMasExamenesMedicosDoctor="/interfaz_usuario/medico/menu_auxiliares/ver-mas/menu-ver-mas-examenes-medicos.fxml";
     public static String RutaVerMasExamenesTeoricosTrabajador="/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-teoricos.fxml";
     public static String RutaVerMasExamenesPracticosTrabajador="/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-practicos.fxml";
+    public static String RutaMenuAdministrador;
+    public static String RutaMenuAdministradorAutoescuela;
+    public static String RutaMenuAdministradorMedico;
+    public static String RutaMenuTrabajadorCentro;
+    public static String RutaMenuTrabajadorAutoescuela;
+    public static String RutaMenuMedico;
+    
     
 }
 
