@@ -49,18 +49,18 @@ public class EstadisticaUsuario {
         long dias = ChronoUnit.DAYS.between(ultimoInicio, ahora);
 
         if (minutos < 1) {
-            this.UltimoInicioSesion = "Hace menos de 1 minuto";
+            this.UltimoInicioSesion = " menos de 1 minuto";
         } else if (minutos < 60) {
-            this.UltimoInicioSesion = String.format("Hace %d minuto%s",
+            this.UltimoInicioSesion = String.format(" %d minuto%s",
                     minutos, (minutos != 1 ? "s" : ""));
         } else if (horas < 24) {
-            this.UltimoInicioSesion = String.format("Hace %d hora%s",
+            this.UltimoInicioSesion = String.format(" %d hora%s",
                     horas, (horas != 1 ? "s" : ""));
         } else if (dias < 30) {
-            this.UltimoInicioSesion = String.format("Hace %d día%s",
+            this.UltimoInicioSesion = String.format(" %d día%s",
                     dias, (dias != 1 ? "s" : ""));
         } else {
-            this.UltimoInicioSesion = "Hace mucho tiempo";
+            this.UltimoInicioSesion = " mucho tiempo";
         }
     }
     
