@@ -23,49 +23,53 @@ public class ControladorVerMasLicencias {
     private Licencia Licencia;
     
     @FXML
-    TextField TextFieldCI;
+    private TextField TextFieldCI;
     
     @FXML
-    Label LabelTipo;
+    private Label LabelTipo;
     
     @FXML
-    TextField TextFieldCantidadInfracciones;
+    private TextField TextFieldCantidadInfracciones;
     
     @FXML
-    TextField TextFieldNombre;
+    private TextField TextFieldNombre;
     
     @FXML
-    TextField TextFieldPuntos;
+    private TextField TextFieldPuntos;
     
     @FXML
-    TextField TextFieldId;
+    private TextField TextFieldId;
     
     @FXML
-    TextField TextFieldEstado;
+    private TextField TextFieldEstado;
     
     @FXML
-    TextField TextFieldEmision;
+    private TextField TextFieldEmision;
     
     @FXML
-    TextField TextFieldVencimiento;
+    private TextField TextFieldVencimiento;
     
     @FXML
-    TextArea TextFieldRestricciones;
+    private TextArea TextFieldRestricciones;
     
     @FXML
-    TextField TextFieldRenovada;
+    private TextField TextFieldRenovada;
+    
+ 
     
     @FXML
-    ImageView CategoriaCarro;
+    private ImageView CategoriaCarro;
     
     @FXML
-    ImageView CategoriaMoto;
+    private ImageView CategoriaMoto;
     
     @FXML
-    ImageView CategoriaOmnibus;
+    private ImageView CategoriaOmnibus;
     
     @FXML
-    ImageView CategoriaCamion;
+    private ImageView CategoriaCamion;
+    
+    
 
 
     @FXML
@@ -84,6 +88,7 @@ public class ControladorVerMasLicencias {
     public void Iniciar() throws Exception
     {
         System.out.println("Iniciar llamado");
+        
         TextFieldCI.setText(Conductor.getCI());
         String CantInfraccionesStr = Integer.toString(ServicioInfraccion.ObtenerCantidadInfraccionesPorId(Licencia.getId()));
         TextFieldCantidadInfracciones.setText(CantInfraccionesStr);

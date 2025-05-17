@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasLicencias;">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasLicencias">
    <children>
       <ImageView fitHeight="78.0" fitWidth="103.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -52,7 +52,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="LabelTipo" layoutX="121.0" layoutY="136.0" prefHeight="26.0" prefWidth="17.0" style="-fx-background-color: whit´;" text="A">
+      <Label fx:id="LabelTipo" layoutX="121.0" layoutY="136.0" prefHeight="26.0" prefWidth="17.0" style="-fx-background-color: white;" text="A">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -79,18 +79,18 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Pane fx:id="CategoriaCarro" layoutX="228.0" layoutY="215.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
+      <Pane layoutX="228.0" layoutY="215.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
          <children>
-            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="9.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="CategoriaCarro" fitHeight="26.0" fitWidth="27.0" layoutX="9.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagenes/ico-carro-blanco.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="CategoriaOmnibus" layoutX="228.0" layoutY="273.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
+      <Pane layoutX="228.0" layoutY="273.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
          <children>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="CategoriaOmnibus" fitHeight="26.0" fitWidth="26.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagenes/ico-omnibus-blanco.png" />
                </image>
@@ -106,7 +106,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="CategoriaMoto" layoutX="304.0" layoutY="215.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
+      <Pane layoutX="304.0" layoutY="215.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
          <children>
             <ImageView fx:id="CategoriaMoto" fitHeight="26.0" fitWidth="27.0" layoutX="9.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
