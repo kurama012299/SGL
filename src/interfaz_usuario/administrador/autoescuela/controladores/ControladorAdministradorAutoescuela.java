@@ -24,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logica.autentificacion.Autentificador;
@@ -146,6 +147,30 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     
     @FXML
     private Label LabelCorreoUsuario;
+    
+    @FXML
+    private Label LabelIniciosSesion;
+    
+    @FXML
+    private Label LabelUltimoInicioSesion;
+    
+    @FXML
+    private Label LabelTotalTrabajadores;
+    
+    @FXML
+    private Label LabelTotalExamenes;
+    
+    @FXML
+    private Label LabelIndiceAprobados;
+    
+    @FXML
+    private Label LabelExamenesPracticos;
+    
+    @FXML
+    private Label LabelExamenesTeoricos;
+    
+    @FXML
+    private Label LabelPorcientoAnteriorMes;
     
     
 
@@ -290,9 +315,58 @@ public class ControladorAdministradorAutoescuela extends Controlador{
 
     @Override
     protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
+        
+         LabelUltimoInicioSesion.setText("Último inicio sesion hace " + MenuEstadisticas.getEstadisticaUsuario().getUltimoInicioSesion());
+         LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.getEstadisticaUsuario().getCantidadIniciosSesion()));
         for(Estadistica e : MenuEstadisticas.getEstadisticas())
         {
             System.out.println(e);
+            switch(e.getCategoria())
+            {
+                
+                case "Cantidad Examenes":
+                    LabelTotalExamenes.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Cantidad Trabajadores":
+                    LabelTotalTrabajadores.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Mes Anterior":
+                    if(e.getValor()>0)
+                        LabelPorcientoAnteriorMes.setText("+"+String.valueOf(Math.round(e.getValor())+"%  respecto anterior mes"));
+                    else
+                    {
+                        LabelPorcientoAnteriorMes.setText("-"+String.valueOf(Math.round(e.getValor())+"%  respecto anterior mes"));
+                        LabelPorcientoAnteriorMes.textFillProperty().setValue(Color.RED);
+                    }
+                    break;
+                case "Cantidad Examenes Teoricos":
+                    LabelExamenesTeoricos.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "Cantidad Examenes Practicos":
+                    LabelExamenesPracticos.setText(String.valueOf(Math.round(e.getValor())));
+                    break;
+                case "PorcientoTeorico":
+                    LabelProgresoTeorico.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "PorcientoPractico":
+                    LabelProgresoPractico.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "PorcientoReprobado":
+                    LabelProgresoReprobado.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "PorcientoAprobado":
+                    LabelProgresoAprobado.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    break;
+                case "IndiceAprobados":
+                    if(e.getValor()>0)
+                        LabelIndiceAprobados.setText("+"+String.valueOf(Math.round(e.getValor()))+"% índice aprobados");
+                    else
+                    {
+                        LabelIndiceAprobados.setText("-"+String.valueOf(Math.round(e.getValor()))+"% índice aprobados");
+                        LabelIndiceAprobados.textFillProperty().setValue(Color.RED);
+                    }
+                    break;
+            }
         }
     }
 }

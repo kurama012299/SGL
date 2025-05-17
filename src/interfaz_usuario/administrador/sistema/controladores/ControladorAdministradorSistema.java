@@ -832,7 +832,6 @@ public class ControladorAdministradorSistema extends Controlador{
         LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.getEstadisticaUsuario().getCantidadIniciosSesion()));
         for(Estadistica e : MenuEstadisticas.getEstadisticas())
         {
-            System.out.println(e);
             switch(e.getCategoria())
             {
                 case "Cantidad Conductores":

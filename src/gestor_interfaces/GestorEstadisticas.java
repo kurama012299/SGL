@@ -92,7 +92,9 @@ public class GestorEstadisticas {
                                                                 estadisticas.get(3).getValor(),
                                                                 estadisticas.get(4).getValor(),
                                                                 estadisticas.get(2).getValor()));
-
+            //7. Porciento Mes Anterior
+            estadisticas.add(ObtenerPorcientoMesAnterior(conn));
+            
         } catch (SQLException e) {
             System.err.println("Error al obtener estadísticas: " + e.getMessage());
         }
@@ -114,6 +116,19 @@ public class GestorEstadisticas {
      return null;
     }
     
+    public static Estadistica ObtenerPorcientoMesAnterior(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM obtenerporcientoexamenesmes()";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                return new Estadistica(
+                        "Mes Anterior",
+                        rs.getLong("porcentaje_diferencia")
+                );
+            }
+        }
+     return null;
+    }
     public static Estadistica ObtenerCantidadTrabajadores(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadTrabajadores()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
