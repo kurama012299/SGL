@@ -6,7 +6,6 @@ package logica.licencia.modelos;
 
 import java.util.ArrayList;
 import java.util.Date;
-import logica.persona.modelos.Persona;
 
 /**
  *

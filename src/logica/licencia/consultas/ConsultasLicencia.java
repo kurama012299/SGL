@@ -9,10 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.licencia.modelos.Licencia;
-
 
 /**
  *
@@ -33,7 +33,7 @@ public class ConsultasLicencia {
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta); ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-
+              
                 Licencia Licencia = new Licencia(
                         rs.getLong("Id"),
                         rs.getDate("Fecha_Emision"),
@@ -43,12 +43,15 @@ public class ConsultasLicencia {
                         rs.getString("nombre_tipo"),
                         rs.getString("nombre_estado"));
                 
+                CargarCategoriasLicencia(Licencia, conn);
+                CargarRestriccionesLicencia(Licencia, conn);
+                
                 Licencias.add(Licencia);
             }
         } catch (SQLException e) {
             throw new SQLException("Error al obtener el listado de Licencias", e);
         }
-
+System.out.print(Licencias.get(0));
         return Licencias;
     }
 
@@ -77,14 +80,70 @@ public class ConsultasLicencia {
                         rs.getInt("CantPuntos"),
                         rs.getString("nombre_tipo"),
                         rs.getString("nombre_estado"));
+                    
+                    CargarCategoriasLicencia(Licencia, conn);
+                    CargarRestriccionesLicencia(Licencia, conn);
+                    
                 }
             }
 
         } catch (SQLException e) {
             throw new Exception("Error al obtener la Licencia de la base de datos", e);
         }
-
+System.out.print(Licencia);
         return Licencia;
     }
+    
+    private static void CargarRestriccionesLicencia(Licencia Licencia, Connection conn) {
+    String consulta = "SELECT r.\"Nombre\" "
+                    + "FROM \"Restriccion\" r "
+                    + "JOIN \"ExamenMedicoRestriccion\" emr ON r.\"Id\" = emr.\"Id_Restriccion\" "
+                    + "JOIN \"Licencia\" l ON emr.\"Id_ExamenMedico\" = l.\"Id_Examen_Medico\" "
+                    + "WHERE l.\"Id\" = ?";
+
+    try (PreparedStatement pstmt = conn.prepareStatement(consulta)) {
+        pstmt.setLong(1, Licencia.getId());
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            // Inicializar la lista si es null
+            if (Licencia.getRestricciones() == null) {
+                Licencia.setRestricciones(new ArrayList<>());
+            }
+            
+            while (rs.next()) {
+                Licencia.getRestricciones().add(rs.getString("Nombre"));
+            }
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al cargar restricciones: " + e.getMessage());
+        throw new RuntimeException("Error al cargar restricciones de la licencia", e);
+    }
+}
+    
+    private static void CargarCategoriasLicencia(Licencia Licencia, Connection conn) {
+        
+    String consulta = "SELECT c.\"Nombre\" "
+                    + "FROM \"Categoria\" c "
+                    + "JOIN \"Licencia_Categoria\" lc ON c.\"Id\" = lc.\"Id_Categoria\" "
+                    + "WHERE lc.\"Id_Licencia\" = ?";  
+
+    try (PreparedStatement pstmt = conn.prepareStatement(consulta)) {
+        pstmt.setLong(1, Licencia.getId());
+        
+        // Inicializar la lista si es null
+        if (Licencia.getCategorias() == null) {
+            Licencia.setCategorias(new ArrayList<>());
+        }
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                Licencia.getCategorias().add(rs.getString("Nombre"));
+            }
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al cargar categorías para licencia ID: " + Licencia.getId());
+        throw new RuntimeException("Error al cargar categorías de la licencia", e);
+    }
+}
 
 }

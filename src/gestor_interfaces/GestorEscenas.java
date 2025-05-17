@@ -48,6 +48,7 @@ import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoc
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesPracticosTrabajador;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesTeoricosTrabajador;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasInfracciones;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasLicencias;
 import logica.infraccion.modelos.Infraccion;
 
 
@@ -575,6 +576,36 @@ public class GestorEscenas  {
             Parent Ruta = Cargador.load();
             ControladorVerMasInfracciones controlador = Cargador.getController();
             controlador.SetDatos(Infraccion, Licencia); 
+
+            Scene Escena = new Scene(Ruta);
+            Stage Ventana = new Stage();
+            Ventana.initOwner(Padre);
+            Ventana.initStyle(StageStyle.UTILITY);
+
+
+            Ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            Ventana.setTitle("");
+            Ventana.setScene(Escena);
+            Ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+     public static void CargarVerMasLicencias(Window Padre, Conductor Conductor , Licencia Licencia) throws Exception {
+        try {
+            String Direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-licencias.fxml";
+            URL Url = GestorEscenas.class.getResource(Direccion);
+            FXMLLoader Cargador = new FXMLLoader(Url);
+            Parent Ruta = Cargador.load();
+            ControladorVerMasLicencias controlador = Cargador.getController();
+            controlador.SetDatos(Conductor, Licencia); 
 
             Scene Escena = new Scene(Ruta);
             Stage Ventana = new Stage();

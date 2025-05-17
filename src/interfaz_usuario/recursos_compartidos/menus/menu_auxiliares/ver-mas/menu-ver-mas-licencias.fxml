@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasLicencias;">
    <children>
       <ImageView fitHeight="78.0" fitWidth="103.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../imagenes/ico-cuenta-usuario.png" />
          </image>
       </ImageView>
-      <TextField disable="true" editable="false" layoutX="233.0" layoutY="45.0" prefHeight="25.0" prefWidth="183.0" style="-fx-background-color: transparent;" text="Juan Martínez Ocasio Martínez" />
+      <TextField fx:id="TextFieldNombre" disable="true" editable="false" layoutX="233.0" layoutY="45.0" prefHeight="25.0" prefWidth="183.0" style="-fx-background-color: transparent;" text="Juan Martínez Ocasio Martínez" />
       <Label layoutX="172.0" layoutY="45.0" prefHeight="25.0" prefWidth="71.0" text="Nombre:">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -27,7 +27,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="35.0" layoutY="95.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent;" text="04112767283" />
+      <TextField fx:id="TextFieldCI" disable="true" editable="false" layoutX="35.0" layoutY="95.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent;" text="04112767283" />
       <JFXButton cancelButton="true" layoutX="27.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
       <JFXButton cancelButton="true" layoutX="418.0" layoutY="337.0" opacity="0.4" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: red;" text="       Eliminar" textFill="WHITE" />
       <Label layoutX="172.0" layoutY="82.0" prefHeight="19.0" prefWidth="78.0" text="Licencia Id:">
@@ -35,13 +35,13 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="248.0" layoutY="79.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="234f12" />
+      <TextField fx:id="TextFieldId" disable="true" editable="false" layoutX="248.0" layoutY="79.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="234f12" />
       <Label layoutX="374.0" layoutY="181.0" prefHeight="25.0" prefWidth="119.0" text="Estado de licencia">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="400.0" layoutY="203.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="Vigente" />
+      <TextField fx:id="TextFieldEstado" disable="true" editable="false" layoutX="400.0" layoutY="203.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="Vigente" />
       <Label layoutX="26.0" layoutY="268.0" prefHeight="25.0" prefWidth="59.0" text="Emisión">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -52,7 +52,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="121.0" layoutY="136.0" prefHeight="26.0" prefWidth="17.0" style="-fx-background-color: whit´;" text="A">
+      <Label fx:id="LabelTipo" layoutX="121.0" layoutY="136.0" prefHeight="26.0" prefWidth="17.0" style="-fx-background-color: whit´;" text="A">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -67,19 +67,19 @@
             <Image url="@../../../imagenes/ico-atras.png" />
          </image>
       </ImageView>
-      <TextField disable="true" editable="false" layoutX="17.0" layoutY="295.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: transparent;" text="12-12-2020" />
+      <TextField fx:id="TextFieldEmision" disable="true" editable="false" layoutX="17.0" layoutY="295.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: transparent;" text="12-12-2020" />
       <Label layoutX="107.0" layoutY="268.0" prefHeight="25.0" prefWidth="87.0" text="Vencimiento">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="109.0" layoutY="294.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: transparent;" text="12-12-2030" />
+      <TextField fx:id="TextFieldVencimiento" disable="true" editable="false" layoutX="109.0" layoutY="294.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: transparent;" text="12-12-2030" />
       <Label layoutX="248.0" layoutY="181.0" prefHeight="25.0" prefWidth="78.0" text="Categorías">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Pane layoutX="228.0" layoutY="215.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
+      <Pane fx:id="CategoriaCarro" layoutX="228.0" layoutY="215.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
          <children>
             <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="9.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -88,7 +88,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="228.0" layoutY="273.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
+      <Pane fx:id="CategoriaOmnibus" layoutX="228.0" layoutY="273.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
          <children>
             <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -99,16 +99,16 @@
       </Pane>
       <Pane layoutX="304.0" layoutY="273.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: green;">
          <children>
-            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="CategoriaCamion" fitHeight="26.0" fitWidth="27.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagenes/ico-camion-blanco.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="304.0" layoutY="215.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
+      <Pane fx:id="CategoriaMoto" layoutX="304.0" layoutY="215.0" opacity="0.5" prefHeight="42.0" prefWidth="43.0" style="-fx-background-color: red;">
          <children>
-            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="9.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="CategoriaMoto" fitHeight="26.0" fitWidth="27.0" layoutX="9.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagenes/ico-moto-blanco.png" />
                </image>
@@ -120,25 +120,25 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="137.0" layoutY="181.0" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: transparent;" text="24" />
+      <TextField fx:id="TextFieldPuntos" disable="true" editable="false" layoutX="137.0" layoutY="181.0" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: transparent;" text="24" />
       <Label layoutX="17.0" layoutY="228.0" prefHeight="25.0" prefWidth="162.0" text="Cantidad de infracciones:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="168.0" layoutY="228.0" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: transparent;" text="2" />
+      <TextField fx:id="TextFieldCantidadInfracciones" disable="true" editable="false" layoutX="168.0" layoutY="228.0" prefHeight="25.0" prefWidth="32.0" style="-fx-background-color: transparent;" text="2" />
       <Label layoutX="394.0" layoutY="245.0" prefHeight="25.0" prefWidth="71.0" text="Renovada">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField disable="true" editable="false" layoutX="413.0" layoutY="267.0" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: transparent;" text="Si" />
+      <TextField fx:id="TextFieldRenovada" disable="true" editable="false" layoutX="413.0" layoutY="267.0" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: transparent;" text="Si" />
       <Label layoutX="172.0" layoutY="120.0" prefHeight="25.0" prefWidth="87.0" text="Restricciones:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextArea disable="true" editable="false" layoutX="258.0" layoutY="113.0" prefHeight="59.0" prefWidth="229.0" style="-fx-background-color: transparent;" text="gajas_Conduccion diurna" />
+      <TextArea fx:id="TextFieldRestricciones" disable="true" editable="false" layoutX="258.0" layoutY="113.0" prefHeight="59.0" prefWidth="229.0" style="-fx-background-color: transparent;" text="gajas_Conduccion diurna" />
       <JFXButton cancelButton="true" layoutX="313.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="    Editar" />
       <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="324.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
