@@ -44,8 +44,8 @@ public class GestorEstadisticas {
         
         return Estadistica;
     }
-    
-        public static ArrayList<Estadistica> ObtenerEstadisticasMenuAdministrador() throws Exception {
+
+    public static ArrayList<Estadistica> ObtenerEstadisticasMenuAdministrador() throws Exception {
         ArrayList<Estadistica> estadisticas = new ArrayList<>();
 
         try (Connection conn = ConectorBaseDato.Conectar()) {
@@ -71,6 +71,34 @@ public class GestorEstadisticas {
         return estadisticas;
     }
 
+    public static ArrayList<Estadistica> ObtenerEstadisticasMenuAdministradorAutoescuela() throws Exception
+    {
+         ArrayList<Estadistica> estadisticas = new ArrayList<>();
+
+        try (Connection conn = ConectorBaseDato.Conectar()) {
+            
+            // 1. Total examenes
+            estadisticas.add(ObtenerCantidadExamenes(conn));
+            // 2. Total trabajadores
+            estadisticas.add(ObtenerCantidadTrabajadores(conn));
+            // 3. Exámenes reprobados
+            estadisticas.add(ObtenerCantidadExamenesReprobadosConduccion(conn));
+            // 4. Examenes Teoricos
+            estadisticas.add(ObtenerCantidadExamenesTeoricos(conn));
+            // 5. Examenes Practicos
+            estadisticas.add(ObtenerCantidadExamenesPracticos(conn));
+            // 6. %Aprobados,Reprobados,Teorico,Practico,IndiceAprobado
+            estadisticas.addAll(UtilMenuAdministradorAutoescuela(estadisticas.get(0).getValor(),
+                                                                estadisticas.get(3).getValor(),
+                                                                estadisticas.get(4).getValor(),
+                                                                estadisticas.get(2).getValor()));
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener estadísticas: " + e.getMessage());
+        }
+
+        return estadisticas;
+    }
 
     public static Estadistica ObtenerCantidadConductores(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadConductores()";
@@ -85,7 +113,63 @@ public class GestorEstadisticas {
         }
      return null;
     }
+    
+    public static Estadistica ObtenerCantidadTrabajadores(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM ObtenerCantidadTrabajadores()";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
+            if (rs.next()) {
+                return new Estadistica(
+                        "Cantidad Trabajadores",
+                        rs.getLong("total_trabajadores")
+                );
+            }
+        }
+     return null;
+    }
+
+    public static Estadistica ObtenerCantidadExamenesTeoricos(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM ObtenerCantidadExamenesTeoricos()";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                return new Estadistica(
+                        "Cantidad Examenes Teoricos",
+                        rs.getLong("total_examenes_teoricos")
+                );
+            }
+        }
+     return null;
+    }
+    
+    public static Estadistica ObtenerCantidadExamenesPracticos(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM ObtenerCantidadExamenesPracticos()";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                return new Estadistica(
+                        "Cantidad Examenes Practicos",
+                        rs.getLong("total_examenes_practicos")
+                );
+            }
+        }
+     return null;
+    }
+    
+    public static Estadistica ObtenerCantidadExamenes(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM ObtenerCantidadExamenes()";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                return new Estadistica(
+                        "Cantidad Examenes",
+                        rs.getLong("total_examenes")
+                );
+            }
+        }
+     return null;
+    }
+    
     public static Estadistica ObtenerCantidadEntidades(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadEntidades()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
@@ -109,6 +193,20 @@ public class GestorEstadisticas {
                 return new Estadistica(
                         "Examenes reprobados",
                         rs.getLong("CantidadExamenesReprobados")
+                );
+            }
+        }
+        return null;
+    }
+    
+    public static Estadistica ObtenerCantidadExamenesReprobadosConduccion(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM ObtenerCantidadExamenesReprobadosConduccion()";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                return new Estadistica(
+                        "Examenes reprobados",
+                        rs.getLong("cantidadexamenesreprobados")
                 );
             }
         }
@@ -145,5 +243,28 @@ public class GestorEstadisticas {
             }
         }
         return lista;
+    }
+    
+    private static ArrayList<Estadistica> UtilMenuAdministradorAutoescuela(double TotalExamenes , double ExamenesTeoricos, double ExamenesPracticos, double CantReprobados)
+    {
+        ArrayList<Estadistica> Estadisticas = new ArrayList<>();
+        
+        Estadistica PorcientoTeorico = new Estadistica("PorcientoTeorico", Math.round(ExamenesTeoricos/TotalExamenes*100));
+        
+        Estadistica PorcientoPractico = new Estadistica("PorcientoPractico", Math.round(ExamenesPracticos/TotalExamenes*100));
+        
+        Estadistica PorcientoReprobado = new Estadistica("PorcientoReprobado", Math.round(CantReprobados/TotalExamenes*100));
+        
+        Estadistica PorcientoAprobado = new Estadistica("PorcientoAprobado", Math.round((TotalExamenes-CantReprobados)/TotalExamenes*100));
+        
+        Estadistica IndiceAprobados = new Estadistica("IndiceAprobados",  PorcientoAprobado.getValor()-PorcientoReprobado.getValor());
+        
+        Estadisticas.add(PorcientoTeorico);
+        Estadisticas.add(PorcientoPractico);
+        Estadisticas.add(PorcientoReprobado);
+        Estadisticas.add(PorcientoAprobado);
+        Estadisticas.add(IndiceAprobados);
+        
+        return Estadisticas;
     }
 }

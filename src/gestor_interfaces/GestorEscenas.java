@@ -84,7 +84,7 @@ public class GestorEscenas  {
                     break;
 
                 case "Administrador autoescuela":
-                    
+                    Estadisticas = GestorEstadisticas.ObtenerEstadisticasMenuAdministradorAutoescuela();
                     break;
 
                 case "Administrador médico":

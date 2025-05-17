@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTooltip;
 import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
@@ -283,11 +284,15 @@ public class ControladorAdministradorAutoescuela extends Controlador{
         LabelUsuarioNombre.setTooltip(MouseNombre);
         LabelUsuarioNombre.setMaxWidth(100);
         LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
+        CargarEstadisticas(MenuEstadisticas);
         
     }
 
     @Override
     protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
-        
+        for(Estadistica e : MenuEstadisticas.getEstadisticas())
+        {
+            System.out.println(e);
+        }
     }
 }
