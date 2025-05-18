@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author Angel Hernandez
  */
 public class MenuEstadisticas {
+    
     private ArrayList<Estadistica> Estadisticas;
     private EstadisticaUsuario EstadisticaUsuario;
 
@@ -18,15 +19,15 @@ public class MenuEstadisticas {
         return Estadisticas;
     }
 
-    public void setEstadisticas(ArrayList<Estadistica> Estadisticas) {
+    public void SetEstadisticas(ArrayList<Estadistica> Estadisticas) {
         this.Estadisticas = Estadisticas;
     }
 
-    public EstadisticaUsuario getEstadisticaUsuario() {
+    public EstadisticaUsuario GetEstadisticaUsuario() {
         return EstadisticaUsuario;
     }
 
-    public void setEstadisticaUsuario(EstadisticaUsuario EstadisticaUsuario) {
+    public void SetEstadisticaUsuario(EstadisticaUsuario EstadisticaUsuario) {
         this.EstadisticaUsuario = EstadisticaUsuario;
     }
     

@@ -33,8 +33,8 @@ public class GestorEstadisticas {
             if(rs.next())
             {
             Estadistica = new EstadisticaUsuario();
-            Estadistica.setCantidadIniciosSesion(rs.getLong("inicios_sesion"));
-            Estadistica.setUltimoInicioSesion(rs.getTimestamp("ultimo_inicio"));
+            Estadistica.SetCantidadIniciosSesion(rs.getLong("inicios_sesion"));
+            Estadistica.SetUltimoInicioSesion(rs.getTimestamp("ultimo_inicio"));
             }
 
 
@@ -88,10 +88,10 @@ public class GestorEstadisticas {
             // 5. Examenes Practicos
             estadisticas.add(ObtenerCantidadExamenesPracticos(conn));
             // 6. %Aprobados,Reprobados,Teorico,Practico,IndiceAprobado
-            estadisticas.addAll(UtilMenuAdministradorAutoescuela(estadisticas.get(0).getValor(),
-                                                                estadisticas.get(3).getValor(),
-                                                                estadisticas.get(4).getValor(),
-                                                                estadisticas.get(2).getValor()));
+            estadisticas.addAll(UtilMenuAdministradorAutoescuela(estadisticas.get(0).GetValor(),
+                                                                estadisticas.get(3).GetValor(),
+                                                                estadisticas.get(4).GetValor(),
+                                                                estadisticas.get(2).GetValor()));
             //7. Porciento Mes Anterior
             estadisticas.add(ObtenerPorcientoMesAnterior(conn));
             
@@ -272,7 +272,7 @@ public class GestorEstadisticas {
         
         Estadistica PorcientoAprobado = new Estadistica("PorcientoAprobado", Math.round((TotalExamenes-CantReprobados)/TotalExamenes*100));
         
-        Estadistica IndiceAprobados = new Estadistica("IndiceAprobados",  PorcientoAprobado.getValor()-PorcientoReprobado.getValor());
+        Estadistica IndiceAprobados = new Estadistica("IndiceAprobados",  PorcientoAprobado.GetValor()-PorcientoReprobado.GetValor());
         
         Estadisticas.add(PorcientoTeorico);
         Estadisticas.add(PorcientoPractico);

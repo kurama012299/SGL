@@ -33,44 +33,44 @@ public class Licencia {
         this.Estado = Estado;
     }
     
-    public Long getId() {
+    public Long GetId() {
         return Id;
     }
      
 
-    public Date getFechaEmision() {
+    public Date GetFechaEmision() {
         return FechaEmision;
     }
 
-    public Date getFechaVencimiento() {
+    public Date GetFechaVencimiento() {
         return FechaVencimiento;
     }
 
-    public boolean isRenovada() {
+    public boolean EstaRenovada() {
         return Renovada;
     }
 
-    public int getCantPuntos() {
+    public int GetCantPuntos() {
         return CantPuntos;
     }
 
-    public String getTipo() {
+    public String GetTipo() {
         return Tipo;
     }
 
-    public String getEstado() {
+    public String GetEstado() {
         return Estado;
     }
 
-    public ArrayList<String> getRestricciones() {
+    public ArrayList<String> GetRestricciones() {
         return Restricciones;
     }
 
-    public ArrayList<String> getCategorias() {
+    public ArrayList<String> GetCategorias() {
         return Categorias;
     }
 
-    public void agregarRestriccion(String Restriccion) {
+    public void AgregarRestriccion(String Restriccion) {
         Restricciones.add(Restriccion);
     }
 
@@ -92,47 +92,47 @@ public class Licencia {
     }
 
     
-    public void setId(Long Id) {
+    public void SetId(Long Id) {
         this.Id = Id;
     }
 
     
-    public void setFechaEmision(Date FechaEmision) {
+    public void SetFechaEmision(Date FechaEmision) {
         this.FechaEmision = FechaEmision;
     }
 
     
-    public void setFechaVencimiento(Date FechaVencimiento) {
+    public void SetFechaVencimiento(Date FechaVencimiento) {
         this.FechaVencimiento = FechaVencimiento;
     }
 
     
-    public void setRenovada(boolean Renovada) {
+    public void SetRenovada(boolean Renovada) {
         this.Renovada = Renovada;
     }
 
  
-    public void setCantPuntos(int CantPuntos) {
+    public void SetCantPuntos(int CantPuntos) {
         this.CantPuntos = CantPuntos;
     }
 
     
-    public void setTipo(String Tipo) {
+    public void SetTipo(String Tipo) {
         this.Tipo = Tipo;
     }
 
     
-    public void setEstado(String Estado) {
+    public void SetEstado(String Estado) {
         this.Estado = Estado;
     }
 
     
-    public void setRestricciones(ArrayList<String> Restricciones) {
+    public void SetRestricciones(ArrayList<String> Restricciones) {
         this.Restricciones = Restricciones;
     }
 
     
-    public void setCategorias(ArrayList<String> Categorias) {
+    public void SetCategorias(ArrayList<String> Categorias) {
         this.Categorias = Categorias;
     }
 }

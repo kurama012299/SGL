@@ -828,44 +828,44 @@ public class ControladorAdministradorSistema extends Controlador{
     protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas)
     {
         
-        LabelUltimoInicioSesion.setText("Último inicio sesion hace " + MenuEstadisticas.getEstadisticaUsuario().getUltimoInicioSesion());
-        LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.getEstadisticaUsuario().getCantidadIniciosSesion()));
+        LabelUltimoInicioSesion.setText("Último inicio sesion hace " + MenuEstadisticas.GetEstadisticaUsuario().GetUltimoInicioSesion());
+        LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.GetEstadisticaUsuario().GetCantidadIniciosSesion()));
         for(Estadistica e : MenuEstadisticas.getEstadisticas())
         {
-            switch(e.getCategoria())
+            switch(e.GetCategoria())
             {
                 case "Cantidad Conductores":
-                    LabelTotalConductores.setText(String.valueOf(Math.round(e.getValor())));
+                    LabelTotalConductores.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Cantidad Entidades":
-                    LabelTotalEntidades.setText(String.valueOf(Math.round(e.getValor())));
+                    LabelTotalEntidades.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Examenes reprobados":
-                    LabelExamenesReprobados.setText(String.valueOf(Math.round(e.getValor())));
+                    LabelExamenesReprobados.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Leve":
-                    LabelInfraccionLeve.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelInfraccionLeve.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "Grave":
-                    LabelInfraccionGrave.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelInfraccionGrave.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "Muy grave":
-                    LabelInfraccionMGrave.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelInfraccionMGrave.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "A":
-                    LabelLicenciaA.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelLicenciaA.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "B":
-                    LabelLicenciaB.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelLicenciaB.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "C":
-                    LabelLicenciaC.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelLicenciaC.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "D":
-                    LabelLicenciaD.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelLicenciaD.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "E":
-                    LabelLicenciaE.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelLicenciaE.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
             }
         }

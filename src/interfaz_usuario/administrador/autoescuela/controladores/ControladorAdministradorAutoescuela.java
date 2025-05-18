@@ -316,53 +316,53 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     @Override
     protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
         
-         LabelUltimoInicioSesion.setText("Último inicio sesion hace " + MenuEstadisticas.getEstadisticaUsuario().getUltimoInicioSesion());
-         LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.getEstadisticaUsuario().getCantidadIniciosSesion()));
+         LabelUltimoInicioSesion.setText("Último inicio sesion hace " + MenuEstadisticas.GetEstadisticaUsuario().GetUltimoInicioSesion());
+         LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.GetEstadisticaUsuario().GetCantidadIniciosSesion()));
         for(Estadistica e : MenuEstadisticas.getEstadisticas())
         {
             System.out.println(e);
-            switch(e.getCategoria())
+            switch(e.GetCategoria())
             {
                 
                 case "Cantidad Examenes":
-                    LabelTotalExamenes.setText(String.valueOf(Math.round(e.getValor())));
+                    LabelTotalExamenes.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Cantidad Trabajadores":
-                    LabelTotalTrabajadores.setText(String.valueOf(Math.round(e.getValor())));
+                    LabelTotalTrabajadores.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Mes Anterior":
-                    if(e.getValor()>0)
-                        LabelPorcientoAnteriorMes.setText("+"+String.valueOf(Math.round(e.getValor())+"%  respecto anterior mes"));
+                    if(e.GetValor()>0)
+                        LabelPorcientoAnteriorMes.setText("+"+String.valueOf(Math.round(e.GetValor())+"%  respecto anterior mes"));
                     else
                     {
-                        LabelPorcientoAnteriorMes.setText("-"+String.valueOf(Math.round(e.getValor())+"%  respecto anterior mes"));
+                        LabelPorcientoAnteriorMes.setText("-"+String.valueOf(Math.round(e.GetValor())+"%  respecto anterior mes"));
                         LabelPorcientoAnteriorMes.textFillProperty().setValue(Color.RED);
                     }
                     break;
                 case "Cantidad Examenes Teoricos":
-                    LabelExamenesTeoricos.setText(String.valueOf(Math.round(e.getValor())));
+                    LabelExamenesTeoricos.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Cantidad Examenes Practicos":
-                    LabelExamenesPracticos.setText(String.valueOf(Math.round(e.getValor())));
+                    LabelExamenesPracticos.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "PorcientoTeorico":
-                    LabelProgresoTeorico.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelProgresoTeorico.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "PorcientoPractico":
-                    LabelProgresoPractico.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelProgresoPractico.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "PorcientoReprobado":
-                    LabelProgresoReprobado.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelProgresoReprobado.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "PorcientoAprobado":
-                    LabelProgresoAprobado.setText(String.valueOf(Math.round(e.getValor()))+"%");
+                    LabelProgresoAprobado.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "IndiceAprobados":
-                    if(e.getValor()>0)
-                        LabelIndiceAprobados.setText("+"+String.valueOf(Math.round(e.getValor()))+"% índice aprobados");
+                    if(e.GetValor()>0)
+                        LabelIndiceAprobados.setText("+"+String.valueOf(Math.round(e.GetValor()))+"% índice aprobados");
                     else
                     {
-                        LabelIndiceAprobados.setText("-"+String.valueOf(Math.round(e.getValor()))+"% índice aprobados");
+                        LabelIndiceAprobados.setText("-"+String.valueOf(Math.round(e.GetValor()))+"% índice aprobados");
                         LabelIndiceAprobados.textFillProperty().setValue(Color.RED);
                     }
                     break;

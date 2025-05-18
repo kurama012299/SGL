@@ -4,8 +4,7 @@
  */
 package gestor_interfaces.modelos;
 
-import java.time.Duration;
-import java.time.Instant;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -16,59 +15,59 @@ import java.util.Date;
  * @author Angel Hernandez
  */
 public class EstadisticaUsuario {
+    
     private String UltimoInicioSesion;
     private long CantidadIniciosSesion;
 
-    public String getUltimoInicioSesion() {
+    public String GetUltimoInicioSesion() {
         return UltimoInicioSesion;
     }
 
-    public void setUltimoInicioSesion(Date UltimoInicioSesion) {
-        System.out.println(UltimoInicioSesion.toString());
+    public void SetUltimoInicioSesion(Date UltimoInicioSesion) {
+
         if (UltimoInicioSesion == null) {
             this.UltimoInicioSesion = "ahora";
             return;
         }
 
         // Convertir java.sql.Date a LocalDateTime
-        LocalDateTime ultimoInicio;
+        LocalDateTime UltimoInicio;
         if (UltimoInicioSesion instanceof java.sql.Date) {
-            // Para java.sql.Date
-            ultimoInicio = ((java.sql.Date) UltimoInicioSesion).toLocalDate()
+            UltimoInicio = ((java.sql.Date) UltimoInicioSesion).toLocalDate()
                     .atStartOfDay();
         } else {
             // Para java.util.Date normal
-            ultimoInicio = UltimoInicioSesion.toInstant()
+            UltimoInicio = UltimoInicioSesion.toInstant()
                     .atZone(ZoneId.systemDefault())
                     .toLocalDateTime();
         }
 
-        LocalDateTime ahora = LocalDateTime.now();
-        long minutos = ChronoUnit.MINUTES.between(ultimoInicio, ahora);
-        long horas = ChronoUnit.HOURS.between(ultimoInicio, ahora);
-        long dias = ChronoUnit.DAYS.between(ultimoInicio, ahora);
+        LocalDateTime Ahora = LocalDateTime.now();
+        long Minutos = ChronoUnit.MINUTES.between(UltimoInicio, Ahora);
+        long Horas = ChronoUnit.HOURS.between(UltimoInicio, Ahora);
+        long Dias = ChronoUnit.DAYS.between(UltimoInicio, Ahora);
 
-        if (minutos < 1) {
+        if (Minutos < 1) {
             this.UltimoInicioSesion = " menos de 1 minuto";
-        } else if (minutos < 60) {
+        } else if (Minutos < 60) {
             this.UltimoInicioSesion = String.format(" %d minuto%s",
-                    minutos, (minutos != 1 ? "s" : ""));
-        } else if (horas < 24) {
+                    Minutos, (Minutos != 1 ? "s" : ""));
+        } else if (Horas < 24) {
             this.UltimoInicioSesion = String.format(" %d hora%s",
-                    horas, (horas != 1 ? "s" : ""));
-        } else if (dias < 30) {
+                    Horas, (Horas != 1 ? "s" : ""));
+        } else if (Dias < 30) {
             this.UltimoInicioSesion = String.format(" %d día%s",
-                    dias, (dias != 1 ? "s" : ""));
+                    Dias, (Dias != 1 ? "s" : ""));
         } else {
             this.UltimoInicioSesion = " mucho tiempo";
         }
     }
     
-    public long getCantidadIniciosSesion() {
+    public long GetCantidadIniciosSesion() {
         return CantidadIniciosSesion;
     }
 
-    public void setCantidadIniciosSesion(long CantidadIniciosSesion) {
+    public void SetCantidadIniciosSesion(long CantidadIniciosSesion) {
         this.CantidadIniciosSesion = CantidadIniciosSesion;
     }
     

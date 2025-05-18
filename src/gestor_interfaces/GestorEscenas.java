@@ -73,7 +73,7 @@ public class GestorEscenas  {
      
             Controlador controlador = Cargador.getController();
             MenuEstadisticas MenuEstadisticas = new MenuEstadisticas();
-            MenuEstadisticas.setEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.Usuario.getId()));
+            MenuEstadisticas.SetEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.Usuario.getId()));
             
             ArrayList<Estadistica> Estadisticas = new ArrayList<>();
             
@@ -103,7 +103,7 @@ public class GestorEscenas  {
                     
                     break;
             }
-            MenuEstadisticas.setEstadisticas(Estadisticas);
+            MenuEstadisticas.SetEstadisticas(Estadisticas);
             controlador.Iniciar(MenuEstadisticas);
 
             Stage Ventana = new Stage(); 

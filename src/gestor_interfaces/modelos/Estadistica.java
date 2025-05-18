@@ -9,25 +9,31 @@ package gestor_interfaces.modelos;
  * @author Angel Hernandez
  */
 public class Estadistica {
+    
     private String Categoria;
     private double Valor;
 
-    public String getCategoria() {
+    
+    public String GetCategoria() {
         return Categoria;
     }
 
-    public void setCategoria(String Categoria) {
+    
+    public void SetCategoria(String Categoria) {
         this.Categoria = Categoria;
     }
 
-    public double getValor() {
+    
+    public double GetValor() {
         return Valor;
     }
 
-    public void setValor(double Valor) {
+    
+    public void SetValor(double Valor) {
         this.Valor = Valor;
     }
 
+    
     public Estadistica(String Categoria, double Valor) {
         this.Categoria = Categoria;
         this.Valor = Valor;
@@ -39,5 +45,4 @@ public class Estadistica {
     {
         return Categoria+": "+Valor;
     }
-    
 }

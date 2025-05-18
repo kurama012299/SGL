@@ -6,18 +6,13 @@ package gestor_tablas;
 
 
 import gestor_interfaces.GestorEscenas;
-import gestor_interfaces.GestorFXML;
-import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasConductor;
 import java.util.Date;
 import java.util.Set;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -39,7 +34,7 @@ import logica.licencia.implementaciones.ServicioLicencia;
 import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
-import logica.persona.modelos.Persona;
+
 
 /**
  *
@@ -100,15 +95,13 @@ public class GestorTablas {
                             }
                         }
                     }
-                }
-
-                else if(Objeto instanceof Infraccion){
+                } else if (Objeto instanceof Infraccion) {
                     Infraccion Infraccion = (Infraccion) Objeto;
                     Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Infraccion.getIdLicencia());
                     GestorEscenas.CargarVerMasInfraccion(Ventana, Infraccion, Licencia);
-                }else if(Objeto instanceof Licencia){
+                } else if (Objeto instanceof Licencia) {
                     Licencia Licencia = (Licencia) Objeto;
-                    Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
+                    Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.GetId());
                     GestorEscenas.CargarVerMasLicencias(Ventana, Conductor, Licencia);
                 }
 
@@ -150,10 +143,10 @@ public class GestorTablas {
 
                 break;
             default:
-                //capturar error
+            //capturar error
             }
-        }
-    
+    }
+
     
     private static <T> void LlenarColumnaFotos(TableView<T> Tabla, int CantidadFilas) {
         Image Icono = new Image(
@@ -184,6 +177,7 @@ public class GestorTablas {
         });
     }
     
+    
     public static void ConfigurarColumnasExamenes(
             TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
             TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
@@ -213,7 +207,7 @@ public class GestorTablas {
 
         ColumnaResultadoExamen.setCellValueFactory(cellData -> {
             ExamenConduccion Examen = cellData.getValue();
-            String result;
+
             if (Examen.isAprobado()) {
                 return new SimpleStringProperty("Aprobado");
             }
@@ -224,6 +218,7 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
     }
 
+    
     public static void ConfigurarColumnasConductores(
             TableColumn<Conductor, String> ColumnaFoto,
             TableColumn<Conductor, String> ColumnaNombre,
@@ -249,12 +244,14 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaCorreo, "Correo");
     }
 
+    
     private static <T, S> void ConfigurarColumnaStandard(TableColumn<T, S> columna, String propiedad) {
         if (columna != null) {
             columna.setCellValueFactory(new PropertyValueFactory<>(propiedad));
         }
     }
 
+    
     public static void CargarTablaConductores(TableView<Conductor> TablaConductor) {
         try {
             ObservableList<Conductor> Conductores = ServicioConductor.ObtenerConductores();
@@ -266,6 +263,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void CargarTablaExamenes(TableView<ExamenConduccion> TablaExamenes) {
         try {
             ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
@@ -286,6 +284,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void CargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> TablaExamenes) {
         try {
             ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
@@ -297,6 +296,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void CargarTablaExamenesTeoricosAdminAutoescuela(TableView<ExamenConduccion> TablaExamenes) {
         try {
             ObservableList<ExamenConduccion> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
@@ -308,6 +308,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void ConfigurarColumnasExamenesAdminAutoescuela(
             TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
             TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
@@ -347,6 +348,7 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
     }
 
+    
     public static void CargarTablaExamenesMedicosAdminMedico(TableView<ExamenMedico> TablaExamenesMedicos) {
         try {
             ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
@@ -358,6 +360,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void ConfigurarColumnasExamenesMedicosAdminMedico(
             TableColumn<ExamenMedico, String> ColumnaFotoExamen,
             TableColumn<ExamenMedico, String> ColumnaExaminadoExamen,
@@ -400,6 +403,7 @@ public class GestorTablas {
 
     }
 
+    
     public static void CargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> TablaExamenesMedicos, Long Id) {
         try {
             ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedicoPorIdRol(Id);
@@ -411,6 +415,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void ConfigurarColumnasExamenesMedicosMedicoUnico(
             TableColumn<ExamenMedico, String> ColumnaFotoExamen,
             TableColumn<ExamenMedico, String> ColumnaExaminadoExamen,
@@ -447,6 +452,7 @@ public class GestorTablas {
 
     }
 
+    
     public static void CargarTablaExamenesTeoricosTraAutoescuela(TableView<ExamenConduccion> TablaExamenes, Long Id) {
         try {
             ObservableList<ExamenConduccion> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricosPorIDRol(Id);
@@ -458,6 +464,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void CargarTablaExamenesPracticosTraAutoescuela(TableView<ExamenConduccion> TablaExamenes, Long Id) {
         try {
             ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticosPorIDRol(Id);
@@ -469,6 +476,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void ConfigurarColumnasExamenesTraAutoescuela(
             TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
             TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
@@ -501,6 +509,7 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
     }
 
+    
     public static void ConfigurarColumnasEntidades(
             TableColumn<EntidadRelacionada, String> ColumnaDirectorEntidad,
             TableColumn<EntidadRelacionada, String> ColumnaNombreEntidad,
@@ -517,6 +526,7 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaCorreoEntidad, "Correo");
     }
 
+    
     public static void CargarTablaEntidades(TableView<EntidadRelacionada> TablaEntidad) {
         try {
             ObservableList<EntidadRelacionada> Entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
@@ -528,6 +538,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void ConfigurarColumnasAutoescuelas(
             TableColumn<EntidadRelacionada, String> ColumnaDirectorAE,
             TableColumn<EntidadRelacionada, String> ColumnaNombreAE,
@@ -544,6 +555,7 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaCorreoAE, "Correo");
     }
 
+    
     public static void CargarTablaAutoescuelas(TableView<EntidadRelacionada> TablaAE) {
         try {
             ObservableList<EntidadRelacionada> Autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
@@ -555,6 +567,7 @@ public class GestorTablas {
         }
     }
 
+    
     public static void ConfigurarColumnasClinicas(
             TableColumn<EntidadRelacionada, String> ColumnaDirectorClinica,
             TableColumn<EntidadRelacionada, String> ColumnaNombreClinica,
@@ -571,6 +584,7 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaCorreoClinica, "Correo");
     }
 
+    
     public static void CargarTablaClinicas(TableView<EntidadRelacionada> TablaClinica) {
         try {
             ObservableList<EntidadRelacionada> Clinicas = ServicioEntidad.ObtenerClinicas();
@@ -582,61 +596,58 @@ public class GestorTablas {
         }
     }
       
-      public static void ConfigurarColumnasInfracciones(
-             
-    TableColumn<Infraccion, String> ColumnaFotoInfraccion,
-    TableColumn<Infraccion, String> ColumnaNombreInfraccion,
-    TableColumn<Infraccion, String> ColumnaTipoInfraccion,
-    TableColumn<Infraccion, Date> ColumnaFechaInfraccion,
-    TableColumn<Infraccion, String> ColumnaLugarInfraccion,
-    TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion,
-    TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion,
-    TableColumn<Infraccion, String> ColumnaDetallesInfraccion)
-             {
-                 
-             ColumnaTipoInfraccion.setCellValueFactory(cellData -> {
+    
+    public static void ConfigurarColumnasInfracciones(
+            TableColumn<Infraccion, String> ColumnaFotoInfraccion,
+            TableColumn<Infraccion, String> ColumnaNombreInfraccion,
+            TableColumn<Infraccion, String> ColumnaTipoInfraccion,
+            TableColumn<Infraccion, Date> ColumnaFechaInfraccion,
+            TableColumn<Infraccion, String> ColumnaLugarInfraccion,
+            TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion,
+            TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion,
+            TableColumn<Infraccion, String> ColumnaDetallesInfraccion) {
+
+        ColumnaTipoInfraccion.setCellValueFactory(cellData -> {
             Infraccion Infraccion = cellData.getValue();
             return new SimpleStringProperty(Infraccion.getGravedad()
-                    );
+            );
         });
-             
-             ColumnaNombreInfraccion.setCellValueFactory(cellData -> {
+
+        ColumnaNombreInfraccion.setCellValueFactory(cellData -> {
             Infraccion Infraccion = cellData.getValue();
             Conductor Conductor = null;
-                 try {
-                     Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia());
-                 } catch (Exception ex) {
-                     
-                 }
+            try {
+                Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia());
+            } catch (Exception ex) {
+
+            }
 
             return new SimpleStringProperty(
-                    String.format("%s %s", Conductor.getNombre(),Conductor.getApellidos())
+                    String.format("%s %s", Conductor.getNombre(), Conductor.getApellidos())
             );
         });
 
         // Configuración estándar para otras columnas
- 
-              ColumnaFotoInfraccion.setCellValueFactory(cellData -> {
-                 try {
-                     Infraccion Infraccion = cellData.getValue();
-                     
-                     return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia()).getFoto()
-                     );
-                 } catch (Exception ex) {
-                     return null;
-                 }
+        ColumnaFotoInfraccion.setCellValueFactory(cellData -> {
+            try {
+                Infraccion Infraccion = cellData.getValue();
+
+                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia()).getFoto()
+                );
+            } catch (Exception ex) {
+                return null;
+            }
         });
-              
-              
-              
-                 // Configuración estándar para otras columnas
-                 ConfigurarColumnaStandard(ColumnaLicenciaInfraccion, "IdLicencia");
+
+        // Configuración estándar para otras columnas
+        ConfigurarColumnaStandard(ColumnaLicenciaInfraccion, "IdLicencia");
         ConfigurarColumnaStandard(ColumnaFechaInfraccion, "Fecha");
         ConfigurarColumnaStandard(ColumnaLugarInfraccion, "Lugar");
         ConfigurarColumnaStandard(ColumnaPtosDeducidosInfraccion, "PuntosDeducidos");
 
     }
 
+    
     public static void CargarTablaInfracciones(TableView<Infraccion> TablaInfraccion) {
         try {
             ObservableList<Infraccion> Infracciones = ServicioInfraccion.ObtenerInfracciones();
@@ -647,57 +658,56 @@ public class GestorTablas {
 
         }
     }
-            
-       public static void ConfigurarColumnasLicencias(
-             
-    TableColumn<Licencia, String> ColumnaFotoLicencia,
-    TableColumn<Licencia, String> ColumnaNombreLicencia,
-    TableColumn<Licencia, String> ColumnaTipoLicencia,
-    TableColumn<Licencia, Date> ColumnaEmisionLicencia,
-    TableColumn<Licencia, Date> ColumnaVencimientoLicencia,
-    TableColumn<Licencia, Integer> ColumnaPuntosLicencia,
-    TableColumn<Licencia, String> ColumnaDetallesLicencia)
-             {
-                 
-             ColumnaTipoLicencia.setCellValueFactory(cellData -> {
+
+    
+    public static void ConfigurarColumnasLicencias(
+            TableColumn<Licencia, String> ColumnaFotoLicencia,
+            TableColumn<Licencia, String> ColumnaNombreLicencia,
+            TableColumn<Licencia, String> ColumnaTipoLicencia,
+            TableColumn<Licencia, Date> ColumnaEmisionLicencia,
+            TableColumn<Licencia, Date> ColumnaVencimientoLicencia,
+            TableColumn<Licencia, Integer> ColumnaPuntosLicencia,
+            TableColumn<Licencia, String> ColumnaDetallesLicencia) {
+
+        ColumnaTipoLicencia.setCellValueFactory(cellData -> {
             Licencia Licencia = cellData.getValue();
-            return new SimpleStringProperty(Licencia.getTipo()
-                    );
+            return new SimpleStringProperty(Licencia.GetTipo()
+            );
         });
-             
-             ColumnaNombreLicencia.setCellValueFactory(cellData -> {
-                 try {
-                     Licencia Licencia = cellData.getValue();
-                     Conductor Conductor = null;
-                     Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
-                     return new SimpleStringProperty(
-                             String.format("%s %s", Conductor.getNombre(), Conductor.getApellidos())
-                     );   } catch (Exception ex) {
-                     
-                     return null;
-                 }
+
+        ColumnaNombreLicencia.setCellValueFactory(cellData -> {
+            try {
+                Licencia Licencia = cellData.getValue();
+                Conductor Conductor = null;
+                Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.GetId());
+                return new SimpleStringProperty(
+                        String.format("%s %s", Conductor.getNombre(), Conductor.getApellidos())
+                );
+            } catch (Exception ex) {
+
+                return null;
+            }
         });
-             
-              ColumnaFotoLicencia.setCellValueFactory(cellData -> {
-                 try {
-                     Licencia Licencia = cellData.getValue();
-                     return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId()).getFoto()
-                     );
-                 } catch (Exception ex) {
-                     
-                     return null;
-                 }
+
+        ColumnaFotoLicencia.setCellValueFactory(cellData -> {
+            try {
+                Licencia Licencia = cellData.getValue();
+                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.GetId()).getFoto()
+                );
+            } catch (Exception ex) {
+
+                return null;
+            }
         });
 
         // Configuración estándar para otras columnas
         ConfigurarColumnaStandard(ColumnaEmisionLicencia, "FechaEmision");
         ConfigurarColumnaStandard(ColumnaVencimientoLicencia, "FechaVencimiento");
         ConfigurarColumnaStandard(ColumnaPuntosLicencia, "CantPuntos");
-        
-        
 
     }
 
+    
     public static void CargarTablaLicencias(TableView<Licencia> TablaLicencia) {
         try {
             ObservableList<Licencia> Licencias = ServicioLicencia.ObtenerLicencias();

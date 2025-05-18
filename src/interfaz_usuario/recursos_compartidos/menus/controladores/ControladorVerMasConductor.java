@@ -84,10 +84,10 @@ public class ControladorVerMasConductor {
         TextFieldCorreo.setText(Conductor.getCorreo());
         TextFieldDireccion.setText(Conductor.getDireccion());
         TextFieldNombre.setText(Conductor.getNombre()+" "+ Conductor.getApellidos());
-        TextFieldEstadoLicencia.setText(Licencia.getEstado());
-        TextFieldFechaEmision.setText(Licencia.getFechaEmision().toString());
-        TextFieldFechaVencimiento.setText(Licencia.getFechaVencimiento().toString());
-        LabelTipoLicencia.setText(Licencia.getTipo());
-        TextFieldIdLicencia.setText(Licencia.getId().toString());
+        TextFieldEstadoLicencia.setText(Licencia.GetEstado());
+        TextFieldFechaEmision.setText(Licencia.GetFechaEmision().toString());
+        TextFieldFechaVencimiento.setText(Licencia.GetFechaVencimiento().toString());
+        LabelTipoLicencia.setText(Licencia.GetTipo());
+        TextFieldIdLicencia.setText(Licencia.GetId().toString());
     }
 }
