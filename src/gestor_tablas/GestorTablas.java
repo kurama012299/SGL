@@ -34,34 +34,32 @@ import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
 
-/**
- *
- * @author Angel Hernandez
- */
+
+
 public class GestorTablas {
 
-    private static <T> void LlenarColumnaDetalles(TableView<T> Tabla, int CantidadFilas) {
-        TableColumn<T, ?> UltimaColumna = (TableColumn<T, ?>) Tabla.getColumns().get(Tabla.getColumns().size() - 1);
+    private static <T> void llenarColumnaDetalles(TableView<T> Tabla, int cantidadFilas) {
+        TableColumn<T, ?> ultimaColumna = (TableColumn<T, ?>) Tabla.getColumns().get(Tabla.getColumns().size() - 1);
         Platform.runLater(() -> {
             // Buscar TODAS las celdas visibles
             Set<Node> todasLasCeldas = Tabla.lookupAll(".table-cell");
-            for (Node Nodo : todasLasCeldas) {
-                if (Nodo instanceof TableCell) {
-                    TableCell<T, ?> Celda = (TableCell<T, ?>) Nodo;
-                    if (Celda.getTableColumn().equals(UltimaColumna)) {
-                        Label Etiqueta = new Label("Ver más");
-                        Etiqueta.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
-                        Etiqueta.setOnMouseClicked(event -> {
-                            T ObjetoFila = Tabla.getItems().get(Celda.getIndex());
+            for (Node nodo : todasLasCeldas) {
+                if (nodo instanceof TableCell) {
+                    TableCell<T, ?> celda = (TableCell<T, ?>) nodo;
+                    if (celda.getTableColumn().equals(ultimaColumna)) {
+                        Label lblEtiqueta = new Label("Ver más");
+                        lblEtiqueta.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                        lblEtiqueta.setOnMouseClicked(event -> {
+                            T objetoFila = Tabla.getItems().get(celda.getIndex());
                             try {
-                                MostrarDetalles(ObjetoFila, Etiqueta.getScene().getWindow());
+                                mostrarDetalles(objetoFila, lblEtiqueta.getScene().getWindow());
                             } catch (Exception ex) {
                                 System.out.println("Error al cargar el menu ver mas: " + ex.getMessage());
-                                GestorEscenas.cargarError(Etiqueta.getScene().getWindow(), ex);
+                                GestorEscenas.cargarError(lblEtiqueta.getScene().getWindow(), ex);
                             }
                         });
-                        Celda.setGraphic(Etiqueta);
-                        if (Celda.getIndex() == CantidadFilas) {
+                        celda.setGraphic(lblEtiqueta);
+                        if (celda.getIndex() == cantidadFilas) {
                             break;
                         }             // Salir del bucle una vez encontrada
                     }
@@ -70,72 +68,73 @@ public class GestorTablas {
         });
     }
 
-    private static void MostrarDetalles(Object Objeto, Window Ventana) throws Exception {
+    
+    private static void mostrarDetalles(Object objeto, Window ventana) throws Exception {
         switch (Autentificador.Usuario.getRol()) {
             case "Administrador":
-                if (Objeto instanceof Conductor) {
-                    Conductor Conductor = (Conductor) Objeto;
-                    Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Conductor.getIdLicencia());
-                    GestorEscenas.cargarVerMasConductores(Ventana, Conductor, Licencia);
+                if (objeto instanceof Conductor) {
+                    Conductor conductor = (Conductor) objeto;
+                    Licencia licencia = ServicioLicencia.ObtenerLicenciaPorId(conductor.getIdLicencia());
+                    GestorEscenas.cargarVerMasConductores(ventana, conductor, licencia);
 
-                } else if (Objeto instanceof ExamenConduccion && !(Objeto instanceof ExamenMedico)) {
-                    if (((ExamenConduccion) Objeto).getTipo().equalsIgnoreCase("Práctico") || ((ExamenConduccion) Objeto).getTipo().equalsIgnoreCase("Teórico")) {
-                        ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
-                        GestorEscenas.cargarVerMasExamenes(Ventana, ExamenConduccion, null);
+                } else if (objeto instanceof ExamenConduccion && !(objeto instanceof ExamenMedico)) {
+                    if (((ExamenConduccion) objeto).getTipo().equalsIgnoreCase("Práctico") || ((ExamenConduccion) objeto).getTipo().equalsIgnoreCase("Teórico")) {
+                        ExamenConduccion examenConduccion = (ExamenConduccion) objeto;
+                        GestorEscenas.cargarVerMasExamenes(ventana, examenConduccion, null);
                     } else {
-                        ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
-                        for (ExamenMedico Examen : ExamenesMedicos) {
-                            if (Examen.getId().equals(((ExamenConduccion) Objeto).getId())) {
-                                ExamenMedico ExamenMedico = (ExamenMedico) Examen;
-                                GestorEscenas.cargarVerMasExamenes(Ventana, null, ExamenMedico);
+                        ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+                        for (ExamenMedico examen : examenesMedicos) {
+                            if (examen.getId().equals(((ExamenConduccion) objeto).getId())) {
+                                ExamenMedico examenMedico = (ExamenMedico) examen;
+                                GestorEscenas.cargarVerMasExamenes(ventana, null, examenMedico);
                             }
                         }
                     }
-                } else if (Objeto instanceof Infraccion) {
-                    Infraccion Infraccion = (Infraccion) Objeto;
-                    Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Infraccion.getIdLicencia());
-                    GestorEscenas.cargarVerMasInfraccion(Ventana, Infraccion, Licencia);
-                } else if (Objeto instanceof Licencia) {
-                    Licencia Licencia = (Licencia) Objeto;
-                    Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
-                    GestorEscenas.cargarVerMasLicencias(Ventana, Conductor, Licencia);
-                } else if (Objeto instanceof EntidadRelacionada) {
-                    EntidadRelacionada Entidad = (EntidadRelacionada) Objeto;
-                    GestorEscenas.cargarVerMasEntidades(Ventana, Entidad);
+                } else if (objeto instanceof Infraccion) {
+                    Infraccion infraccion = (Infraccion) objeto;
+                    Licencia licencia = ServicioLicencia.ObtenerLicenciaPorId(infraccion.getIdLicencia());
+                    GestorEscenas.cargarVerMasInfraccion(ventana, infraccion, licencia);
+                } else if (objeto instanceof Licencia) {
+                    Licencia licencia = (Licencia) objeto;
+                    Conductor conductor = ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId());
+                    GestorEscenas.cargarVerMasLicencias(ventana, conductor, licencia);
+                } else if (objeto instanceof EntidadRelacionada) {
+                    EntidadRelacionada entidad = (EntidadRelacionada) objeto;
+                    GestorEscenas.cargarVerMasEntidades(ventana, entidad);
                 }
 
                 break;
             case "Administrador autoescuela":
-                if (Objeto instanceof ExamenConduccion) {
-                    ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
-                    if (ExamenConduccion.getTipo().equalsIgnoreCase("Práctico")) {
-                        GestorEscenas.cargarVerMasExamenesPracticosAdmin(Ventana, ExamenConduccion);
+                if (objeto instanceof ExamenConduccion) {
+                    ExamenConduccion examenConduccion = (ExamenConduccion) objeto;
+                    if (examenConduccion.getTipo().equalsIgnoreCase("Práctico")) {
+                        GestorEscenas.cargarVerMasExamenesPracticosAdmin(ventana, examenConduccion);
                     } else {
-                        GestorEscenas.cargarVerMasExamenesTeoricosAdmin(Ventana, ExamenConduccion);
+                        GestorEscenas.cargarVerMasExamenesTeoricosAdmin(ventana, examenConduccion);
                     }
                 }
                 break;
             case "Administrador médico":
-                if (Objeto instanceof ExamenMedico) {
-                    ExamenMedico ExamenMedico = (ExamenMedico) Objeto;
-                    GestorEscenas.cargarVerMasExamenesMedicosAdmin(Ventana, ExamenMedico);
+                if (objeto instanceof ExamenMedico) {
+                    ExamenMedico examenMedico = (ExamenMedico) objeto;
+                    GestorEscenas.cargarVerMasExamenesMedicosAdmin(ventana, examenMedico);
                 }
 
                 break;
             case "Trabajador autoescuela":
-                if (Objeto instanceof ExamenConduccion) {
-                    ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
-                    if (ExamenConduccion.getTipo().equalsIgnoreCase("Práctico")) {
-                        GestorEscenas.cargarVerMasExamenesPracticosTrabajador(Ventana, ExamenConduccion);
+                if (objeto instanceof ExamenConduccion) {
+                    ExamenConduccion examenConduccion = (ExamenConduccion) objeto;
+                    if (examenConduccion.getTipo().equalsIgnoreCase("Práctico")) {
+                        GestorEscenas.cargarVerMasExamenesPracticosTrabajador(ventana, examenConduccion);
                     } else {
-                        GestorEscenas.cargarVerMasExamenesTeoricosTrabajador(Ventana, ExamenConduccion);
+                        GestorEscenas.cargarVerMasExamenesTeoricosTrabajador(ventana, examenConduccion);
                     }
                 }
                 break;
             case "Médico":
-                if (Objeto instanceof ExamenMedico) {
-                    ExamenMedico ExamenMedico = (ExamenMedico) Objeto;
-                    GestorEscenas.cargarVerMasExamenesMedicosDoctor(Ventana, ExamenMedico);
+                if (objeto instanceof ExamenMedico) {
+                    ExamenMedico examenMedico = (ExamenMedico) objeto;
+                    GestorEscenas.cargarVerMasExamenesMedicosDoctor(ventana, examenMedico);
                 }
                 break;
             case "Trabajador centro":
@@ -146,27 +145,28 @@ public class GestorTablas {
             }
     }
 
-    private static <T> void LlenarColumnaFotos(TableView<T> Tabla, int CantidadFilas) {
-        Image Icono = new Image(
+    
+    private static <T> void llenarColumnaFotos(TableView<T> tabla, int cantidadFilas) {
+        Image icono = new Image(
                 Thread.currentThread().getContextClassLoader().getResourceAsStream(
                         "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
                 )
         );
-        TableColumn<T, ?> PrimeraColumna = (TableColumn<T, ?>) Tabla.getColumns().get(0);
+        TableColumn<T, ?> primeraColumna = (TableColumn<T, ?>) tabla.getColumns().get(0);
         Platform.runLater(() -> {
             // Buscar TODAS las celdas visibles
-            Set<Node> todasLasCeldas = Tabla.lookupAll(".table-cell");
-            for (Node Nodo : todasLasCeldas) {
-                if (Nodo instanceof TableCell) {
-                    TableCell<T, ?> Celda = (TableCell<T, ?>) Nodo;
-                    if (Celda.getTableColumn().equals(PrimeraColumna)) {
-                        ImageView imageView = new ImageView();
-                        imageView.setFitHeight(40);
-                        imageView.setFitWidth(40);
-                        imageView.setPreserveRatio(true);
-                        imageView.setImage(Icono);
-                        Celda.setGraphic(imageView);
-                        if (Celda.getIndex() == CantidadFilas) {
+            Set<Node> todasLasCeldas = tabla.lookupAll(".table-cell");
+            for (Node nodo : todasLasCeldas) {
+                if (nodo instanceof TableCell) {
+                    TableCell<T, ?> celda = (TableCell<T, ?>) nodo;
+                    if (celda.getTableColumn().equals(primeraColumna)) {
+                        ImageView iv = new ImageView();
+                        iv.setFitHeight(40);
+                        iv.setFitWidth(40);
+                        iv.setPreserveRatio(true);
+                        iv.setImage(icono);
+                        celda.setGraphic(iv);
+                        if (celda.getIndex() == cantidadFilas) {
                             break;
                         }
                     }
@@ -175,437 +175,459 @@ public class GestorTablas {
         });
     }
 
+    
     public static void ConfigurarColumnasExamenes(
-            TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
-            TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
-            TableColumn<ExamenConduccion, String> ColumnaTipoExamen,
-            TableColumn<ExamenConduccion, Date> ColumnaFechaExamen,
-            TableColumn<ExamenConduccion, String> ColumnaExaminadorExamen,
-            TableColumn<ExamenConduccion, String> ColumnaResultadoExamen,
-            TableColumn<ExamenConduccion, String> ColumnaDetallesExamen) {
+            TableColumn<ExamenConduccion, String> columnaFotoExamen,
+            TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
+            TableColumn<ExamenConduccion, String> columnaTipoExamen,
+            TableColumn<ExamenConduccion, Date> columnaFechaExamen,
+            TableColumn<ExamenConduccion, String> columnaExaminadorExamen,
+            TableColumn<ExamenConduccion, String> columnaResultadoExamen,
+            TableColumn<ExamenConduccion, String> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
-        ColumnaExaminadoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
+        columnaExaminadoExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
             return new SimpleStringProperty(
-                    String.format("%s %s", Examen.getPersona().getNombre(), Examen.getPersona().getApellidos())
+                    String.format("%s %s", examen.getPersona().getNombre(), examen.getPersona().getApellidos())
             );
         });
-        ColumnaExaminadorExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
-            return new SimpleStringProperty(Examen.getExaminador().getNombre()
+        columnaExaminadorExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
+            return new SimpleStringProperty(examen.getExaminador().getNombre()
             );
         });
 
-        ColumnaTipoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
-            return new SimpleStringProperty(Examen.getTipo());
+        columnaTipoExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
+            return new SimpleStringProperty(examen.getTipo());
         });
 
-        ColumnaResultadoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
+        columnaResultadoExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
 
-            if (Examen.isAprobado()) {
+            if (examen.isAprobado()) {
                 return new SimpleStringProperty("Aprobado");
             }
             return new SimpleStringProperty("Reprobado");
         });
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
+        configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
     }
 
+    
     public static void ConfigurarColumnasConductores(
-            TableColumn<Conductor, String> ColumnaFoto,
-            TableColumn<Conductor, String> ColumnaNombre,
-            TableColumn<Conductor, String> ColumnaCI,
-            TableColumn<Conductor, String> ColumnaTelefono,
-            TableColumn<Conductor, String> ColumnaCorreo) {
+            TableColumn<Conductor, String> columnaFoto,
+            TableColumn<Conductor, String> columnaNombre,
+            TableColumn<Conductor, String> columnaCi,
+            TableColumn<Conductor, String> columnaTelefono,
+            TableColumn<Conductor, String> columnaCorreo) {
 
         // Configuración de la columna de nombre completo
-        ColumnaNombre.setCellValueFactory(cellData -> {
+        columnaNombre.setCellValueFactory(cellData -> {
             Conductor conductor = cellData.getValue();
             return new SimpleStringProperty(
                     String.format("%s %s", conductor.getNombre(), conductor.getApellidos())
             );
         });
 
-        ColumnaCI.setCellValueFactory(cellData -> {
+        columnaCi.setCellValueFactory(cellData -> {
             Conductor conductor = cellData.getValue();
             return new SimpleStringProperty(conductor.getCI());
         });
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaTelefono, "Telefono");
-        ConfigurarColumnaStandard(ColumnaCorreo, "Correo");
+        configurarColumnaPorDefecto(columnaTelefono, "Telefono");
+        configurarColumnaPorDefecto(columnaCorreo, "Correo");
     }
 
-    private static <T, S> void ConfigurarColumnaStandard(TableColumn<T, S> columna, String propiedad) {
+    
+    private static <T, S> void configurarColumnaPorDefecto(TableColumn<T, S> columna, String propiedad) {
         if (columna != null) {
             columna.setCellValueFactory(new PropertyValueFactory<>(propiedad));
         }
     }
 
-    public static void CargarTablaConductores(TableView<Conductor> TablaConductor) {
+    
+    public static void cargarTablaConductores(TableView<Conductor> tablaConductor) {
         try {
-            ObservableList<Conductor> Conductores = ServicioConductor.ObtenerConductores();
-            TablaConductor.setItems(Conductores);
-            LlenarColumnaDetalles(TablaConductor, TablaConductor.getItems().size() - 1);
-            LlenarColumnaFotos(TablaConductor, TablaConductor.getItems().size() - 1);
+            ObservableList<Conductor> conductores = ServicioConductor.ObtenerConductores();
+            tablaConductor.setItems(conductores);
+            llenarColumnaDetalles(tablaConductor, tablaConductor.getItems().size() - 1);
+            llenarColumnaFotos(tablaConductor, tablaConductor.getItems().size() - 1);
         } catch (Exception ex) {
             //Capturar Error
         }
     }
 
-    public static void CargarTablaExamenes(TableView<ExamenConduccion> TablaExamenes) {
+    
+    public static void cargarTablaExamenes(TableView<ExamenConduccion> tablaExamenes) {
         try {
-            ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
-            ObservableList<ExamenConduccion> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
-            ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
-            ObservableList<ExamenConduccion> ExamenesMedicosNuevos = FXCollections.observableArrayList();
-            for (int i = 0; i < ExamenesMedicos.size(); i++) {
-                ExamenConduccion Examen = new ExamenConduccion(ExamenesMedicos.get(i).getId(), ExamenesMedicos.get(i).getFecha(), ExamenesMedicos.get(i).isAprobado(), ExamenesMedicos.get(i).getEntidad(), ExamenesMedicos.get(i).getPersona(), ExamenesMedicos.get(i).getExaminador(), ExamenesMedicos.get(i).getTipo());
-                ExamenesMedicosNuevos.add(Examen);
+            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
+            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
+            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+            ObservableList<ExamenConduccion> examenesMedicosNuevos = FXCollections.observableArrayList();
+            for (int i = 0; i < examenesMedicos.size(); i++) {
+                ExamenConduccion examen = new ExamenConduccion(examenesMedicos.get(i).getId(), examenesMedicos.get(i).getFecha(), examenesMedicos.get(i).isAprobado(), examenesMedicos.get(i).getEntidad(), examenesMedicos.get(i).getPersona(), examenesMedicos.get(i).getExaminador(), examenesMedicos.get(i).getTipo());
+                examenesMedicosNuevos.add(examen);
             }
 
-            ObservableList<ExamenConduccion> Examenes = FXCollections.concat(ExamenesTeoricos, ExamenesPracticos, ExamenesMedicosNuevos);
-            TablaExamenes.setItems(Examenes);
-            LlenarColumnaDetalles(TablaExamenes, TablaExamenes.getItems().size() - 1);
-            LlenarColumnaFotos(TablaExamenes, TablaExamenes.getItems().size() - 1);
+            ObservableList<ExamenConduccion> examenesMostrar = FXCollections.concat(examenesTeoricos, examenesPracticos, examenesMedicosNuevos);
+            tablaExamenes.setItems(examenesMostrar);
+            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
+            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
         } catch (Exception ex) {
             //Capturar Error
         }
     }
 
-    public static void CargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> TablaExamenes) {
+    
+    public static void cargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) {
         try {
-            ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
-            TablaExamenes.setItems(ExamenesPracticos);
-            LlenarColumnaDetalles(TablaExamenes, TablaExamenes.getItems().size() - 1);
-            LlenarColumnaFotos(TablaExamenes, TablaExamenes.getItems().size() - 1);
+            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
+            tablaExamenes.setItems(examenesPracticos);
+            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
+            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
         } catch (Exception ex) {
             //Capturar Error
         }
     }
 
-    public static void CargarTablaExamenesTeoricosAdminAutoescuela(TableView<ExamenConduccion> TablaExamenes) {
+    
+    public static void cargarTablaExamenesTeoricosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) {
         try {
-            ObservableList<ExamenConduccion> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
-            TablaExamenes.setItems(ExamenesTeoricos);
-            LlenarColumnaDetalles(TablaExamenes, TablaExamenes.getItems().size() - 1);
-            LlenarColumnaFotos(TablaExamenes, TablaExamenes.getItems().size() - 1);
+            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
+            tablaExamenes.setItems(examenesTeoricos);
+            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
+            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
         } catch (Exception ex) {
             //Capturar Error
         }
     }
+    
 
-    public static void ConfigurarColumnasExamenesAdminAutoescuela(
-            TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
-            TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
-            TableColumn<ExamenConduccion, Date> ColumnaFechaExamen,
-            TableColumn<ExamenConduccion, String> ColumnaExaminadorExamen,
-            TableColumn<ExamenConduccion, String> ColumnaResultadoExamen,
-            TableColumn<ExamenConduccion, String> ColumnaAutoescuelaExamen,
-            TableColumn<ExamenConduccion, String> ColumnaDetallesExamen) {
+    public static void configurarColumnasExamenesAdminAutoescuela(
+            TableColumn<ExamenConduccion, String> columnaFotoExamen,
+            TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
+            TableColumn<ExamenConduccion, Date> columnaFechaExamen,
+            TableColumn<ExamenConduccion, String> columnaExaminadorExamen,
+            TableColumn<ExamenConduccion, String> columnaResultadoExamen,
+            TableColumn<ExamenConduccion, String> columnaAutoescuelaExamen,
+            TableColumn<ExamenConduccion, String> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
-        ColumnaExaminadoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Persona = cellData.getValue();
+        columnaExaminadoExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion persona = cellData.getValue();
             return new SimpleStringProperty(
-                    String.format("%s %s", Persona.getPersona().getNombre(), Persona.getPersona().getApellidos())
+                    String.format("%s %s", persona.getPersona().getNombre(), persona.getPersona().getApellidos())
             );
         });
-        ColumnaExaminadorExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Persona = cellData.getValue();
-            return new SimpleStringProperty(Persona.getExaminador().getNombre()
+        columnaExaminadorExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion persona = cellData.getValue();
+            return new SimpleStringProperty(persona.getExaminador().getNombre()
             );
         });
 
-        ColumnaAutoescuelaExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
-            return new SimpleStringProperty(Examen.getEntidad().getNombre());
+        columnaAutoescuelaExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
+            return new SimpleStringProperty(examen.getEntidad().getNombre());
         });
 
-        ColumnaResultadoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
-            if (Examen.isAprobado()) {
+        columnaResultadoExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
+            if (examen.isAprobado()) {
                 return new SimpleStringProperty("Aprobado");
             }
             return new SimpleStringProperty("Reprobado");
         });
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
+        configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
     }
 
-    public static void CargarTablaExamenesMedicosAdminMedico(TableView<ExamenMedico> TablaExamenesMedicos) {
+    
+    public static void cargarTablaExamenesMedicosAdminMedico(TableView<ExamenMedico> tablaExamenesMedicos) {
         try {
-            ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
-            TablaExamenesMedicos.setItems(ExamenesMedicos);
-            LlenarColumnaDetalles(TablaExamenesMedicos, TablaExamenesMedicos.getItems().size() - 1);
-            LlenarColumnaFotos(TablaExamenesMedicos, TablaExamenesMedicos.getItems().size() - 1);
+            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+            tablaExamenesMedicos.setItems(examenesMedicos);
+            llenarColumnaDetalles(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
+            llenarColumnaFotos(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
         } catch (Exception ex) {
             //Capturar Error
         }
     }
 
-    public static void ConfigurarColumnasExamenesMedicosAdminMedico(
-            TableColumn<ExamenMedico, String> ColumnaFotoExamen,
-            TableColumn<ExamenMedico, String> ColumnaExaminadoExamen,
-            TableColumn<ExamenMedico, Date> ColumnaFechaExamen,
-            TableColumn<ExamenMedico, String> ColumnaExaminadorExamen,
-            TableColumn<ExamenMedico, String> ColumnaResultadoExamen,
-            TableColumn<ExamenMedico, String> ColumnaClinicaExamen,
-            TableColumn<ExamenMedico, String> ColumnaDetallesExamen) {
+    
+    public static void configurarColumnasExamenesMedicosAdminMedico(
+            TableColumn<ExamenMedico, String> columnaFotoExamen,
+            TableColumn<ExamenMedico, String> columnaExaminadoExamen,
+            TableColumn<ExamenMedico, Date> columnaFechaExamen,
+            TableColumn<ExamenMedico, String> columnaExaminadorExamen,
+            TableColumn<ExamenMedico, String> columnaResultadoExamen,
+            TableColumn<ExamenMedico, String> columnaClinicaExamen,
+            TableColumn<ExamenMedico, String> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
-        ColumnaExaminadoExamen.setCellValueFactory(cellData -> {
-            ExamenMedico Examen = cellData.getValue();
+        columnaExaminadoExamen.setCellValueFactory(cellData -> {
+            ExamenMedico examen = cellData.getValue();
             return new SimpleStringProperty(
-                    String.format("%s %s", Examen.getPersona().getNombre(), Examen.getPersona().getApellidos())
+                    String.format("%s %s", examen.getPersona().getNombre(), examen.getPersona().getApellidos())
             );
         });
-        ColumnaExaminadorExamen.setCellValueFactory(cellData -> {
-            ExamenMedico Examen = cellData.getValue();
-            return new SimpleStringProperty(Examen.getExaminador().getNombre()
+        columnaExaminadorExamen.setCellValueFactory(cellData -> {
+            ExamenMedico examen = cellData.getValue();
+            return new SimpleStringProperty(examen.getExaminador().getNombre()
             );
         });
 
-        ColumnaClinicaExamen.setCellValueFactory(cellData -> {
-            ExamenMedico Examen = cellData.getValue();
-            return new SimpleStringProperty(Examen.getEntidad().getNombre());
+        columnaClinicaExamen.setCellValueFactory(cellData -> {
+            ExamenMedico examen = cellData.getValue();
+            return new SimpleStringProperty(examen.getEntidad().getNombre());
         });
 
-        ColumnaResultadoExamen.setCellValueFactory(cellData -> {
-            ExamenMedico Examen = cellData.getValue();
-            if (Examen.isAprobado() && Examen.getRestricciones().isEmpty()) {
+        columnaResultadoExamen.setCellValueFactory(cellData -> {
+            ExamenMedico examen = cellData.getValue();
+            if (examen.isAprobado() && examen.getRestricciones().isEmpty()) {
                 return new SimpleStringProperty("Aprobado");
-            } else if (Examen.isAprobado() && !Examen.getRestricciones().isEmpty()) {
+            } else if (examen.isAprobado() && !examen.getRestricciones().isEmpty()) {
                 return new SimpleStringProperty("Aprobado Condicional");
             }
             return new SimpleStringProperty("Reprobado");
         });
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
+        configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
 
     }
 
-    public static void CargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> TablaExamenesMedicos, Long Id) {
+    
+    public static void cargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> tablaExamenesMedicos, Long id) {
         try {
-            ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedicoPorIdRol(Id);
-            TablaExamenesMedicos.setItems(ExamenesMedicos);
-            LlenarColumnaDetalles(TablaExamenesMedicos, TablaExamenesMedicos.getItems().size() - 1);
-            LlenarColumnaFotos(TablaExamenesMedicos, TablaExamenesMedicos.getItems().size() - 1);
+            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedicoPorIdRol(id);
+            tablaExamenesMedicos.setItems(examenesMedicos);
+            llenarColumnaDetalles(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
+            llenarColumnaFotos(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
         } catch (Exception ex) {
             //Capturar Error
         }
     }
 
-    public static void ConfigurarColumnasExamenesMedicosMedicoUnico(
-            TableColumn<ExamenMedico, String> ColumnaFotoExamen,
-            TableColumn<ExamenMedico, String> ColumnaExaminadoExamen,
-            TableColumn<ExamenMedico, Date> ColumnaFechaExamen,
-            TableColumn<ExamenMedico, String> ColumnaResultadoExamen,
-            TableColumn<ExamenMedico, String> ColumnaClinicaExamen,
-            TableColumn<ExamenMedico, String> ColumnaDetallesExamen) {
+    
+    public static void configurarColumnasExamenesMedicosMedicoUnico(
+            TableColumn<ExamenMedico, String> columnaFotoExamen,
+            TableColumn<ExamenMedico, String> columnaExaminadoExamen,
+            TableColumn<ExamenMedico, Date> columnaFechaExamen,
+            TableColumn<ExamenMedico, String> columnaResultadoExamen,
+            TableColumn<ExamenMedico, String> columnaClinicaExamen,
+            TableColumn<ExamenMedico, String> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
-        ColumnaExaminadoExamen.setCellValueFactory(cellData -> {
-            ExamenMedico Examen = cellData.getValue();
+        columnaExaminadoExamen.setCellValueFactory(cellData -> {
+            ExamenMedico examen = cellData.getValue();
             return new SimpleStringProperty(
-                    String.format("%s %s", Examen.getPersona().getNombre(), Examen.getPersona().getApellidos())
+                    String.format("%s %s", examen.getPersona().getNombre(), examen.getPersona().getApellidos())
             );
         });
 
-        ColumnaClinicaExamen.setCellValueFactory(cellData -> {
-            ExamenMedico Examen = cellData.getValue();
-            return new SimpleStringProperty(Examen.getEntidad().getNombre());
+        columnaClinicaExamen.setCellValueFactory(cellData -> {
+            ExamenMedico examen = cellData.getValue();
+            return new SimpleStringProperty(examen.getEntidad().getNombre());
         });
 
-        ColumnaResultadoExamen.setCellValueFactory(cellData -> {
-            ExamenMedico Examen = cellData.getValue();
-            if (Examen.isAprobado() && Examen.getRestricciones().isEmpty()) {
+        columnaResultadoExamen.setCellValueFactory(cellData -> {
+            ExamenMedico examen = cellData.getValue();
+            if (examen.isAprobado() && examen.getRestricciones().isEmpty()) {
                 return new SimpleStringProperty("Aprobado");
-            } else if (Examen.isAprobado() && !Examen.getRestricciones().isEmpty()) {
+            } else if (examen.isAprobado() && !examen.getRestricciones().isEmpty()) {
                 return new SimpleStringProperty("Aprobado Condicional");
             }
             return new SimpleStringProperty("Reprobado");
         });
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
+        configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
 
     }
 
-    public static void CargarTablaExamenesTeoricosTraAutoescuela(TableView<ExamenConduccion> TablaExamenes, Long Id) {
+    
+    public static void cargarTablaExamenesTeoricosTraAutoescuela(TableView<ExamenConduccion> tablaExamenes, Long id) {
         try {
-            ObservableList<ExamenConduccion> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricosPorIDRol(Id);
-            TablaExamenes.setItems(ExamenesTeoricos);
-            LlenarColumnaDetalles(TablaExamenes, TablaExamenes.getItems().size() - 1);
-            LlenarColumnaFotos(TablaExamenes, TablaExamenes.getItems().size() - 1);
+            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricosPorIDRol(id);
+            tablaExamenes.setItems(examenesTeoricos);
+            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
+            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
         } catch (Exception ex) {
             //Capturar Error
         }
     }
 
-    public static void CargarTablaExamenesPracticosTraAutoescuela(TableView<ExamenConduccion> TablaExamenes, Long Id) {
+    
+    public static void cargarTablaExamenesPracticosTraAutoescuela(TableView<ExamenConduccion> tablaExamenes, Long id) {
         try {
-            ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticosPorIDRol(Id);
-            TablaExamenes.setItems(ExamenesPracticos);
-            LlenarColumnaDetalles(TablaExamenes, TablaExamenes.getItems().size() - 1);
-            LlenarColumnaFotos(TablaExamenes, TablaExamenes.getItems().size() - 1);
+            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenes.ObtenerExamenesPracticosPorIDRol(id);
+            tablaExamenes.setItems(examenesPracticos);
+            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
+            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
         } catch (Exception ex) {
             //Capturar Error
         }
     }
 
-    public static void ConfigurarColumnasExamenesTraAutoescuela(
-            TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
-            TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
-            TableColumn<ExamenConduccion, Date> ColumnaFechaExamen,
-            TableColumn<ExamenConduccion, String> ColumnaResultadoExamen,
-            TableColumn<ExamenConduccion, String> ColumnaAutoescuelaExamen,
-            TableColumn<ExamenConduccion, String> ColumnaDetallesExamen) {
+    
+    public static void configurarColumnasExamenesTraAutoescuela(
+            TableColumn<ExamenConduccion, String> columnaFotoExamen,
+            TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
+            TableColumn<ExamenConduccion, Date> columnaFechaExamen,
+            TableColumn<ExamenConduccion, String> columnaResultadoExamen,
+            TableColumn<ExamenConduccion, String> columnaAutoescuelaExamen,
+            TableColumn<ExamenConduccion, String> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
-        ColumnaExaminadoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
+        columnaExaminadoExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
             return new SimpleStringProperty(
-                    String.format("%s %s", Examen.getPersona().getNombre(), Examen.getPersona().getApellidos())
+                    String.format("%s %s", examen.getPersona().getNombre(), examen.getPersona().getApellidos())
             );
         });
-        ColumnaAutoescuelaExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
-            return new SimpleStringProperty(Examen.getEntidad().getNombre());
+        columnaAutoescuelaExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
+            return new SimpleStringProperty(examen.getEntidad().getNombre());
         });
 
-        ColumnaResultadoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion Examen = cellData.getValue();
-            if (Examen.isAprobado()) {
+        columnaResultadoExamen.setCellValueFactory(cellData -> {
+            ExamenConduccion examen = cellData.getValue();
+            if (examen.isAprobado()) {
                 return new SimpleStringProperty("Aprobado");
             }
             return new SimpleStringProperty("Reprobado");
         });
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
+        configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
     }
 
-    public static void ConfigurarColumnasEntidades(
-            TableColumn<EntidadRelacionada, String> ColumnaDirectorEntidad,
-            TableColumn<EntidadRelacionada, String> ColumnaNombreEntidad,
-            TableColumn<EntidadRelacionada, String> ColumnaDireccionEntidad,
-            TableColumn<EntidadRelacionada, String> ColumnaTelefonoEntidad,
-            TableColumn<EntidadRelacionada, String> ColumnaCorreoEntidad,
-            TableColumn<EntidadRelacionada, String> ColumnaDetallesEntidad) {
+    
+    public static void configurarColumnasEntidades(
+            TableColumn<EntidadRelacionada, String> columnaDirectorEntidad,
+            TableColumn<EntidadRelacionada, String> columnaNombreEntidad,
+            TableColumn<EntidadRelacionada, String> columnaDireccionEntidad,
+            TableColumn<EntidadRelacionada, String> columnaTelefonoEntidad,
+            TableColumn<EntidadRelacionada, String> columnaCorreoEntidad,
+            TableColumn<EntidadRelacionada, String> columnaDetallesEntidad) {
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaDirectorEntidad, "NombreDirector");
-        ConfigurarColumnaStandard(ColumnaNombreEntidad, "Nombre");
-        ConfigurarColumnaStandard(ColumnaDireccionEntidad, "Direccion");
-        ConfigurarColumnaStandard(ColumnaTelefonoEntidad, "Telefono");
-        ConfigurarColumnaStandard(ColumnaCorreoEntidad, "Correo");
+        configurarColumnaPorDefecto(columnaDirectorEntidad, "NombreDirector");
+        configurarColumnaPorDefecto(columnaNombreEntidad, "Nombre");
+        configurarColumnaPorDefecto(columnaDireccionEntidad, "Direccion");
+        configurarColumnaPorDefecto(columnaTelefonoEntidad, "Telefono");
+        configurarColumnaPorDefecto(columnaCorreoEntidad, "Correo");
     }
 
-    public static void CargarTablaEntidades(TableView<EntidadRelacionada> TablaEntidad) {
+    
+    public static void cargarTablaEntidades(TableView<EntidadRelacionada> tablaEntidad) {
         try {
-            ObservableList<EntidadRelacionada> Entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
-            TablaEntidad.setItems(Entidades);
-            LlenarColumnaDetalles(TablaEntidad, TablaEntidad.getItems().size() - 1);
+            ObservableList<EntidadRelacionada> entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
+            tablaEntidad.setItems(entidades);
+            llenarColumnaDetalles(tablaEntidad, tablaEntidad.getItems().size() - 1);
         } catch (Exception ex) {
 
         }
     }
 
-    public static void ConfigurarColumnasAutoescuelas(
-            TableColumn<EntidadRelacionada, String> ColumnaDirectorAE,
-            TableColumn<EntidadRelacionada, String> ColumnaNombreAE,
-            TableColumn<EntidadRelacionada, String> ColumnaDireccionAE,
-            TableColumn<EntidadRelacionada, String> ColumnaTelefonoAE,
-            TableColumn<EntidadRelacionada, String> ColumnaCorreoAE,
-            TableColumn<EntidadRelacionada, String> ColumnaDetallesAE) {
+    
+    public static void configurarColumnasAutoescuelas(
+            TableColumn<EntidadRelacionada, String> columnaDirectorAE,
+            TableColumn<EntidadRelacionada, String> columnaNombreAE,
+            TableColumn<EntidadRelacionada, String> columnaDireccionAE,
+            TableColumn<EntidadRelacionada, String> columnaTelefonoAE,
+            TableColumn<EntidadRelacionada, String> columnaCorreoAE,
+            TableColumn<EntidadRelacionada, String> columnaDetallesAE) {
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaDirectorAE, "NombreDirector");
-        ConfigurarColumnaStandard(ColumnaNombreAE, "Nombre");
-        ConfigurarColumnaStandard(ColumnaDireccionAE, "Direccion");
-        ConfigurarColumnaStandard(ColumnaTelefonoAE, "Telefono");
-        ConfigurarColumnaStandard(ColumnaCorreoAE, "Correo");
+        configurarColumnaPorDefecto(columnaDirectorAE, "NombreDirector");
+        configurarColumnaPorDefecto(columnaNombreAE, "Nombre");
+        configurarColumnaPorDefecto(columnaDireccionAE, "Direccion");
+        configurarColumnaPorDefecto(columnaTelefonoAE, "Telefono");
+        configurarColumnaPorDefecto(columnaCorreoAE, "Correo");
     }
 
-    public static void CargarTablaAutoescuelas(TableView<EntidadRelacionada> TablaAE) {
+    
+    public static void cargarTablaAutoescuelas(TableView<EntidadRelacionada> tablaAE) {
         try {
-            ObservableList<EntidadRelacionada> Autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
-            TablaAE.setItems(Autoescuelas);
-            LlenarColumnaDetalles(TablaAE, TablaAE.getItems().size() - 1);
+            ObservableList<EntidadRelacionada> autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
+            tablaAE.setItems(autoescuelas);
+            llenarColumnaDetalles(tablaAE, tablaAE.getItems().size() - 1);
         } catch (Exception ex) {
 
         }
     }
 
-    public static void ConfigurarColumnasClinicas(
-            TableColumn<EntidadRelacionada, String> ColumnaDirectorClinica,
-            TableColumn<EntidadRelacionada, String> ColumnaNombreClinica,
-            TableColumn<EntidadRelacionada, String> ColumnaDireccionClinica,
-            TableColumn<EntidadRelacionada, String> ColumnaTelefonoClinica,
-            TableColumn<EntidadRelacionada, String> ColumnaCorreoClinica,
-            TableColumn<EntidadRelacionada, String> ColumnaDetallesClinica) {
+    
+    public static void configurarColumnasClinicas(
+            TableColumn<EntidadRelacionada, String> columnaDirectorClinica,
+            TableColumn<EntidadRelacionada, String> columnaNombreClinica,
+            TableColumn<EntidadRelacionada, String> columnaDireccionClinica,
+            TableColumn<EntidadRelacionada, String> columnaTelefonoClinica,
+            TableColumn<EntidadRelacionada, String> columnaCorreoClinica,
+            TableColumn<EntidadRelacionada, String> columnaDetallesClinica) {
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaDirectorClinica, "NombreDirector");
-        ConfigurarColumnaStandard(ColumnaNombreClinica, "Nombre");
-        ConfigurarColumnaStandard(ColumnaDireccionClinica, "Direccion");
-        ConfigurarColumnaStandard(ColumnaTelefonoClinica, "Telefono");
-        ConfigurarColumnaStandard(ColumnaCorreoClinica, "Correo");
+        configurarColumnaPorDefecto(columnaDirectorClinica, "NombreDirector");
+        configurarColumnaPorDefecto(columnaNombreClinica, "Nombre");
+        configurarColumnaPorDefecto(columnaDireccionClinica, "Direccion");
+        configurarColumnaPorDefecto(columnaTelefonoClinica, "Telefono");
+        configurarColumnaPorDefecto(columnaCorreoClinica, "Correo");
     }
 
-    public static void CargarTablaClinicas(TableView<EntidadRelacionada> TablaClinica) {
+    
+    public static void cargarTablaClinicas(TableView<EntidadRelacionada> tablaClinica) {
         try {
-            ObservableList<EntidadRelacionada> Clinicas = ServicioEntidad.ObtenerClinicas();
-            TablaClinica.setItems(Clinicas);
-            LlenarColumnaDetalles(TablaClinica, TablaClinica.getItems().size() - 1);
+            ObservableList<EntidadRelacionada> clinicas = ServicioEntidad.ObtenerClinicas();
+            tablaClinica.setItems(clinicas);
+            llenarColumnaDetalles(tablaClinica, tablaClinica.getItems().size() - 1);
         } catch (Exception ex) {
 
         }
     }
 
-    public static void ConfigurarColumnasInfracciones(
-            TableColumn<Infraccion, String> ColumnaFotoInfraccion,
-            TableColumn<Infraccion, String> ColumnaNombreInfraccion,
-            TableColumn<Infraccion, String> ColumnaTipoInfraccion,
-            TableColumn<Infraccion, Date> ColumnaFechaInfraccion,
-            TableColumn<Infraccion, String> ColumnaLugarInfraccion,
-            TableColumn<Infraccion, Long> ColumnaLicenciaInfraccion,
-            TableColumn<Infraccion, Integer> ColumnaPtosDeducidosInfraccion,
-            TableColumn<Infraccion, String> ColumnaDetallesInfraccion) {
+    
+    public static void configurarColumnasInfracciones(
+            TableColumn<Infraccion, String> columnaFotoInfraccion,
+            TableColumn<Infraccion, String> columnaNombreInfraccion,
+            TableColumn<Infraccion, String> columnaTipoInfraccion,
+            TableColumn<Infraccion, Date> columnaFechaInfraccion,
+            TableColumn<Infraccion, String> columnaLugarInfraccion,
+            TableColumn<Infraccion, Long> columnaLicenciaInfraccion,
+            TableColumn<Infraccion, Integer> columnaPtosDeducidosInfraccion,
+            TableColumn<Infraccion, String> columnaDetallesInfraccion) {
 
-        ColumnaTipoInfraccion.setCellValueFactory(cellData -> {
-            Infraccion Infraccion = cellData.getValue();
-            return new SimpleStringProperty(Infraccion.getGravedad()
+        columnaTipoInfraccion.setCellValueFactory(cellData -> {
+            Infraccion infraccion = cellData.getValue();
+            return new SimpleStringProperty(infraccion.getGravedad()
             );
         });
 
-        ColumnaNombreInfraccion.setCellValueFactory(cellData -> {
-            Infraccion Infraccion = cellData.getValue();
-            Conductor Conductor = null;
+        columnaNombreInfraccion.setCellValueFactory(cellData -> {
+            Infraccion infraccion = cellData.getValue();
+            Conductor conductor = null;
             try {
-                Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia());
+                conductor = ServicioConductor.ObtenerConductorPorIdLicencia(infraccion.getIdLicencia());
             } catch (Exception ex) {
 
             }
 
             return new SimpleStringProperty(
-                    String.format("%s %s", Conductor.getNombre(), Conductor.getApellidos())
+                    String.format("%s %s", conductor.getNombre(), conductor.getApellidos())
             );
         });
 
         // Configuración estándar para otras columnas
-        ColumnaFotoInfraccion.setCellValueFactory(cellData -> {
+        columnaFotoInfraccion.setCellValueFactory(cellData -> {
             try {
-                Infraccion Infraccion = cellData.getValue();
+                Infraccion infraccion = cellData.getValue();
 
-                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Infraccion.getIdLicencia()).getFoto()
+                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(infraccion.getIdLicencia()).getFoto()
                 );
             } catch (Exception ex) {
                 return null;
@@ -613,46 +635,48 @@ public class GestorTablas {
         });
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaLicenciaInfraccion, "IdLicencia");
-        ConfigurarColumnaStandard(ColumnaFechaInfraccion, "Fecha");
-        ConfigurarColumnaStandard(ColumnaLugarInfraccion, "Lugar");
-        ConfigurarColumnaStandard(ColumnaPtosDeducidosInfraccion, "PuntosDeducidos");
+        configurarColumnaPorDefecto(columnaLicenciaInfraccion, "IdLicencia");
+        configurarColumnaPorDefecto(columnaFechaInfraccion, "Fecha");
+        configurarColumnaPorDefecto(columnaLugarInfraccion, "Lugar");
+        configurarColumnaPorDefecto(columnaPtosDeducidosInfraccion, "PuntosDeducidos");
 
     }
 
-    public static void CargarTablaInfracciones(TableView<Infraccion> TablaInfraccion) {
+    
+    public static void cargarTablaInfracciones(TableView<Infraccion> tablaInfraccion) {
         try {
-            ObservableList<Infraccion> Infracciones = ServicioInfraccion.ObtenerInfracciones();
-            TablaInfraccion.setItems(Infracciones);
-            LlenarColumnaDetalles(TablaInfraccion, TablaInfraccion.getItems().size() - 1);
-            LlenarColumnaFotos(TablaInfraccion, TablaInfraccion.getItems().size() - 1);
+            ObservableList<Infraccion> infracciones = ServicioInfraccion.ObtenerInfracciones();
+            tablaInfraccion.setItems(infracciones);
+            llenarColumnaDetalles(tablaInfraccion, tablaInfraccion.getItems().size() - 1);
+            llenarColumnaFotos(tablaInfraccion, tablaInfraccion.getItems().size() - 1);
         } catch (Exception ex) {
 
         }
     }
 
-    public static void ConfigurarColumnasLicencias(
-            TableColumn<Licencia, String> ColumnaFotoLicencia,
-            TableColumn<Licencia, String> ColumnaNombreLicencia,
-            TableColumn<Licencia, String> ColumnaTipoLicencia,
-            TableColumn<Licencia, Date> ColumnaEmisionLicencia,
-            TableColumn<Licencia, Date> ColumnaVencimientoLicencia,
-            TableColumn<Licencia, Integer> ColumnaPuntosLicencia,
-            TableColumn<Licencia, String> ColumnaDetallesLicencia) {
+    
+    public static void configurarColumnasLicencias(
+            TableColumn<Licencia, String> columnaFotoLicencia,
+            TableColumn<Licencia, String> columnaNombreLicencia,
+            TableColumn<Licencia, String> columnaTipoLicencia,
+            TableColumn<Licencia, Date> columnaEmisionLicencia,
+            TableColumn<Licencia, Date> columnaVencimientoLicencia,
+            TableColumn<Licencia, Integer> columnaPuntosLicencia,
+            TableColumn<Licencia, String> columnaDetallesLicencia) {
 
-        ColumnaTipoLicencia.setCellValueFactory(cellData -> {
-            Licencia Licencia = cellData.getValue();
-            return new SimpleStringProperty(Licencia.getTipo()
+        columnaTipoLicencia.setCellValueFactory(cellData -> {
+            Licencia licencia = cellData.getValue();
+            return new SimpleStringProperty(licencia.getTipo()
             );
         });
 
-        ColumnaNombreLicencia.setCellValueFactory(cellData -> {
+        columnaNombreLicencia.setCellValueFactory(cellData -> {
             try {
-                Licencia Licencia = cellData.getValue();
-                Conductor Conductor = null;
-                Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
+                Licencia licencia = cellData.getValue();
+                Conductor conductor = null;
+                conductor = ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId());
                 return new SimpleStringProperty(
-                        String.format("%s %s", Conductor.getNombre(), Conductor.getApellidos())
+                        String.format("%s %s", conductor.getNombre(), conductor.getApellidos())
                 );
             } catch (Exception ex) {
 
@@ -660,10 +684,10 @@ public class GestorTablas {
             }
         });
 
-        ColumnaFotoLicencia.setCellValueFactory(cellData -> {
+        columnaFotoLicencia.setCellValueFactory(cellData -> {
             try {
-                Licencia Licencia = cellData.getValue();
-                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId()).getFoto()
+                Licencia licencia = cellData.getValue();
+                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId()).getFoto()
                 );
             } catch (Exception ex) {
 
@@ -672,18 +696,19 @@ public class GestorTablas {
         });
 
         // Configuración estándar para otras columnas
-        ConfigurarColumnaStandard(ColumnaEmisionLicencia, "FechaEmision");
-        ConfigurarColumnaStandard(ColumnaVencimientoLicencia, "FechaVencimiento");
-        ConfigurarColumnaStandard(ColumnaPuntosLicencia, "CantPuntos");
+        configurarColumnaPorDefecto(columnaEmisionLicencia, "FechaEmision");
+        configurarColumnaPorDefecto(columnaVencimientoLicencia, "FechaVencimiento");
+        configurarColumnaPorDefecto(columnaPuntosLicencia, "CantPuntos");
 
     }
 
-    public static void CargarTablaLicencias(TableView<Licencia> TablaLicencia) {
+    
+    public static void cargarTablaLicencias(TableView<Licencia> tablaLicencia) {
         try {
-            ObservableList<Licencia> Licencias = ServicioLicencia.ObtenerLicencias();
-            TablaLicencia.setItems(Licencias);
-            LlenarColumnaDetalles(TablaLicencia, TablaLicencia.getItems().size() - 1);
-            LlenarColumnaFotos(TablaLicencia, TablaLicencia.getItems().size() - 1);
+            ObservableList<Licencia> licencias = ServicioLicencia.ObtenerLicencias();
+            tablaLicencia.setItems(licencias);
+            llenarColumnaDetalles(tablaLicencia, tablaLicencia.getItems().size() - 1);
+            llenarColumnaFotos(tablaLicencia, tablaLicencia.getItems().size() - 1);
         } catch (Exception ex) {
 
         }

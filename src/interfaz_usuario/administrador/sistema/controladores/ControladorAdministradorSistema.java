@@ -509,8 +509,8 @@ public class ControladorAdministradorSistema extends Controlador{
     public void TransicionLicencias()
     {
         
-        GestorTablas.ConfigurarColumnasLicencias(ColumnaFotoLicencia, ColumnaNombreLicencia, ColumnaTipoLicencia, ColumnaEmisionLicencia, ColumnaVencimientoLicencia, ColumnaPuntosLicencia, ColumnaDetallesLicencia);
-        GestorTablas.CargarTablaLicencias(TablaLicencia);
+        GestorTablas.configurarColumnasLicencias(ColumnaFotoLicencia, ColumnaNombreLicencia, ColumnaTipoLicencia, ColumnaEmisionLicencia, ColumnaVencimientoLicencia, ColumnaPuntosLicencia, ColumnaDetallesLicencia);
+        GestorTablas.cargarTablaLicencias(TablaLicencia);
         Pane[] PanelesOcultar={PanelInfracciones, PanelInicio,PanelReportes, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelLicencias,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};
@@ -546,7 +546,7 @@ public class ControladorAdministradorSistema extends Controlador{
     {
         //Llenado de tabla
         GestorTablas.ConfigurarColumnasConductores(ColumnaFoto, ColumnaNombre, ColumnaCI, ColumnaTelefono, ColumnaCorreo);
-        GestorTablas.CargarTablaConductores(TablaConductor);
+        GestorTablas.cargarTablaConductores(TablaConductor);
         
         
         
@@ -617,7 +617,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void TransicionExamenes()
     {
         GestorTablas.ConfigurarColumnasExamenes(ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen,ColumnaResultadoExamen,ColumnaDetallesExamen);
-        GestorTablas.CargarTablaExamenes(TablaExamenes);
+        GestorTablas.cargarTablaExamenes(TablaExamenes);
         
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores,PanelReportes, PanelInicio, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
@@ -653,8 +653,8 @@ public class ControladorAdministradorSistema extends Controlador{
     public void TransicionInfracciones()
     {
         
-        GestorTablas.ConfigurarColumnasInfracciones(ColumnaFotoInfraccion, ColumnaNombreInfraccion, ColumnaTipoInfraccion, ColumnaFechaInfraccion, ColumnaLugarInfraccion, ColumnaLicenciaInfraccion, ColumnaPtosDeducidosInfraccion, ColumnaDetallesInfraccion);
-        GestorTablas.CargarTablaInfracciones(TablaInfraccion);
+        GestorTablas.configurarColumnasInfracciones(ColumnaFotoInfraccion, ColumnaNombreInfraccion, ColumnaTipoInfraccion, ColumnaFechaInfraccion, ColumnaLugarInfraccion, ColumnaLicenciaInfraccion, ColumnaPtosDeducidosInfraccion, ColumnaDetallesInfraccion);
+        GestorTablas.cargarTablaInfracciones(TablaInfraccion);
         Pane[] PanelesOcultar={PanelInicio, PanelLicencias, PanelConductores, PanelReportes,PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelInfracciones,PanelesOcultar);
         JFXButton[] botones = {Inicio,Autoescuela,Clinica,Conductores,Entidades,Examenes,Licencias,Reportes};
@@ -688,8 +688,8 @@ public class ControladorAdministradorSistema extends Controlador{
     @FXML
     public void TransicionClinica()
     {
-        GestorTablas.ConfigurarColumnasClinicas(ColumnaDirectorClinica, ColumnaNombreClinica,ColumnaDireccionClinica, ColumnaTelefonoClinica, ColumnaCorreoClinica, ColumnaDetallesClinica);
-        GestorTablas.CargarTablaClinicas(TablaClinica);
+        GestorTablas.configurarColumnasClinicas(ColumnaDirectorClinica, ColumnaNombreClinica,ColumnaDireccionClinica, ColumnaTelefonoClinica, ColumnaCorreoClinica, ColumnaDetallesClinica);
+        GestorTablas.cargarTablaClinicas(TablaClinica);
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores, PanelReportes,PanelExamenes, PanelInicio, PanelAutoescuela, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelClinica,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Entidades,Examenes};
@@ -724,8 +724,8 @@ public class ControladorAdministradorSistema extends Controlador{
     @FXML
     public void TransicionAutoescuela()
     {
-        GestorTablas.ConfigurarColumnasAutoescuelas(ColumnaDirectorAE, ColumnaNombreAE,ColumnaDireccionAE, ColumnaTelefonoAE, ColumnaCorreoAE, ColumnaDetallesAE);
-        GestorTablas.CargarTablaAutoescuelas(TablaAE);
+        GestorTablas.configurarColumnasAutoescuelas(ColumnaDirectorAE, ColumnaNombreAE,ColumnaDireccionAE, ColumnaTelefonoAE, ColumnaCorreoAE, ColumnaDetallesAE);
+        GestorTablas.cargarTablaAutoescuelas(TablaAE);
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores,PanelReportes, PanelExamenes, PanelClinica, PanelInicio, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelAutoescuela,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Clinica,Entidades,Examenes};
@@ -760,8 +760,8 @@ public class ControladorAdministradorSistema extends Controlador{
     public void TransicionEntidades()
     {
         
-        GestorTablas.ConfigurarColumnasEntidades(ColumnaDirectorEntidad, ColumnaNombreEntidad,ColumnaDireccionEntidad, ColumnaTelefonoEntidad, ColumnaCorreoEntidad, ColumnaDetallesEntidad);
-        GestorTablas.CargarTablaEntidades(TablaEntidad);
+        GestorTablas.configurarColumnasEntidades(ColumnaDirectorEntidad, ColumnaNombreEntidad,ColumnaDireccionEntidad, ColumnaTelefonoEntidad, ColumnaCorreoEntidad, ColumnaDetallesEntidad);
+        GestorTablas.cargarTablaEntidades(TablaEntidad);
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores,PanelReportes, PanelExamenes, PanelClinica, PanelAutoescuela, PanelInicio};
         GestorEscenas.mostrarOcultarPaneles(PanelEntidades,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes,Autoescuela,Clinica,Examenes};

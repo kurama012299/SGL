@@ -152,8 +152,8 @@ public class ControladorMedico extends Controlador{
     @FXML
     public void TransicionExamenesMedico() {
         
-        GestorTablas.ConfigurarColumnasExamenesMedicosMedicoUnico(ColumnaFoto,ColumnaExaminado, ColumnaFecha, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
-        GestorTablas.CargarTablaExamenesMedicosMedicoUnico(TablaExamenesMedicos, Autentificador.Usuario.getId());
+        GestorTablas.configurarColumnasExamenesMedicosMedicoUnico(ColumnaFoto,ColumnaExaminado, ColumnaFecha, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
+        GestorTablas.cargarTablaExamenesMedicosMedicoUnico(TablaExamenesMedicos, Autentificador.Usuario.getId());
         
         Pane[] PanelesOcultar={PanelInicio};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
