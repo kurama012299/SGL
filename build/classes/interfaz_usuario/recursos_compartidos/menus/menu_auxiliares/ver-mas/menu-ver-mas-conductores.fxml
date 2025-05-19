@@ -102,36 +102,36 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Pane layoutX="345.0" layoutY="192.0" opacity="0.5" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: red;">
+      <Pane fx:id="CategoriaCarro" layoutX="345.0" layoutY="192.0" opacity="0.5" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: red;">
          <children>
-            <ImageView fx:id="CategoriaCarro" fitHeight="26.0" fitWidth="27.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagenes/ico-carro-blanco.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="344.0" layoutY="242.0" opacity="0.5" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: red;">
+      <Pane fx:id="CategoriaOmnibus" layoutX="344.0" layoutY="242.0" opacity="0.5" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: red;">
          <children>
-            <ImageView fx:id="CategoriaOmnibus" fitHeight="26.0" fitWidth="26.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagenes/ico-omnibus-blanco.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="421.0" layoutY="242.0" opacity="0.5" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: green;">
+      <Pane fx:id="CategoriaCamion" layoutX="421.0" layoutY="242.0" opacity="0.5" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: red;">
          <children>
-            <ImageView fx:id="CategoriaCamion" fitHeight="26.0" fitWidth="27.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagenes/ico-camion-blanco.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="421.0" layoutY="192.0" opacity="0.5" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: red;">
+      <Pane fx:id="CategoriaMoto" layoutX="421.0" layoutY="192.0" opacity="0.5" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: red;">
          <children>
-            <ImageView fx:id="CategoriaMoto" fitHeight="26.0" fitWidth="27.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../imagenes/ico-moto-blanco.png" />
                </image>

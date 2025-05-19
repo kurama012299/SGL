@@ -102,16 +102,16 @@ System.out.print(Licencia);
                     + "WHERE l.\"Id\" = ?";
 
     try (PreparedStatement pstmt = conn.prepareStatement(consulta)) {
-        pstmt.setLong(1, Licencia.GetId());
+        pstmt.setLong(1, Licencia.getId());
         
         try (ResultSet rs = pstmt.executeQuery()) {
             // Inicializar la lista si es null
-            if (Licencia.GetRestricciones() == null) {
+            if (Licencia.getRestricciones() == null) {
                 Licencia.SetRestricciones(new ArrayList<>());
             }
             
             while (rs.next()) {
-                Licencia.GetRestricciones().add(rs.getString("Nombre"));
+                Licencia.getRestricciones().add(rs.getString("Nombre"));
             }
         }
     } catch (SQLException e) {
@@ -128,20 +128,20 @@ System.out.print(Licencia);
                     + "WHERE lc.\"Id_Licencia\" = ?";  
 
     try (PreparedStatement pstmt = conn.prepareStatement(consulta)) {
-        pstmt.setLong(1, Licencia.GetId());
+        pstmt.setLong(1, Licencia.getId());
         
         // Inicializar la lista si es null
-        if (Licencia.GetCategorias() == null) {
+        if (Licencia.getCategorias() == null) {
             Licencia.SetCategorias(new ArrayList<>());
         }
 
         try (ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
-                Licencia.GetCategorias().add(rs.getString("Nombre"));
+                Licencia.getCategorias().add(rs.getString("Nombre"));
             }
         }
     } catch (SQLException e) {
-        System.err.println("Error al cargar categorías para licencia ID: " + Licencia.GetId());
+        System.err.println("Error al cargar categorías para licencia ID: " + Licencia.getId());
         throw new RuntimeException("Error al cargar categorías de la licencia", e);
     }
 }

@@ -192,16 +192,16 @@ public class ControladorAdministradorAutoescuela extends Controlador{
         
         BotonCerrarSesion.setOnAction(e ->
         {
-            GestorEscenas.CerrarPrograma();
+            GestorEscenas.cerrarPrograma();
         });
         
         JFXButton[] BotonesConsumirTecla={Inicio,ExamenTeorico,ExamenPractico};
-        GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
+        GestorEscenas.consumirTecla(BotonesConsumirTecla);
         
         System.out.println("Controlador Administrador Autoescuela Iniciado");
         Label[] PorcentajesBarra = {LabelProgresoAprobado, LabelProgresoReprobado, LabelProgresoTeorico, LabelProgresoPractico};
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado, BarraProgresoReprobado, BarraProgresoTeorico, BarraProgresoPractico};
-        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
+        GestorEscenas.progresoLabel(PorcentajesBarra, BarrasProgreso);
         
         
         this.TransicionInicio();
@@ -210,9 +210,9 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     @FXML
     public void TransicionInicio() {
         Pane[] PanelesOcultar = {PanelExamenesTeoricos, PanelExamenesPracticos};
-        GestorEscenas.MostrarOcultarPaneles(PanelInicio, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelInicio, PanelesOcultar);
         JFXButton[] botones={ExamenTeorico,ExamenPractico};
-        GestorEscenas.PintarBotones(Inicio, botones);
+        GestorEscenas.pintarBotones(Inicio, botones);
         
         ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
         Inicio.setGraphic(IconoActivo);  
@@ -225,7 +225,7 @@ public class ControladorAdministradorAutoescuela extends Controlador{
                 add(ExamenPractico);
                 add(ExamenTeorico);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);   
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);   
     }
 
     @FXML
@@ -236,9 +236,9 @@ public class ControladorAdministradorAutoescuela extends Controlador{
         
         
         Pane[] PanelesOcultar = {PanelInicio, PanelExamenesTeoricos};
-        GestorEscenas.MostrarOcultarPaneles(PanelExamenesPracticos, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelExamenesPracticos, PanelesOcultar);
         JFXButton[] botones = {ExamenTeorico,Inicio};
-        GestorEscenas.PintarBotones(ExamenPractico, botones);
+        GestorEscenas.pintarBotones(ExamenPractico, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer-blanco.png")));
         ExamenPractico.setGraphic(IconoActivo);
         
@@ -251,7 +251,7 @@ public class ControladorAdministradorAutoescuela extends Controlador{
                 add(ExamenTeorico);
                 add(Inicio);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
     @FXML
@@ -261,9 +261,9 @@ public class ControladorAdministradorAutoescuela extends Controlador{
         GestorTablas.CargarTablaExamenesTeoricosAdminAutoescuela(TablaExamenesTeoricos);
         
         Pane[] PanelesOcultar = {PanelInicio, PanelExamenesPracticos};
-        GestorEscenas.MostrarOcultarPaneles(PanelExamenesTeoricos, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelExamenesTeoricos, PanelesOcultar);
         JFXButton[] botones = {ExamenPractico,Inicio};
-        GestorEscenas.PintarBotones(ExamenTeorico, botones);
+        GestorEscenas.pintarBotones(ExamenTeorico, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-teorico-blanco.png")));
         ExamenTeorico.setGraphic(IconoActivo);
         
@@ -276,7 +276,7 @@ public class ControladorAdministradorAutoescuela extends Controlador{
                 add(ExamenPractico);
                 add(Inicio);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
     @FXML
@@ -307,12 +307,12 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     @Override
     public void Iniciar(MenuEstadisticas MenuEstadisticas) {
         
-        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.Usuario.getNombre()));
         Tooltip MouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
         MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
         LabelUsuarioNombre.setTooltip(MouseNombre);
         LabelUsuarioNombre.setMaxWidth(100);
-        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
+        LabelCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.Usuario.getCorreo()));
         CargarEstadisticas(MenuEstadisticas);
         
     }

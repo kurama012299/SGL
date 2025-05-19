@@ -65,8 +65,8 @@ public class ControladorVerMasInfracciones {
     public void Iniciar() throws Exception
     {
         System.out.println("Iniciar llamado");
-        String puntosStr = Integer.toString(Licencia.GetCantPuntos());
-        Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.GetId());
+        String puntosStr = Integer.toString(Licencia.getCantPuntos());
+        Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
         TextFieldPuntos.setText(puntosStr);
         ColorGravedad(Infraccion.getGravedad(), TextFieldGravedad);
         TextFieldPagado.setText(Pagado(Infraccion.isPagada()));
@@ -75,7 +75,7 @@ public class ControladorVerMasInfracciones {
         TextFieldOficial.setText(Infraccion.getNombreOficial());
         TextFieldDescripcion.setText(Infraccion.getDescripcion());
         TextFieldFecha.setText(Infraccion.getFecha().toString());
-        TextFieldIdLicencia.setText(Licencia.GetId().toString());
+        TextFieldIdLicencia.setText(Licencia.getId().toString());
     }
     
     public static String Pagado(boolean Pagado){

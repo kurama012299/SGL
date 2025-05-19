@@ -66,7 +66,7 @@ public class ControladorVerMasExamenesMedicos {
         else if(ExamenMedico.isAprobado() && ExamenMedico.getRestricciones().size()!=0)
         {
             TextFieldResultado.setText("Aprobado condicional");
-            TextFieldRestricciones.setText(GestorEscenas.MostrarRestricciones(ExamenMedico.getRestricciones()).toString());
+            TextFieldRestricciones.setText(GestorEscenas.mostrarRestricciones(ExamenMedico.getRestricciones()).toString());
         }
         else
         {

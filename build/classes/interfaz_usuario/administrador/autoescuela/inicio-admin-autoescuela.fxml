@@ -140,7 +140,7 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="11.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="   7">
+                        <Label fx:id="LabelIniciosSesion" layoutX="11.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="   7">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -159,7 +159,7 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="12.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   120">
+                        <Label fx:id="LabelTotalTrabajadores" layoutX="12.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   120">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -173,7 +173,7 @@
                   </Pane>
                   <Pane layoutX="554.0" layoutY="106.0" prefHeight="111.0" prefWidth="169.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
                      <children>
-                        <Label layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   35">
+                        <Label fx:id="LabelTotalExamenes" layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   35">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -239,7 +239,7 @@
                            </font>
                         </Label>
                         <Label layoutX="37.0" layoutY="27.0" prefHeight="17.0" prefWidth="35.0" textFill="#9e1111" />
-                        <Label layoutX="38.0" layoutY="24.0" prefHeight="23.0" prefWidth="157.0" text="+30%  respecto anterior mes" textFill="#2d9f11" />
+                        <Label fx:id="LabelPorcientoAnteriorMes" layoutX="38.0" layoutY="24.0" prefHeight="23.0" prefWidth="189.0" text="+30%  respecto anterior mes" textFill="#2d9f11" />
                         <ProgressBar fx:id="BarraProgresoTeorico" layoutX="-2.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="95.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
                         <ProgressBar fx:id="BarraProgresoPractico" layoutX="118.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="95.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
                         <Label fx:id="LabelProgresoTeorico" alignment="CENTER" layoutX="30.0" layoutY="122.0" text="64%">
@@ -254,7 +254,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
+                  <Label fx:id="LabelUltimoInicioSesion" layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -271,7 +271,7 @@
                               <Image url="@../../recursos_compartidos/imagenes/ico-examen-teorico.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="23">
+                        <Label fx:id="LabelExamenesTeoricos" layoutX="389.0" layoutY="10.0" prefHeight="33.0" prefWidth="61.0" text="23">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -290,14 +290,14 @@
                               <Image url="@../../recursos_compartidos/imagenes/ico-chofer.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="12">
+                        <Label fx:id="LabelExamenesPracticos" layoutX="386.0" layoutY="10.0" prefHeight="33.0" prefWidth="64.0" text="12">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="67.0" layoutY="260.0" prefHeight="23.0" prefWidth="169.0" text="+10% mayor índice aprobados" textFill="#2d9f11" />
+                  <Label fx:id="LabelIndiceAprobados" layoutX="67.0" layoutY="260.0" prefHeight="23.0" prefWidth="169.0" text="+10% índice aprobados" textFill="#2d9f11" />
                </children>
             </Pane>
             <Pane fx:id="PanelExamenesPracticos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="822.0" visible="false">

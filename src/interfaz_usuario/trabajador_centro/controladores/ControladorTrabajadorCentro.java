@@ -156,15 +156,15 @@ public class ControladorTrabajadorCentro extends Controlador{
 
         BotonCerrarSesion.setOnAction(e ->
         {
-            GestorEscenas.CerrarPrograma();
+            GestorEscenas.cerrarPrograma();
         });
         
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes};
-        GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
+        GestorEscenas.consumirTecla(BotonesConsumirTecla);
         
         Label[] PorcentajesBarra = {LabelLicenciaA,LabelLicenciaB,LabelLicenciaC,LabelLicenciaD,LabelLicenciaE,LabelInfraccionLeve,LabelInfraccionGrave,LabelInfraccionMGrave};
         ProgressBar[] BarrasProgreso = {BarraProgresoLicenciaA,BarraProgresoLicenciaB,BarraProgresoLicenciaC,BarraProgresoLicenciaD,BarraProgresoLicenciaE,BarraProgresoInfraccionLeve,BarraProgresoInfraccionGrave,BarraProgresoInfraccionMGrave};
-        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
+        GestorEscenas.progresoLabel(PorcentajesBarra, BarrasProgreso);
         
         System.out.println("Controlador Administrador Trabajador Centro Iniciado");
         this.TransicionInicio();
@@ -173,9 +173,9 @@ public class ControladorTrabajadorCentro extends Controlador{
     @FXML
     public void TransicionLicencias() {
         Pane[] PanelesOcultar = {PanelInfracciones, PanelInicio, PanelConductores, PanelExamenes};
-        GestorEscenas.MostrarOcultarPaneles(PanelLicencias, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelLicencias, PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Examenes, Reportes};
-        GestorEscenas.PintarBotones(Licencias, botones);
+        GestorEscenas.pintarBotones(Licencias, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-licencia-blanco.png")));
         Licencias.setGraphic(IconoActivo);
         ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
@@ -192,15 +192,15 @@ public class ControladorTrabajadorCentro extends Controlador{
                 add(Examenes);
                 add(Reportes);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
     @FXML
     public void TransicionConductores() {
         Pane[] PanelesOcultar = {PanelInfracciones, PanelLicencias, PanelInicio, PanelExamenes};
-        GestorEscenas.MostrarOcultarPaneles(PanelConductores, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelConductores, PanelesOcultar);
         JFXButton[] botones = {Inicio, Licencias, Infracciones, Examenes, Reportes};
-        GestorEscenas.PintarBotones(Conductores, botones);
+        GestorEscenas.pintarBotones(Conductores, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-conductor-blanco.png")));
         Conductores.setGraphic(IconoActivo);
         
@@ -218,15 +218,15 @@ public class ControladorTrabajadorCentro extends Controlador{
                 add(Examenes);
                 add(Reportes);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
     @FXML
     public void TransicionInicio() {
         Pane[] PanelesOcultar = {PanelInfracciones, PanelLicencias, PanelConductores, PanelExamenes};
-        GestorEscenas.MostrarOcultarPaneles(PanelInicio, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelInicio, PanelesOcultar);
         JFXButton[] botones = {Licencias, Conductores, Infracciones, Examenes, Reportes};
-        GestorEscenas.PintarBotones(Inicio, botones);
+        GestorEscenas.pintarBotones(Inicio, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
         Inicio.setGraphic(IconoActivo);
         
@@ -244,15 +244,15 @@ public class ControladorTrabajadorCentro extends Controlador{
                 add(Examenes);
                 add(Reportes);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
     @FXML
     public void TransicionExamenes() {
         Pane[] PanelesOcultar = {PanelInfracciones, PanelLicencias, PanelConductores, PanelInicio};
-        GestorEscenas.MostrarOcultarPaneles(PanelExamenes, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelExamenes, PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Licencias, Reportes};
-        GestorEscenas.PintarBotones(Examenes, botones);
+        GestorEscenas.pintarBotones(Examenes, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-blanco.png")));
         Examenes.setGraphic(IconoActivo);
         
@@ -270,15 +270,15 @@ public class ControladorTrabajadorCentro extends Controlador{
                 add(Inicio);
                 add(Reportes);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
     @FXML
     public void TransicionInfracciones() {
         Pane[] PanelesOcultar = {PanelInicio, PanelLicencias, PanelConductores, PanelExamenes};
-        GestorEscenas.MostrarOcultarPaneles(PanelInfracciones, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelInfracciones, PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Licencias, Examenes, Reportes};
-        GestorEscenas.PintarBotones(Infracciones, botones);
+        GestorEscenas.pintarBotones(Infracciones, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-infraccion-blanco.png")));
         Infracciones.setGraphic(IconoActivo);
         
@@ -296,13 +296,13 @@ public class ControladorTrabajadorCentro extends Controlador{
                 add(Examenes);
                 add(Reportes);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
     public void TransicionReportes() {
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Examenes, Licencias};
-        GestorEscenas.PintarBotones(Reportes, botones);
+        GestorEscenas.pintarBotones(Reportes, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-reporte-blanco.png")));
         Reportes.setGraphic(IconoActivo);
         
@@ -320,7 +320,7 @@ public class ControladorTrabajadorCentro extends Controlador{
                 add(Examenes);
                 add(Inicio);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
 
     @FXML
@@ -378,12 +378,12 @@ public class ControladorTrabajadorCentro extends Controlador{
     @Override
     public void Iniciar(MenuEstadisticas MenuEstadisticas) {
         
-        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.Usuario.getNombre()));
         Tooltip MouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
         MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
         LabelUsuarioNombre.setTooltip(MouseNombre);
         LabelUsuarioNombre.setMaxWidth(100);
-        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
+        LabelCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.Usuario.getCorreo()));
         
     }
 

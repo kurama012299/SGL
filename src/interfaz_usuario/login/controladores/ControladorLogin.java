@@ -52,9 +52,9 @@ public class ControladorLogin {
     @FXML
     public void initialize() {
         System.out.println("Controlador Login Iniciado");
-        GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Login");
+        GestorEscenas.ponerIconoVentana(VentanaPrincipal, "Login");
         ConfigurarNavegacionConTeclas(Usuario, Clave);
-        GestorEscenas.ConfigurarEfectoLinea(new ArrayList<TextField>(Arrays.asList(Clave,Usuario)), new ArrayList<Line>(Arrays.asList(LineaClave,LineaUsuario)));
+        GestorEscenas.configurarEfectoLinea(new ArrayList<TextField>(Arrays.asList(Clave,Usuario)), new ArrayList<Line>(Arrays.asList(LineaClave,LineaUsuario)));
     }
     
     @FXML
@@ -95,7 +95,7 @@ public class ControladorLogin {
             }
         } catch (Exception ex) 
         {
-            GestorEscenas.CargarError(Entrar.getScene().getWindow(),ex);
+            GestorEscenas.cargarError(Entrar.getScene().getWindow(),ex);
         }
     }
     
@@ -103,7 +103,7 @@ public class ControladorLogin {
     private void CargarMenuInicio(String Ruta) throws Exception
     {
         ((Stage) Entrar.getScene().getWindow()).close();
-        GestorEscenas.CargarMenu(Ruta);
+        GestorEscenas.cargarMenu(Ruta);
     }
     
     

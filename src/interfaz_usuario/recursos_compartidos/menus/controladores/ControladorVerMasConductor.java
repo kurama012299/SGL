@@ -7,8 +7,6 @@ package interfaz_usuario.recursos_compartidos.menus.controladores;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
@@ -86,17 +84,17 @@ public class ControladorVerMasConductor {
         TextFieldCorreo.setText(Conductor.getCorreo());
         TextFieldDireccion.setText(Conductor.getDireccion());
         TextFieldNombre.setText(Conductor.getNombre()+" "+ Conductor.getApellidos());
-        TextFieldEstadoLicencia.setText(Licencia.GetEstado());
-        TextFieldFechaEmision.setText(Licencia.GetFechaEmision().toString());
-        TextFieldFechaVencimiento.setText(Licencia.GetFechaVencimiento().toString());
-        LabelTipoLicencia.setText(Licencia.GetTipo());
-        TextFieldIdLicencia.setText(Licencia.GetId().toString());
+        TextFieldEstadoLicencia.setText(Licencia.getEstado());
+        TextFieldFechaEmision.setText(Licencia.getFechaEmision().toString());
+        TextFieldFechaVencimiento.setText(Licencia.getFechaVencimiento().toString());
+        LabelTipoLicencia.setText(Licencia.getTipo());
+        TextFieldIdLicencia.setText(Licencia.getId().toString());
         CargarCategorias();
     }
     
     private void CargarCategorias()
     {
-        for(String categoria:Licencia.GetCategorias())
+        for(String categoria:Licencia.getCategorias())
         {
             switch(categoria)
             {

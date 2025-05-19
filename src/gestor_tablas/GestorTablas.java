@@ -59,7 +59,7 @@ public class GestorTablas {
                                 MostrarDetalles(ObjetoFila,Etiqueta.getScene().getWindow());
                             } catch (Exception ex) {
                                 System.out.println("Error al cargar el menu ver mas: "+ex.getMessage());
-                                GestorEscenas.CargarError(Etiqueta.getScene().getWindow(), ex);
+                                GestorEscenas.cargarError(Etiqueta.getScene().getWindow(), ex);
                             }
                         });                        
                         Celda.setGraphic(Etiqueta);
@@ -81,28 +81,32 @@ public class GestorTablas {
                     Conductor Conductor = (Conductor) Objeto;
                     Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Conductor.getIdLicencia());
 
-                    GestorEscenas.CargarVerMasConductor(Ventana, Conductor, Licencia);
-                } else if (Objeto instanceof ExamenConduccion && !(Objeto instanceof ExamenMedico)) {
+                    GestorEscenas.cargarVerMasConductor(Ventana, Conductor, Licencia);
+                } else if (Objeto instanceof ExamenConduccion && !(Objeto instanceof ExamenMedico)) 
+                {
                     if (((ExamenConduccion) Objeto).getTipo().equalsIgnoreCase("Práctico") || ((ExamenConduccion) Objeto).getTipo().equalsIgnoreCase("Teórico")) {
                         ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
-                        GestorEscenas.CargarVerMasExamenes(Ventana, ExamenConduccion, null);
+                        GestorEscenas.cargarVerMasExamenes(Ventana, ExamenConduccion, null);
                     } else {
                         ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
                         for (ExamenMedico Examen : ExamenesMedicos) {
                             if (Examen.getId().equals(((ExamenConduccion) Objeto).getId())) {
                                 ExamenMedico ExamenMedico = (ExamenMedico) Examen;
-                                GestorEscenas.CargarVerMasExamenes(Ventana, null, ExamenMedico);
+                                GestorEscenas.cargarVerMasExamenes(Ventana, null, ExamenMedico);
                             }
                         }
                     }
                 } else if (Objeto instanceof Infraccion) {
                     Infraccion Infraccion = (Infraccion) Objeto;
                     Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Infraccion.getIdLicencia());
-                    GestorEscenas.CargarVerMasInfraccion(Ventana, Infraccion, Licencia);
+                    GestorEscenas.cargarVerMasInfraccion(Ventana, Infraccion, Licencia);
                 } else if (Objeto instanceof Licencia) {
                     Licencia Licencia = (Licencia) Objeto;
-                    Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.GetId());
-                    GestorEscenas.CargarVerMasLicencias(Ventana, Conductor, Licencia);
+                    Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
+                    GestorEscenas.cargarVerMasLicencias(Ventana, Conductor, Licencia);
+                }else if(Objeto instanceof EntidadRelacionada){
+                    EntidadRelacionada Entidad = (EntidadRelacionada) Objeto;
+                    GestorEscenas.cargarVerMasEntidades(Ventana, Entidad);
                 }
 
                 break;
@@ -110,16 +114,16 @@ public class GestorTablas {
                 if (Objeto instanceof ExamenConduccion) {
                     ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
                     if (ExamenConduccion.getTipo().equalsIgnoreCase("Práctico")) {
-                        GestorEscenas.CargarVerMasExamenesPracticosAdmin(Ventana, ExamenConduccion);
+                        GestorEscenas.cargarVerMasExamenesPracticosAdmin(Ventana, ExamenConduccion);
                     } else {
-                        GestorEscenas.CargarVerMasExamenesTeoricosAdmin(Ventana, ExamenConduccion);
+                        GestorEscenas.cargarVerMasExamenesTeoricosAdmin(Ventana, ExamenConduccion);
                     }
                 }
                 break;
             case "Administrador médico":
                 if (Objeto instanceof ExamenMedico) {
                     ExamenMedico ExamenMedico = (ExamenMedico) Objeto;
-                    GestorEscenas.CargarVerMasExamenesMedicosAdmin(Ventana, ExamenMedico);
+                    GestorEscenas.cargarVerMasExamenesMedicosAdmin(Ventana, ExamenMedico);
                 }
 
                 break;
@@ -127,16 +131,16 @@ public class GestorTablas {
                 if (Objeto instanceof ExamenConduccion) {
                     ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
                     if (ExamenConduccion.getTipo().equalsIgnoreCase("Práctico")) {
-                        GestorEscenas.CargarVerMasExamenesPracticosTrabajador(Ventana, ExamenConduccion);
+                        GestorEscenas.cargarVerMasExamenesPracticosTrabajador(Ventana, ExamenConduccion);
                     } else {
-                        GestorEscenas.CargarVerMasExamenesTeoricosTrabajador(Ventana, ExamenConduccion);
+                        GestorEscenas.cargarVerMasExamenesTeoricosTrabajador(Ventana, ExamenConduccion);
                     }
                 }
                 break;
             case "Médico":
                 if (Objeto instanceof ExamenMedico) {
                     ExamenMedico ExamenMedico = (ExamenMedico) Objeto;
-                    GestorEscenas.CargarVerMasExamenesMedicosDoctor(Ventana, ExamenMedico);
+                    GestorEscenas.cargarVerMasExamenesMedicosDoctor(Ventana, ExamenMedico);
                 }
                 break;
             case "Trabajador centro":
@@ -532,7 +536,6 @@ public class GestorTablas {
             ObservableList<EntidadRelacionada> Entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
             TablaEntidad.setItems(Entidades);
             LlenarColumnaDetalles(TablaEntidad, TablaEntidad.getItems().size() - 1);
-            LlenarColumnaFotos(TablaEntidad, TablaEntidad.getItems().size() - 1);
         } catch (Exception ex) {
 
         }
@@ -561,7 +564,6 @@ public class GestorTablas {
             ObservableList<EntidadRelacionada> Autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
             TablaAE.setItems(Autoescuelas);
             LlenarColumnaDetalles(TablaAE, TablaAE.getItems().size() - 1);
-            LlenarColumnaFotos(TablaAE, TablaAE.getItems().size() - 1);
         } catch (Exception ex) {
 
         }
@@ -590,7 +592,6 @@ public class GestorTablas {
             ObservableList<EntidadRelacionada> Clinicas = ServicioEntidad.ObtenerClinicas();
             TablaClinica.setItems(Clinicas);
             LlenarColumnaDetalles(TablaClinica, TablaClinica.getItems().size() - 1);
-            LlenarColumnaFotos(TablaClinica, TablaClinica.getItems().size() - 1);
         } catch (Exception ex) {
 
         }
@@ -671,7 +672,7 @@ public class GestorTablas {
 
         ColumnaTipoLicencia.setCellValueFactory(cellData -> {
             Licencia Licencia = cellData.getValue();
-            return new SimpleStringProperty(Licencia.GetTipo()
+            return new SimpleStringProperty(Licencia.getTipo()
             );
         });
 
@@ -679,7 +680,7 @@ public class GestorTablas {
             try {
                 Licencia Licencia = cellData.getValue();
                 Conductor Conductor = null;
-                Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.GetId());
+                Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
                 return new SimpleStringProperty(
                         String.format("%s %s", Conductor.getNombre(), Conductor.getApellidos())
                 );
@@ -692,7 +693,7 @@ public class GestorTablas {
         ColumnaFotoLicencia.setCellValueFactory(cellData -> {
             try {
                 Licencia Licencia = cellData.getValue();
-                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.GetId()).getFoto()
+                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId()).getFoto()
                 );
             } catch (Exception ex) {
 

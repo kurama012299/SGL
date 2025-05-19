@@ -144,17 +144,17 @@ public class ControladorAdministradorMedico extends Controlador{
         
         BotonCerrarSesion.setOnAction(e ->
         {
-            GestorEscenas.CerrarPrograma();
+            GestorEscenas.cerrarPrograma();
         });
         
         JFXButton[] BotonesConsumirTecla={Inicio,Examenes};
-        GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
+        GestorEscenas.consumirTecla(BotonesConsumirTecla);
         
         GestorEscenas.configurarReloj(LabelFechaHora);
         
         Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoAprobadoR,LabelProgresoJoven,LabelProgresoAdulto,LabelProgresoAnciano};
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado,BarraProgresoReprobado,BarraProgresoAprobadoR,BarraProgresoJoven,BarraProgresoAdulto,BarraProgresoAnciano};
-        GestorEscenas.ProgresoLabel(PorcentajesBarra, BarrasProgreso);
+        GestorEscenas.progresoLabel(PorcentajesBarra, BarrasProgreso);
         
         System.out.println("Controlador Administrador Medico Iniciado");
         this.TransicionInicio();
@@ -164,9 +164,9 @@ public class ControladorAdministradorMedico extends Controlador{
     public void TransicionInicio()
     {
         Pane[] PanelesOcultar={PanelExamenes};
-        GestorEscenas.MostrarOcultarPaneles(PanelInicio, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelInicio, PanelesOcultar);
         JFXButton[] botones = {Examenes};
-        GestorEscenas.PintarBotones(Inicio, botones);
+        GestorEscenas.pintarBotones(Inicio, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
         Inicio.setGraphic(IconoActivo);
         
@@ -177,7 +177,7 @@ public class ControladorAdministradorMedico extends Controlador{
         ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
                 add(Examenes);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -188,9 +188,9 @@ public class ControladorAdministradorMedico extends Controlador{
         GestorTablas.CargarTablaExamenesMedicosAdminMedico(TablaExamenesMedico);
         
         Pane[] PanelesOcultar={PanelInicio};
-        GestorEscenas.MostrarOcultarPaneles(PanelExamenes, PanelesOcultar);
+        GestorEscenas.mostrarOcultarPaneles(PanelExamenes, PanelesOcultar);
         JFXButton[] botones = {Inicio};
-        GestorEscenas.PintarBotones(Examenes, botones);
+        GestorEscenas.pintarBotones(Examenes, botones);
         ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-blanco.png")));
         Examenes.setGraphic(IconoActivo);
         
@@ -201,7 +201,7 @@ public class ControladorAdministradorMedico extends Controlador{
         ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
                 add(Inicio);
                 }};
-        GestorEscenas.CambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
     }
     
     @FXML
@@ -221,12 +221,12 @@ public class ControladorAdministradorMedico extends Controlador{
     @Override
     public void Iniciar(MenuEstadisticas MenuEstadisticas) 
     {
-        LabelUsuarioNombre.setText(GestorEscenas.AbreviarNombre(Autentificador.Usuario.getNombre()));
+        LabelUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.Usuario.getNombre()));
         Tooltip MouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
         MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
         LabelUsuarioNombre.setTooltip(MouseNombre);
         LabelUsuarioNombre.setMaxWidth(100);
-        LabelCorreoUsuario.setText(GestorEscenas.SeguridadCorreo(Autentificador.Usuario.getCorreo()));
+        LabelCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.Usuario.getCorreo()));
     }
 
     @Override
