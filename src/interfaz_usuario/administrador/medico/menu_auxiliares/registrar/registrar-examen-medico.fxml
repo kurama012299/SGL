@@ -22,7 +22,7 @@
             <Font name="Arial" size="25.0" />
          </font>
       </Label>
-      <JFXButton layoutX="393.0" layoutY="403.0" opacity="0.4" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: #8000ff;" text="Registrar" textFill="WHITE">
+      <JFXButton layoutX="393.0" layoutY="403.0" opacity="0.4" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: #8000ff;" text="Siguiente" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>

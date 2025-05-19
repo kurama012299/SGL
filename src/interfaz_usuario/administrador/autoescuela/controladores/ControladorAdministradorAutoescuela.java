@@ -5,7 +5,6 @@
 package interfaz_usuario.administrador.autoescuela.controladores;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTooltip;
 import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.modelos.Controlador;
 import gestor_interfaces.modelos.Estadistica;
@@ -26,7 +25,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import logica.autentificacion.Autentificador;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 
