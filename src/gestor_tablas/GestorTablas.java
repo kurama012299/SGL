@@ -4,7 +4,6 @@
  */
 package gestor_tablas;
 
-
 import gestor_interfaces.GestorEscenas;
 import java.util.Date;
 import java.util.Set;
@@ -35,7 +34,6 @@ import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
 
-
 /**
  *
  * @author Angel Hernandez
@@ -56,12 +54,12 @@ public class GestorTablas {
                         Etiqueta.setOnMouseClicked(event -> {
                             T ObjetoFila = Tabla.getItems().get(Celda.getIndex());
                             try {
-                                MostrarDetalles(ObjetoFila,Etiqueta.getScene().getWindow());
+                                MostrarDetalles(ObjetoFila, Etiqueta.getScene().getWindow());
                             } catch (Exception ex) {
-                                System.out.println("Error al cargar el menu ver mas: "+ex.getMessage());
+                                System.out.println("Error al cargar el menu ver mas: " + ex.getMessage());
                                 GestorEscenas.cargarError(Etiqueta.getScene().getWindow(), ex);
                             }
-                        });                        
+                        });
                         Celda.setGraphic(Etiqueta);
                         if (Celda.getIndex() == CantidadFilas) {
                             break;
@@ -71,19 +69,16 @@ public class GestorTablas {
             }
         });
     }
-    
-    
-    private static void MostrarDetalles(Object Objeto,Window Ventana) throws Exception
-    {
+
+    private static void MostrarDetalles(Object Objeto, Window Ventana) throws Exception {
         switch (Autentificador.Usuario.getRol()) {
             case "Administrador":
                 if (Objeto instanceof Conductor) {
                     Conductor Conductor = (Conductor) Objeto;
                     Licencia Licencia = ServicioLicencia.ObtenerLicenciaPorId(Conductor.getIdLicencia());
+                    GestorEscenas.cargarVerMasConductores(Ventana, Conductor, Licencia);
 
-                    GestorEscenas.cargarVerMasConductor(Ventana, Conductor, Licencia);
-                } else if (Objeto instanceof ExamenConduccion && !(Objeto instanceof ExamenMedico)) 
-                {
+                } else if (Objeto instanceof ExamenConduccion && !(Objeto instanceof ExamenMedico)) {
                     if (((ExamenConduccion) Objeto).getTipo().equalsIgnoreCase("Práctico") || ((ExamenConduccion) Objeto).getTipo().equalsIgnoreCase("Teórico")) {
                         ExamenConduccion ExamenConduccion = (ExamenConduccion) Objeto;
                         GestorEscenas.cargarVerMasExamenes(Ventana, ExamenConduccion, null);
@@ -104,7 +99,7 @@ public class GestorTablas {
                     Licencia Licencia = (Licencia) Objeto;
                     Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
                     GestorEscenas.cargarVerMasLicencias(Ventana, Conductor, Licencia);
-                }else if(Objeto instanceof EntidadRelacionada){
+                } else if (Objeto instanceof EntidadRelacionada) {
                     EntidadRelacionada Entidad = (EntidadRelacionada) Objeto;
                     GestorEscenas.cargarVerMasEntidades(Ventana, Entidad);
                 }
@@ -151,13 +146,12 @@ public class GestorTablas {
             }
     }
 
-    
     private static <T> void LlenarColumnaFotos(TableView<T> Tabla, int CantidadFilas) {
         Image Icono = new Image(
-        Thread.currentThread().getContextClassLoader().getResourceAsStream(
-            "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
-        )
-    );
+                Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                        "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
+                )
+        );
         TableColumn<T, ?> PrimeraColumna = (TableColumn<T, ?>) Tabla.getColumns().get(0);
         Platform.runLater(() -> {
             // Buscar TODAS las celdas visibles
@@ -180,8 +174,7 @@ public class GestorTablas {
             }
         });
     }
-    
-    
+
     public static void ConfigurarColumnasExamenes(
             TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
             TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
@@ -222,7 +215,6 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
     }
 
-    
     public static void ConfigurarColumnasConductores(
             TableColumn<Conductor, String> ColumnaFoto,
             TableColumn<Conductor, String> ColumnaNombre,
@@ -248,14 +240,12 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaCorreo, "Correo");
     }
 
-    
     private static <T, S> void ConfigurarColumnaStandard(TableColumn<T, S> columna, String propiedad) {
         if (columna != null) {
             columna.setCellValueFactory(new PropertyValueFactory<>(propiedad));
         }
     }
 
-    
     public static void CargarTablaConductores(TableView<Conductor> TablaConductor) {
         try {
             ObservableList<Conductor> Conductores = ServicioConductor.ObtenerConductores();
@@ -267,7 +257,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void CargarTablaExamenes(TableView<ExamenConduccion> TablaExamenes) {
         try {
             ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
@@ -288,7 +277,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void CargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> TablaExamenes) {
         try {
             ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
@@ -300,7 +288,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void CargarTablaExamenesTeoricosAdminAutoescuela(TableView<ExamenConduccion> TablaExamenes) {
         try {
             ObservableList<ExamenConduccion> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
@@ -312,7 +299,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void ConfigurarColumnasExamenesAdminAutoescuela(
             TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
             TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
@@ -352,7 +338,6 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
     }
 
-    
     public static void CargarTablaExamenesMedicosAdminMedico(TableView<ExamenMedico> TablaExamenesMedicos) {
         try {
             ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
@@ -364,7 +349,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void ConfigurarColumnasExamenesMedicosAdminMedico(
             TableColumn<ExamenMedico, String> ColumnaFotoExamen,
             TableColumn<ExamenMedico, String> ColumnaExaminadoExamen,
@@ -407,7 +391,6 @@ public class GestorTablas {
 
     }
 
-    
     public static void CargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> TablaExamenesMedicos, Long Id) {
         try {
             ObservableList<ExamenMedico> ExamenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedicoPorIdRol(Id);
@@ -419,7 +402,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void ConfigurarColumnasExamenesMedicosMedicoUnico(
             TableColumn<ExamenMedico, String> ColumnaFotoExamen,
             TableColumn<ExamenMedico, String> ColumnaExaminadoExamen,
@@ -456,7 +438,6 @@ public class GestorTablas {
 
     }
 
-    
     public static void CargarTablaExamenesTeoricosTraAutoescuela(TableView<ExamenConduccion> TablaExamenes, Long Id) {
         try {
             ObservableList<ExamenConduccion> ExamenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricosPorIDRol(Id);
@@ -468,7 +449,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void CargarTablaExamenesPracticosTraAutoescuela(TableView<ExamenConduccion> TablaExamenes, Long Id) {
         try {
             ObservableList<ExamenConduccion> ExamenesPracticos = ServiciosExamenes.ObtenerExamenesPracticosPorIDRol(Id);
@@ -480,7 +460,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void ConfigurarColumnasExamenesTraAutoescuela(
             TableColumn<ExamenConduccion, String> ColumnaFotoExamen,
             TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen,
@@ -513,7 +492,6 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaFechaExamen, "Fecha");
     }
 
-    
     public static void ConfigurarColumnasEntidades(
             TableColumn<EntidadRelacionada, String> ColumnaDirectorEntidad,
             TableColumn<EntidadRelacionada, String> ColumnaNombreEntidad,
@@ -530,7 +508,6 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaCorreoEntidad, "Correo");
     }
 
-    
     public static void CargarTablaEntidades(TableView<EntidadRelacionada> TablaEntidad) {
         try {
             ObservableList<EntidadRelacionada> Entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
@@ -541,7 +518,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void ConfigurarColumnasAutoescuelas(
             TableColumn<EntidadRelacionada, String> ColumnaDirectorAE,
             TableColumn<EntidadRelacionada, String> ColumnaNombreAE,
@@ -558,7 +534,6 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaCorreoAE, "Correo");
     }
 
-    
     public static void CargarTablaAutoescuelas(TableView<EntidadRelacionada> TablaAE) {
         try {
             ObservableList<EntidadRelacionada> Autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
@@ -569,7 +544,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void ConfigurarColumnasClinicas(
             TableColumn<EntidadRelacionada, String> ColumnaDirectorClinica,
             TableColumn<EntidadRelacionada, String> ColumnaNombreClinica,
@@ -586,7 +560,6 @@ public class GestorTablas {
         ConfigurarColumnaStandard(ColumnaCorreoClinica, "Correo");
     }
 
-    
     public static void CargarTablaClinicas(TableView<EntidadRelacionada> TablaClinica) {
         try {
             ObservableList<EntidadRelacionada> Clinicas = ServicioEntidad.ObtenerClinicas();
@@ -596,8 +569,7 @@ public class GestorTablas {
 
         }
     }
-      
-    
+
     public static void ConfigurarColumnasInfracciones(
             TableColumn<Infraccion, String> ColumnaFotoInfraccion,
             TableColumn<Infraccion, String> ColumnaNombreInfraccion,
@@ -648,7 +620,6 @@ public class GestorTablas {
 
     }
 
-    
     public static void CargarTablaInfracciones(TableView<Infraccion> TablaInfraccion) {
         try {
             ObservableList<Infraccion> Infracciones = ServicioInfraccion.ObtenerInfracciones();
@@ -660,7 +631,6 @@ public class GestorTablas {
         }
     }
 
-    
     public static void ConfigurarColumnasLicencias(
             TableColumn<Licencia, String> ColumnaFotoLicencia,
             TableColumn<Licencia, String> ColumnaNombreLicencia,
@@ -708,7 +678,6 @@ public class GestorTablas {
 
     }
 
-    
     public static void CargarTablaLicencias(TableView<Licencia> TablaLicencia) {
         try {
             ObservableList<Licencia> Licencias = ServicioLicencia.ObtenerLicencias();

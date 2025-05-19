@@ -835,7 +835,7 @@ public class ControladorAdministradorSistema extends Controlador{
         Stage Padre = (Stage) RegistrarAutoescuela.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Autoescuela");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar Autoescuela");
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }
@@ -849,7 +849,7 @@ public class ControladorAdministradorSistema extends Controlador{
         Stage Padre = (Stage) RegistrarClinica.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Clinica");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar Clinica");
         } catch (Exception ex) {
             //CAPTURAR ERROR
            
@@ -863,7 +863,7 @@ public class ControladorAdministradorSistema extends Controlador{
         Stage Padre = (Stage) RegistrarInfracciones.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Infraccion");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar Infraccion");
         } catch (Exception ex) {
             //CAPTURAR ERROR
            
@@ -877,7 +877,7 @@ public class ControladorAdministradorSistema extends Controlador{
         Stage Padre = (Stage) RegistrarExamen.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen");
         } catch (Exception ex) {
             //CAPTURAR ERROR
            
@@ -891,7 +891,7 @@ public class ControladorAdministradorSistema extends Controlador{
         Stage Padre = (Stage) RegistrarConductores.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Conductor");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar Conductor");
         } catch (Exception ex) {
             //CAPTURAR ERROR
            
@@ -905,7 +905,7 @@ public class ControladorAdministradorSistema extends Controlador{
         Stage Padre = (Stage) RegistrarLicencia.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar Licencia");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar Licencia");
         } catch (Exception ex) {
             //CAPTURAR ERROR
            

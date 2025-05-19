@@ -265,7 +265,7 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
         String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
         Stage Padre = (Stage) RegistrarPractico.getScene().getWindow();
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen practico");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen practico");
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }
@@ -279,7 +279,7 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
         Stage Padre = (Stage) RegistrarPractico.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen teorico");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen teorico");
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }

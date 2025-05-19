@@ -211,7 +211,7 @@ public class ControladorAdministradorMedico extends Controlador{
         Stage Padre = (Stage) Registrar.getScene().getWindow();
         
         try {
-            GestorEscenas.CargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen");
+            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen");
         } catch (Exception ex) {
             //CAPTURAR ERROR
            

@@ -61,9 +61,6 @@ import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.modelos.Infraccion;
 
 
-
-
-
 /**
  *
  * @author Angel Hernandez
@@ -71,13 +68,13 @@ import logica.infraccion.modelos.Infraccion;
 public class GestorEscenas  {
     
     
-
     public static void cargarMenu(String direccion) throws Exception {
         try {
 
             // Usar ruta relativa desde los recurso
-            URL Url = GestorEscenas.class.getResource(direccion);
-            FXMLLoader cargador = new FXMLLoader(Url);
+
+            URL url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
      
             Controlador controlador = cargador.getController();
@@ -112,6 +109,7 @@ public class GestorEscenas  {
                     
                     break;
             }
+
             menuEstadisticas.SetEstadisticas(estadisticas);
             controlador.Iniciar(menuEstadisticas);
 
@@ -134,7 +132,6 @@ public class GestorEscenas  {
     }
     
     
-
     public static void cargarError(Window ventanaPadre, Exception ex) {
         try {
             // Cargar el panel de error
@@ -166,26 +163,28 @@ public class GestorEscenas  {
         }
     }
 
-    public static void CargarPanelAuxiliar(Window Padre, String Direccion, boolean Modal, String Titulo) throws Exception {
+    
+    public static void cargarPanelAuxiliar(Window padre, String direccion, boolean esModal, String titulo) throws Exception {
         try {
 
-            URL url = GestorEscenas.class.getResource(Direccion);
+
+            URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
-            ventana.initOwner(Padre);
+            ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
 
-            if (Modal) {
+            if (esModal) {
                 ventana.initModality(Modality.WINDOW_MODAL);
             }
 
-            ventana.setTitle(Titulo);
+            ventana.setTitle(titulo);
             ventana.setScene(escena);
 
-            if (Modal) {
+            if (esModal) {
                 ventana.showAndWait();
             } else {
                 ventana.show();
@@ -198,19 +197,19 @@ public class GestorEscenas  {
         }
     }
     
-    
-    public static void cargarVerMasConductor(Window Padre, Conductor Conductor,Licencia Licencia) throws Exception {
+   
+    public static void cargarVerMasConductores(Window padre, Conductor conductor,Licencia licencia) throws Exception {
         try {
             String direccion = GestorFXML.RutaVerMasConductores;
-            URL url = GestorEscenas.class.getResource(direccion);
-            FXMLLoader cargador = new FXMLLoader(url);
-            Parent ruta = cargador.load();
+            URL Url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(Url);
+            Parent Ruta = cargador.load();
             ControladorVerMasConductor controlador = cargador.getController();
-            controlador.SetDatos(Conductor,Licencia); 
+            controlador.SetDatos(conductor,licencia); 
 
-            Scene escena = new Scene(ruta);
+            Scene escena = new Scene(Ruta);
             Stage ventana = new Stage();
-            ventana.initOwner(Padre);
+            ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
 
 
@@ -301,7 +300,7 @@ public class GestorEscenas  {
             ControladorVerMasExamenesPracticos controlador = (ControladorVerMasExamenesPracticos)cargador.getController();
             controlador.setDatos(examenConduccion); 
 
-            Scene Escena = new Scene(ruta);
+            Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
@@ -311,7 +310,7 @@ public class GestorEscenas  {
             
 
             ventana.setTitle("");
-            ventana.setScene(Escena);
+            ventana.setScene(escena);
             ventana.showAndWait();
           
             
@@ -362,7 +361,6 @@ public class GestorEscenas  {
             Parent ruta = cargador.load();
             ControladorVerMasExamenesMedicosDoctor controlador = (ControladorVerMasExamenesMedicosDoctor)cargador.getController();
             controlador.setDatos(examenMedico); 
-
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
             ventana.initOwner(padre);
@@ -414,6 +412,7 @@ public class GestorEscenas  {
             throw new Exception("Error al cargar la interfaz");
         }
     }
+  
     
     public static void cargarVerMasExamenesPracticosTrabajador(Window padre,ExamenConduccion examenConduccion) throws Exception {
         try {
@@ -446,12 +445,13 @@ public class GestorEscenas  {
     }
     
     //Funcion para mostrar el primer panel y los demas ocultarlos
-    public static void mostrarOcultarPaneles(Pane mostrar, Pane... Ocultar) {
+
+    public static void mostrarOcultarPaneles(Pane mostrar, Pane... ocultar) {
         mostrar.setVisible(true);
-        for (Pane Panel : Ocultar) {
-            if (Panel.isVisible()) {
-                Panel.setVisible(false);
-            }
+        for (Pane panel : ocultar) {
+            if (panel.isVisible()) {
+                panel.setVisible(false);
+}
         }
     }
 
@@ -510,9 +510,9 @@ public class GestorEscenas  {
     }
     
     //Funcion para evitar escribir las teclas de enter y espacio
-    public static void consumirTecla(JFXButton... Boton)
-    {
-        for (JFXButton b : Boton) {
+
+    public static void consumirTecla(JFXButton... boton){
+        for (JFXButton b : boton) {
             b.addEventFilter(KeyEvent.KEY_PRESSED, evento -> {
                 if (evento.getCode() == KeyCode.ENTER || evento.getCode() == KeyCode.SPACE) {
                     evento.consume();
@@ -528,7 +528,7 @@ public class GestorEscenas  {
             botones.get(i).setGraphic(imagenes.get(i));
         }
     }
-     
+ 
     public static String abreviarNombre(String nombreCompleto) {
         String[] partes = nombreCompleto.split(" ");
         if (partes.length >= 2) {
@@ -560,7 +560,6 @@ public class GestorEscenas  {
                 transformado.append("\n");
             }
             transformado.append(Elemento);
-
         }
         return transformado;
     }
@@ -630,8 +629,6 @@ public class GestorEscenas  {
     }
 
 
-
-
     //Funcion para cerrar el programa
     public static void cerrarPrograma()
     {
@@ -669,7 +666,8 @@ public class GestorEscenas  {
         }
     }
     
-     public static void cargarVerMasLicencias(Window padre, Conductor conductor , Licencia licencia) throws Exception {
+    
+    public static void cargarVerMasLicencias(Window padre, Conductor conductor , Licencia licencia) throws Exception {
         try {
             String direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-licencias.fxml";
             URL url = GestorEscenas.class.getResource(direccion);
@@ -726,6 +724,27 @@ public class GestorEscenas  {
         } catch (Exception e) {
             System.out.println(e.getCause());
             throw new Exception("Error al cargar la interfaz");
+        }
+      }
+     
+    public static void cargarCategorias(Licencia licencia, Pane categoriaMoto, Pane categoriaCarro,Pane categoriaOmnibus,Pane categoriaCamion){
+        for(String categoria:licencia.getCategorias())
+        {
+            switch(categoria)
+            {
+                case "Moto":
+                    categoriaMoto.setStyle("-fx-background-color: green;");
+                    break;
+                case "Automovil":
+                    categoriaCarro.setStyle("-fx-background-color: green;");
+                    break;
+                case "Autobus":
+                    categoriaOmnibus.setStyle("-fx-background-color: green;");
+                    break;
+                case "Camion":
+                    categoriaCamion.setStyle("-fx-background-color: green;");
+                    break;
+            }
         }
     }
 }
