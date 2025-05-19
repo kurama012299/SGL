@@ -184,8 +184,8 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     @FXML
     public void TranscisionExamenesTeoricos() {
         
-        GestorTablas.ConfigurarColumnasExamenesTraAutoescuela(ColumnaFotoTeorico, ColumnaExaminadoTeorico, ColumnaFechaTeorico, ColumnaResultadoTeorico, ColumnaAutoescuelaTeorico, ColumnaDetallesTeorico);
-        GestorTablas.CargarTablaExamenesTeoricosTraAutoescuela(TablaExamenesTeoricos,  Autentificador.Usuario.getId());
+        GestorTablas.configurarColumnasExamenesTraAutoescuela(ColumnaFotoTeorico, ColumnaExaminadoTeorico, ColumnaFechaTeorico, ColumnaResultadoTeorico, ColumnaAutoescuelaTeorico, ColumnaDetallesTeorico);
+        GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(TablaExamenesTeoricos,  Autentificador.Usuario.getId());
         
         Pane[] PanelesOcultar={PanelExamenesPracticos,PanelInicio};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenesTeoricos,PanelesOcultar);
@@ -211,8 +211,8 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     @FXML
     public void TranscisionExamenesPracticos() {
         
-        GestorTablas.ConfigurarColumnasExamenesTraAutoescuela(ColumnaFotoPractico, ColumnaExaminadoPractico, ColumnaFechaPractico, ColumnaResultadoPractico, ColumnaAutoescuelaPractico, ColumnaDetallesPractico);
-        GestorTablas.CargarTablaExamenesPracticosTraAutoescuela(TablaExamenesPracticos, Autentificador.Usuario.getId());
+        GestorTablas.configurarColumnasExamenesTraAutoescuela(ColumnaFotoPractico, ColumnaExaminadoPractico, ColumnaFechaPractico, ColumnaResultadoPractico, ColumnaAutoescuelaPractico, ColumnaDetallesPractico);
+        GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(TablaExamenesPracticos, Autentificador.Usuario.getId());
         
         Pane[] PanelesOcultar={PanelExamenesTeoricos,PanelInicio};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenesPracticos,PanelesOcultar);

@@ -231,8 +231,8 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     @FXML
     public void TransicionExamenPractico() {
         
-        GestorTablas.ConfigurarColumnasExamenesAdminAutoescuela(ColumnaFotoPractico, ColumnaExaminadoPractico, ColumnaFechaPractico, ColumnaExaminadorPractico, ColumnaResultadoPractico, ColumnaAutoescuela, ColumnaDetallesPractico);
-        GestorTablas.CargarTablaExamenesPracticosAdminAutoescuela(TablaExamenesPracticos);
+        GestorTablas.configurarColumnasExamenesAdminAutoescuela(ColumnaFotoPractico, ColumnaExaminadoPractico, ColumnaFechaPractico, ColumnaExaminadorPractico, ColumnaResultadoPractico, ColumnaAutoescuela, ColumnaDetallesPractico);
+        GestorTablas.cargarTablaExamenesPracticosAdminAutoescuela(TablaExamenesPracticos);
         
         
         Pane[] PanelesOcultar = {PanelInicio, PanelExamenesTeoricos};
@@ -257,8 +257,8 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     @FXML
     public void TransicionExamenTeorico() {
         
-        GestorTablas.ConfigurarColumnasExamenesAdminAutoescuela(ColumnaFotoTeorico, ColumnaExaminadoTeorico, ColumnaFechaTeorico, ColumnaExaminadorTeorico, ColumnaResultadoTeorico, ColumnaAutoescuelaTeorico, ColumnaDetallesTeorico);
-        GestorTablas.CargarTablaExamenesTeoricosAdminAutoescuela(TablaExamenesTeoricos);
+        GestorTablas.configurarColumnasExamenesAdminAutoescuela(ColumnaFotoTeorico, ColumnaExaminadoTeorico, ColumnaFechaTeorico, ColumnaExaminadorTeorico, ColumnaResultadoTeorico, ColumnaAutoescuelaTeorico, ColumnaDetallesTeorico);
+        GestorTablas.cargarTablaExamenesTeoricosAdminAutoescuela(TablaExamenesTeoricos);
         
         Pane[] PanelesOcultar = {PanelInicio, PanelExamenesPracticos};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenesTeoricos, PanelesOcultar);

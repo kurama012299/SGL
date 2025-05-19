@@ -184,8 +184,8 @@ public class ControladorAdministradorMedico extends Controlador{
     public void TransicionExamenes()
     {
         
-        GestorTablas.ConfigurarColumnasExamenesMedicosAdminMedico(ColumnaFoto, ColumnaExaminado, ColumnaFecha, ColumnaExaminador, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
-        GestorTablas.CargarTablaExamenesMedicosAdminMedico(TablaExamenesMedico);
+        GestorTablas.configurarColumnasExamenesMedicosAdminMedico(ColumnaFoto, ColumnaExaminado, ColumnaFecha, ColumnaExaminador, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
+        GestorTablas.cargarTablaExamenesMedicosAdminMedico(TablaExamenesMedico);
         
         Pane[] PanelesOcultar={PanelInicio};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenes, PanelesOcultar);
