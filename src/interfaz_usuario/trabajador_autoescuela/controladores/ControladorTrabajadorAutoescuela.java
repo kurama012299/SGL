@@ -32,287 +32,228 @@ import logica.examen_conduccion.modelos.ExamenConduccion;
  */
 public class ControladorTrabajadorAutoescuela extends Controlador{
     
-    @FXML
-    private HBox VentanaPrincipal;
+    @FXML private HBox hbVentanaPrincipal;
     
-    @FXML
-    private JFXButton Inicio;
+    @FXML private JFXButton jfxbtnInicio;
     
-    @FXML
-    private JFXButton ExamenesTeoricos;
+    @FXML private JFXButton jfxbtnExamenesTeoricos;
     
-    @FXML
-    private JFXButton ExamenesPracticos;
+    @FXML private JFXButton jfxbtnExamenesPracticos;
     
-    @FXML 
-    private Button RegistrarPractico;
+    @FXML private Button btnRegistrarPractico;
     
-    @FXML 
-    private Button RegistrarTeorico;
+    @FXML private Button btnRegistrarTeorico;
     
-    @FXML
-    private Pane PanelInicio;
+    @FXML private Pane pnlInicio;
     
-    @FXML
-    private Pane PanelExamenesTeoricos;
+    @FXML private Pane pnlExamenesTeoricos;
     
-    @FXML
-    private Pane PanelExamenesPracticos;
+    @FXML private Pane pnlExamenesPracticos;
     
-    @FXML
-    private ProgressBar ProgressbarAprobado;
+    @FXML private ProgressBar pbarAprobado;
     
-    @FXML
-    private Label LabelProgresoAprobado;
+    @FXML private Label lblProgresoAprobado;
     
-    @FXML
-    private ProgressBar ProgressbarReprobado;
+    @FXML private ProgressBar pbarReprobado;
     
-    @FXML
-    private Label LabelProgresoReprobado;
+    @FXML private Label lblProgresoReprobado;
     
-    @FXML
-    private ProgressBar ProgressbarTeorico;
+    @FXML private ProgressBar pbarTeorico;
     
-    @FXML
-    private Label LabelProgresoTeorico;
+    @FXML private Label lblProgresoTeorico;
     
-    @FXML
-    private ProgressBar ProgressbarPractico;
+    @FXML private ProgressBar pbarPractico;
     
-    @FXML
-    private Label LabelProgresoPractico;
+    @FXML private Label lblProgresoPractico;
     
-    @FXML
-    private Label EtiquetaRol;
+    @FXML private JFXButton jfxbtnCerrarSesion;
     
-    @FXML
-    private Label EtiquetaCorreo;
+    @FXML private TableView<ExamenConduccion>tblExamenesTeoricos;
     
-    @FXML
-    private JFXButton BotonCerrarSesion;
+    @FXML private TableColumn<ExamenConduccion, String>tblcFotoTeorico;
     
-    @FXML
-    private TableView<ExamenConduccion>TablaExamenesTeoricos;
+    @FXML private TableColumn<ExamenConduccion, String>tblcExaminadoTeorico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaFotoTeorico;
+    @FXML private TableColumn<ExamenConduccion, Date>tblcFechaTeorico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaExaminadoTeorico;
+    @FXML private TableColumn<ExamenConduccion, String>tblcResultadoTeorico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, Date>ColumnaFechaTeorico;
+    @FXML private TableColumn<ExamenConduccion, String> tblcAutoescuelaTeorico;
+
+    @FXML private TableColumn<ExamenConduccion, String>tblcDetallesTeorico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaResultadoTeorico;
+    @FXML private TableView<ExamenConduccion>tblExamenesPracticos;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaAutoescuelaTeorico;
+    @FXML private TableColumn<ExamenConduccion, String>tblcFotoPractico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaDetallesTeorico;
+    @FXML private TableColumn<ExamenConduccion, String>tblcExaminadoPractico;
     
-    @FXML
-    private TableView<ExamenConduccion>TablaExamenesPracticos;
+    @FXML private TableColumn<ExamenConduccion, Date>tblcFechaPractico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaFotoPractico;
+    @FXML private TableColumn<ExamenConduccion, String>tblcResultadoPractico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaExaminadoPractico;
+    @FXML private TableColumn<ExamenConduccion, String>tblcAutoescuelaPractico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, Date>ColumnaFechaPractico;
+    @FXML private TableColumn<ExamenConduccion, String>tblcDetallesPractico;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaResultadoPractico;
+    @FXML private Label lblUsuarioNombre;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaAutoescuelaPractico;
+    @FXML private Label lblCorreoUsuario;
     
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaDetallesPractico;
-    
-    @FXML
-    private Label LabelUsuarioNombre;
-    
-    @FXML
-    private Label LabelCorreoUsuario;
-    
-    @FXML
-    private Label LabelFechaHora;
+    @FXML private Label lblFechaHora;
        
-       
-    private ImageView ImagenTeorico;
-    private ImageView ImagenPractico;
-    private ImageView ImagenInicio;
+    private ImageView ivTeorico;
+    private ImageView ivPractico;
+    private ImageView ivInicio;
    
     //Funcion de inicio del menu
-    @FXML
-    public void initialize() {
+    @FXML public void initialize() {
         
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
         
         
-        ImagenTeorico = (ImageView) ExamenesTeoricos.getGraphic();
-        ImagenPractico = (ImageView) ExamenesPracticos.getGraphic();
-        ImagenInicio = (ImageView) Inicio.getGraphic();
+        ivTeorico = (ImageView) jfxbtnExamenesTeoricos.getGraphic();
+        ivPractico = (ImageView) jfxbtnExamenesPracticos.getGraphic();
+        ivInicio = (ImageView) jfxbtnInicio.getGraphic();
         
-        GestorEscenas.configurarReloj(LabelFechaHora);
+        GestorEscenas.configurarReloj(lblFechaHora);
         
-        BotonCerrarSesion.setOnAction(e ->
+        jfxbtnCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.cerrarPrograma();
         });
         
-        Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoTeorico,LabelProgresoPractico};
-        ProgressBar[] BarrasProgreso = {ProgressbarAprobado,ProgressbarReprobado,ProgressbarTeorico,ProgressbarPractico};
-        GestorEscenas.progresoLabel(PorcentajesBarra, BarrasProgreso);
+        Label[] porcentajesBarra = {lblProgresoAprobado,lblProgresoReprobado,lblProgresoTeorico,lblProgresoPractico};
+        ProgressBar[] barrasProgreso = {pbarAprobado,pbarReprobado,pbarTeorico,pbarPractico};
+        GestorEscenas.progresoLabel(porcentajesBarra, barrasProgreso);
         
-        JFXButton[] BotonesConsumirTecla={Inicio,ExamenesTeoricos,ExamenesPracticos};
-        GestorEscenas.consumirTecla(BotonesConsumirTecla);
-        
+        JFXButton[] botonesConsumirTecla={jfxbtnInicio,jfxbtnExamenesTeoricos,jfxbtnExamenesPracticos};
+        GestorEscenas.consumirTecla(botonesConsumirTecla);
         
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
-
-        this.TranscisionInicio();
-        GestorEscenas.ponerIconoVentana(VentanaPrincipal, "Trabajador autoescuela");
+        this.transcisionInicio();
+        GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Trabajador autoescuela");
     }
             
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesTeoricos)
-    @FXML
-    public void TranscisionExamenesTeoricos() {
+    @FXML public void transcisionExamenesTeoricos() {
         
-        GestorTablas.configurarColumnasExamenesTraAutoescuela(ColumnaFotoTeorico, ColumnaExaminadoTeorico, ColumnaFechaTeorico, ColumnaResultadoTeorico, ColumnaAutoescuelaTeorico, ColumnaDetallesTeorico);
-        GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(TablaExamenesTeoricos,  Autentificador.Usuario.getId());
+        GestorTablas.configurarColumnasExamenesTraAutoescuela(tblcFotoTeorico, tblcExaminadoTeorico, tblcFechaTeorico, tblcResultadoTeorico, tblcAutoescuelaTeorico, tblcDetallesTeorico);
+        GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(tblExamenesTeoricos, Autentificador.Usuario.getId());
         
-        Pane[] PanelesOcultar={PanelExamenesPracticos,PanelInicio};
-        GestorEscenas.mostrarOcultarPaneles(PanelExamenesTeoricos,PanelesOcultar);
+        Pane[] panelesOcultar = {pnlExamenesPracticos, pnlInicio};
+        GestorEscenas.mostrarOcultarPaneles(pnlExamenesTeoricos, panelesOcultar);
         
-        JFXButton[] botones={Inicio,ExamenesPracticos};
-        GestorEscenas.pintarBotones(ExamenesTeoricos, botones);
+        JFXButton[] botones = {jfxbtnInicio, jfxbtnExamenesPracticos};
+        GestorEscenas.pintarBotones(jfxbtnExamenesTeoricos, botones);
         
-        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-teorico-blanco.png")));
-        ExamenesTeoricos.setGraphic(IconoActivo);
-        
-        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
-                add(ImagenInicio);
-                add(ImagenPractico);
-                }};
-        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
-                add(Inicio);
-                add(ExamenesPracticos);
-                }};
-        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
+        ImageView ivIconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-teorico-blanco.png")));
+        jfxbtnExamenesTeoricos.setGraphic(ivIconoActivo);
+
+        ArrayList<ImageView> imagenesCambiar = new ArrayList() {
+            {
+                add(ivInicio);
+                add(ivPractico);
+            }
+        };
+        ArrayList<JFXButton> botonesCambiar = new ArrayList() {
+            {
+                add(jfxbtnInicio);
+                add(jfxbtnExamenesPracticos);
+            }
+        };
+        GestorEscenas.cambiarIconos(imagenesCambiar, botonesCambiar);
     }
     
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesPracticos)
-    @FXML
-    public void TranscisionExamenesPracticos() {
+    @FXML public void transcisionExamenesPracticos() {
         
-        GestorTablas.configurarColumnasExamenesTraAutoescuela(ColumnaFotoPractico, ColumnaExaminadoPractico, ColumnaFechaPractico, ColumnaResultadoPractico, ColumnaAutoescuelaPractico, ColumnaDetallesPractico);
-        GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(TablaExamenesPracticos, Autentificador.Usuario.getId());
+        GestorTablas.configurarColumnasExamenesTraAutoescuela(tblcFotoPractico, tblcExaminadoPractico, tblcFechaPractico, tblcResultadoPractico, tblcAutoescuelaPractico, tblcDetallesPractico);
+        GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(tblExamenesPracticos, Autentificador.Usuario.getId());
         
-        Pane[] PanelesOcultar={PanelExamenesTeoricos,PanelInicio};
-        GestorEscenas.mostrarOcultarPaneles(PanelExamenesPracticos,PanelesOcultar);
+        Pane[] panelesOcultar={pnlExamenesTeoricos,pnlInicio};
+        GestorEscenas.mostrarOcultarPaneles(pnlExamenesPracticos,panelesOcultar);
         
-        JFXButton[] botones={Inicio,ExamenesTeoricos};
-        GestorEscenas.pintarBotones(ExamenesPracticos, botones);
+        JFXButton[] botones={jfxbtnInicio,jfxbtnExamenesTeoricos};
+        GestorEscenas.pintarBotones(jfxbtnExamenesPracticos, botones);
         
-        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer-blanco.png")));
-        ExamenesPracticos.setGraphic(IconoActivo);  
+        ImageView ivIconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer-blanco.png")));
+        jfxbtnExamenesPracticos.setGraphic(ivIconoActivo);  
         
-        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
-                add(ImagenInicio);
-                add(ImagenTeorico);
+        ArrayList<ImageView>imagenesCambiar= new ArrayList(){{
+                add(ivInicio);
+                add(ivTeorico);
                 }};
-        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
-                add(Inicio);
-                add(ExamenesTeoricos);
+        ArrayList<JFXButton>botonesCambiar= new ArrayList(){{
+                add(jfxbtnInicio);
+                add(jfxbtnExamenesTeoricos);
                 }};
-        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(imagenesCambiar, botonesCambiar);
         
     }
     
     //Funcion para hacer la transicion de un menu a otro en este caso(Inicio)
-    @FXML
-    public void TranscisionInicio() {
-        Pane[] PanelesOcultar={PanelExamenesPracticos,PanelExamenesTeoricos};
-        GestorEscenas.mostrarOcultarPaneles(PanelInicio,PanelesOcultar);
+    @FXML public void transcisionInicio() {
         
-        JFXButton[] botones={ExamenesTeoricos,ExamenesPracticos};
-        GestorEscenas.pintarBotones(Inicio, botones);
+        Pane[] panelesOcultar={pnlExamenesPracticos,pnlExamenesTeoricos};
+        GestorEscenas.mostrarOcultarPaneles(pnlInicio,panelesOcultar);
         
-        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
-        Inicio.setGraphic(IconoActivo);  
+        JFXButton[] botones={jfxbtnExamenesTeoricos,jfxbtnExamenesPracticos};
+        GestorEscenas.pintarBotones(jfxbtnInicio, botones);
         
-        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
-                add(ImagenPractico);
-                add(ImagenTeorico);
+        ImageView ivIconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
+        jfxbtnInicio.setGraphic(ivIconoActivo);  
+        
+        ArrayList<ImageView>imagenesCambiar= new ArrayList(){{
+                add(ivPractico);
+                add(ivTeorico);
                 }};
-        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
-                add(ExamenesPracticos);
-                add(ExamenesTeoricos);
+        ArrayList<JFXButton>botonesCambiar= new ArrayList(){{
+                add(jfxbtnExamenesPracticos);
+                add(jfxbtnExamenesTeoricos);
                 }};
-        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);    
+        GestorEscenas.cambiarIconos(imagenesCambiar, botonesCambiar);    
     }
     
     //Funcion para aparecer el menu de RegistrarExamen en este caso(Practico)
-    @FXML
-    public void RegistrarExamenPractico()
+    @FXML public void registrarExamenPractico()
     {
-        String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
-        Stage Padre = (Stage) RegistrarPractico.getScene().getWindow();
+        String direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
+        Stage padre = (Stage) btnRegistrarPractico.getScene().getWindow();
         try {
-            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen practico");
+            GestorEscenas.cargarPanelAuxiliar(padre, direccion, true, "Registrar examen practico");
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }
     }
     
     //Funcion para aparecer el menu de RegistrarExamen en este caso(Teorico)
-     @FXML
-    public void RegistrarExamenTeorico()
+    @FXML public void registrarExamenTeorico()
     {
-        String Direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-teorico.fxml";
-        Stage Padre = (Stage) RegistrarPractico.getScene().getWindow();
+        String direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-teorico.fxml";
+        Stage padre = (Stage) btnRegistrarTeorico.getScene().getWindow();
         
         try {
-            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen teorico");
+            GestorEscenas.cargarPanelAuxiliar(padre, direccion, true, "Registrar examen teorico");
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }
     }
+
     
-    /*
-    @FXML
-    public void MensajeCerrarSesion()
-    {
-        String Direccion = "/interfaz_usuario/recursos_compartidos/errores/mensaje-cerrar-sesion.fxml";
-        Stage Padre = (Stage) BotonCerrarSesion.getScene().getWindow();
-        
-        try {
-            GestorEscenas.CargarAlertaError(Padre, Direccion, "Cerrar sesión", "Desea cerrar Sesion?");
-        } catch (Exception ex) {
-            //CAPTURAR ERROR
-        }
-    }*/
-
     @Override
-    public void Iniciar(MenuEstadisticas MenuEstadisticas) {
+    public void Iniciar(MenuEstadisticas menuEstadisticas) {
         
-        LabelUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.Usuario.getNombre()));
-        Tooltip MouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
-        MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
-        LabelUsuarioNombre.setTooltip(MouseNombre);
-        LabelUsuarioNombre.setMaxWidth(100);
-        LabelCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.Usuario.getCorreo()));
-        
+        lblUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.Usuario.getNombre()));
+        Tooltip mouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
+        mouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+        lblUsuarioNombre.setTooltip(mouseNombre);
+        lblUsuarioNombre.setMaxWidth(100);
+        lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.Usuario.getCorreo()));
     }
 
     @Override
-    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
+    protected void CargarEstadisticas(MenuEstadisticas menuEstadisticas) {
         
     }
     
