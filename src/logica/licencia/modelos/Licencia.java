@@ -33,16 +33,16 @@ public class Licencia {
         this.Estado = Estado;
     }
     
-    public Long GetId() {
+    public Long getId() {
         return Id;
     }
      
 
-    public Date GetFechaEmision() {
+    public Date getFechaEmision() {
         return FechaEmision;
     }
 
-    public Date GetFechaVencimiento() {
+    public Date getFechaVencimiento() {
         return FechaVencimiento;
     }
 
@@ -50,23 +50,23 @@ public class Licencia {
         return Renovada;
     }
 
-    public int GetCantPuntos() {
+    public int getCantPuntos() {
         return CantPuntos;
     }
 
-    public String GetTipo() {
+    public String getTipo() {
         return Tipo;
     }
 
-    public String GetEstado() {
+    public String getEstado() {
         return Estado;
     }
 
-    public ArrayList<String> GetRestricciones() {
+    public ArrayList<String> getRestricciones() {
         return Restricciones;
     }
 
-    public ArrayList<String> GetCategorias() {
+    public ArrayList<String> getCategorias() {
         return Categorias;
     }
 

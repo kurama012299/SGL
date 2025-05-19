@@ -42,6 +42,7 @@ import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 import interfaz_usuario.administrador.medico.controladores.ControladorVerMasExamenesMedicos;
+import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesPracticosTrabajador;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesTeoricosTrabajador;
@@ -56,6 +57,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.modelos.Infraccion;
 
 
@@ -70,13 +72,14 @@ public class GestorEscenas  {
         try {
 
             // Usar ruta relativa desde los recurso
+
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
      
             Controlador controlador = cargador.getController();
-            MenuEstadisticas MenuEstadisticas = new MenuEstadisticas();
-            MenuEstadisticas.SetEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.Usuario.getId()));
+            MenuEstadisticas menuEstadisticas = new MenuEstadisticas();
+            menuEstadisticas.SetEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.Usuario.getId()));
             
             ArrayList<Estadistica> estadisticas = new ArrayList<>();
             
@@ -106,8 +109,9 @@ public class GestorEscenas  {
                     
                     break;
             }
-            MenuEstadisticas.SetEstadisticas(estadisticas);
-            controlador.Iniciar(MenuEstadisticas);
+
+            menuEstadisticas.SetEstadisticas(estadisticas);
+            controlador.Iniciar(menuEstadisticas);
 
             Stage ventana = new Stage(); 
             
@@ -133,7 +137,7 @@ public class GestorEscenas  {
             // Cargar el panel de error
             URL url = GestorEscenas.class.getResource("/interfaz_usuario/recursos_compartidos/errores/mensaje-error.fxml");
             FXMLLoader cargador = new FXMLLoader(url);
-            Parent Root = cargador.load();
+            Parent root = cargador.load();
 
             // Obtener el controlador y configurar el mensaje
             ControladorMenuAuxiliarUnaAccion controlador = cargador.getController();
@@ -144,7 +148,7 @@ public class GestorEscenas  {
             ventana.initStyle(StageStyle.UTILITY);
             ventana.initOwner(ventanaPadre);
             ventana.initModality(Modality.WINDOW_MODAL);
-            ventana.setScene(new Scene(Root));
+            ventana.setScene(new Scene(root));
 
             // Mostrar la ventana
             ventana.showAndWait();
@@ -162,6 +166,7 @@ public class GestorEscenas  {
     
     public static void cargarPanelAuxiliar(Window padre, String direccion, boolean esModal, String titulo) throws Exception {
         try {
+
 
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
@@ -192,7 +197,7 @@ public class GestorEscenas  {
         }
     }
     
-    
+   
     public static void cargarVerMasConductores(Window padre, Conductor conductor,Licencia licencia) throws Exception {
         try {
             String direccion = GestorFXML.RutaVerMasConductores;
@@ -229,11 +234,11 @@ public class GestorEscenas  {
             String direccion = GestorFXML.RutaVerMasExamenes;
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
-            Parent Ruta = cargador.load();
+            Parent ruta = cargador.load();
             ControladorVerMasExamenes controlador = cargador.getController();
             controlador.SetDatos(examenConduccion,examenMedico); 
 
-            Scene escena = new Scene(Ruta);
+            Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
@@ -260,11 +265,11 @@ public class GestorEscenas  {
             String direccion = GestorFXML.RutaVerMasExamenesMedicosAdmin;
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
-            Parent Ruta = cargador.load();
+            Parent ruta = cargador.load();
             ControladorVerMasExamenesMedicos controlador = (ControladorVerMasExamenesMedicos)cargador.getController();
             controlador.setDatos(examenMedico); 
 
-            Scene escena = new Scene(Ruta);
+            Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
@@ -291,11 +296,11 @@ public class GestorEscenas  {
             String direccion = GestorFXML.RutaVerMasExamenesPracticosAdmin;
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
-            Parent Ruta = cargador.load();
+            Parent ruta = cargador.load();
             ControladorVerMasExamenesPracticos controlador = (ControladorVerMasExamenesPracticos)cargador.getController();
             controlador.setDatos(examenConduccion); 
 
-            Scene escena = new Scene(Ruta);
+            Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
@@ -352,12 +357,11 @@ public class GestorEscenas  {
         try {
             String direccion = GestorFXML.RutaVerMasExamenesMedicosDoctor;
             URL url = GestorEscenas.class.getResource(direccion);
-            FXMLLoader Cargador = new FXMLLoader(url);
-            Parent Ruta = Cargador.load();
-            ControladorVerMasExamenesMedicosDoctor controlador = (ControladorVerMasExamenesMedicosDoctor)Cargador.getController();
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent ruta = cargador.load();
+            ControladorVerMasExamenesMedicosDoctor controlador = (ControladorVerMasExamenesMedicosDoctor)cargador.getController();
             controlador.setDatos(examenMedico); 
-
-            Scene escena = new Scene(Ruta);
+            Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
@@ -441,12 +445,13 @@ public class GestorEscenas  {
     }
     
     //Funcion para mostrar el primer panel y los demas ocultarlos
+
     public static void mostrarOcultarPaneles(Pane mostrar, Pane... ocultar) {
         mostrar.setVisible(true);
         for (Pane panel : ocultar) {
             if (panel.isVisible()) {
                 panel.setVisible(false);
-            }
+}
         }
     }
 
@@ -505,6 +510,7 @@ public class GestorEscenas  {
     }
     
     //Funcion para evitar escribir las teclas de enter y espacio
+
     public static void consumirTecla(JFXButton... boton){
         for (JFXButton b : boton) {
             b.addEventFilter(KeyEvent.KEY_PRESSED, evento -> {
@@ -522,12 +528,11 @@ public class GestorEscenas  {
             botones.get(i).setGraphic(imagenes.get(i));
         }
     }
-    
-    
+ 
     public static String abreviarNombre(String nombreCompleto) {
-        String[] Partes = nombreCompleto.split(" ");
-        if (Partes.length >= 2) {
-            return Partes[0] + " " + Partes[1].charAt(0) + "."; // Ej: "Juan P."
+        String[] partes = nombreCompleto.split(" ");
+        if (partes.length >= 2) {
+            return partes[0] + " " + partes[1].charAt(0) + "."; // Ej: "Juan P."
         }
         return nombreCompleto;
     }
@@ -535,34 +540,34 @@ public class GestorEscenas  {
     //Funcion para convertir el correo del usaurio en uno con ****
     public static String seguridadCorreo(String correo) {
         // Dividir el correo en nombre y dominio
-        String[] Partes = correo.split("@");
- 
-        String Nombre = Partes[0];
-        String Mail = Partes[1];
- 
-        int visibleChars = Math.max(1, Nombre.length() - 6); // Mostrar al menos 1 carácter
-        String securedUsername = Nombre.substring(0, visibleChars) + "******";
-        return securedUsername + "@" + Mail;
+        String[] partes = correo.split("@");
+        if (partes.length != 2) {
+            return correo; // Si no es un correo válido, devolver original
+        }
+        String nombre = partes[0];
+        String mail = partes[1];
+        // Reemplazar parte del nombre con asteriscos (manteniendo al menos 1 carácter)
+        int visibleChars = Math.max(1, nombre.length() - 6); // Mostrar al menos 1 carácter
+        String securedUsername = nombre.substring(0, visibleChars) + "******";
+        return securedUsername + "@" + mail;
     }
-    
     
     public static StringBuilder mostrarRestricciones(ArrayList<String> restricciones) {
        
         StringBuilder transformado = new StringBuilder();
-        for (String r : restricciones) {
+        for (String Elemento : restricciones) {
             if (transformado.length() > 0) {
                 transformado.append("\n");
             }
-            transformado.append(r);
-
+            transformado.append(Elemento);
         }
         return transformado;
     }
     
     
-    public static void configurarReloj(Label EtiquetaReloj) {
+    public static void configurarReloj(Label etiquetaReloj) {
         // Estilo del label
-        EtiquetaReloj.setStyle("-fx-font-size: 12px;");
+        etiquetaReloj.setStyle("-fx-font-size: 12px;");
 
         // Formateador de fecha/hora
         DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss a");
@@ -571,7 +576,7 @@ public class GestorEscenas  {
         Timeline lineaTiempo = new Timeline(
                 new KeyFrame(Duration.seconds(1),
                         event -> {
-                            EtiquetaReloj.setText(LocalDateTime.now().format(formateador));
+                            etiquetaReloj.setText(LocalDateTime.now().format(formateador));
                         }
                 )
         );
@@ -593,7 +598,7 @@ public class GestorEscenas  {
             cajaTexto.get(i).focusedProperty().addListener((obs, oldVal, newVal) -> {
                 if (newVal) {
 
-                    Timeline LineaTiempo = new Timeline(
+                    Timeline lineaTiempo = new Timeline(
                             new KeyFrame(Duration.ZERO,
                                     new KeyValue(li.strokeProperty(), Color.GRAY),
                                     new KeyValue(li.strokeWidthProperty(), 1)
@@ -603,7 +608,7 @@ public class GestorEscenas  {
                                     new KeyValue(li.strokeWidthProperty(), 2)
                             )
                     );
-                    LineaTiempo.play();
+                    lineaTiempo.play();
                 } else {
                     Timeline LineaTiempo = new Timeline(
                             new KeyFrame(Duration.ZERO,
@@ -625,11 +630,11 @@ public class GestorEscenas  {
 
 
     //Funcion para cerrar el programa
-    public static void cerrarPrograma(){
+    public static void cerrarPrograma()
+    {
         ConectorBaseDato.CerrarConexionBD();
         Platform.exit();
     }
-    
     
     public static void cargarVerMasInfraccion(Window padre, Infraccion infraccion , Licencia licencia) throws Exception {
         try {
@@ -692,9 +697,38 @@ public class GestorEscenas  {
         }
     }
      
+      public static void cargarVerMasEntidades(Window padre,EntidadRelacionada entidad) throws Exception {
+        try {
+            String direccion = "/interfaz_usuario/administrador/sistema/menu-auxiliares/ver-mas/menu-ver-mas-entidades.fxml";
+            URL url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent ruta = cargador.load();
+            ControladorVerMasEntidades controlador = cargador.getController();
+            controlador.SetDatos(entidad); 
+
+            Scene escena = new Scene(ruta);
+            Stage ventana = new Stage();
+            ventana.initOwner(padre);
+            ventana.initStyle(StageStyle.UTILITY);
+
+
+            ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            ventana.setTitle("");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+      }
      
     public static void cargarCategorias(Licencia licencia, Pane categoriaMoto, Pane categoriaCarro,Pane categoriaOmnibus,Pane categoriaCamion){
-        for(String categoria:licencia.GetCategorias())
+        for(String categoria:licencia.getCategorias())
         {
             switch(categoria)
             {

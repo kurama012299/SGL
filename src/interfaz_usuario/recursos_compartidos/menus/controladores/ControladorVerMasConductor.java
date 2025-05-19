@@ -85,12 +85,34 @@ public class ControladorVerMasConductor {
         TextFieldCorreo.setText(Conductor.getCorreo());
         TextFieldDireccion.setText(Conductor.getDireccion());
         TextFieldNombre.setText(Conductor.getNombre()+" "+ Conductor.getApellidos());
-        TextFieldEstadoLicencia.setText(Licencia.GetEstado());
-        TextFieldFechaEmision.setText(Licencia.GetFechaEmision().toString());
-        TextFieldFechaVencimiento.setText(Licencia.GetFechaVencimiento().toString());
-        LabelTipoLicencia.setText(Licencia.GetTipo());
-        TextFieldIdLicencia.setText(Licencia.GetId().toString());
-        GestorEscenas.cargarCategorias(Licencia,CategoriaMoto,CategoriaCarro,CategoriaOmnibus,CategoriaCamion);
+        TextFieldEstadoLicencia.setText(Licencia.getEstado());
+        TextFieldFechaEmision.setText(Licencia.getFechaEmision().toString());
+        TextFieldFechaVencimiento.setText(Licencia.getFechaVencimiento().toString());
+        LabelTipoLicencia.setText(Licencia.getTipo());
+        TextFieldIdLicencia.setText(Licencia.getId().toString());
+        CargarCategorias();
     }
     
+    private void CargarCategorias()
+    {
+        for(String categoria:Licencia.getCategorias())
+        {
+            switch(categoria)
+            {
+                case "Moto":
+                    CategoriaMoto.setStyle("-fx-background-color: green;");
+                    break;
+                case "Automovil":
+                    CategoriaCarro.setStyle("-fx-background-color: green;");
+                    break;
+                case "Autobus":
+                    CategoriaOmnibus.setStyle("-fx-background-color: green;");
+                    break;
+                case "Camion":
+                    CategoriaCamion.setStyle("-fx-background-color: green;");
+                    break;
+            }
+        }
+    }
+
 }

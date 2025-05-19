@@ -90,21 +90,21 @@ public class ControladorVerMasLicencias {
         System.out.println("Iniciar llamado");
         
         TextFieldCI.setText(Conductor.getCI());
-        String CantInfraccionesStr = Integer.toString(ServicioInfraccion.ObtenerCantidadInfraccionesPorId(Licencia.GetId()));
+        String CantInfraccionesStr = Integer.toString(ServicioInfraccion.ObtenerCantidadInfraccionesPorId(Licencia.getId()));
         TextFieldCantidadInfracciones.setText(CantInfraccionesStr);
         TextFieldRenovada.setText(ControladorVerMasInfracciones.Pagado(Licencia.EstaRenovada()));
-        String CantPuntosStr = Integer.toString(Licencia.GetCantPuntos());
+        String CantPuntosStr = Integer.toString(Licencia.getCantPuntos());
         TextFieldPuntos.setText(CantPuntosStr);
         TextFieldNombre.setText(Conductor.getNombre()+" "+ Conductor.getApellidos());
-        TextFieldEstado.setText(Licencia.GetEstado());
-        TextFieldEmision.setText(Licencia.GetFechaEmision().toString());
-        TextFieldVencimiento.setText(Licencia.GetFechaVencimiento().toString());
-        LabelTipo.setText(Licencia.GetTipo());
-        TextFieldId.setText(Licencia.GetId().toString());
-        if(Licencia.GetRestricciones().isEmpty())
+        TextFieldEstado.setText(Licencia.getEstado());
+        TextFieldEmision.setText(Licencia.getFechaEmision().toString());
+        TextFieldVencimiento.setText(Licencia.getFechaVencimiento().toString());
+        LabelTipo.setText(Licencia.getTipo());
+        TextFieldId.setText(Licencia.getId().toString());
+        if(Licencia.getRestricciones().isEmpty())
             TextFieldRestricciones.setText("Ninguna");
         else
-            TextFieldRestricciones.setText(Licencia.GetRestricciones().toString());
+            TextFieldRestricciones.setText(Licencia.getRestricciones().toString());
     }
     
 }

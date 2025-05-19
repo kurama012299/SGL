@@ -282,4 +282,35 @@ public class GestorEstadisticas {
         
         return Estadisticas;
     }
+    
+    public static Estadistica ObtenerCantidadExamenesClinica(Connection conn) throws SQLException{
+        
+        Estadistica TotalExamenes = ObtenerCantidadExamenes(conn);
+        Estadistica TotalExamenesP = ObtenerCantidadExamenesPracticos(conn);
+        Estadistica TotalExamenesT = ObtenerCantidadExamenesTeoricos(conn);
+        
+        double CantidadExamenesClinica = TotalExamenes.GetValor() - (TotalExamenesP.GetValor() + TotalExamenesT.GetValor());
+        
+        return new Estadistica(
+                        "Examenes Clinica",
+                        CantidadExamenesClinica
+                );
+        
+        
+    }
+    
+     public static Estadistica ObtenerCantidadExamenesAutoescuela(Connection conn) throws SQLException{
+        
+        Estadistica TotalExamenesP = ObtenerCantidadExamenesPracticos(conn);
+        Estadistica TotalExamenesT = ObtenerCantidadExamenesTeoricos(conn);
+        
+        double CantidadExamenesAutoescuela = TotalExamenesP.GetValor() + TotalExamenesT.GetValor();
+        
+        return new Estadistica(
+                        "Examenes Autoescuela",
+                        CantidadExamenesAutoescuela
+                );
+        
+        
+    }
 }
