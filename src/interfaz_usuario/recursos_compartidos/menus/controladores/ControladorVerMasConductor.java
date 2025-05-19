@@ -7,7 +7,9 @@ package interfaz_usuario.recursos_compartidos.menus.controladores;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 
@@ -51,16 +53,16 @@ public class ControladorVerMasConductor {
     Label LabelTipoLicencia;
     
     @FXML
-    ImageView CategoriaCarro;
+    Pane CategoriaCarro;
     
     @FXML
-    ImageView CategoriaMoto;
+    Pane CategoriaMoto;
     
     @FXML
-    ImageView CategoriaOmnibus;
+    Pane CategoriaOmnibus;
     
     @FXML
-    ImageView CategoriaCamion;
+    Pane CategoriaCamion;
 
 
     @FXML
@@ -89,5 +91,28 @@ public class ControladorVerMasConductor {
         TextFieldFechaVencimiento.setText(Licencia.GetFechaVencimiento().toString());
         LabelTipoLicencia.setText(Licencia.GetTipo());
         TextFieldIdLicencia.setText(Licencia.GetId().toString());
+        CargarCategorias();
+    }
+    
+    private void CargarCategorias()
+    {
+        for(String categoria:Licencia.GetCategorias())
+        {
+            switch(categoria)
+            {
+                case "Moto":
+                    CategoriaMoto.setStyle("-fx-background-color: green;");
+                    break;
+                case "Automovil":
+                    CategoriaCarro.setStyle("-fx-background-color: green;");
+                    break;
+                case "Autobus":
+                    CategoriaOmnibus.setStyle("-fx-background-color: green;");
+                    break;
+                case "Camion":
+                    CategoriaCamion.setStyle("-fx-background-color: green;");
+                    break;
+            }
+        }
     }
 }

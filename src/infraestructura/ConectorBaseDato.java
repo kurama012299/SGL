@@ -18,6 +18,10 @@ public class ConectorBaseDato {
     private static final String CLAVE = "Asbeel*04";
     private static HikariDataSource BD;
     
+    private ConectorBaseDato(){
+    
+    }
+    
     static {
         try {
             HikariConfig config = new HikariConfig();

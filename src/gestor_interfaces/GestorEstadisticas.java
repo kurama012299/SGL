@@ -129,6 +129,7 @@ public class GestorEstadisticas {
         }
      return null;
     }
+    
     public static Estadistica ObtenerCantidadTrabajadores(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadTrabajadores()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
@@ -260,8 +261,7 @@ public class GestorEstadisticas {
         return lista;
     }
     
-    private static ArrayList<Estadistica> UtilMenuAdministradorAutoescuela(double TotalExamenes , double ExamenesTeoricos, double ExamenesPracticos, double CantReprobados)
-    {
+    private static ArrayList<Estadistica> UtilMenuAdministradorAutoescuela(double TotalExamenes , double ExamenesTeoricos, double ExamenesPracticos, double CantReprobados){
         ArrayList<Estadistica> Estadisticas = new ArrayList<>();
         
         Estadistica PorcientoTeorico = new Estadistica("PorcientoTeorico", Math.round(ExamenesTeoricos/TotalExamenes*100));
