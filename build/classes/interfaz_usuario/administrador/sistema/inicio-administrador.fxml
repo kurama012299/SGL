@@ -150,7 +150,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="843.0">
          <children>
-            <Pane fx:id="PanelAutoescuela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelAutoescuela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Autoescuela">
                      <font>
@@ -183,8 +183,8 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <TextField layoutX="54.0" layoutY="97.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <TextField fx:id="TextFieldBuscarAutoescuela" layoutX="54.0" layoutY="97.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line fx:id="LineaBuscarAutoescuela" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <TableView fx:id="TablaAE" layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
                       <TableColumn fx:id="ColumnaDirectorAE" prefWidth="201.0" text="Director" />
@@ -230,8 +230,8 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <TextField layoutX="54.0" layoutY="97.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <TextField fx:id="TextFieldBuscarClinica" layoutX="54.0" layoutY="97.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line fx:id="LineaBuscarClinica" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <TableView fx:id="TablaClinica" layoutX="18.0" layoutY="157.0" prefHeight="435.0" prefWidth="819.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                      <columns>
                         <TableColumn fx:id="ColumnaDirectorClinica" prefWidth="204.0" text="Director" />
@@ -272,8 +272,8 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <TextField layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <TextField fx:id="TextFieldBuscarEntidades" layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line fx:id="LineaBuscarEntidades" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="418.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../recursos_compartidos/imagenes/ico-filtros.png" />
@@ -338,8 +338,8 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <TextField layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <TextField fx:id="TextFieldBuscarInfracciones" layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line fx:id="LineaBuscarInfracciones" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="408.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../recursos_compartidos/imagenes/ico-filtros.png" />
@@ -413,8 +413,8 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <TextField layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="121.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <TextField fx:id="TextFieldBuscarExamenes" layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line fx:id="LineaBuscarExamenes" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="121.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="599.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../recursos_compartidos/imagenes/ico-filtros.png" />
@@ -496,8 +496,8 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <TextField layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <TextField fx:id="TextFieldBuscarConductores" layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
+                  <Line fx:id="LineaBuscarConductores" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="644.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../recursos_compartidos/imagenes/ico-filtros.png" />
@@ -577,8 +577,8 @@
                      </font>
                   </JFXButton>
                   <Label disable="true" layoutX="54.0" layoutY="99.0" prefHeight="17.0" prefWidth="64.0" text="   Buscar" />
-                  <TextField layoutX="50.0" layoutY="95.0" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: transparent;" />
-                  <Line endX="146.00003051757812" endY="7.62939453125E-6" layoutX="198.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
+                  <TextField fx:id="TextFieldBuscarLicencias" layoutX="50.0" layoutY="95.0" prefHeight="25.0" prefWidth="268.0" style="-fx-background-color: transparent;" />
+                  <Line fx:id="LineaBuscarLicencias" endX="146.00003051757812" endY="7.62939453125E-6" layoutX="198.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="696.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../recursos_compartidos/imagenes/ico-filtros.png" />
@@ -651,24 +651,24 @@
                   <CheckBox layoutX="437.0" layoutY="60.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>
                         <JFXButton layoutX="483.0" layoutY="4.0" prefHeight="25.0" prefWidth="3.0" text=" " />
                         <JFXButton layoutX="442.0" layoutY="7.0" prefHeight="25.0" prefWidth="18.0" text=" " />
-                        <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="492.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="454.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../recursos_compartidos/imagenes/ico-notificacion.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="526.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="488.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../recursos_compartidos/imagenes/ico-configuracion.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="LabelCorreoUsuario" layoutX="685.0" layoutY="8.0" prefHeight="17.0" prefWidth="157.0" text="Jho*****ter@gmail.com" />
-                        <Label layoutX="559.0" layoutY="12.0" prefHeight="17.0" prefWidth="105.0" text="1/4/2025  5:44 AM" />
+                        <Label fx:id="LabelFechaHora" layoutX="523.0" layoutY="12.0" prefHeight="17.0" prefWidth="141.0" text="1/4/2025  5:44 AM" />
                         <Label layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="267.0" text="¡Transformando datos, en seguridad vial!" textFill="#919191">
                            <font>
                               <Font size="14.0" />
@@ -871,6 +871,21 @@
                         </ImageView>
                      </children>
                   </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="PanelReportes" layoutX="10.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
+               <children>
+                  <Separator layoutX="-10.0" layoutY="-7.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" translateX="1.0" />
+                  <StackPane fx:id="ScatckPaneReporte1" layoutX="79.0" layoutY="61.0" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="ImageViewReporte1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../recursos_compartidos/imagenes/img-reporte-1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <Label layoutX="85.0" layoutY="226.0" prefHeight="17.0" prefWidth="189.0" text="Primer Reporte" />
                </children>
             </Pane>
          </children>

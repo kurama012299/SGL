@@ -129,6 +129,9 @@ public class ControladorAdministradorMedico extends Controlador{
     @FXML
     private Label LabelCorreoUsuario;
     
+    @FXML
+    private Label LabelFechaHora;
+    
     private ImageView ImagenExamenes;
     private ImageView ImagenInicio;
     
@@ -147,7 +150,7 @@ public class ControladorAdministradorMedico extends Controlador{
         JFXButton[] BotonesConsumirTecla={Inicio,Examenes};
         GestorEscenas.ConsumirTecla(BotonesConsumirTecla);
         
-        
+        GestorEscenas.configurarReloj(LabelFechaHora);
         
         Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoAprobadoR,LabelProgresoJoven,LabelProgresoAdulto,LabelProgresoAnciano};
         ProgressBar[] BarrasProgreso = {BarraProgresoAprobado,BarraProgresoReprobado,BarraProgresoAprobadoR,BarraProgresoJoven,BarraProgresoAdulto,BarraProgresoAnciano};

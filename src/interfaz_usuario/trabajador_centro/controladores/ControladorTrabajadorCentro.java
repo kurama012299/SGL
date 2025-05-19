@@ -132,6 +132,9 @@ public class ControladorTrabajadorCentro extends Controlador{
     @FXML
     private Label LabelCorreoUsuario;
     
+    @FXML
+    private Label LabelFechaHora;
+    
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
     private ImageView ImagenInicio;
@@ -149,6 +152,7 @@ public class ControladorTrabajadorCentro extends Controlador{
         ImagenInfracciones = (ImageView) Infracciones.getGraphic();
         ImagenReportes = (ImageView) Reportes.getGraphic();
         
+        GestorEscenas.configurarReloj(LabelFechaHora);
 
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -383,6 +387,7 @@ public class ControladorTrabajadorCentro extends Controlador{
         
     }
 
+    
     @Override
     protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
         

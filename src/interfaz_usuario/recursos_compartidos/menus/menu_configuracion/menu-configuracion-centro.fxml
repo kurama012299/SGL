@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" layoutX="98.0" prefHeight="40.0" prefWidth="435.0" text="SISTEMA DE GESTIÓN DE LICENCIAS" textFill="#8000ff">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="111.0" fitWidth="124.0" layoutX="254.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagenes/ico-empresa.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="32.0" layoutY="54.0" prefHeight="26.0" prefWidth="190.0" text="Director general">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="393.0" layoutY="54.0" prefHeight="26.0" prefWidth="190.0" text="Dirección postal">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="32.0" layoutY="108.0" prefHeight="26.0" prefWidth="190.0" text="Teléfono">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="18.0" layoutY="176.0" prefHeight="26.0" prefWidth="211.0" text="Jefe departamento contabilidad:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="383.0" layoutY="108.0" prefHeight="26.0" prefWidth="211.0" text="Secretario general:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="18.0" layoutY="215.0" prefHeight="26.0" prefWidth="250.0" text="Jefe departamento recursos humanos:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="53.0" layoutY="82.0" prefHeight="26.0" prefWidth="149.0" text="Juan Pérez Pérez" />
+      <Label alignment="CENTER" layoutX="53.0" layoutY="134.0" prefHeight="26.0" prefWidth="149.0" text="78306512" />
+      <Label alignment="CENTER" layoutX="414.0" layoutY="82.0" prefHeight="26.0" prefWidth="149.0" text="La Habana,Regla" />
+      <Label layoutX="270.0" layoutY="215.0" prefHeight="26.0" prefWidth="238.0" text="Rodrigo Martínez Aguado" />
+      <Label layoutX="233.0" layoutY="176.0" prefHeight="26.0" prefWidth="238.0" text="Silvio Rodrigues Martínez" />
+      <Label alignment="CENTER" layoutX="370.0" layoutY="134.0" prefHeight="26.0" prefWidth="238.0" text="Cristian Oliva Sandoval" />
+      <JFXButton layoutX="479.0" layoutY="229.0" opacity="0.69" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: red;" text="Cerrar" textFill="WHITE" />
+   </children>
+</Pane>

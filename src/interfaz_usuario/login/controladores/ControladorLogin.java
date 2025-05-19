@@ -6,6 +6,8 @@ package interfaz_usuario.login.controladores;
 
 
 import gestor_interfaces.GestorEscenas;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -52,8 +54,7 @@ public class ControladorLogin {
         System.out.println("Controlador Login Iniciado");
         GestorEscenas.PonerIconoVentana(VentanaPrincipal, "Login");
         ConfigurarNavegacionConTeclas(Usuario, Clave);
-        ConfigurarEfectoLinea(Clave, LineaClave);
-        ConfigurarEfectoLinea(Usuario, LineaUsuario);
+        GestorEscenas.ConfigurarEfectoLinea(new ArrayList<TextField>(Arrays.asList(Clave,Usuario)), new ArrayList<Line>(Arrays.asList(LineaClave,LineaUsuario)));
     }
     
     @FXML
@@ -163,41 +164,7 @@ public class ControladorLogin {
     }
     
     //Funcion para el efecto de las lineas bajo los textfield
-    @FXML
-    private void ConfigurarEfectoLinea(TextField CajaTexto, Line Linea) {
-        Linea.setStroke(Color.GRAY);
-        Linea.setStrokeWidth(1);
-        
-        // Cuando el TextField recibe foco
-        CajaTexto.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal) {
-                
-                Timeline LineaTiempo = new Timeline(
-                    new KeyFrame(Duration.ZERO,
-                        new KeyValue(Linea.strokeProperty(), Color.GRAY),
-                        new KeyValue(Linea.strokeWidthProperty(), 1)
-                    ),
-                    new KeyFrame(Duration.millis(300),
-                        new KeyValue(Linea.strokeProperty(), Color.valueOf("#8000ff")),
-                        new KeyValue(Linea.strokeWidthProperty(), 2)
-                    )
-                );
-                LineaTiempo.play();
-            } else {
-                Timeline LineaTiempo = new Timeline(
-                    new KeyFrame(Duration.ZERO,
-                        new KeyValue(Linea.strokeProperty(), Color.valueOf("#8000ff")),
-                        new KeyValue(Linea.strokeWidthProperty(), 2)
-                    ),
-                    new KeyFrame(Duration.millis(300),
-                        new KeyValue(Linea.strokeProperty(), Color.GRAY),
-                        new KeyValue(Linea.strokeWidthProperty(), 1)
-                    )
-                );
-                LineaTiempo.play();
-            }
-        });
-    }
+    
 }
 
 

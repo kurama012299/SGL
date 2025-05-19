@@ -117,6 +117,9 @@ public class ControladorMedico extends Controlador{
     @FXML
     private Label LabelCorreoUsuario;
     
+    @FXML
+    private Label LabelFechaHora;
+    
     private ImageView ImagenInicio;
     private ImageView ImagenExamenesMedicos;
     
@@ -127,6 +130,7 @@ public class ControladorMedico extends Controlador{
         ImagenInicio = (ImageView) Inicio.getGraphic();
         ImagenExamenesMedicos = (ImageView) ExamenesMedicos.getGraphic();
         
+        GestorEscenas.configurarReloj(LabelFechaHora);
         
         BotonCerrarSesion.setOnAction(e ->
         {
