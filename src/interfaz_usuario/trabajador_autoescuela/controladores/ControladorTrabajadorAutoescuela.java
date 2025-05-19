@@ -139,6 +139,9 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     
     @FXML
     private Label LabelCorreoUsuario;
+    
+    @FXML
+    private Label LabelFechaHora;
        
        
     private ImageView ImagenTeorico;
@@ -156,7 +159,8 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
         ImagenPractico = (ImageView) ExamenesPracticos.getGraphic();
         ImagenInicio = (ImageView) Inicio.getGraphic();
         
-
+        GestorEscenas.configurarReloj(LabelFechaHora);
+        
         BotonCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.CerrarPrograma();

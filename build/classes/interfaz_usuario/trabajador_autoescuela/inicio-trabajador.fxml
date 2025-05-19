@@ -246,18 +246,18 @@
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="825.0" style="-fx-background-color: ghostwhite; -fx-background-radius: 20; -fx-border-radius: 20;">
                      <children>
                         <JFXButton layoutX="442.0" layoutY="7.0" prefHeight="25.0" prefWidth="18.0" text=" " />
-                        <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="469.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="402.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-notificacion.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="496.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="429.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../recursos_compartidos/imagenes/ico-configuracion.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="LabelCorreoUsuario" layoutX="642.0" layoutY="10.0" prefHeight="17.0" prefWidth="183.0" text="Jho*****ter@gmail.com" />
-                        <Label layoutX="526.0" layoutY="11.0" prefHeight="17.0" prefWidth="105.0" text="1/4/2025  5:44 AM" />
+                        <Label fx:id="LabelFechaHora" layoutX="462.0" layoutY="11.0" prefHeight="17.0" prefWidth="169.0" text="1/4/2025  5:44 AM" />
                         <Label layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="267.0" text="¡Transformando datos, en seguridad vial!" textFill="#919191">
                            <font>
                               <Font size="14.0" />

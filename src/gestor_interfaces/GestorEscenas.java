@@ -49,6 +49,16 @@ import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasEx
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesTeoricosTrabajador;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasInfracciones;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasLicencias;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.util.Duration;
 import logica.infraccion.modelos.Infraccion;
 
 
@@ -556,6 +566,69 @@ public class GestorEscenas  {
         return Transformado;
     }
     
+    
+    public static void configurarReloj(Label EtiquetaReloj) {
+        // Estilo del label
+        EtiquetaReloj.setStyle("-fx-font-size: 12px;");
+
+        // Formateador de fecha/hora
+        DateTimeFormatter Formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss a");
+
+        // Animación que se actualiza cada segundo
+        Timeline LineaTiempo = new Timeline(
+                new KeyFrame(Duration.seconds(1),
+                        event -> {
+                            EtiquetaReloj.setText(LocalDateTime.now().format(Formateador));
+                        }
+                )
+        );
+        LineaTiempo.setCycleCount(Timeline.INDEFINITE);
+        LineaTiempo.play();
+    }
+    
+    
+    public static void ConfigurarEfectoLinea(ArrayList<TextField> CajaTexto, ArrayList<Line> Linea) {
+        Linea.forEach(Line ->
+        {
+            Line.setStroke(Color.GRAY);
+            Line.setStrokeWidth(1);
+        });
+        
+        int i=0;
+        // Cuando el TextField recibe foco
+        for (Line li : Linea) {
+            CajaTexto.get(i).focusedProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal) {
+
+                    Timeline LineaTiempo = new Timeline(
+                            new KeyFrame(Duration.ZERO,
+                                    new KeyValue(li.strokeProperty(), Color.GRAY),
+                                    new KeyValue(li.strokeWidthProperty(), 1)
+                            ),
+                            new KeyFrame(Duration.millis(300),
+                                    new KeyValue(li.strokeProperty(), Color.valueOf("#8000ff")),
+                                    new KeyValue(li.strokeWidthProperty(), 2)
+                            )
+                    );
+                    LineaTiempo.play();
+                } else {
+                    Timeline LineaTiempo = new Timeline(
+                            new KeyFrame(Duration.ZERO,
+                                    new KeyValue(li.strokeProperty(), Color.valueOf("#8000ff")),
+                                    new KeyValue(li.strokeWidthProperty(), 2)
+                            ),
+                            new KeyFrame(Duration.millis(300),
+                                    new KeyValue(li.strokeProperty(), Color.GRAY),
+                                    new KeyValue(li.strokeWidthProperty(), 1)
+                            )
+                    );
+                    LineaTiempo.play();
+                }
+            });
+            i++;
+        }
+        
+    }
 
 
 

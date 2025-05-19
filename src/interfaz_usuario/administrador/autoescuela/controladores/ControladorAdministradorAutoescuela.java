@@ -172,6 +172,9 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     @FXML
     private Label LabelPorcientoAnteriorMes;
     
+    @FXML
+    private Label LabelFechaHora;
+    
     
 
     private ImageView ImagenExamenesTeoricos;
@@ -185,6 +188,7 @@ public class ControladorAdministradorAutoescuela extends Controlador{
         ImagenExamenesTeoricos = (ImageView) ExamenTeorico.getGraphic();
         ImagenExamenesPracticos = (ImageView) ExamenPractico.getGraphic();
 
+        GestorEscenas.configurarReloj(LabelFechaHora);
         
         BotonCerrarSesion.setOnAction(e ->
         {
