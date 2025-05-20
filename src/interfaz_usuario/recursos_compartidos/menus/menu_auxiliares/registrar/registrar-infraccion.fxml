@@ -25,8 +25,7 @@
             <Font size="13.0" />
          </font>
       </JFXButton>
-      <TextField layoutX="34.0" layoutY="75.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre y apellidos" style="-fx-background-color: transparent;" />
-      <TextField layoutX="34.0" layoutY="120.0" prefHeight="25.0" prefWidth="200.0" promptText="ID" style="-fx-background-color: transparent;" />
+      <TextField layoutX="34.0" layoutY="120.0" prefHeight="25.0" prefWidth="200.0" promptText="Carnet identidad" style="-fx-background-color: transparent;" />
       <TextField layoutX="34.0" layoutY="255.0" prefHeight="25.0" prefWidth="200.0" promptText="Lugar de la infracción" style="-fx-background-color: transparent;" />
       <JFXButton layoutX="34.0" layoutY="400.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="         Cancelar">
          <font>
@@ -35,7 +34,6 @@
       </JFXButton>
       <TextField layoutX="34.0" layoutY="165.0" prefHeight="25.0" prefWidth="200.0" promptText="Número Licencia" style="-fx-background-color: transparent;" />
       <TextField layoutX="34.0" layoutY="210.0" prefHeight="25.0" prefWidth="200.0" promptText="Puntos deducidos" style="-fx-background-color: transparent;" />
-      <Line endX="100.0" layoutX="133.0" layoutY="99.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="134.0" layoutY="144.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="133.0" layoutY="190.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="133.0" layoutY="234.0" startX="-100.0" stroke="#8000ff" />
