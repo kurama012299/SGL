@@ -4,11 +4,13 @@
  */
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
-import gestor_interfaces.GestorEscenas;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 
@@ -16,7 +18,7 @@ import logica.persona.modelos.Conductor;
  *
  * @author Angel Hernandez
  */
-public class ControladorVerMasConductor {
+public class ControladorVerMasConductor{
     
     private Conductor Conductor;
     private Licencia Licencia;
@@ -62,6 +64,8 @@ public class ControladorVerMasConductor {
     
     @FXML
     Pane CategoriaCamion;
+    
+    @FXML Button btnAtras;
 
 
     @FXML
@@ -114,5 +118,13 @@ public class ControladorVerMasConductor {
             }
         }
     }
+
+        
+    @FXML private void cerrar()
+    {
+        Stage ventana = (Stage) btnAtras.getScene().getWindow();
+        ventana.close();
+    }
+    
 
 }

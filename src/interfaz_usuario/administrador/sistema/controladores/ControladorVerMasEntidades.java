@@ -10,8 +10,10 @@ import infraestructura.ConectorBaseDato;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import logica.entidad.modelos.EntidadRelacionada;
 
 /**
@@ -22,50 +24,46 @@ public class ControladorVerMasEntidades {
 
     private EntidadRelacionada Entidad;
 
-    @FXML
-    TextField TextFieldNombre;
+    @FXML private TextField TextFieldNombre;
 
-    @FXML
-    TextField TextFieldDirector;
+    @FXML private TextField TextFieldDirector;
 
-    @FXML
-    TextField TextFieldCantidadPersonas;
+    @FXML private TextField TextFieldCantidadPersonas;
 
-    @FXML
-    TextField TextFieldTelefono;
+    @FXML private TextField TextFieldTelefono;
 
-    @FXML
-    TextField TextFieldCorreo;
+    @FXML private TextField TextFieldCorreo;
 
-    @FXML
-    TextField TextFieldTipo;
+    @FXML private TextField TextFieldTipo;
 
-    @FXML
-    TextArea TextFieldDireccion;
+    @FXML private TextArea TextFieldDireccion;
+    
+    @FXML private Button btnAtras;
 
-    @FXML
-    public void initialize() {
+    
+
+    @FXML public void initialize() {
         System.out.println("Controlador ver mas Entidades iniciado");
     }
 
-    public void SetDatos(EntidadRelacionada Entidad) throws Exception {
+    public void setDatos(EntidadRelacionada Entidad) throws Exception {
         this.Entidad = Entidad;
-        Iniciar();
+        iniciar();
     }
-
-    @FXML
-    public void Iniciar() throws Exception {
+    
+    
+    @FXML public void iniciar() throws Exception {
 
         System.out.println("Iniciar llamado");
 
         if (Entidad.getTipoEntidad().equals("Clinica")) {
 
-            String puntosStr = String.valueOf(Math.round(TotalExamenesClinica()));
+            String puntosStr = String.valueOf(Math.round(totalExamenesClinica()));
             TextFieldCantidadPersonas.setText(puntosStr);
 
         } else {
 
-            String puntosStr = String.valueOf(Math.round(TotalExamenesAutoescuela()));
+            String puntosStr = String.valueOf(Math.round(totalExamenesAutoescuela()));
             TextFieldCantidadPersonas.setText(puntosStr);
         }
         
@@ -79,7 +77,7 @@ public class ControladorVerMasEntidades {
         
     }
 
-    private double TotalExamenesClinica() throws SQLException, Exception {
+    private double totalExamenesClinica() throws SQLException, Exception {
 
         try (Connection conn = ConectorBaseDato.Conectar()) {
             Estadistica Estadistica = GestorEstadisticas.ObtenerCantidadExamenesClinica(conn);
@@ -87,12 +85,18 @@ public class ControladorVerMasEntidades {
         }
     }
 
-    private double TotalExamenesAutoescuela() throws SQLException, Exception {
+    private double totalExamenesAutoescuela() throws SQLException, Exception {
 
         try (Connection conn = ConectorBaseDato.Conectar()) {
-        Estadistica Estadistica = GestorEstadisticas.ObtenerCantidadExamenesAutoescuela(conn);
-        return Estadistica.GetValor();
-    }
+            Estadistica Estadistica = GestorEstadisticas.ObtenerCantidadExamenesAutoescuela(conn);
+            return Estadistica.GetValor();
+        }
 
+    }
+    
+    @FXML private void cerrar()
+    {
+        Stage ventana = (Stage) btnAtras.getScene().getWindow();
+        ventana.close();
     }
 }

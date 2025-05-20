@@ -705,7 +705,7 @@ public class GestorEscenas  {
             FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
             ControladorVerMasEntidades controlador = cargador.getController();
-            controlador.SetDatos(entidad); 
+            controlador.setDatos(entidad); 
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();

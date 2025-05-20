@@ -6,9 +6,11 @@ package interfaz_usuario.recursos_compartidos.menus.controladores;
 
 import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.modelos.ExamenMedico;
 
@@ -50,6 +52,8 @@ public class ControladorVerMasExamenes {
     
     @FXML
     private Label LabelFecha;
+    
+    @FXML private Button btnAtras;
     
     @FXML
     public void initialize()
@@ -132,5 +136,11 @@ public class ControladorVerMasExamenes {
         TextFieldEntidad.setText(ExamenMedico.getEntidad().getNombre());
         TextFieldFecha.setText(ExamenMedico.getFecha().toString());
         
+    }
+    
+     
+    @FXML private void cerrar() {
+        Stage ventana = (Stage) btnAtras.getScene().getWindow();
+        ventana.close();
     }
 }

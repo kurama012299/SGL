@@ -5,10 +5,12 @@
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
@@ -54,6 +56,8 @@ public class ControladorVerMasLicencias {
     
     @FXML
     private TextField TextFieldRenovada;
+    
+    @FXML private Button btnAtras;
     
  
     
@@ -105,6 +109,12 @@ public class ControladorVerMasLicencias {
             TextFieldRestricciones.setText("Ninguna");
         else
             TextFieldRestricciones.setText(Licencia.getRestricciones().toString());
+    }
+    
+    @FXML private void cerrar()
+    {
+        Stage ventana = (Stage) btnAtras.getScene().getWindow();
+        ventana.close();
     }
     
 }

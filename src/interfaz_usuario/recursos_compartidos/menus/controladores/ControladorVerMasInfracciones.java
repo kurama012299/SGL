@@ -5,8 +5,10 @@
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
@@ -47,6 +49,8 @@ public class ControladorVerMasInfracciones {
     
     @FXML
     TextField TextFieldFecha;
+    
+    @FXML Button btnAtras;
     
     
     @FXML
@@ -105,6 +109,12 @@ public class ControladorVerMasInfracciones {
             default:
                
         }
+    }
+    
+    @FXML private void cerrar()
+    {
+        Stage ventana = (Stage) btnAtras.getScene().getWindow();
+        ventana.close();
     }
 
 }
