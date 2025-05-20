@@ -100,6 +100,11 @@ public class GestorTablas {
                     GestorEscenas.cargarVerMasLicencias(ventana, conductor, licencia);
                 } else if (objeto instanceof EntidadRelacionada) {
                     EntidadRelacionada entidad = (EntidadRelacionada) objeto;
+                    if(entidad.getTipoEntidad().equalsIgnoreCase("Clinica")){
+                       GestorEscenas.cargarVerMasClinicas(ventana, entidad);
+                    /*}else if(entidad.getTipoEntidad().equalsIgnoreCase("Autoescuela")){
+                        GestorEscenas.cargarVerMasAutoescuelas(ventana, entidad); 
+                    */}else
                     GestorEscenas.cargarVerMasEntidades(ventana, entidad);
                 }
 

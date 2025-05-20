@@ -42,6 +42,7 @@ import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 import interfaz_usuario.administrador.medico.controladores.ControladorVerMasExamenesMedicos;
+import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasClinicas;
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesPracticosTrabajador;
@@ -692,7 +693,6 @@ public class GestorEscenas  {
             
 
         } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
             throw new Exception("Error al cargar la interfaz");
         }
     }
@@ -747,4 +747,34 @@ public class GestorEscenas  {
             }
         }
     }
+    
+    public static void cargarVerMasClinicas(Window padre,EntidadRelacionada clinica) throws Exception {
+        try {
+            String direccion = "/interfaz_usuario/administrador/sistema/menu-auxiliares/ver-mas/menu-ver-mas-clinicas.fxml";
+            URL url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent ruta = cargador.load();
+            ControladorVerMasClinicas controlador = cargador.getController();
+            controlador.SetDatos(clinica); 
+
+            Scene escena = new Scene(ruta);
+            Stage ventana = new Stage();
+            ventana.initOwner(padre);
+            ventana.initStyle(StageStyle.UTILITY);
+
+
+            ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            ventana.setTitle("");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+      }
 }
