@@ -150,7 +150,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="843.0">
          <children>
-            <Pane fx:id="PanelAutoescuela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0">
+            <Pane fx:id="PanelAutoescuela" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Autoescuela">
                      <font>
@@ -174,11 +174,6 @@
                      </font>
                   </JFXButton>
                   <JFXButton fx:id="RegistrarAutoescuela" focusTraversable="false" layoutX="552.0" layoutY="95.0" onAction="#TransicionRegistrarAutoescuela" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="693.0" layoutY="94.0" prefHeight="29.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -221,11 +216,6 @@
                      </font>
                   </JFXButton>
                   <JFXButton fx:id="RegistrarClinica" focusTraversable="false" layoutX="552.0" layoutY="95.0" onAction="#TransicionRegistrarClinica" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Añadir" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="693.0" layoutY="94.0" prefHeight="29.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -333,11 +323,6 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="722.0" layoutY="94.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
                   <TextField fx:id="TextFieldBuscarInfracciones" layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
                   <Line fx:id="LineaBuscarInfracciones" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="408.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
@@ -404,11 +389,6 @@
                      </font>
                   </JFXButton>
                   <JFXButton fx:id="RegistrarExamen" focusTraversable="false" layoutX="501.0" layoutY="94.0" onAction="#TransicionRegistrarExamen" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="603.0" layoutY="94.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -491,11 +471,6 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="629.0" layoutY="95.0" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
                   <TextField fx:id="TextFieldBuscarConductores" layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
                   <Line fx:id="LineaBuscarConductores" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="644.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
@@ -562,16 +537,6 @@
                      </image>
                   </ImageView>
                   <JFXButton focusTraversable="false" layoutX="510.0" layoutY="95.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="RegistrarLicencia" focusTraversable="false" layoutX="367.0" layoutY="94.0" onAction="#TransicionRegistrarLicencia" prefHeight="29.0" prefWidth="121.0" style="-fx-background-color: gainsboro;" text="Agregar Licencia" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="623.0" layoutY="95.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>

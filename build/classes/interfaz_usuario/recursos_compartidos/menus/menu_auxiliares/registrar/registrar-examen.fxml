@@ -27,7 +27,7 @@
          </font>
       </JFXButton>
       <TextField layoutX="34.0" layoutY="75.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre y apellidos" style="-fx-background-color: transparent;" />
-      <TextField layoutX="34.0" layoutY="135.0" prefHeight="25.0" prefWidth="200.0" promptText="ID" style="-fx-background-color: transparent;" />
+      <TextField layoutX="34.0" layoutY="135.0" prefHeight="25.0" prefWidth="200.0" promptText="Carnet identidad" style="-fx-background-color: transparent;" />
       <JFXButton layoutX="286.0" layoutY="397.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="           Cancelar">
          <font>
             <Font size="13.0" />

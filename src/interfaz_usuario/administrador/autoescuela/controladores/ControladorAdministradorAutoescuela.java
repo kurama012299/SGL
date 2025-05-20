@@ -34,338 +34,279 @@ import logica.examen_conduccion.modelos.ExamenConduccion;
  */
 public class ControladorAdministradorAutoescuela extends Controlador{
 
-    @FXML
-    private JFXButton Inicio;
+    @FXML private JFXButton jfxbtnInicio;
 
-    @FXML
-    private JFXButton ExamenTeorico;
+    @FXML private JFXButton jfxbtnExamenTeorico;
 
-    @FXML
-    private JFXButton ExamenPractico;
+    @FXML private JFXButton jfxbtnExamenPractico;
 
-    @FXML
-    private Pane PanelInicio;
+    @FXML private Pane pnlInicio;
 
-    @FXML
-    private Pane PanelExamenesTeoricos;
+    @FXML private Pane pnlExamenesTeoricos;
 
-    @FXML
-    private Pane PanelExamenesPracticos;
+    @FXML private Pane pnlExamenesPracticos;
 
-    @FXML
-    private Button RegistrarExamenTeorico;
+    @FXML private Button btnRegistrarExamenTeorico;
 
-    @FXML
-    private Button RegistrarExamenPractico;
+    @FXML private Button btnRegistrarExamenPractico;
 
-    @FXML
-    private Label EtiquetaRol;
+    @FXML private HBox hbVentanaPrincipal;
 
-    @FXML
-    private HBox VentanaPrincipal;
+    @FXML private ProgressBar pbarAprobado;
 
-    @FXML
-    private ProgressBar BarraProgresoAprobado;
+    @FXML private ProgressBar pbarReprobado;
 
-    @FXML
-    private ProgressBar BarraProgresoReprobado;
+    @FXML private Label lblProgresoAprobado;
 
-    @FXML
-    private Label LabelProgresoAprobado;
+    @FXML private Label lblProgresoReprobado;
 
-    @FXML
-    private Label LabelProgresoReprobado;
+    @FXML private ProgressBar pbarTeorico;
 
-    @FXML
-    private ProgressBar BarraProgresoTeorico;
+    @FXML private ProgressBar pbarPractico;
 
-    @FXML
-    private ProgressBar BarraProgresoPractico;
+    @FXML private Label lblProgresoTeorico;
 
-    @FXML
-    private Label LabelProgresoTeorico;
+    @FXML private Label lblProgresoPractico;
+    
+    @FXML private JFXButton jfxbtnCerrarSesion;
+    
+    @FXML private TableView<ExamenConduccion>tblExamenesPracticos;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcFotoPractico;
+    
+    @FXML private TableColumn<ExamenConduccion, Date>tblcFechaPractico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcExaminadorPractico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcExaminadoPractico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcResultadoPractico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcAutoescuela;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcDetallesPractico;
+    
+    @FXML private TableView<ExamenConduccion>tblExamenesTeoricos;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcFotoTeorico;
+    
+    @FXML private TableColumn<ExamenConduccion, Date>tblcFechaTeorico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcExaminadorTeorico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcExaminadoTeorico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcResultadoTeorico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcAutoescuelaTeorico;
+    
+    @FXML private TableColumn<ExamenConduccion, String>tblcDetallesTeorico;
+    
+    @FXML private Label lblUsuarioNombre;
+  
+    @FXML private Label lblCorreoUsuario;
+    
+    @FXML private Label lblIniciosSesion;
+    
+    @FXML private Label lblUltimoInicioSesion;
+    
+    @FXML private Label lblTotalTrabajadores;
+    
+    @FXML private Label lblTotalExamenes;
+    
+    @FXML private Label lblIndiceAprobados;
+   
+    @FXML private Label lblExamenesPracticos;
+    
+    @FXML private Label lblExamenesTeoricos;
+    
+    @FXML private Label lblPorcientoAnteriorMes;
+    
+    @FXML private Label lblFechaHora;
+    
+    private ImageView ivImagenExamenesTeoricos;
+    private ImageView ivImagenExamenesPracticos;
+    private ImageView ivImagenInicio;
 
-    @FXML
-    private Label LabelProgresoPractico;
-    
-    @FXML
-    private JFXButton BotonCerrarSesion;
-    
-    @FXML
-    private TableView<ExamenConduccion>TablaExamenesPracticos;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaFotoPractico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, Date>ColumnaFechaPractico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaExaminadorPractico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaExaminadoPractico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaResultadoPractico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaAutoescuela;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaDetallesPractico;
-    
-    
-    @FXML
-    private TableView<ExamenConduccion>TablaExamenesTeoricos;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaFotoTeorico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, Date>ColumnaFechaTeorico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaExaminadorTeorico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaExaminadoTeorico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaResultadoTeorico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaAutoescuelaTeorico;
-    
-    @FXML
-    private TableColumn<ExamenConduccion, String>ColumnaDetallesTeorico;
-    
-    @FXML
-    private Label LabelUsuarioNombre;
-    
-    @FXML
-    private Label LabelCorreoUsuario;
-    
-    @FXML
-    private Label LabelIniciosSesion;
-    
-    @FXML
-    private Label LabelUltimoInicioSesion;
-    
-    @FXML
-    private Label LabelTotalTrabajadores;
-    
-    @FXML
-    private Label LabelTotalExamenes;
-    
-    @FXML
-    private Label LabelIndiceAprobados;
-    
-    @FXML
-    private Label LabelExamenesPracticos;
-    
-    @FXML
-    private Label LabelExamenesTeoricos;
-    
-    @FXML
-    private Label LabelPorcientoAnteriorMes;
-    
-    @FXML
-    private Label LabelFechaHora;
-    
-    
-
-    private ImageView ImagenExamenesTeoricos;
-    private ImageView ImagenExamenesPracticos;
-    private ImageView ImagenInicio;
-
-    @FXML
-    public void initialize() {
+    @FXML public void initialize() {
         
-        ImagenInicio = (ImageView) Inicio.getGraphic();
-        ImagenExamenesTeoricos = (ImageView) ExamenTeorico.getGraphic();
-        ImagenExamenesPracticos = (ImageView) ExamenPractico.getGraphic();
+        ivImagenInicio = (ImageView) jfxbtnInicio.getGraphic();
+        ivImagenExamenesTeoricos = (ImageView) jfxbtnExamenTeorico.getGraphic();
+        ivImagenExamenesPracticos = (ImageView) jfxbtnExamenPractico.getGraphic();
 
-        GestorEscenas.configurarReloj(LabelFechaHora);
+        GestorEscenas.configurarReloj(lblFechaHora);
         
-        BotonCerrarSesion.setOnAction(e ->
+        jfxbtnCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.cerrarPrograma();
         });
         
-        JFXButton[] BotonesConsumirTecla={Inicio,ExamenTeorico,ExamenPractico};
-        GestorEscenas.consumirTecla(BotonesConsumirTecla);
+        JFXButton[] botonesConsumirTecla={jfxbtnInicio,jfxbtnExamenTeorico,jfxbtnExamenPractico};
+        GestorEscenas.consumirTecla(botonesConsumirTecla);
         
         System.out.println("Controlador Administrador Autoescuela Iniciado");
-        Label[] PorcentajesBarra = {LabelProgresoAprobado, LabelProgresoReprobado, LabelProgresoTeorico, LabelProgresoPractico};
-        ProgressBar[] BarrasProgreso = {BarraProgresoAprobado, BarraProgresoReprobado, BarraProgresoTeorico, BarraProgresoPractico};
-        GestorEscenas.progresoLabel(PorcentajesBarra, BarrasProgreso);
+        Label[] porcentajesBarra = {lblProgresoAprobado, lblProgresoReprobado, lblProgresoTeorico, lblProgresoPractico};
+        ProgressBar[] barrasProgreso = {pbarAprobado, pbarReprobado, pbarTeorico, pbarPractico};
+        GestorEscenas.progresoLabel(porcentajesBarra, barrasProgreso);
         
         
-        this.TransicionInicio();
+        this.transicionInicio();
     }
 
-    @FXML
-    public void TransicionInicio() {
-        Pane[] PanelesOcultar = {PanelExamenesTeoricos, PanelExamenesPracticos};
-        GestorEscenas.mostrarOcultarPaneles(PanelInicio, PanelesOcultar);
-        JFXButton[] botones={ExamenTeorico,ExamenPractico};
-        GestorEscenas.pintarBotones(Inicio, botones);
+    @FXML public void transicionInicio() {
+        Pane[] panelesOcultar = {pnlExamenesTeoricos, pnlExamenesPracticos};
+        GestorEscenas.mostrarOcultarPaneles(pnlInicio, panelesOcultar);
+        JFXButton[] botones={jfxbtnExamenTeorico,jfxbtnExamenPractico};
+        GestorEscenas.pintarBotones(jfxbtnInicio, botones);
         
-        ImageView IconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
-        Inicio.setGraphic(IconoActivo);  
+        ImageView ivIconoActivo= new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
+        jfxbtnInicio.setGraphic(ivIconoActivo);  
         
-        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
-                add(ImagenExamenesPracticos);
-                add(ImagenExamenesTeoricos);
+        ArrayList<ImageView>imagenesCambiar= new ArrayList(){{
+                add(ivImagenExamenesPracticos);
+                add(ivImagenExamenesTeoricos);
                 }};
-        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
-                add(ExamenPractico);
-                add(ExamenTeorico);
+        ArrayList<JFXButton>botonesCambiar= new ArrayList(){{
+                add(jfxbtnExamenPractico);
+                add(jfxbtnExamenTeorico);
                 }};
-        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);   
+        GestorEscenas.cambiarIconos(imagenesCambiar, botonesCambiar);   
     }
 
-    @FXML
-    public void TransicionExamenPractico() {
+    @FXML public void transicionExamenPractico() {
         
-        GestorTablas.configurarColumnasExamenesAdminAutoescuela(ColumnaFotoPractico, ColumnaExaminadoPractico, ColumnaFechaPractico, ColumnaExaminadorPractico, ColumnaResultadoPractico, ColumnaAutoescuela, ColumnaDetallesPractico);
-        GestorTablas.cargarTablaExamenesPracticosAdminAutoescuela(TablaExamenesPracticos);
-        
-        
-        Pane[] PanelesOcultar = {PanelInicio, PanelExamenesTeoricos};
-        GestorEscenas.mostrarOcultarPaneles(PanelExamenesPracticos, PanelesOcultar);
-        JFXButton[] botones = {ExamenTeorico,Inicio};
-        GestorEscenas.pintarBotones(ExamenPractico, botones);
-        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer-blanco.png")));
-        ExamenPractico.setGraphic(IconoActivo);
+        GestorTablas.configurarColumnasExamenesAdminAutoescuela(tblcFotoPractico, tblcExaminadoPractico, tblcFechaPractico, tblcExaminadorPractico, tblcResultadoPractico, tblcAutoescuela, tblcDetallesPractico);
+        GestorTablas.cargarTablaExamenesPracticosAdminAutoescuela(tblExamenesPracticos);
         
         
-        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
-                add(ImagenExamenesTeoricos);
-                add(ImagenInicio);
+        Pane[] panelesOcultar = {pnlInicio, pnlExamenesTeoricos};
+        GestorEscenas.mostrarOcultarPaneles(pnlExamenesPracticos, panelesOcultar);
+        JFXButton[] botones = {jfxbtnExamenTeorico,jfxbtnInicio};
+        GestorEscenas.pintarBotones(jfxbtnExamenPractico, botones);
+        ImageView ivIconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-chofer-blanco.png")));
+        jfxbtnExamenPractico.setGraphic(ivIconoActivo);
+        
+        
+        ArrayList<ImageView>imagenesCambiar= new ArrayList(){{
+                add(ivImagenExamenesTeoricos);
+                add(ivImagenInicio);
                 }};
-        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
-                add(ExamenTeorico);
-                add(Inicio);
+        ArrayList<JFXButton>botonesCambiar= new ArrayList(){{
+                add(jfxbtnExamenTeorico);
+                add(jfxbtnInicio);
                 }};
-        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(imagenesCambiar, botonesCambiar);
     }
 
-    @FXML
-    public void TransicionExamenTeorico() {
+    @FXML public void transicionExamenTeorico() {
         
-        GestorTablas.configurarColumnasExamenesAdminAutoescuela(ColumnaFotoTeorico, ColumnaExaminadoTeorico, ColumnaFechaTeorico, ColumnaExaminadorTeorico, ColumnaResultadoTeorico, ColumnaAutoescuelaTeorico, ColumnaDetallesTeorico);
-        GestorTablas.cargarTablaExamenesTeoricosAdminAutoescuela(TablaExamenesTeoricos);
+        GestorTablas.configurarColumnasExamenesAdminAutoescuela(tblcFotoTeorico, tblcExaminadoTeorico, tblcFechaTeorico, tblcExaminadorTeorico, tblcResultadoTeorico, tblcAutoescuelaTeorico, tblcDetallesTeorico);
+        GestorTablas.cargarTablaExamenesTeoricosAdminAutoescuela(tblExamenesTeoricos);
         
-        Pane[] PanelesOcultar = {PanelInicio, PanelExamenesPracticos};
-        GestorEscenas.mostrarOcultarPaneles(PanelExamenesTeoricos, PanelesOcultar);
-        JFXButton[] botones = {ExamenPractico,Inicio};
-        GestorEscenas.pintarBotones(ExamenTeorico, botones);
-        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-teorico-blanco.png")));
-        ExamenTeorico.setGraphic(IconoActivo);
+        Pane[] panelesOcultar = {pnlInicio, pnlExamenesPracticos};
+        GestorEscenas.mostrarOcultarPaneles(pnlExamenesTeoricos, panelesOcultar);
+        JFXButton[] botones = {jfxbtnExamenPractico,jfxbtnInicio};
+        GestorEscenas.pintarBotones(jfxbtnExamenTeorico, botones);
+        ImageView ivIconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-teorico-blanco.png")));
+        jfxbtnExamenTeorico.setGraphic(ivIconoActivo);
         
         
-        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
-                add(ImagenExamenesPracticos);
-                add(ImagenInicio);
+        ArrayList<ImageView>imagenesCambiar= new ArrayList(){{
+                add(ivImagenExamenesPracticos);
+                add(ivImagenInicio);
                 }};
-        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
-                add(ExamenPractico);
-                add(Inicio);
+        ArrayList<JFXButton>botonesCambiar= new ArrayList(){{
+                add(jfxbtnExamenPractico);
+                add(jfxbtnInicio);
                 }};
-        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(imagenesCambiar, botonesCambiar);
     }
 
-    @FXML
-    public void TransicionRegistrarExamenPractico() {
-        String Direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
-        Stage Padre = (Stage) RegistrarExamenPractico.getScene().getWindow();
+    @FXML public void transicionRegistrarExamenPractico() {
+        String direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
+        Stage padre = (Stage) btnRegistrarExamenPractico.getScene().getWindow();
 
         try {
-            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen practico");
+            GestorEscenas.cargarPanelAuxiliar(padre, direccion, true, "Registrar examen practico");
         } catch (Exception ex) {
             //CAPTURAR ERROR
         }
     }
 
-    @FXML
-    public void TransicionRegistrarExamenTeorico() {
-        String Direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/registrar/registrar-examen-teorico.fxml";
-        Stage Padre = (Stage) RegistrarExamenTeorico.getScene().getWindow();
+    @FXML public void transicionRegistrarExamenTeorico() {
+        String direccion = "/interfaz_usuario/administrador/autoescuela/menu_auxiliares/registrar/registrar-examen-teorico.fxml";
+        Stage padre = (Stage) btnRegistrarExamenTeorico.getScene().getWindow();
 
         try {
-            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen teorico");
+            GestorEscenas.cargarPanelAuxiliar(padre, direccion, true, "Registrar examen teorico");
         } catch (Exception ex) {
             //CAPTURAR ERROR
 
         }
     }
 
-    @Override
-    public void Iniciar(MenuEstadisticas MenuEstadisticas) {
+    @Override public void Iniciar(MenuEstadisticas menuEstadisticas) {
         
-        LabelUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.usuario.getNombre()));
-        Tooltip MouseNombre= new Tooltip(Autentificador.usuario.getNombre());
-        MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
-        LabelUsuarioNombre.setTooltip(MouseNombre);
-        LabelUsuarioNombre.setMaxWidth(100);
-        LabelCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
-        CargarEstadisticas(MenuEstadisticas);
+        lblUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.usuario.getNombre()));
+        Tooltip mouseNombre= new Tooltip(Autentificador.usuario.getNombre());
+        mouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+        lblUsuarioNombre.setTooltip(mouseNombre);
+        lblUsuarioNombre.setMaxWidth(100);
+        lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
+        CargarEstadisticas(menuEstadisticas);
         
     }
 
-    @Override
-    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
+    @Override protected void CargarEstadisticas(MenuEstadisticas menuEstadisticas) {
         
-         LabelUltimoInicioSesion.setText("Último inicio sesion hace " + MenuEstadisticas.GetEstadisticaUsuario().GetUltimoInicioSesion());
-         LabelIniciosSesion.setText(String.valueOf(MenuEstadisticas.GetEstadisticaUsuario().GetCantidadIniciosSesion()));
-        for(Estadistica e : MenuEstadisticas.getEstadisticas())
+         lblUltimoInicioSesion.setText("Último inicio sesion hace " + menuEstadisticas.GetEstadisticaUsuario().GetUltimoInicioSesion());
+         lblIniciosSesion.setText(String.valueOf(menuEstadisticas.GetEstadisticaUsuario().GetCantidadIniciosSesion()));
+        for(Estadistica e : menuEstadisticas.getEstadisticas())
         {
             System.out.println(e);
             switch(e.GetCategoria())
             {
                 
                 case "Cantidad Examenes":
-                    LabelTotalExamenes.setText(String.valueOf(Math.round(e.GetValor())));
+                    lblTotalExamenes.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Cantidad Trabajadores":
-                    LabelTotalTrabajadores.setText(String.valueOf(Math.round(e.GetValor())));
+                    lblTotalTrabajadores.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Mes Anterior":
                     if(e.GetValor()>0)
-                        LabelPorcientoAnteriorMes.setText("+"+String.valueOf(Math.round(e.GetValor())+"%  respecto anterior mes"));
+                        lblPorcientoAnteriorMes.setText("+"+String.valueOf(Math.round(e.GetValor())+"%  respecto anterior mes"));
                     else
                     {
-                        LabelPorcientoAnteriorMes.setText("-"+String.valueOf(Math.round(e.GetValor())+"%  respecto anterior mes"));
-                        LabelPorcientoAnteriorMes.textFillProperty().setValue(Color.RED);
+                        lblPorcientoAnteriorMes.setText("-"+String.valueOf(Math.round(e.GetValor())+"%  respecto anterior mes"));
+                        lblPorcientoAnteriorMes.textFillProperty().setValue(Color.RED);
                     }
                     break;
                 case "Cantidad Examenes Teoricos":
-                    LabelExamenesTeoricos.setText(String.valueOf(Math.round(e.GetValor())));
+                    lblExamenesTeoricos.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "Cantidad Examenes Practicos":
-                    LabelExamenesPracticos.setText(String.valueOf(Math.round(e.GetValor())));
+                    lblExamenesPracticos.setText(String.valueOf(Math.round(e.GetValor())));
                     break;
                 case "PorcientoTeorico":
-                    LabelProgresoTeorico.setText(String.valueOf(Math.round(e.GetValor()))+"%");
+                    lblProgresoTeorico.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "PorcientoPractico":
-                    LabelProgresoPractico.setText(String.valueOf(Math.round(e.GetValor()))+"%");
+                    lblProgresoPractico.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "PorcientoReprobado":
-                    LabelProgresoReprobado.setText(String.valueOf(Math.round(e.GetValor()))+"%");
+                    lblProgresoReprobado.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "PorcientoAprobado":
-                    LabelProgresoAprobado.setText(String.valueOf(Math.round(e.GetValor()))+"%");
+                    lblProgresoAprobado.setText(String.valueOf(Math.round(e.GetValor()))+"%");
                     break;
                 case "IndiceAprobados":
                     if(e.GetValor()>0)
-                        LabelIndiceAprobados.setText("+"+String.valueOf(Math.round(e.GetValor()))+"% índice aprobados");
+                        lblIndiceAprobados.setText("+"+String.valueOf(Math.round(e.GetValor()))+"% índice aprobados");
                     else
                     {
-                        LabelIndiceAprobados.setText("-"+String.valueOf(Math.round(e.GetValor()))+"% índice aprobados");
-                        LabelIndiceAprobados.textFillProperty().setValue(Color.RED);
+                        lblIndiceAprobados.setText("-"+String.valueOf(Math.round(e.GetValor()))+"% índice aprobados");
+                        lblIndiceAprobados.textFillProperty().setValue(Color.RED);
                     }
                     break;
             }

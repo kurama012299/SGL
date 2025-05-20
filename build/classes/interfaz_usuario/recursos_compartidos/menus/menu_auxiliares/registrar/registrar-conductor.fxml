@@ -27,18 +27,16 @@
          </font>
       </JFXButton>
       <TextField layoutX="33.0" layoutY="74.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre y apellidos" style="-fx-background-color: transparent;" />
-      <TextField layoutX="33.0" layoutY="114.0" prefHeight="25.0" prefWidth="200.0" promptText="ID" style="-fx-background-color: transparent;" />
+      <TextField layoutX="33.0" layoutY="114.0" prefHeight="25.0" prefWidth="200.0" promptText="Carnet identidad" style="-fx-background-color: transparent;" />
       <TextField layoutX="33.0" layoutY="237.0" prefHeight="25.0" prefWidth="200.0" promptText="Telefono" style="-fx-background-color: transparent;" />
       <JFXButton layoutX="286.0" layoutY="409.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="           Cancelar">
          <font>
             <Font size="13.0" />
          </font>
       </JFXButton>
-      <TextField layoutX="32.0" layoutY="154.0" prefHeight="25.0" prefWidth="200.0" promptText="Número Licencia" style="-fx-background-color: transparent;" />
       <TextField layoutX="33.0" layoutY="194.0" prefHeight="25.0" prefWidth="201.0" promptText="Correo" style="-fx-background-color: transparent;" />
       <Line endX="100.0" layoutX="133.0" layoutY="99.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="133.0" layoutY="139.0" startX="-100.0" stroke="#8000ff" />
-      <Line endX="100.0" layoutX="133.0" layoutY="179.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="133.0" layoutY="219.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="133.0" layoutY="262.0" startX="-100.0" stroke="#8000ff" />
       <TextArea cacheShape="false" centerShape="false" focusTraversable="false" layoutX="33.0" layoutY="344.0" prefHeight="89.0" prefWidth="200.0" promptText="Restricciones" scaleShape="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
