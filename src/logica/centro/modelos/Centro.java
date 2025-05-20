@@ -10,69 +10,69 @@ package logica.centro.modelos;
  */
 public class Centro {
     
-    private String Nombre;
-    private String DireccionPostal;
-    private String Telefono;
-    private String NombreDirectorGeneral;
-    private String NombreJefeDptoRH;
-    private String NombreJefeDptoCont;
-    private String NombreSecretarioGS;
-    private String Logo;
+    private String nombre;
+    private String direccionPostal;
+    private String telefono;
+    private String nombreDirectorGeneral;
+    private String nombreJefeDptoRH;
+    private String nombreJefeDptoCont;
+    private String nombreSecretarioGS;
+    private String logo;
 
-    public Centro(String Nombre, String DireccionPostal, String Telefono, String NombreDirectorGeneral, String NombreJefeDptoRH, String NombreJefeDptoCont, String NombreSecretarioGS, String Logo) {
-        this.Nombre = Nombre;
-        this.DireccionPostal = DireccionPostal;
-        this.Telefono = Telefono;
-        this.NombreDirectorGeneral = NombreDirectorGeneral;
-        this.NombreJefeDptoRH = NombreJefeDptoRH;
-        this.NombreJefeDptoCont = NombreJefeDptoCont;
-        this.NombreSecretarioGS = NombreSecretarioGS;
-        this.Logo = Logo;
+    public Centro(String nombre, String direccionPostal, String telefono, String nombreDirectorGeneral, String nombreJefeDptoRH, String nombreJefeDptoCont, String nombreSecretarioGS, String logo) {
+        this.nombre = nombre;
+        this.direccionPostal = direccionPostal;
+        this.telefono = telefono;
+        this.nombreDirectorGeneral = nombreDirectorGeneral;
+        this.nombreJefeDptoRH = nombreJefeDptoRH;
+        this.nombreJefeDptoCont = nombreJefeDptoCont;
+        this.nombreSecretarioGS = nombreSecretarioGS;
+        this.logo = logo;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public String getDireccionPostal() {
-        return DireccionPostal;
+        return direccionPostal;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public String getNombreDirectorGeneral() {
-        return NombreDirectorGeneral;
+        return nombreDirectorGeneral;
     }
 
     public String getNombreJefeDptoRH() {
-        return NombreJefeDptoRH;
+        return nombreJefeDptoRH;
     }
 
     public String getNombreJefeDptoCont() {
-        return NombreJefeDptoCont;
+        return nombreJefeDptoCont;
     }
 
     public String getNombreSecretarioGS() {
-        return NombreSecretarioGS;
+        return nombreSecretarioGS;
     }
 
     public String getLogo() {
-        return Logo;
+        return logo;
     }
     
     @Override
     public String toString()
     {
-        return  "Nombre: "+ Nombre +"\n"+
-                "DireccionPostal: "+ DireccionPostal +"\n"+
-                "Telefono: " + Telefono +"\n"+
-                "NombreDirectorGeneral: " + NombreDirectorGeneral +"\n"+
-                "NombreJefeDptoRH: " + NombreJefeDptoRH +"\n"+
-                "NombreJefeDptoCont: " + NombreJefeDptoCont +"\n"+
-                "NombreSecretarioGS: " + NombreSecretarioGS +"\n"+
-                "Logo: " + Logo +"\n";
+        return  "Nombre: "+ nombre +"\n"+
+                "DireccionPostal: "+ direccionPostal +"\n"+
+                "Telefono: " + telefono +"\n"+
+                "NombreDirectorGeneral: " + nombreDirectorGeneral +"\n"+
+                "NombreJefeDptoRH: " + nombreJefeDptoRH +"\n"+
+                "NombreJefeDptoCont: " + nombreJefeDptoCont +"\n"+
+                "NombreSecretarioGS: " + nombreSecretarioGS +"\n"+
+                "Logo: " + logo +"\n";
     }
     
 }

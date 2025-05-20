@@ -63,7 +63,7 @@ public class ControladorLogin {
 
         String tipoUsuario;
         try {
-            tipoUsuario = Autentificador.ExisteUsuario(Usuario.getText(), Clave.getText());
+            tipoUsuario = Autentificador.existeUsuario(Usuario.getText(), Clave.getText());
 
             switch (tipoUsuario) 
             {

@@ -70,7 +70,7 @@ public class GestorTablas {
 
     
     private static void mostrarDetalles(Object objeto, Window ventana) throws Exception {
-        switch (Autentificador.Usuario.getRol()) {
+        switch (Autentificador.usuario.getRol()) {
             case "Administrador":
                 if (objeto instanceof Conductor) {
                     Conductor conductor = (Conductor) objeto;

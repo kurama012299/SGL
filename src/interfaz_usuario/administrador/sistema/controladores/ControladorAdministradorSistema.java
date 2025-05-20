@@ -461,7 +461,7 @@ public class ControladorAdministradorSistema extends Controlador{
         ImagenClinica = (ImageView) Clinica.getGraphic();
         ImagenEntidades = (ImageView) Entidades.getGraphic();
        
-        ImagenUsuario.setImage(GestorImagenes.CargarImagen(Autentificador.Usuario.getFoto()));
+        ImagenUsuario.setImage(GestorImagenes.CargarImagen(Autentificador.usuario.getFoto()));
         
    
         GestorEscenas.configurarReloj(LabelFechaHora);
@@ -916,12 +916,12 @@ public class ControladorAdministradorSistema extends Controlador{
     @Override
     public void Iniciar(MenuEstadisticas MenuEstadisticas) 
     {
-        LabelUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.Usuario.getNombre()));
-        Tooltip MouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
+        LabelUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.usuario.getNombre()));
+        Tooltip MouseNombre= new Tooltip(Autentificador.usuario.getNombre());
         MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
         LabelUsuarioNombre.setTooltip(MouseNombre);
         LabelUsuarioNombre.setMaxWidth(100);
-        LabelCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.Usuario.getCorreo()));
+        LabelCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
         CargarEstadisticas(MenuEstadisticas);
     }
     

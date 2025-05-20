@@ -81,11 +81,11 @@ public class GestorEscenas  {
      
             Controlador controlador = cargador.getController();
             MenuEstadisticas menuEstadisticas = new MenuEstadisticas();
-            menuEstadisticas.SetEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.Usuario.getId()));
+            menuEstadisticas.SetEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.usuario.getId()));
             
             ArrayList<Estadistica> estadisticas = new ArrayList<>();
             
-            switch (Autentificador.Usuario.getRol()) 
+            switch (Autentificador.usuario.getRol()) 
             {
                 case "Administrador":
                     estadisticas = GestorEstadisticas.ObtenerEstadisticasMenuAdministrador();

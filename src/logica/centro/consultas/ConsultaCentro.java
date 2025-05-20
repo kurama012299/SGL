@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import logica.centro.modelos.Centro;
-import logica.persona.modelos.Conductor;
+
 
 /**
  *
@@ -19,8 +19,8 @@ import logica.persona.modelos.Conductor;
 public class ConsultaCentro {
     
     
-    public static Centro ObtenerCentroConsulta() throws Exception {
-        Centro Centro = null;
+    public static Centro obtenerCentroConsulta() throws Exception {
+        Centro centro = null;
 
         String consulta = "SELECT * FROM \"Centro\"";
 
@@ -28,7 +28,7 @@ public class ConsultaCentro {
                 PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    Centro = new Centro(
+                    centro = new Centro(
                         rs.getString("Nombre"),
                         rs.getString("DireccionPostal"),
                         rs.getString("Telefono"),
@@ -43,8 +43,8 @@ public class ConsultaCentro {
         } catch (SQLException e) {
             throw new Exception("Error al obtener el centro de la base de datos", e);
         }
-        System.out.println(Centro);
-        return Centro;
+        System.out.println(centro);
+        return centro;
     }
 }
 

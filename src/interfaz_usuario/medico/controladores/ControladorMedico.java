@@ -122,7 +122,7 @@ public class ControladorMedico extends Controlador{
     public void transicionExamenesMedico() {
         
         GestorTablas.configurarColumnasExamenesMedicosMedicoUnico(tblcFoto,tblcExaminado, tblcFecha, tblcResultado, tblcClinica, tblcDetalles);
-        GestorTablas.cargarTablaExamenesMedicosMedicoUnico(tblExamenesMedicos, Autentificador.Usuario.getId());
+        GestorTablas.cargarTablaExamenesMedicosMedicoUnico(tblExamenesMedicos, Autentificador.usuario.getId());
         
         Pane[] panelesOcultar={pnlInicio};
         GestorEscenas.mostrarOcultarPaneles(pnlExamenes,panelesOcultar);
@@ -183,12 +183,12 @@ public class ControladorMedico extends Controlador{
     @Override
     public void Iniciar(MenuEstadisticas menuEstadisticas) {
         
-        lblUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.Usuario.getNombre()));
-        Tooltip mouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
+        lblUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.usuario.getNombre()));
+        Tooltip mouseNombre= new Tooltip(Autentificador.usuario.getNombre());
         mouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
         lblUsuarioNombre.setTooltip(mouseNombre);
         lblUsuarioNombre.setMaxWidth(100);
-        lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.Usuario.getCorreo()));
+        lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
         
     }
 

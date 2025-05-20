@@ -16,12 +16,12 @@ import logica.usuario.modelos.Usuario;
  */
 public class Autentificador {
     
-    public static Usuario Usuario;
-    public static String ExisteUsuario(String Correo,String Clave) throws Exception
+    public static Usuario usuario;
+    public static String existeUsuario(String correo,String clave) throws Exception
     {
-        Usuario = ConsultasUsuario.ObtenerUsuario(Correo, Clave);
-        System.out.println(Usuario);
-        ConsultasInicioSesion.CrearInicioSesion(Usuario.getId());
-        return Usuario.getRol();
+        usuario = ConsultasUsuario.ObtenerUsuario(correo, clave);
+        System.out.println(usuario);
+        ConsultasInicioSesion.CrearInicioSesion(usuario.getId());
+        return usuario.getRol();
     }
 }

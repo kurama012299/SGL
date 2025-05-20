@@ -139,7 +139,7 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     @FXML public void transcisionExamenesTeoricos() {
         
         GestorTablas.configurarColumnasExamenesTraAutoescuela(tblcFotoTeorico, tblcExaminadoTeorico, tblcFechaTeorico, tblcResultadoTeorico, tblcAutoescuelaTeorico, tblcDetallesTeorico);
-        GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(tblExamenesTeoricos, Autentificador.Usuario.getId());
+        GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(tblExamenesTeoricos, Autentificador.usuario.getId());
         
         Pane[] panelesOcultar = {pnlExamenesPracticos, pnlInicio};
         GestorEscenas.mostrarOcultarPaneles(pnlExamenesTeoricos, panelesOcultar);
@@ -169,7 +169,7 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     @FXML public void transcisionExamenesPracticos() {
         
         GestorTablas.configurarColumnasExamenesTraAutoescuela(tblcFotoPractico, tblcExaminadoPractico, tblcFechaPractico, tblcResultadoPractico, tblcAutoescuelaPractico, tblcDetallesPractico);
-        GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(tblExamenesPracticos, Autentificador.Usuario.getId());
+        GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(tblExamenesPracticos, Autentificador.usuario.getId());
         
         Pane[] panelesOcultar={pnlExamenesTeoricos,pnlInicio};
         GestorEscenas.mostrarOcultarPaneles(pnlExamenesPracticos,panelesOcultar);
@@ -244,12 +244,12 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     @Override
     public void Iniciar(MenuEstadisticas menuEstadisticas) {
         
-        lblUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.Usuario.getNombre()));
-        Tooltip mouseNombre= new Tooltip(Autentificador.Usuario.getNombre());
+        lblUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.usuario.getNombre()));
+        Tooltip mouseNombre= new Tooltip(Autentificador.usuario.getNombre());
         mouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
         lblUsuarioNombre.setTooltip(mouseNombre);
         lblUsuarioNombre.setMaxWidth(100);
-        lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.Usuario.getCorreo()));
+        lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
     }
 
     @Override

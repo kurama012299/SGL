@@ -13,6 +13,6 @@ import logica.centro.modelos.Centro;
  */
 public class ServiciosCentro {
     public static Centro ObtenerCentro() throws Exception {
-        return ConsultaCentro.ObtenerCentroConsulta();
+        return ConsultaCentro.obtenerCentroConsulta();
     }
 }
