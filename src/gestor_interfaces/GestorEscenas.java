@@ -42,6 +42,7 @@ import logica.autentificacion.Autentificador;
 import logica.licencia.modelos.Licencia;
 import logica.persona.modelos.Conductor;
 import interfaz_usuario.administrador.medico.controladores.ControladorVerMasExamenesMedicos;
+import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasAutoescuelas;
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasClinicas;
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
@@ -756,6 +757,36 @@ public class GestorEscenas  {
             Parent ruta = cargador.load();
             ControladorVerMasClinicas controlador = cargador.getController();
             controlador.SetDatos(clinica); 
+
+            Scene escena = new Scene(ruta);
+            Stage ventana = new Stage();
+            ventana.initOwner(padre);
+            ventana.initStyle(StageStyle.UTILITY);
+
+
+            ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            ventana.setTitle("");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+      }
+    
+    public static void cargarVerMasAutoescuelas(Window padre,EntidadRelacionada autoescuela) throws Exception {
+        try {
+            String direccion = "/interfaz_usuario/administrador/sistema/menu-auxiliares/ver-mas/menu-ver-mas-autoescuelas.fxml";
+            URL url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent ruta = cargador.load();
+            ControladorVerMasAutoescuelas controlador = cargador.getController();
+            controlador.SetDatos(autoescuela); 
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();

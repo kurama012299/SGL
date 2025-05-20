@@ -313,4 +313,16 @@ public class GestorEstadisticas {
         
         
     }
+     
+     public static Estadistica obtenerCantidadExamenesAutoescuelaAprobados(Connection conn) throws SQLException{
+         
+         Estadistica examenesAutoescuela = ObtenerCantidadExamenesAutoescuela(conn);
+         Estadistica examenesReprobadosAutoescuela = ObtenerCantidadExamenesReprobadosConduccion(conn);
+         double examenesAprobados = examenesAutoescuela.GetValor() - examenesReprobadosAutoescuela.GetValor();
+         
+         return new Estadistica(
+                        "Examenes Aprobados",
+                        examenesAprobados
+                );
+     } 
 }
