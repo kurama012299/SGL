@@ -4,6 +4,7 @@
  */
 package interfaz_usuario.administrador.sistema.controladores;
 
+import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -54,6 +55,9 @@ public class ControladorVerMasClinicas {
 
         System.out.println("Iniciar llamado");
         
+        btnAtras.setOnAction(e ->{
+            GestorEscenas.cerrar(btnAtras);
+        });
         txfDirector.setText(Clinica.getNombreDirector());
         txfCorreo.setText(Clinica.getCorreo());
         txfNombre.setText(Clinica.getNombre());
@@ -62,10 +66,5 @@ public class ControladorVerMasClinicas {
         
     }
 
-    @FXML private void cerrar()
-    {
-        Stage ventana = (Stage) btnAtras.getScene().getWindow();
-        ventana.close();
-    }
     
 }

@@ -73,7 +73,7 @@ public class ControladorTrabajadorCentro extends Controlador{
     private Pane PanelConductores;
     
     @FXML
-    private HBox VentanaPrincipal;
+    private HBox hbVentanaPrincipal;
     
     @FXML
     private ProgressBar BarraProgresoLicenciaA;
@@ -154,6 +154,8 @@ public class ControladorTrabajadorCentro extends Controlador{
         
         GestorEscenas.configurarReloj(LabelFechaHora);
 
+        GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Trabajador centro");
+         
         BotonCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.cerrarPrograma();

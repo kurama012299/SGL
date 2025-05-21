@@ -29,6 +29,7 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             primaryStage.setTitle("Interfaz desde FXML");
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
             
             

@@ -4,7 +4,9 @@
  */
 package interfaz_usuario.trabajador_autoescuela.controladores;
 
+import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 
@@ -31,6 +33,8 @@ public class ControladorVerMasExamenesTeoricosTrabajador {
     @FXML
     private TextField TextFieldResultado;
     
+    @FXML private Button btnAtras;
+    
     @FXML
     public void initialize()
     {
@@ -47,6 +51,9 @@ public class ControladorVerMasExamenesTeoricosTrabajador {
     @FXML
     private void Iniciar()
     {
+        btnAtras.setOnAction(e -> {
+            GestorEscenas.cerrar(btnAtras);
+        });
         TextFieldExaminado.setText(ExamenTeorico.getPersona().getNombre()+ExamenTeorico.getPersona().getApellidos());
         TextFieldId.setText(ExamenTeorico.getPersona().getCI());
         TextFieldFecha.setText(ExamenTeorico.getFecha().toString());

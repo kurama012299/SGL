@@ -55,6 +55,7 @@ import java.time.format.DateTimeFormatter;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -123,7 +124,8 @@ public class GestorEscenas  {
             
             
             
-            ventana.initStyle(StageStyle.UTILITY);
+            ventana.initStyle(StageStyle.DECORATED);
+            ventana.setResizable(false);
             ventana.show();
 
         } catch (Exception e) {
@@ -213,6 +215,7 @@ public class GestorEscenas  {
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
+            ventana.setResizable(false);
 
 
             ventana.initModality(Modality.WINDOW_MODAL);
@@ -244,6 +247,7 @@ public class GestorEscenas  {
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
+             ventana.setResizable(false);
 
 
             ventana.initModality(Modality.WINDOW_MODAL);
@@ -275,6 +279,7 @@ public class GestorEscenas  {
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
+             ventana.setResizable(false);
 
 
             ventana.initModality(Modality.WINDOW_MODAL);
@@ -306,6 +311,7 @@ public class GestorEscenas  {
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
+             ventana.setResizable(false);
 
 
             ventana.initModality(Modality.WINDOW_MODAL);
@@ -337,6 +343,7 @@ public class GestorEscenas  {
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
+             ventana.setResizable(false);
 
 
             ventana.initModality(Modality.WINDOW_MODAL);
@@ -367,6 +374,7 @@ public class GestorEscenas  {
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
+             ventana.setResizable(false);
 
 
             ventana.initModality(Modality.WINDOW_MODAL);
@@ -398,6 +406,7 @@ public class GestorEscenas  {
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
+             ventana.setResizable(false);
 
 
             ventana.initModality(Modality.WINDOW_MODAL);
@@ -429,6 +438,7 @@ public class GestorEscenas  {
             Stage ventana = new Stage();
             ventana.initOwner(padre);
             ventana.initStyle(StageStyle.UTILITY);
+             ventana.setResizable(false);
 
 
             ventana.initModality(Modality.WINDOW_MODAL);
@@ -554,7 +564,7 @@ public class GestorEscenas  {
         return securedUsername + "@" + mail;
     }
     
-    public static StringBuilder mostrarRestricciones(ArrayList<String> restricciones) {
+    public static StringBuilder convertirArrayRestricciones(ArrayList<String> restricciones) {
        
         StringBuilder transformado = new StringBuilder();
         for (String Elemento : restricciones) {
@@ -636,6 +646,12 @@ public class GestorEscenas  {
     {
         ConectorBaseDato.CerrarConexionBD();
         Platform.exit();
+    }
+    
+    //Funcion para cerrarVentana
+    public static void cerrar(Button btnAtras) {
+        Stage ventana = (Stage) btnAtras.getScene().getWindow();
+        ventana.close();
     }
     
     public static void cargarVerMasInfraccion(Window padre, Infraccion infraccion , Licencia licencia) throws Exception {

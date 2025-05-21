@@ -5,6 +5,7 @@
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
 
+import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -95,6 +96,9 @@ public class ControladorVerMasConductor{
         LabelTipoLicencia.setText(Licencia.getTipo());
         TextFieldIdLicencia.setText(Licencia.getId().toString());
         CargarCategorias();
+        btnAtras.setOnAction(e ->{
+            GestorEscenas.cerrar(btnAtras);
+        });
     }
     
     private void CargarCategorias()
@@ -120,11 +124,6 @@ public class ControladorVerMasConductor{
     }
 
         
-    @FXML private void cerrar()
-    {
-        Stage ventana = (Stage) btnAtras.getScene().getWindow();
-        ventana.close();
-    }
     
 
 }
