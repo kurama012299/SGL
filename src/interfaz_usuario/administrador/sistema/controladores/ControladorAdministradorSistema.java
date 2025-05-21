@@ -33,6 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
@@ -420,6 +421,8 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML
    private ImageView ImageViewReporte1;
+   
+   @FXML private HBox hbVentanaPrincipal;
     
     
     private ImageView ImagenLicencias;
@@ -463,7 +466,7 @@ public class ControladorAdministradorSistema extends Controlador{
        
         ImagenUsuario.setImage(GestorImagenes.CargarImagen(Autentificador.usuario.getFoto()));
         
-   
+        GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador");
         GestorEscenas.configurarReloj(LabelFechaHora);
         HoverReportes(ScatckPaneReporte1, ImageViewReporte1);
         

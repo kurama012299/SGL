@@ -4,6 +4,7 @@
  */
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
+import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -95,6 +96,7 @@ public class ControladorVerMasLicencias {
     public void initialize()
     {
         System.out.println("Controlador ver mas Licencias iniciado");
+        
     }
     
     public void SetDatos(Conductor Conductor,Licencia Licencia) throws Exception
@@ -108,6 +110,9 @@ public class ControladorVerMasLicencias {
     {
         System.out.println("Iniciar llamado");
         
+        btnAtras.setOnAction(e ->{
+            GestorEscenas.cerrar(btnAtras);
+        });
         TextFieldCI.setText(Conductor.getCI());
         String CantInfraccionesStr = Integer.toString(ServicioInfraccion.ObtenerCantidadInfraccionesPorId(Licencia.getId()));
         TextFieldCantidadInfracciones.setText(CantInfraccionesStr);
@@ -149,10 +154,5 @@ public class ControladorVerMasLicencias {
         }
     }
     
-    @FXML private void cerrar()
-    {
-        Stage ventana = (Stage) btnAtras.getScene().getWindow();
-        ventana.close();
-    }
     
 }

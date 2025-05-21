@@ -136,6 +136,8 @@ public class ControladorAdministradorAutoescuela extends Controlador{
 
         GestorEscenas.configurarReloj(lblFechaHora);
         
+        GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador autoescuela");
+         
         jfxbtnCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.cerrarPrograma();

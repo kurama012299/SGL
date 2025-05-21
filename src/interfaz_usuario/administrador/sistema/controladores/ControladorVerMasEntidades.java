@@ -4,6 +4,7 @@
  */
 package interfaz_usuario.administrador.sistema.controladores;
 
+import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.GestorEstadisticas;
 import gestor_interfaces.modelos.Estadistica;
 import infraestructura.ConectorBaseDato;
@@ -55,7 +56,9 @@ public class ControladorVerMasEntidades {
     @FXML public void iniciar() throws Exception {
 
         System.out.println("Iniciar llamado");
-
+        btnAtras.setOnAction(e -> {
+            GestorEscenas.cerrar(btnAtras);
+        });
         if (Entidad.getTipoEntidad().equals("Clinica")) {
 
             String puntosStr = String.valueOf(Math.round(totalExamenesClinica()));
@@ -94,9 +97,4 @@ public class ControladorVerMasEntidades {
 
     }
     
-    @FXML private void cerrar()
-    {
-        Stage ventana = (Stage) btnAtras.getScene().getWindow();
-        ventana.close();
-    }
 }

@@ -59,10 +59,12 @@ public class ControladorVerMasExamenes {
     public void initialize()
     {
         System.out.println("Controlador ver mas examenes iniciado");
-        TextFieldRestricciones.setVisible(false);
-        TextFieldRestricciones.setManaged(false);
-        LabelRestriccion.setVisible(false);
-        LabelRestriccion.setManaged(false);
+        
+        visibilidadRestricciones(false);
+        
+        btnAtras.setOnAction(e ->{
+            GestorEscenas.cerrar(btnAtras);
+        });
     }
     
     public void SetDatos(ExamenConduccion examenConduccion,ExamenMedico examenMedico)
@@ -71,25 +73,25 @@ public class ControladorVerMasExamenes {
         this.ExamenMedico = examenMedico;
         if(examenConduccion == null && examenMedico != null)
         {
-            TextFieldRestricciones.setVisible(true);
-            TextFieldRestricciones.setManaged(true);
-            LabelRestriccion.setVisible(true);
-            LabelRestriccion.setManaged(true);
+            visibilidadRestricciones(true);
             IniciarMedico();
         }
         else if(examenConduccion != null)
         {
             LabelFecha.setLayoutY(LabelFecha.getLayoutY()-50);
             TextFieldFecha.setLayoutY(TextFieldFecha.getLayoutY()-50);
-            TextFieldRestricciones.setVisible(false);
-            TextFieldRestricciones.setManaged(false);
-            LabelRestriccion.setVisible(false);
-            LabelRestriccion.setManaged(false);
+            visibilidadRestricciones(false);
             IniciarConduccion();
         }
     }
     
-    
+    private void visibilidadRestricciones(boolean esVisible)
+    {
+        TextFieldRestricciones.setVisible(esVisible);
+        TextFieldRestricciones.setManaged(esVisible);
+        LabelRestriccion.setVisible(esVisible);
+        LabelRestriccion.setManaged(esVisible);
+    }
     public void IniciarConduccion()
     {
         System.out.println("Iniciar llamado");
@@ -126,7 +128,7 @@ public class ControladorVerMasExamenes {
         else if(ExamenMedico.isAprobado() && ExamenMedico.getRestricciones().size()!=0)
         {
             TextFieldResultado.setText("Aprobado condicional");
-            TextFieldRestricciones.setText(GestorEscenas.mostrarRestricciones(ExamenMedico.getRestricciones()).toString());
+            TextFieldRestricciones.setText(GestorEscenas.convertirArrayRestricciones(ExamenMedico.getRestricciones()).toString());
         }
         else
         {
@@ -139,8 +141,4 @@ public class ControladorVerMasExamenes {
     }
     
      
-    @FXML private void cerrar() {
-        Stage ventana = (Stage) btnAtras.getScene().getWindow();
-        ventana.close();
-    }
 }
