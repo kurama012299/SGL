@@ -33,204 +33,162 @@ import logica.examen_medico.modelos.ExamenMedico;
  */
 public class ControladorAdministradorMedico extends Controlador{
     
-    @FXML
-    private JFXButton Inicio;
+    @FXML private JFXButton jfxbtnInicio;
     
-    @FXML
-    private JFXButton Examenes;
+    @FXML private JFXButton jfxbtnExamenes;
     
-    @FXML
-    private Button Registrar;
+    @FXML private Button btnRegistrar;
     
-    @FXML
-    private Pane PanelInicio;
+    @FXML private Pane pnlInicio;
     
-    @FXML
-    private Pane PanelExamenes;
+    @FXML private Pane pnlExamenes;
     
-    @FXML
-    private HBox VentanaPrincipal;
+    @FXML private HBox hbVentanaPrincipal;
     
-    @FXML
-    private Label EtiquetaRol;
+    @FXML private ProgressBar pbarAprobado;
     
-    @FXML
-    private ProgressBar BarraProgresoAprobado;
+    @FXML private ProgressBar pbarReprobado;
     
-    @FXML
-    private ProgressBar BarraProgresoReprobado;
+    @FXML private ProgressBar pbarAprobadoR;
     
-    @FXML
-    private ProgressBar BarraProgresoAprobadoR;
+    @FXML private ProgressBar pbarJoven;
     
-    @FXML
-    private ProgressBar BarraProgresoJoven;
+    @FXML private ProgressBar pbarAdulto;
     
-    @FXML
-    private ProgressBar BarraProgresoAdulto;
+    @FXML private ProgressBar pbarAnciano;
     
-    @FXML
-    private ProgressBar BarraProgresoAnciano;
+    @FXML private Label lblProgresoAprobado;
     
-    @FXML
-    private Label LabelProgresoAprobado;
+    @FXML private Label lblProgresoReprobado;
     
-    @FXML
-    private Label LabelProgresoReprobado;
+    @FXML private Label lblProgresoAprobadoR;
     
-    @FXML
-    private Label LabelProgresoAprobadoR;
+    @FXML private Label lblProgresoJoven;
     
-    @FXML
-    private Label LabelProgresoJoven;
+    @FXML private Label lblProgresoAdulto;
     
-    @FXML
-    private Label LabelProgresoAdulto;
+    @FXML private Label lblProgresoAnciano;
     
-    @FXML
-    private Label LabelProgresoAnciano;
+    @FXML private JFXButton jfxbtnCerrarSesion;
     
-    @FXML
-    private JFXButton BotonCerrarSesion;
+    @FXML private TableView<ExamenMedico>tblExamenesMedico;
     
-    @FXML
-    private TableView<ExamenMedico>TablaExamenesMedico;
+    @FXML private TableColumn<ExamenMedico, String>tblcFoto;
     
-    @FXML
-    private TableColumn<ExamenMedico, String>ColumnaFoto;
+    @FXML private TableColumn<ExamenMedico, String>tblcExaminado;
     
-    @FXML
-    private TableColumn<ExamenMedico, String>ColumnaExaminado;
+    @FXML private TableColumn<ExamenMedico, Date>tblcFecha;
     
-    @FXML
-    private TableColumn<ExamenMedico, Date>ColumnaFecha;
+    @FXML private TableColumn<ExamenMedico, String>tblcExaminador;
     
-    @FXML
-    private TableColumn<ExamenMedico, String>ColumnaExaminador;
+    @FXML private TableColumn<ExamenMedico, String>tblcResultado;
     
-    @FXML
-    private TableColumn<ExamenMedico, String>ColumnaResultado;
+    @FXML private TableColumn<ExamenMedico, String>tblcClinica;
     
-    @FXML
-    private TableColumn<ExamenMedico, String>ColumnaClinica;
+    @FXML private TableColumn<ExamenMedico, String>tblcDetalles;
     
-    @FXML
-    private TableColumn<ExamenMedico, String>ColumnaDetalles;
+    @FXML private Label lblUltimoInicioSesion;
     
-    @FXML
-    private Label LabelUltimoInicioSesion;
+    @FXML private Label lblIniciosSesion;
     
-    @FXML
-    private Label LabelIniciosSesion;
+    @FXML private Label lblUsuarioNombre;
     
-    @FXML
-    private Label LabelUsuarioNombre;
+    @FXML private Label lblCorreoUsuario;
     
-    @FXML
-    private Label LabelCorreoUsuario;
+    @FXML private Label lblFechaHora;
     
-    @FXML
-    private Label LabelFechaHora;
-    
-    private ImageView ImagenExamenes;
-    private ImageView ImagenInicio;
+    private ImageView ivImagenExamenes;
+    private ImageView ivImagenInicio;
     
     public void initialize() {
-        
-        
-        ImagenInicio = (ImageView) Inicio.getGraphic();
-        ImagenExamenes = (ImageView) Examenes.getGraphic();
+               
+        ivImagenInicio = (ImageView) jfxbtnInicio.getGraphic();
+        ivImagenExamenes = (ImageView) jfxbtnExamenes.getGraphic();
 
         
-        BotonCerrarSesion.setOnAction(e ->
+        jfxbtnCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.cerrarPrograma();
         });
         
-        JFXButton[] BotonesConsumirTecla={Inicio,Examenes};
-        GestorEscenas.consumirTecla(BotonesConsumirTecla);
+        JFXButton[] botonesConsumirTecla={jfxbtnInicio,jfxbtnExamenes};
+        GestorEscenas.consumirTecla(botonesConsumirTecla);
         
-        GestorEscenas.configurarReloj(LabelFechaHora);
+        GestorEscenas.configurarReloj(lblFechaHora);
         
-        Label[] PorcentajesBarra = {LabelProgresoAprobado,LabelProgresoReprobado,LabelProgresoAprobadoR,LabelProgresoJoven,LabelProgresoAdulto,LabelProgresoAnciano};
-        ProgressBar[] BarrasProgreso = {BarraProgresoAprobado,BarraProgresoReprobado,BarraProgresoAprobadoR,BarraProgresoJoven,BarraProgresoAdulto,BarraProgresoAnciano};
-        GestorEscenas.progresoLabel(PorcentajesBarra, BarrasProgreso);
+        Label[] porcentajesBarra = {lblProgresoAprobado,lblProgresoReprobado,lblProgresoAprobadoR,lblProgresoJoven,lblProgresoAdulto,lblProgresoAnciano};
+        ProgressBar[] barrasProgreso = {pbarAprobado,pbarReprobado,pbarAprobadoR,pbarJoven,pbarAdulto,pbarAnciano};
+        GestorEscenas.progresoLabel(porcentajesBarra, barrasProgreso);
         
         System.out.println("Controlador Administrador Medico Iniciado");
-        this.TransicionInicio();
+        this.transicionInicio();
     }
 
-    @FXML
-    public void TransicionInicio()
+    @FXML public void transicionInicio()
     {
-        Pane[] PanelesOcultar={PanelExamenes};
-        GestorEscenas.mostrarOcultarPaneles(PanelInicio, PanelesOcultar);
-        JFXButton[] botones = {Examenes};
-        GestorEscenas.pintarBotones(Inicio, botones);
-        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
-        Inicio.setGraphic(IconoActivo);
+        Pane[] panelesOcultar={pnlExamenes};
+        GestorEscenas.mostrarOcultarPaneles(pnlInicio, panelesOcultar);
+        JFXButton[] botones = {jfxbtnExamenes};
+        GestorEscenas.pintarBotones(jfxbtnInicio, botones);
+        ImageView ivIconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-inicio-blanco.png")));
+        jfxbtnInicio.setGraphic(ivIconoActivo);
         
         
-        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
-                add(ImagenExamenes);
+        ArrayList<ImageView>imagenesCambiar= new ArrayList(){{
+                add(ivImagenExamenes);
                 }};
-        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
-                add(Examenes);
+        ArrayList<JFXButton>botonesCambiar= new ArrayList(){{
+                add(jfxbtnExamenes);
                 }};
-        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(imagenesCambiar, botonesCambiar);
     }
     
-    @FXML
-    public void TransicionExamenes()
+    @FXML public void transicionExamenes()
     {
+        GestorTablas.configurarColumnasExamenesMedicosAdminMedico(tblcFoto, tblcExaminado, tblcFecha, tblcExaminador, tblcResultado, tblcClinica, tblcDetalles);
+        GestorTablas.cargarTablaExamenesMedicosAdminMedico(tblExamenesMedico);
         
-        GestorTablas.configurarColumnasExamenesMedicosAdminMedico(ColumnaFoto, ColumnaExaminado, ColumnaFecha, ColumnaExaminador, ColumnaResultado, ColumnaClinica, ColumnaDetalles);
-        GestorTablas.cargarTablaExamenesMedicosAdminMedico(TablaExamenesMedico);
-        
-        Pane[] PanelesOcultar={PanelInicio};
-        GestorEscenas.mostrarOcultarPaneles(PanelExamenes, PanelesOcultar);
-        JFXButton[] botones = {Inicio};
-        GestorEscenas.pintarBotones(Examenes, botones);
-        ImageView IconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-blanco.png")));
-        Examenes.setGraphic(IconoActivo);
+        Pane[] panelesOcultar={pnlInicio};
+        GestorEscenas.mostrarOcultarPaneles(pnlExamenes, panelesOcultar);
+        JFXButton[] botones = {jfxbtnInicio};
+        GestorEscenas.pintarBotones(jfxbtnExamenes, botones);
+        ImageView ivIconoActivo = new ImageView(new Image(getClass().getResourceAsStream("/interfaz_usuario/recursos_compartidos/imagenes/ico-examen-blanco.png")));
+        jfxbtnExamenes.setGraphic(ivIconoActivo);
         
         
-        ArrayList<ImageView>ImagenesCambiar= new ArrayList(){{
-                add(ImagenInicio);
+        ArrayList<ImageView>imagenesCambiar= new ArrayList(){{
+                add(ivImagenInicio);
                 }};
-        ArrayList<JFXButton>BotonesCambiar= new ArrayList(){{
-                add(Inicio);
+        ArrayList<JFXButton>botonesCambiar= new ArrayList(){{
+                add(jfxbtnInicio);
                 }};
-        GestorEscenas.cambiarIconos(ImagenesCambiar, BotonesCambiar);
+        GestorEscenas.cambiarIconos(imagenesCambiar, botonesCambiar);
     }
     
-    @FXML
-    public void TransicionRegistrarExamenes()
+    @FXML public void transicionRegistrarExamenes()
     {
-        String Direccion = "/interfaz_usuario/administrador/medico/menu_auxiliares/registrar/registrar-examen-medico.fxml";
-        Stage Padre = (Stage) Registrar.getScene().getWindow();
+        String direccion = "/interfaz_usuario/administrador/medico/menu_auxiliares/registrar/registrar-examen-medico.fxml";
+        Stage padre = (Stage) btnRegistrar.getScene().getWindow();
         
         try {
-            GestorEscenas.cargarPanelAuxiliar(Padre, Direccion, true, "Registrar examen");
+            GestorEscenas.cargarPanelAuxiliar(padre, direccion, true, "Registrar examen");
         } catch (Exception ex) {
             //CAPTURAR ERROR
            
         }
     }
 
-    @Override
-    public void Iniciar(MenuEstadisticas MenuEstadisticas) 
+    @Override public void Iniciar(MenuEstadisticas menuEstadisticas) 
     {
-        LabelUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.usuario.getNombre()));
-        Tooltip MouseNombre= new Tooltip(Autentificador.usuario.getNombre());
-        MouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
-        LabelUsuarioNombre.setTooltip(MouseNombre);
-        LabelUsuarioNombre.setMaxWidth(100);
-        LabelCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
+        lblUsuarioNombre.setText(GestorEscenas.abreviarNombre(Autentificador.usuario.getNombre()));
+        Tooltip mouseNombre= new Tooltip(Autentificador.usuario.getNombre());
+        mouseNombre.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+        lblUsuarioNombre.setTooltip(mouseNombre);
+        lblUsuarioNombre.setMaxWidth(100);
+        lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
     }
 
-    @Override
-    protected void CargarEstadisticas(MenuEstadisticas MenuEstadisticas) {
+    @Override protected void CargarEstadisticas(MenuEstadisticas menuEstadisticas) {
         
     }
     

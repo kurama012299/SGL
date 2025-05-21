@@ -21,13 +21,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="VentanaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.administrador.medico.controladores.ControladorAdministradorMedico">
+<HBox fx:id="hbVentanaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.administrador.medico.controladores.ControladorAdministradorMedico">
    <children>
       <VBox prefHeight="600.0" prefWidth="151.0" style="-fx-background-color: white;">
          <children>
             <AnchorPane prefHeight="599.0" prefWidth="151.0" style="-fx-background-color: ghostwhite;">
                <children>
-                  <JFXButton fx:id="Inicio" layoutX="-34.0" layoutY="138.0" onAction="#TransicionInicio" prefHeight="35.0" prefWidth="199.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Inicio           ">
+                  <JFXButton fx:id="jfxbtnInicio" layoutX="-34.0" layoutY="138.0" onAction="#transicionInicio" prefHeight="35.0" prefWidth="199.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Inicio           ">
                      <graphic>
                         <ImageView fx:id="ImagenInicio" fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,7 +35,7 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="Examenes" layoutY="173.0" onAction="#TransicionExamenes" prefHeight="35.0" prefWidth="165.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes médicos">
+                  <JFXButton fx:id="jfxbtnExamenes" layoutY="173.0" onAction="#transicionExamenes" prefHeight="35.0" prefWidth="165.0" styleClass="jfx-button" stylesheets="@../../recursos_compartidos/estilos/EstilosBotonesColor.css" text="Exámenes médicos">
                      <graphic>
                         <ImageView fx:id="ImagenExamenes" fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -57,12 +57,12 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Label fx:id="EtiquetaRol" layoutX="52.0" layoutY="67.0" prefHeight="35.0" prefWidth="105.0" text=" Administrador medico" textFill="#919191">
+                  <Label layoutX="52.0" layoutY="67.0" prefHeight="35.0" prefWidth="105.0" text=" Administrador medico" textFill="#919191" wrapText="true">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="BotonCerrarSesion" layoutX="42.0" layoutY="533.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #8000ff; -fx-background-radius: 9;" text="Cerrar sesión" textFill="#fffcfc">
+                  <JFXButton fx:id="jfxbtnCerrarSesion" layoutX="42.0" layoutY="533.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #8000ff; -fx-background-radius: 9;" text="Cerrar sesión" textFill="#fffcfc">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -75,7 +75,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-empresa.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="LabelUsuarioNombre" alignment="CENTER" layoutX="57.0" layoutY="49.0" prefHeight="17.0" prefWidth="96.0" text="Juan Perez">
+                  <Label fx:id="lblUsuarioNombre" alignment="CENTER" layoutX="57.0" layoutY="49.0" prefHeight="17.0" prefWidth="96.0" text="Juan Perez">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -89,7 +89,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="835.0">
          <children>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="pnlInicio" prefHeight="558.0" prefWidth="843.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="835.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -97,7 +97,7 @@
                         <JFXButton layoutX="442.0" layoutY="7.0" prefHeight="25.0" prefWidth="18.0" text=" " />
                         <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="442.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../recursos_compartidos/imagenes/ico-filtros.png" />
+                              <Image url="@../../recursos_compartidos/imagenes/ico-notificacion.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="476.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -105,8 +105,8 @@
                               <Image url="@../../recursos_compartidos/imagenes/ico-configuracion.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="LabelCorreoUsuario" layoutX="666.0" layoutY="12.0" prefHeight="17.0" prefWidth="165.0" text="Jho*****ter@gmail.com" />
-                        <Label fx:id="LabelFechaHora" layoutX="509.0" layoutY="12.0" prefHeight="17.0" prefWidth="146.0" text="1/4/2025  5:44 AM" />
+                        <Label fx:id="lblCorreoUsuario" layoutX="666.0" layoutY="12.0" prefHeight="17.0" prefWidth="165.0" text="Jho*****ter@gmail.com" />
+                        <Label fx:id="lblFechaHora" layoutX="509.0" layoutY="12.0" prefHeight="17.0" prefWidth="146.0" text="1/4/2025  5:44 AM" />
                         <Label layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="267.0" text="¡Transformando datos, en seguridad vial!" textFill="#919191">
                            <font>
                               <Font size="14.0" />
@@ -200,20 +200,20 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar fx:id="BarraProgresoAprobado" layoutX="131.0" layoutY="11.0" prefHeight="23.0" prefWidth="133.0" progress="0.27" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <ProgressBar fx:id="BarraProgresoReprobado" layoutX="131.0" layoutY="48.0" prefHeight="23.0" prefWidth="133.0" progress="0.56" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <ProgressBar fx:id="BarraProgresoAprobadoR" layoutX="131.0" layoutY="92.0" prefHeight="23.0" prefWidth="133.0" progress="0.17" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <Label fx:id="LabelProgresoAprobado" layoutX="185.0" layoutY="14.0" text="27%">
+                        <ProgressBar fx:id="pbarAprobado" layoutX="131.0" layoutY="11.0" prefHeight="23.0" prefWidth="133.0" progress="0.27" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar fx:id="pbarReprobado" layoutX="131.0" layoutY="48.0" prefHeight="23.0" prefWidth="133.0" progress="0.56" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar fx:id="pbarAprobadoR" layoutX="131.0" layoutY="92.0" prefHeight="23.0" prefWidth="133.0" progress="0.17" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <Label fx:id="lblProgresoAprobado" layoutX="185.0" layoutY="14.0" text="27%">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="LabelProgresoReprobado" layoutX="185.0" layoutY="51.0" text="56%">
+                        <Label fx:id="lblProgresoReprobado" layoutX="185.0" layoutY="51.0" text="56%">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="LabelProgresoAprobadoR" layoutX="185.0" layoutY="94.0" text="17%">
+                        <Label fx:id="lblProgresoAprobadoR" layoutX="185.0" layoutY="94.0" text="17%">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -248,20 +248,20 @@
                               <Font name="Arial Bold" size="16.0" />
                            </font>
                         </Label>
-                        <ProgressBar fx:id="BarraProgresoJoven" layoutX="2.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <ProgressBar fx:id="BarraProgresoAdulto" layoutX="104.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <ProgressBar fx:id="BarraProgresoAnciano" layoutX="208.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
-                        <Label fx:id="LabelProgresoAdulto" alignment="CENTER" layoutX="139.0" layoutY="110.0" text="64%">
+                        <ProgressBar fx:id="pbarJoven" layoutX="2.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar fx:id="pbarAdulto" layoutX="104.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <ProgressBar fx:id="pbarAnciano" layoutX="208.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="100.0" progress="0.68" style="-fx-rotate: 270;" stylesheets="@../../recursos_compartidos/estilos/EstilosProgressBar.css" />
+                        <Label fx:id="lblProgresoAdulto" alignment="CENTER" layoutX="139.0" layoutY="110.0" text="64%">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="LabelProgresoJoven" alignment="CENTER" layoutX="33.0" layoutY="110.0" text="64%">
+                        <Label fx:id="lblProgresoJoven" alignment="CENTER" layoutX="33.0" layoutY="110.0" text="64%">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="LabelProgresoAnciano" alignment="CENTER" layoutX="243.0" layoutY="111.0" text="64%">
+                        <Label fx:id="lblProgresoAnciano" alignment="CENTER" layoutX="243.0" layoutY="111.0" text="64%">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -294,7 +294,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="832.0" visible="false">
+            <Pane fx:id="pnlExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="832.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Médicos">
                      <font>
@@ -317,52 +317,47 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="Registrar" focusTraversable="false" layoutX="566.0" layoutY="94.0" onAction="#TransicionRegistrarExamenes" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="705.0" layoutY="94.0" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Estadísticas" wrapText="true">
+                  <JFXButton fx:id="btnRegistrar" focusTraversable="false" layoutX="566.0" layoutY="94.0" onAction="#transicionRegistrarExamenes" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Registrar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
                   <TextField layoutX="47.0" layoutY="95.0" prefHeight="25.0" prefWidth="358.0" promptText="Buscar" style="-fx-background-color: transparent;" />
                   <Line endX="206.0" endY="-7.62939453125E-6" layoutX="202.0" layoutY="122.0" startX="-147.00003051757812" stroke="#8000ff" />
-                  <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="438.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="593.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../recursos_compartidos/imagenes/ico-filtros.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="467.0" layoutY="45.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">
+                  <Label layoutX="622.0" layoutY="28.0" prefHeight="17.0" prefWidth="64.0" text="Filtros:">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXRadioButton layoutX="542.0" layoutY="33.0" prefHeight="17.0" prefWidth="180.0" text="Aprobado condicional">
+                  <JFXRadioButton layoutX="679.0" layoutY="30.0" prefHeight="17.0" prefWidth="180.0" text="Aprobado condicional">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="542.0" layoutY="59.0" prefHeight="17.0" prefWidth="84.0" text="Aprobado">
+                  <JFXRadioButton layoutX="715.0" layoutY="59.0" prefHeight="17.0" prefWidth="84.0" text="Aprobado">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="674.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Reprobado">
+                  <JFXRadioButton layoutX="715.0" layoutY="93.0" prefHeight="17.0" prefWidth="96.0" text="Reprobado">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <TableView fx:id="TablaExamenesMedico" layoutX="14.0" layoutY="144.0" prefHeight="449.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
+                  <TableView fx:id="tblExamenesMedico" layoutX="14.0" layoutY="144.0" prefHeight="449.0" prefWidth="808.0" stylesheets="@../../recursos_compartidos/estilos/EstilosTableView.css">
                     <columns>
-                      <TableColumn fx:id="ColumnaFoto" prefWidth="50.0" text="Foto" />
-                      <TableColumn fx:id="ColumnaExaminado" prefWidth="195.0" text="Examinado" />
-                        <TableColumn fx:id="ColumnaFecha" prefWidth="70.0" text="Fecha" />
-                        <TableColumn fx:id="ColumnaExaminador" prefWidth="155.0" text="Examinador" />
-                        <TableColumn fx:id="ColumnaResultado" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Resultado" />
-                        <TableColumn fx:id="ColumnaClinica" prefWidth="125.0" text="Clinica" />
-                        <TableColumn fx:id="ColumnaDetalles" prefWidth="70.0" text="Detalles" />
+                      <TableColumn fx:id="tblcFoto" prefWidth="50.0" text="Foto" />
+                      <TableColumn fx:id="tblcExaminado" prefWidth="195.0" text="Examinado" />
+                        <TableColumn fx:id="tblcFecha" prefWidth="70.0" text="Fecha" />
+                        <TableColumn fx:id="tblcExaminador" prefWidth="155.0" text="Examinador" />
+                        <TableColumn fx:id="tblcResultado" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Resultado" />
+                        <TableColumn fx:id="tblcClinica" prefWidth="125.0" text="Clinica" />
+                        <TableColumn fx:id="tblcDetalles" prefWidth="70.0" text="Detalles" />
                     </columns>
                   </TableView>
                </children>
