@@ -12,6 +12,7 @@ import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.EstadisticaUsuario;
 import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.Year;
@@ -25,8 +26,11 @@ import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,6 +38,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -449,6 +454,8 @@ public class ControladorAdministradorSistema extends Controlador{
    private ImageView imgReporteConductores;
    
    @FXML private HBox hbVentanaPrincipal;
+   
+   @FXML private ImageView ivImagenConfig;
     
     
     private ImageView ImagenLicencias;
@@ -462,9 +469,13 @@ public class ControladorAdministradorSistema extends Controlador{
     private ImageView ImagenEntidades; 
     
     
+    
+    
     @FXML
     public void initialize() throws Exception 
     {
+        
+        configuracionCentro();
         GestorEscenas.configurarEfectoLinea(new ArrayList<TextField>(Arrays.asList(TextFieldBuscarAutoescuela,
                                                                                 TextFieldBuscarClinica,
                                                                                 TextFieldBuscarEntidades,
@@ -495,7 +506,7 @@ public class ControladorAdministradorSistema extends Controlador{
         GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador");
         GestorEscenas.configurarReloj(LabelFechaHora);
         
-        configurarHoverReportes();
+        //configurarHoverReportes();
         
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -511,17 +522,50 @@ public class ControladorAdministradorSistema extends Controlador{
         this.TransicionInicio();   
     }
     
-        private void configurarHoverReportes() {
-        // Licencias
-        configurarReporte(spnlReporteLicencias, imgReporteLicencias, () -> {
-            try {
-                GestorPDF.GenerarReporteLicenciasEmitidas(
-                        ServicioLicencia.ObtenerLicenciasAnual(),
-                        "Reporte de licencias emitidas en " + Year.now().getValue()
-                );
-            } catch (Exception ex) {
-                Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
+    
+    @FXML private void configuracionCentro()
+    {
+        ContextMenu menuConfig=new ContextMenu();
+        MenuItem mostrarInformacion = new MenuItem("Reporte centro");
+        MenuItem opciones = new MenuItem("Opciones");
+        ivImagenConfig.setOnMouseEntered(e
+                -> {
+            ivImagenConfig.setScaleX(1.2);
+            ivImagenConfig.setScaleY(1.2);
+        });
+        ivImagenConfig.setOnMouseExited(e
+                -> {
+            ivImagenConfig.setScaleX(1);
+            ivImagenConfig.setScaleY(1);
+        });
+        menuConfig.getItems().addAll(mostrarInformacion, opciones);
+          //String hover="-fx-background-color: #8000ff; -fx-text-fill: white;";
+        ivImagenConfig.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.PRIMARY) {
+                menuConfig.show(ivImagenConfig, e.getScreenX(), e.getScreenY());
             }
+        });
+        String direccion="/interfaz_usuario/recursos_compartidos/menus/menu_configuracion/menu-configuracion-centro.fxml";
+        mostrarInformacion.setOnAction(e ->{
+            try {
+                GestorEscenas.cargarPanelAuxiliar(hbVentanaPrincipal.getScene().getWindow(), direccion, true, "Informacion Centro");
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(menuConfig, ex);
+            }
+        });
+    }
+    
+    
+    @FXML
+    private void HoverReportes(StackPane container, ImageView preview) {
+        
+         preview.setScaleX(1);
+         preview.setScaleY(1);
+            
+        container.setOnMouseEntered(e -> {
+            preview.setScaleX(1.5);
+            preview.setScaleY(1.8);
+            //container.setStyle("-fx-background-color: #34495e;");
         });
 
         /*// Exámenes

@@ -4,6 +4,7 @@
  */
 package logica.entidad.implementaciones;
 
+import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import logica.entidad.consultas.ConsultasEntidad;
 import logica.entidad.modelos.EntidadRelacionada;
@@ -41,6 +42,28 @@ public class ServicioEntidad {
     public static EntidadRelacionada ObtenerClinicaPorId(long Id) throws Exception
     {
         return ConsultasEntidad.ObtenerClinicaPorIdConsulta(Id);
+    }
+    
+    public static ArrayList<String> obtenerNombresClinicas() throws Exception
+    {
+        ArrayList<String>nombresAutoescuelas= new ArrayList<>();
+        ObservableList<EntidadRelacionada>autoescuelas=ObtenerAutoescuelas();
+        for(EntidadRelacionada aut: autoescuelas)
+        {
+            nombresAutoescuelas.add(aut.getNombre());
+        }
+        return nombresAutoescuelas;
+    }
+    
+     public static ArrayList<String> obtenerNombresAutoescuelas() throws Exception
+    {
+        ArrayList<String>nombresClinicas= new ArrayList<>();
+        ObservableList<EntidadRelacionada>clinicas=ObtenerClinicas();
+        for(EntidadRelacionada aut: clinicas)
+        {
+            nombresClinicas.add(aut.getNombre());
+        }
+        return nombresClinicas;
     }
     
 }

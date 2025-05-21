@@ -33,6 +33,8 @@ public class ControladorRegistrarUsuario {
     @FXML private Button btnRegistrar;
     
     EntidadRelacionada autoescuela=null;
+    EntidadRelacionada clinica=null;
+    
     private Stage ventanaAnterior;
     
     @FXML public void initialize()
@@ -43,8 +45,9 @@ public class ControladorRegistrarUsuario {
         });
     }
     
-    @FXML public void setDatos(EntidadRelacionada autoescuela,Stage ventana)
+    @FXML public void setDatos(EntidadRelacionada autoescuela,EntidadRelacionada clinica,Stage ventana)
     {
+        this.clinica=clinica;
         this.autoescuela=autoescuela;
         this.ventanaAnterior=ventana;
     }

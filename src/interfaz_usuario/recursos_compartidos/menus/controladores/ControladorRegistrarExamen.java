@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -22,12 +25,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import logica.entidad.implementaciones.ServicioEntidad;
 import logica.restricciones.implementacion.ServicioRestriccion;
 import logica.validaciones_generales.ValidacionCampoVacio;
 import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
 import logica.validaciones_generales.ValidacionCarnet;
+import logica.validaciones_generales.ValidacionComboBoxVacio;
 import logica.validaciones_generales.ValidacionCompuesta;
 import logica.validaciones_generales.ValidacionFecha;
+import logica.validaciones_generales.ValidacionGrupoRadioButton;
 import logica.validaciones_generales.ValidacionSoloLetras;
 import logica.validaciones_generales.ValidacionSoloNumeros;
 
@@ -61,13 +67,61 @@ public class ControladorRegistrarExamen {
     
     @FXML private AnchorPane apnlContenedorRestricciones;
     
+    @FXML private ToggleGroup rbtGrupoTipoExamen;
+    
+    @FXML private ComboBox cmbNombreEntidad;
+    
+    @FXML private RadioButton rbtAprobado;
+    
     public void initialize()
     {
         System.out.println("Controlador Registrar Examen Activado");
         visibilidadRestricciones(false);
         btnCancelar.setOnAction(e -> GestorEscenas.cerrar(btnCancelar));
+        cmbNombreEntidad.setDisable(true);
+        automaticoComboBox();
+        
     }
     
+    @FXML private void automaticoComboBox()
+    {
+        ArrayList<String>autoescuelas= new ArrayList<>();
+        ArrayList<String>clinicas=new ArrayList<>();
+        ObjectProperty<RadioButton>seleccion= new SimpleObjectProperty<>();
+        try {
+           autoescuelas=ServicioEntidad.obtenerNombresAutoescuelas();
+           clinicas=ServicioEntidad.obtenerNombresClinicas();
+        } catch (Exception e) {
+            GestorEscenas.cargarError(btnCancelar.getScene().getWindow(), e);
+        }
+        
+        rbtGrupoTipoExamen.selectedToggleProperty().addListener((obs,valorViejo,valorNuevo)->{
+            if(valorNuevo!=null)
+            {
+                seleccion.set((RadioButton)valorNuevo);
+            }
+        });
+        
+        String[]nombresAutoescuelas=autoescuelas.toArray(new String[0]);
+        String[]nombresClinicas=clinicas.toArray(new String[0]);
+        seleccion.addListener((obs,valorViejo,valorNuevo)->{
+           if(valorNuevo!= null){
+               if(valorNuevo.getText().equalsIgnoreCase("Práctico") || valorNuevo.getText().equalsIgnoreCase("Teórico"))
+               {
+                   cmbNombreEntidad.getItems().clear();
+                   cmbNombreEntidad.setDisable(false);
+                   cmbNombreEntidad.getItems().addAll(nombresAutoescuelas);
+               }
+               else if(valorNuevo.getText().equalsIgnoreCase("Médico"))
+               {
+                   cmbNombreEntidad.setDisable(false);
+                   cmbNombreEntidad.getItems().clear();
+                   cmbNombreEntidad.getItems().addAll(nombresClinicas);
+               }
+               
+           }
+       });
+    }
     @FXML public void seleccionarTipoMedico()
     {
         visibilidadRestricciones(true);
@@ -108,6 +162,9 @@ public class ControladorRegistrarExamen {
         ValidacionFecha validacionFecha = new ValidacionFecha();
         ValidacionCarnet validacionCarnet = new ValidacionCarnet();
         ValidacionCantidadCaracteresExacta validacionCantidadCaracteresExacta = new ValidacionCantidadCaracteresExacta(11);
+        ValidacionGrupoRadioButton validacionGrupoBotones= new ValidacionGrupoRadioButton();
+        ValidacionComboBoxVacio validacionComboBoxVacio= new ValidacionComboBoxVacio();
+        
         
         ValidacionCompuesta campoNombre = new ValidacionCompuesta(validacionCampoVacio,validacionSoloLetras);
         ValidacionCompuesta campoCarnet = new ValidacionCompuesta(validacionCantidadCaracteresExacta,validacionSoloNumeros,validacionCarnet);
@@ -115,23 +172,32 @@ public class ControladorRegistrarExamen {
         
         
         try {
-            if(!rbtMedico.isSelected() && !rbtTeorico.isSelected() && !rbtPractico.isSelected())
-                throw new Exception("Debe elegir un tipo de examen");
-                    
+            
             campoNombre.Validar(txfNombre.getText(), "nombre");
             campoCarnet.Validar(txfCarnet.getText(), "carnet identidad");
             campoNombre.Validar(txfNombreExaminador.getText(), "nombre examinador");
             validacionFecha.Validar(dtFecha.getValue(), "fecha examen");
+            validacionGrupoBotones.Validar(rbtGrupoTipoExamen, "opciones de tipo de examen");
+            validacionComboBoxVacio.Validar(cmbNombreEntidad, "nombre entidad");
             
             System.out.println("Datos Correctos");
+           
             if (rbtMedico.isSelected()) {
-                if (rbtMedico.isSelected()) {
-                    // Primero: Obtener referencia a la ventana actual
-                    Window ventanaActual = rbtMedico.getScene().getWindow();
+                // Primero: Obtener referencia a la ventana actual
+                Window ventanaActual = rbtMedico.getScene().getWindow();
 
-                    GestorEscenas.cargarRegistrarPersona(ventanaActual,(Stage) rbtMedico.getScene().getWindow());
-                }
+                GestorEscenas.cargarRegistrarPersona(ventanaActual, (Stage) rbtMedico.getScene().getWindow());
             }
+            else if(rbtTeorico.isSelected() || (rbtPractico.isSelected() && !rbtAprobado.isSelected()))
+            {
+                GestorEscenas.cargarConfirmacion(btnRegistrar.getScene().getWindow(), "Se ha registrado con éxito");
+                GestorEscenas.cerrar(btnRegistrar);
+            }
+            else if(rbtPractico.isSelected() && rbtAprobado.isSelected())
+            {
+                //Transicion a registrar licencia
+            }
+
            
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnRegistrar.getScene().getWindow(), ex);

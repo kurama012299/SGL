@@ -53,7 +53,7 @@ public class ControladorVerMasAutoescuelas {
     
     @FXML private Button btnAtras;
     
-    @FXML private Button agregarUsuario;
+    @FXML private Button btnagregarUsuario;
 
     @FXML
     public void initialize() {
@@ -94,7 +94,7 @@ public class ControladorVerMasAutoescuelas {
     {
        Window ventanaActual = txfNombre.getScene().getWindow();
         try {
-            GestorEscenas.cargarRegistrarUsuario(ventanaActual, (Stage)txfNombre.getScene().getWindow(), autoescuela);
+            GestorEscenas.cargarRegistrarUsuario(ventanaActual, (Stage)txfNombre.getScene().getWindow(), autoescuela,null);
         } catch (Exception e) {
             GestorEscenas.cargarError(ventanaActual, e);
         }

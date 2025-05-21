@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.menus.controladores.ControladorConfiguracionCentro">
    <children>
       <Label alignment="CENTER" layoutX="98.0" prefHeight="40.0" prefWidth="435.0" text="SISTEMA DE GESTIÓN DE LICENCIAS" textFill="#8000ff">
          <font>
@@ -56,6 +55,6 @@
       <Label layoutX="270.0" layoutY="215.0" prefHeight="26.0" prefWidth="238.0" text="Rodrigo Martínez Aguado" />
       <Label layoutX="233.0" layoutY="176.0" prefHeight="26.0" prefWidth="238.0" text="Silvio Rodrigues Martínez" />
       <Label alignment="CENTER" layoutX="370.0" layoutY="134.0" prefHeight="26.0" prefWidth="238.0" text="Cristian Oliva Sandoval" />
-      <JFXButton layoutX="479.0" layoutY="229.0" opacity="0.69" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: red;" text="Cerrar" textFill="WHITE" />
+      <JFXButton fx:id="btnCerrar" layoutX="479.0" layoutY="229.0" opacity="0.6" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: red;" text="Cerrar" textFill="WHITE" />
    </children>
 </Pane>

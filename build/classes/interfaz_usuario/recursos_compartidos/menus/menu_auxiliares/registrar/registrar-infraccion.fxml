@@ -2,10 +2,13 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -20,37 +23,43 @@
             <Font name="Arial" size="25.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnRegistrar" layoutX="402.0" layoutY="400.0" onAction="#botonRegistrar" opacity="0.4" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: #8000ff;" text="Registrar" textFill="WHITE">
+      <JFXButton fx:id="btnRegistrar" layoutX="400.0" layoutY="399.0" onAction="#botonRegistrar" opacity="0.4" prefHeight="30.0" prefWidth="106.0" style="-fx-background-color: #8000ff;" text="Registrar" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txfCarnet" layoutX="34.0" layoutY="120.0" prefHeight="25.0" prefWidth="200.0" promptText="Carnet identidad" style="-fx-background-color: transparent;" />
-      <TextField fx:id="txfLugar" layoutX="34.0" layoutY="255.0" prefHeight="25.0" prefWidth="200.0" promptText="Lugar de la infracción" style="-fx-background-color: transparent;" />
-      <JFXButton fx:id="btnCancelar" layoutX="34.0" layoutY="400.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="         Cancelar">
+
+    
+      <TextField fx:id="txfCi" layoutX="35.0" layoutY="90.0" prefHeight="25.0" prefWidth="200.0" promptText="Carnet identidad" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfLugarInfraccion" layoutX="35.0" layoutY="183.0" prefHeight="25.0" prefWidth="200.0" promptText="Lugar de la infracción" style="-fx-background-color: transparent;" />
+      <JFXButton fx:id="btnAtras" layoutX="280.0" layoutY="398.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="Cancelar">
          <font>
             <Font size="13.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagenes/ico-atras.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </JFXButton>
-      <TextField fx:id="txfNumeroLicencia" layoutX="34.0" layoutY="165.0" prefHeight="25.0" prefWidth="200.0" promptText="Número Licencia" style="-fx-background-color: transparent;" />
-      <TextField fx:id="txfPuntos" layoutX="34.0" layoutY="210.0" prefHeight="25.0" prefWidth="200.0" promptText="Puntos deducidos" style="-fx-background-color: transparent;" />
-      <Line endX="100.0" layoutX="134.0" layoutY="144.0" startX="-100.0" stroke="#8000ff" />
-      <Line endX="100.0" layoutX="133.0" layoutY="190.0" startX="-100.0" stroke="#8000ff" />
-      <Line endX="100.0" layoutX="133.0" layoutY="234.0" startX="-100.0" stroke="#8000ff" />
-      <Line endX="100.0" layoutX="133.0" layoutY="280.0" startX="-100.0" stroke="#8000ff" />
-      <TextArea fx:id="txfDescripcion" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="278.0" layoutY="195.0" prefHeight="89.0" prefWidth="200.0" promptText="Descripción" scaleShape="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+
+      <TextField fx:id="txfNumeroLicencia" layoutX="35.0" layoutY="135.0" prefHeight="25.0" prefWidth="200.0" promptText="Número Licencia" style="-fx-background-color: transparent;" />
+      <Line endX="100.0" layoutX="135.0" layoutY="114.0" startX="-100.0" stroke="#8000ff" />
+      <Line endX="100.0" layoutX="134.0" layoutY="160.0" startX="-100.0" stroke="#8000ff" />
+      <Line endX="100.0" layoutX="134.0" layoutY="208.0" startX="-100.0" stroke="#8000ff" />
+      <TextArea fx:id="txaDescripcion" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="278.0" layoutY="195.0" prefHeight="89.0" prefWidth="200.0" promptText="Descripción" scaleShape="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
       <Line endX="100.0" layoutX="374.0" layoutY="284.0" startX="-93.00003051757812" stroke="#8000ff" />
-      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="43.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/ico-atras.png" />
-         </image>
-      </ImageView>
-      <JFXRadioButton fx:id="rbtLeve" layoutX="286.0" layoutY="105.0" prefHeight="17.0" prefWidth="72.0" text="Leve">
+      <JFXRadioButton fx:id="rdbtnLeve" layoutX="286.0" layoutY="105.0" prefHeight="17.0" prefWidth="72.0" text="Leve">
          <selectedColor>
             <Color red="0.8245614171028137" green="0.8124305009841919" blue="0.09670782089233398" />
          </selectedColor>
+         <toggleGroup>
+            <ToggleGroup fx:id="grupoGravedadrdbt" />
+         </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="rbtGrave" layoutX="286.0" layoutY="130.0" prefHeight="17.0" prefWidth="72.0" text="Grave">
+      <JFXRadioButton fx:id="rdbtnGrave" layoutX="286.0" layoutY="130.0" prefHeight="17.0" prefWidth="72.0" text="Grave" toggleGroup="$grupoGravedadrdbt">
          <selectedColor>
             <Color red="0.7719298005104065" green="0.46172839403152466" blue="0.10721247643232346" />
          </selectedColor>
@@ -60,18 +69,31 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rbtMuyGrave" layoutX="286.0" layoutY="155.0" prefHeight="17.0" prefWidth="106.0" text="Muy grave">
+      <JFXRadioButton fx:id="rdbtnMuyGrave" layoutX="286.0" layoutY="155.0" prefHeight="17.0" prefWidth="106.0" text="Muy grave" toggleGroup="$grupoGravedadrdbt">
          <selectedColor>
             <Color red="0.7631579041481018" green="0.061241064220666885" blue="0.061241064220666885" />
          </selectedColor>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="txfPagado" layoutX="280.0" layoutY="351.0" prefHeight="17.0" prefWidth="72.0" text="Pagado">
+      <JFXRadioButton fx:id="rdbtnBotonPagado" layoutX="31.0" layoutY="276.0" prefHeight="17.0" prefWidth="72.0" text="Pagado">
          <selectedColor>
             <Color red="0.501960813999176" blue="1.0" />
          </selectedColor>
       </JFXRadioButton>
-      <DatePicker fx:id="dtFecha" layoutX="278.0" layoutY="303.0" promptText="Fecha infracción" style="-fx-background-color: transparent;" />
-      <TextField fx:id="txfNombreOficial" layoutX="34.0" layoutY="300.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre del oficial" style="-fx-background-color: transparent;" />
-      <Line endX="100.0" layoutX="133.0" layoutY="325.0" startX="-100.0" stroke="#8000ff" />
+      <DatePicker fx:id="dpFechaInfraccion" layoutX="31.0" layoutY="316.0" promptText="Fecha infracción" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfNombreOficial" layoutX="35.0" layoutY="228.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre del oficial" style="-fx-background-color: transparent;" />
+      <Line endX="100.0" layoutX="134.0" layoutY="253.0" startX="-100.0" stroke="#8000ff" />
+      <Label layoutX="275.0" layoutY="303.0" prefHeight="27.0" prefWidth="140.0" text="Puntos deducidos:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbPtosDeducidos" layoutX="276.0" layoutY="330.0" prefHeight="32.0" prefWidth="72.0" style="-fx-background-color: transparent;" stylesheets="@../../../estilos/EstilosComboBox.css">
+         <styleClass>
+            <String fx:value="list-view" />
+            <String fx:value="combo-box-popup" />
+            <String fx:value="list-cell" />
+         </styleClass>
+      </ComboBox>
+      <Line endX="-30.000030517578125" layoutX="378.0" layoutY="361.0" startX="-100.0" stroke="#8000ff" />
    </children>
 </Pane>
