@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Window;
 import logica.restricciones.implementacion.ServicioRestriccion;
 import logica.validaciones_generales.ValidacionCampoVacio;
 import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
@@ -121,10 +122,13 @@ public class ControladorRegistrarExamen {
             validacionFecha.Validar(dtFecha.getValue(), "fecha examen");
             
             System.out.println("Datos Correctos");
-            if (rbtMedico.isSelected()) 
-            {   
-                GestorEscenas.cerrar(btnCancelar);
-                GestorEscenas.cargarRegistrarPersona(rbtMedico.getScene().getWindow());
+            if (rbtMedico.isSelected()) {
+                if (rbtMedico.isSelected()) {
+                    // Primero: Obtener referencia a la ventana actual
+                    Window ventanaActual = rbtMedico.getScene().getWindow();
+
+                    GestorEscenas.cargarRegistrarPersona(ventanaActual);
+                }
             }
            
         } catch (Exception ex) {

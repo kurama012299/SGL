@@ -67,6 +67,7 @@ public class ControladorRegistrarPersona {
     
     @FXML private void botonRegistrar()
     {
+        System.out.println("Pulsado");
         ValidacionCampoVacio campoVacio = new ValidacionCampoVacio();
         ValidacionSoloLetras campoLetras = new ValidacionSoloLetras();
         ValidacionSoloNumeros campoNumerico = new ValidacionSoloNumeros();
