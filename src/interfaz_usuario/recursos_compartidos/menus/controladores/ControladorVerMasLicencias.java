@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.licencia.modelos.Licencia;
@@ -62,16 +63,30 @@ public class ControladorVerMasLicencias {
  
     
     @FXML
-    private ImageView CategoriaCarro;
+    Pane paneCarro;
     
     @FXML
-    private ImageView CategoriaMoto;
+    Pane paneMoto;
     
     @FXML
-    private ImageView CategoriaOmnibus;
+    Pane paneOmnibus;
     
     @FXML
-    private ImageView CategoriaCamion;
+    Pane paneCamion;
+    
+    
+    
+    @FXML
+    private ImageView imgCarro;
+    
+    @FXML
+    private ImageView imgMoto;
+    
+    @FXML
+    private ImageView imgOmnibus;
+    
+    @FXML
+    private ImageView imgCamion;
     
     
 
@@ -109,6 +124,29 @@ public class ControladorVerMasLicencias {
             TextFieldRestricciones.setText("Ninguna");
         else
             TextFieldRestricciones.setText(Licencia.getRestricciones().toString());
+        cargarCategorias();
+    }
+    
+    private void cargarCategorias()
+    {
+        for(String categoria:Licencia.getCategorias())
+        {
+            switch(categoria)
+            {
+                case "Moto":
+                    paneMoto.setStyle("-fx-background-color: green;");
+                    break;
+                case "Automovil":
+                    paneCarro.setStyle("-fx-background-color: green;");
+                    break;
+                case "Autobus":
+                    paneOmnibus.setStyle("-fx-background-color: green;");
+                    break;
+                case "Camion":
+                    paneCamion.setStyle("-fx-background-color: green;");
+                    break;
+            }
+        }
     }
     
     @FXML private void cerrar()
