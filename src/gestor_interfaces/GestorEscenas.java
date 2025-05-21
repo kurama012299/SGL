@@ -170,6 +170,37 @@ public class GestorEscenas  {
             alertaSimple.showAndWait();
         }
     }
+    
+    public static void cargarConfirmacion(Window ventanaPadre, String mensaje) {
+        try {
+            // Cargar el panel de error
+            URL url = GestorEscenas.class.getResource("/interfaz_usuario/recursos_compartidos/errores/mensaje-confirmacion.fxml");
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent root = cargador.load();
+
+            // Obtener el controlador y configurar el mensaje
+            ControladorMenuAuxiliarUnaAccion controlador = cargador.getController();
+            controlador.Iniciar(mensaje); 
+
+            // Configurar la ventana
+            Stage ventana = new Stage();
+            ventana.initStyle(StageStyle.UTILITY);
+            ventana.initOwner(ventanaPadre);
+            ventana.initModality(Modality.WINDOW_MODAL);
+            ventana.setScene(new Scene(root));
+
+            // Mostrar la ventana
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+            // Fallback básico si falla la carga del FXML
+            Alert alertaSimple = new Alert(Alert.AlertType.ERROR);
+            alertaSimple.setTitle("Error crítico");
+            alertaSimple.setHeaderText("No se pudo cargar el panel de error");
+            alertaSimple.setContentText(e.getMessage());
+            alertaSimple.showAndWait();
+        }
+    }
 
     
     public static void cargarPanelAuxiliar(Window padre, String direccion, boolean esModal, String titulo) throws Exception {

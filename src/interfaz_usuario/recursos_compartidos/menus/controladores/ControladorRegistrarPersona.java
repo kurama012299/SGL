@@ -83,15 +83,18 @@ public class ControladorRegistrarPersona {
         ValidacionCompuesta campoTelefono= new ValidacionCompuesta(campoVacio,campoNumerico,campoCantidadExacta);
         
          try {
-                 
-            campoDireccion.Validar(txfDireccion.getText(), "direccion");
-            campoTelefono.Validar(txfTelefono.getText(), "telefono");
-            campoCorreo.Validar(txfCorreo, "correo");
+             
+            //campoCorreo.Validar(txfCorreo, "Campo correo"); 
+            campoTelefono.Validar(txfTelefono.getText(), "Campo telefono");
+            campoDireccion.Validar(txfDireccion.getText(), "Campo direccion");
             
+            System.out.println("Datos Correctos");
+            GestorEscenas.cargarConfirmacion(btnRegistrar.getScene().getWindow(), "Se ha registrado con éxito");
             GestorEscenas.cerrar(btnRegistrar);
             GestorEscenas.cerrar(ventanaAnterior);
 
-            System.out.println("Datos Correctos");
+           
+            
            
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnRegistrar.getScene().getWindow(), ex);

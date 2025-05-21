@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="301.0" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="301.0" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarUnaAccion">
    <children>
       <ImageView fitHeight="68.0" fitWidth="84.0" layoutX="117.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,11 +19,11 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <JFXButton layoutX="109.0" layoutY="232.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #8000ff;" text="Aceptar" textFill="WHITE">
+      <JFXButton layoutX="109.0" layoutY="232.0" onAction="#CerrarMenu" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #8000ff;" text="Aceptar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <Label alignment="CENTER" layoutX="52.0" layoutY="156.0" prefHeight="58.0" prefWidth="207.0" text="Se ha autentificado correctamente" />
+      <Label fx:id="Label" alignment="CENTER" layoutX="52.0" layoutY="156.0" prefHeight="58.0" prefWidth="207.0" text="Se ha autentificado correctamente" />
    </children>
 </Pane>
