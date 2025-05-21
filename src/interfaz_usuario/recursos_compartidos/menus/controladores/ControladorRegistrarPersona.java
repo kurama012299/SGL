@@ -10,7 +10,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import logica.examen_medico.modelos.ExamenMedico;
+import logica.validaciones_generales.ValidacionCampoVacio;
+import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
 import logica.validaciones_generales.ValidacionCompuesta;
+import logica.validaciones_generales.ValidacionCorreo;
+import logica.validaciones_generales.ValidacionSoloLetras;
+import logica.validaciones_generales.ValidacionSoloNumeros;
 
 /**
  *
@@ -60,9 +65,28 @@ public class ControladorRegistrarPersona {
     }
     
     
-   /* @FXML private void botonRegistrar()
+    @FXML private void botonRegistrar()
     {
-        Validacion
-        ValidacionCompuesta campoTelefono= new ValidacionCompuesta()
-    }*/
+        ValidacionCampoVacio campoVacio = new ValidacionCampoVacio();
+        ValidacionSoloLetras campoLetras = new ValidacionSoloLetras();
+        ValidacionSoloNumeros campoNumerico = new ValidacionSoloNumeros();
+        ValidacionCantidadCaracteresExacta campoCantidadExacta = new ValidacionCantidadCaracteresExacta(8);
+        
+        ValidacionCorreo campoCorreo= new ValidacionCorreo();
+        
+        ValidacionCompuesta campoDireccion= new ValidacionCompuesta(campoVacio,campoLetras);
+        ValidacionCompuesta campoTelefono= new ValidacionCompuesta(campoVacio,campoNumerico,campoCantidadExacta);
+        
+         try {
+                 
+            campoDireccion.Validar(txfDireccion.getText(), "direccion");
+            campoTelefono.Validar(txfTelefono.getText(), "telefono");
+            campoCorreo.Validar(txfCorreo, "correo");
+            
+            System.out.println("Datos Correctos");
+           
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(btnRegistrar.getScene().getWindow(), ex);
+        }
+    }
 }
