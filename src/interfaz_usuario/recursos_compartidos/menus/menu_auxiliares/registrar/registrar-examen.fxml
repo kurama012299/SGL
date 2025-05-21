@@ -45,7 +45,7 @@
             <Image url="@../../../imagenes/ico-atras.png" />
          </image>
       </ImageView>
-      <JFXRadioButton fx:id="rbtPractico" layoutX="286.0" layoutY="105.0" onMouseClicked="#seleccionarTipoConduccion" prefHeight="17.0" prefWidth="72.0" text="Práctico">
+      <JFXRadioButton fx:id="rbtPractico" layoutX="286.0" layoutY="105.0" onMouseClicked="#seleccionarTipoPractico" prefHeight="17.0" prefWidth="72.0" text="Práctico">
          <selectedColor>
             <Color red="0.501960813999176" blue="1.0" />
          </selectedColor>
@@ -63,7 +63,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rbtTeorico" layoutX="286.0" layoutY="135.0" onMouseClicked="#seleccionarTipoConduccion" prefHeight="17.0" prefWidth="106.0" text="Teórico" toggleGroup="$rbtGrupoTipoExamen">
+      <JFXRadioButton fx:id="rbtTeorico" layoutX="286.0" layoutY="135.0" onMouseClicked="#seleccionarTipoTeorico" prefHeight="17.0" prefWidth="106.0" text="Teórico" toggleGroup="$rbtGrupoTipoExamen">
          <selectedColor>
             <Color red="0.501960813999176" blue="1.0" />
          </selectedColor>
@@ -75,7 +75,7 @@
       </JFXRadioButton>
       <ScrollPane fx:id="scrpRestricciones" layoutX="277.0" layoutY="229.0" prefHeight="119.0" prefWidth="198.0">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="165.0" prefWidth="180.0">
+            <AnchorPane fx:id="apnlContenedorRestricciones" minHeight="0.0" minWidth="0.0" prefHeight="165.0" prefWidth="180.0">
                <children>
                   <JFXRadioButton layoutX="10.0" layoutY="5.0" prefHeight="17.0" prefWidth="167.0" text="Espejuelos">
                      <selectedColor>
