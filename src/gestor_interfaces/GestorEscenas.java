@@ -589,15 +589,40 @@ public class GestorEscenas  {
     //Funcion para convertir el correo del usaurio en uno con ****
     public static String seguridadCorreo(String correo) {
         // Dividir el correo en nombre y dominio
+        String securedUsername;
         String[] partes = correo.split("@");
         if (partes.length != 2) {
             return correo; // Si no es un correo válido, devolver original
         }
         String nombre = partes[0];
         String mail = partes[1];
+        if(nombre.length()<4)
+        {
+            int visibleChars = Math.max(3, nombre.length());
+            securedUsername = nombre.substring(0, visibleChars) + "*";
+        }
+        else if(nombre.length()>=4 && nombre.length()<10)
+        {
+            if (nombre.length() % 2 == 0) {
+                int visibleChars = Math.max(nombre.length() / 2, nombre.length() / 4); // Mostrar al menos 1 carácter
+                int asteriscos = nombre.length() / 2;
+                String total = "*";
+                total.repeat(asteriscos);
+                securedUsername = nombre.substring(0, visibleChars) + total.repeat(asteriscos);
+            } else {
+                int visibleChars = Math.max(nombre.length() / 2, nombre.length() / 4); // Mostrar al menos 1 carácter
+                int asteriscos = nombre.length() / 2+1 ;
+                String total = "*";
+                total.repeat(asteriscos);
+                securedUsername = nombre.substring(0, visibleChars) + total.repeat(asteriscos);
+            }
+        }
+        else
+        {
         // Reemplazar parte del nombre con asteriscos (manteniendo al menos 1 carácter)
-        int visibleChars = Math.max(1, nombre.length() - 6); // Mostrar al menos 1 carácter
-        String securedUsername = nombre.substring(0, visibleChars) + "******";
+        int visibleChars = Math.max(6, nombre.length()-5); // Mostrar al menos 1 carácter
+        securedUsername = nombre.substring(0, visibleChars) + "*****";
+        }
         return securedUsername + "@" + mail;
     }
     
@@ -817,14 +842,14 @@ public class GestorEscenas  {
         }
       }
       
-       public static void cargarRegistrarUsuario(Window padre,Stage ventanaAnterior,Object entidad) throws Exception {
+       public static void cargarRegistrarUsuario(Window padre,Stage ventanaAnterior,Object autoescuela,Object clinica) throws Exception {
         try {
             String direccion = GestorFXML.RutaRegistrarUsuario;
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
             ControladorRegistrarUsuario controlador = cargador.getController();
-            controlador.setDatos((EntidadRelacionada)entidad,ventanaAnterior);
+            controlador.setDatos((EntidadRelacionada)autoescuela,(EntidadRelacionada)clinica,ventanaAnterior);
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();

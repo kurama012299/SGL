@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import logica.entidad.modelos.EntidadRelacionada;
 
 /**
@@ -18,7 +19,7 @@ import logica.entidad.modelos.EntidadRelacionada;
  */
 public class ControladorVerMasClinicas {
     
-    private EntidadRelacionada Clinica;
+    private EntidadRelacionada clinica;
 
     @FXML TextField txfNombre;
 
@@ -40,13 +41,14 @@ public class ControladorVerMasClinicas {
     
     @FXML private Button btnAtras;
 
+    @FXML private Button btnagregarUsuario;
     
     @FXML public void initialize() {
         System.out.println("Controlador ver mas Clinicas iniciado");
     }
 
     public void SetDatos(EntidadRelacionada Clinica) throws Exception {
-        this.Clinica = Clinica;
+        this.clinica = Clinica;
         Iniciar();
     }
 
@@ -58,13 +60,22 @@ public class ControladorVerMasClinicas {
         btnAtras.setOnAction(e ->{
             GestorEscenas.cerrar(btnAtras);
         });
-        txfDirector.setText(Clinica.getNombreDirector());
-        txfCorreo.setText(Clinica.getCorreo());
-        txfNombre.setText(Clinica.getNombre());
-        txfTelefono.setText(Clinica.getTelefono());
-        txfDireccion.setText(Clinica.getDireccion());
+        txfDirector.setText(clinica.getNombreDirector());
+        txfCorreo.setText(clinica.getCorreo());
+        txfNombre.setText(clinica.getNombre());
+        txfTelefono.setText(clinica.getTelefono());
+        txfDireccion.setText(clinica.getDireccion());
         
     }
 
-    
+     @FXML private void transicionregistrarUsuario() 
+    {
+       Window ventanaActual = txfNombre.getScene().getWindow();
+        try {
+            GestorEscenas.cargarRegistrarUsuario(ventanaActual, (Stage)txfNombre.getScene().getWindow(), null,clinica);
+        } catch (Exception e) {
+            GestorEscenas.cargarError(ventanaActual, e);
+        }
+       
+    }
 }

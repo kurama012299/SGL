@@ -1,0 +1,43 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21 may 2025, 12:28:06
+    Author     : Kris
+*/
+/* Estilo base del ContextMenu */
+.custom-context-menu {
+    -fx-background-color: #2E3440;
+    -fx-border-color: #3B4252;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);
+}
+
+/* Estilo de los items del menú */
+.custom-context-menu .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 5px 20px 5px 20px;
+    -fx-cursor: hand;
+}
+
+/* Estilo del texto */
+.custom-context-menu .menu-item .label {
+    -fx-text-fill: #ECEFF4;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* Efecto hover */
+.custom-context-menu .menu-item:hover {
+    -fx-background-color: #3B4252;
+    -fx-background-radius: 2px;
+}
+
+/* Efecto cuando está seleccionado */
+.custom-context-menu .menu-item:focused {
+    -fx-background-color: #4C566A;
+}
