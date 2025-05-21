@@ -51,7 +51,6 @@ public class ConsultasLicencia {
         } catch (SQLException e) {
             throw new SQLException("Error al obtener el listado de Licencias", e);
         }
-System.out.print(Licencias.get(0));
         return Licencias;
     }
 
@@ -90,7 +89,6 @@ System.out.print(Licencias.get(0));
         } catch (SQLException e) {
             throw new Exception("Error al obtener la Licencia de la base de datos", e);
         }
-System.out.print(Licencia);
         return Licencia;
     }
     
