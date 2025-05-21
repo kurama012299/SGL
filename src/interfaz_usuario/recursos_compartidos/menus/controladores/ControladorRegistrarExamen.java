@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import logica.restricciones.implementacion.ServicioRestriccion;
 import logica.validaciones_generales.ValidacionCampoVacio;
@@ -127,7 +128,7 @@ public class ControladorRegistrarExamen {
                     // Primero: Obtener referencia a la ventana actual
                     Window ventanaActual = rbtMedico.getScene().getWindow();
 
-                    GestorEscenas.cargarRegistrarPersona(ventanaActual);
+                    GestorEscenas.cargarRegistrarPersona(ventanaActual,(Stage) rbtMedico.getScene().getWindow());
                 }
             }
            

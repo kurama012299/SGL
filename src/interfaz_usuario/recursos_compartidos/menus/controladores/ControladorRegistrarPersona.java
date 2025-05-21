@@ -9,6 +9,7 @@ import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import logica.examen_medico.modelos.ExamenMedico;
 import logica.validaciones_generales.ValidacionCampoVacio;
 import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
@@ -37,6 +38,8 @@ public class ControladorRegistrarPersona {
     
     @FXML private TextField txfDireccion;
     
+    private Stage ventanaAnterior;
+    
     @FXML public void initialize()
     {
         System.out.println("Controlador Registrar persona iniciado");
@@ -46,9 +49,10 @@ public class ControladorRegistrarPersona {
         });
     }
     
-    public void setDatos(ExamenMedico examenMedico)
+    public void setDatos(/*ExamenMedico examenMedico,*/Stage ventana)
     {
-        this.examenMedico=examenMedico;
+        //this.examenMedico=examenMedico;
+        this.ventanaAnterior=ventana;
     }
     
     
@@ -84,6 +88,9 @@ public class ControladorRegistrarPersona {
             campoTelefono.Validar(txfTelefono.getText(), "telefono");
             campoCorreo.Validar(txfCorreo, "correo");
             
+            GestorEscenas.cerrar(btnRegistrar);
+            GestorEscenas.cerrar(ventanaAnterior);
+
             System.out.println("Datos Correctos");
            
         } catch (Exception ex) {

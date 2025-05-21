@@ -47,6 +47,7 @@ import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasAut
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasClinicas;
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarPersona;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesPracticosTrabajador;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesTeoricosTrabajador;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasInfracciones;
@@ -657,6 +658,12 @@ public class GestorEscenas  {
         ventana.close();
     }
     
+     //Funcion para cerrarVentana
+    public static void cerrar(Stage ventana) {
+        ventana.close();
+    }
+    
+    
     public static void cargarVerMasInfraccion(Window padre, Infraccion infraccion , Licencia licencia) throws Exception {
         try {
             String direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-infraccion.fxml";
@@ -747,14 +754,14 @@ public class GestorEscenas  {
         }
       }
      
-      public static void cargarRegistrarPersona(Window padre) throws Exception {
+      public static void cargarRegistrarPersona(Window padre,Stage ventanaAnterior) throws Exception {
         try {
             String direccion = GestorFXML.RutaRegistrarPersona;
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
-            /*ControladorVerMasEntidades controlador = cargador.getController();
-            controlador.setDatos(entidad); */
+            ControladorRegistrarPersona controlador = cargador.getController();
+            controlador.setDatos(ventanaAnterior);
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
