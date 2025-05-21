@@ -105,7 +105,8 @@ public class ControladorAdministradorMedico extends Controlador{
         ivImagenInicio = (ImageView) jfxbtnInicio.getGraphic();
         ivImagenExamenes = (ImageView) jfxbtnExamenes.getGraphic();
 
-        
+        GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador médico");
+         
         jfxbtnCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.cerrarPrograma();

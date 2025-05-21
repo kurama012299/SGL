@@ -28,7 +28,7 @@
          </font>
       </Label>
       <TextField fx:id="TextFieldId" disable="true" editable="false" layoutX="38.0" layoutY="123.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="04112767283" />
-      <JFXButton cancelButton="true" layoutX="16.0" layoutY="277.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
+      <JFXButton cancelButton="true" layoutX="16.0" layoutY="277.0" fx:id="btnAtras" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
       <JFXButton cancelButton="true" layoutX="418.0" layoutY="277.0" opacity="0.4" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: red;" text="       Eliminar" textFill="WHITE" />
       <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="429.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
          <image>

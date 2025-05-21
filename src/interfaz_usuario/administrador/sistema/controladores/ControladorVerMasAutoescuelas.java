@@ -4,6 +4,7 @@
  */
 package interfaz_usuario.administrador.sistema.controladores;
 
+import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.GestorEstadisticas;
 import gestor_interfaces.modelos.Estadistica;
 import infraestructura.ConectorBaseDato;
@@ -64,7 +65,9 @@ public class ControladorVerMasAutoescuelas {
     public void Iniciar() throws Exception {
 
         System.out.println("Iniciar llamado");
-
+        btnAtras.setOnAction(e -> {
+            GestorEscenas.cerrar(btnAtras);
+        });
         String puntosStr = String.valueOf(Math.round(TotalExamenesAprobados()));
         txfExamenesAprobados.setText(puntosStr);
         txfDirector.setText(autoescuela.getNombreDirector());
@@ -83,10 +86,5 @@ public class ControladorVerMasAutoescuelas {
         }
     }
     
-    @FXML private void cerrar()
-    {
-        Stage ventana = (Stage) btnAtras.getScene().getWindow();
-        ventana.close();
-    }
 
 }

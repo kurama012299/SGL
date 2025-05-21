@@ -4,8 +4,10 @@
  */
 package interfaz_usuario.administrador.medico.controladores;
 
+import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import logica.examen_medico.modelos.ExamenMedico;
@@ -39,6 +41,8 @@ public class ControladorVerMasExamenesMedicos {
     @FXML
     private TextArea TextFieldRestricciones;
     
+    @FXML private Button btnAtras;
+    
     @FXML
     public void initialize()
     {
@@ -55,6 +59,9 @@ public class ControladorVerMasExamenesMedicos {
     @FXML
     public void Iniciar()
     {
+        btnAtras.setOnAction(e -> {
+            GestorEscenas.cerrar(btnAtras);
+        });
         TextFieldExaminado.setText(ExamenMedico.getPersona().getNombre()+ExamenMedico.getPersona().getApellidos());
         TextFieldExaminador.setText(ExamenMedico.getExaminador().getNombre());
         TextFieldId.setText(ExamenMedico.getPersona().getCI());
@@ -66,7 +73,7 @@ public class ControladorVerMasExamenesMedicos {
         else if(ExamenMedico.isAprobado() && ExamenMedico.getRestricciones().size()!=0)
         {
             TextFieldResultado.setText("Aprobado condicional");
-            TextFieldRestricciones.setText(GestorEscenas.mostrarRestricciones(ExamenMedico.getRestricciones()).toString());
+            TextFieldRestricciones.setText(GestorEscenas.convertirArrayRestricciones(ExamenMedico.getRestricciones()).toString());
         }
         else
         {

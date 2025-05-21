@@ -4,6 +4,7 @@
  */
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
+import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -80,6 +81,9 @@ public class ControladorVerMasInfracciones {
         TextFieldDescripcion.setText(Infraccion.getDescripcion());
         TextFieldFecha.setText(Infraccion.getFecha().toString());
         TextFieldIdLicencia.setText(Licencia.getId().toString());
+        btnAtras.setOnAction(e ->{
+            GestorEscenas.cerrar(btnAtras);
+        });
     }
     
     public static String Pagado(boolean Pagado){
@@ -111,10 +115,5 @@ public class ControladorVerMasInfracciones {
         }
     }
     
-    @FXML private void cerrar()
-    {
-        Stage ventana = (Stage) btnAtras.getScene().getWindow();
-        ventana.close();
-    }
 
 }

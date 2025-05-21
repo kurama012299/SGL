@@ -103,6 +103,8 @@ public class ControladorMedico extends Controlador{
         
         GestorEscenas.configurarReloj(lblFechaHora);
         
+        GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Médico");
+         
         jfxbtnCerrarSesion.setOnAction(e ->
         {
             GestorEscenas.cerrarPrograma();
