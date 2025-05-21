@@ -48,6 +48,7 @@ import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasCli
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarPersona;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarUsuario;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesPracticosTrabajador;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesTeoricosTrabajador;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasInfracciones;
@@ -793,6 +794,36 @@ public class GestorEscenas  {
             Parent ruta = cargador.load();
             ControladorRegistrarPersona controlador = cargador.getController();
             controlador.setDatos(ventanaAnterior);
+
+            Scene escena = new Scene(ruta);
+            Stage ventana = new Stage();
+            ventana.initOwner(padre);
+            ventana.initStyle(StageStyle.UTILITY);
+
+
+            ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            ventana.setTitle("");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+      }
+      
+       public static void cargarRegistrarUsuario(Window padre,Stage ventanaAnterior,Object entidad) throws Exception {
+        try {
+            String direccion = GestorFXML.RutaRegistrarUsuario;
+            URL url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent ruta = cargador.load();
+            ControladorRegistrarUsuario controlador = cargador.getController();
+            controlador.setDatos((EntidadRelacionada)entidad,ventanaAnterior);
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();

@@ -8,6 +8,7 @@ import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.GestorEstadisticas;
 import gestor_interfaces.modelos.Estadistica;
 import infraestructura.ConectorBaseDato;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarUsuario;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import logica.entidad.modelos.EntidadRelacionada;
 
 /**
@@ -50,6 +52,8 @@ public class ControladorVerMasAutoescuelas {
     TextArea txfDireccion;
     
     @FXML private Button btnAtras;
+    
+    @FXML private Button agregarUsuario;
 
     @FXML
     public void initialize() {
@@ -84,6 +88,17 @@ public class ControladorVerMasAutoescuelas {
             Estadistica Estadistica = GestorEstadisticas.obtenerCantidadExamenesAutoescuelaAprobados(conn);
             return Estadistica.GetValor();
         }
+    }
+    
+    @FXML private void transicionregistrarUsuario() 
+    {
+       Window ventanaActual = txfNombre.getScene().getWindow();
+        try {
+            GestorEscenas.cargarRegistrarUsuario(ventanaActual, (Stage)txfNombre.getScene().getWindow(), autoescuela);
+        } catch (Exception e) {
+            GestorEscenas.cargarError(ventanaActual, e);
+        }
+       
     }
     
 
