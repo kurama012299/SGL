@@ -44,7 +44,7 @@ public class GestorFXML {
     public static String RutaRegistrarUsuario="/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-usuario.fxml";
     public static String RutaRegistrarCategoria;
     public static String RutaRegistrarEstadoLicencia;
-    public static String RutaRegistrarInfraccion;
+    public static String RutaRegistrarInfraccion = "/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/registrar/registrar-infraccion.fxml";
     public static String RutaRegistrarClinica;
     public static String RutaRegistrarAutoescuela;
     public static String RutaRegistrarExamenTeoricoTrabajador;
