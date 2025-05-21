@@ -47,6 +47,7 @@ import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasAut
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasClinicas;
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarInfraccion;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarPersona;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarUsuario;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesPracticosTrabajador;
@@ -946,4 +947,6 @@ public class GestorEscenas  {
         AnchorPane.setLeftAnchor(vbox, 10.0);
         AnchorPane.setRightAnchor(vbox, 10.0);
     }
+    
+    
 }

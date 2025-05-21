@@ -25,33 +25,33 @@ public class ControladorVerMasInfracciones {
     private Licencia Licencia;
     
     @FXML
-    TextField TextFieldPuntos;
+    private TextField TextFieldPuntos;
     
     @FXML
-    TextField TextFieldGravedad;
+    private TextField TextFieldGravedad;
     
     @FXML
-    TextField TextFieldPagado;
+    private TextField TextFieldPagado;
     
     @FXML
-    TextField TextFieldNombre;
+    private TextField TextFieldNombre;
     
     @FXML
-    TextField TextFieldLugar;
+    private TextField TextFieldLugar;
     
     @FXML
-    TextField TextFieldIdLicencia;
+    private TextField TextFieldIdLicencia;
     
     @FXML
-    TextField TextFieldOficial;
+    private TextField TextFieldOficial;
     
     @FXML
-    TextArea TextFieldDescripcion;
+    private TextArea TextFieldDescripcion;
     
     @FXML
-    TextField TextFieldFecha;
+    private TextField TextFieldFecha;
     
-    @FXML Button btnAtras;
+    @FXML private Button btnAtras;
     
     
     @FXML

@@ -64,16 +64,16 @@ public class ControladorVerMasLicencias {
  
     
     @FXML
-    Pane paneCarro;
+    private Pane paneCarro;
     
     @FXML
-    Pane paneMoto;
+    private Pane paneMoto;
     
     @FXML
-    Pane paneOmnibus;
+    private Pane paneOmnibus;
     
     @FXML
-    Pane paneCamion;
+    private Pane paneCamion;
     
     
     
