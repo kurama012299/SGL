@@ -10,17 +10,12 @@ package logica.validaciones_generales;
  */
 public class ValidacionSoloNumeros implements IValidacion{
        
-    private final String NombreCampo;
-    
-    public ValidacionSoloNumeros(String NombreCampo)
-    {
-        this.NombreCampo=NombreCampo;
-    }
+
 
     @Override
-    public void Validar(Object Entrada) throws Exception {
+    public void Validar(Object Entrada,String NombreCampo) throws Exception {
        String Texto = Entrada.toString();
          if (!Texto.matches("^[0-9]+$")) 
-            throw new Exception(NombreCampo + " solo puede contener letras (A-Z, a-z)");
+            throw new Exception(NombreCampo + " solo puede contener números");
     } 
 }

@@ -11,6 +11,7 @@ package gestor_interfaces;
  */
 public class GestorFXML {
                  
+    //Ver mas
     public static String RutaVerMasConductores="/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-conductores.fxml";
     public static String RutaVerMasExamenes="/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-examenes.fxml";
     public static String RutaVerMasInfracciones="/interfaz_usuario/recursos_compartidos/menus/menu_auxiliares/ver-mas/menu-ver-mas-infraccion.fxml";
@@ -24,12 +25,35 @@ public class GestorFXML {
     public static String RutaVerMasExamenesMedicosDoctor="/interfaz_usuario/medico/menu_auxiliares/ver-mas/menu-ver-mas-examenes-medicos.fxml";
     public static String RutaVerMasExamenesTeoricosTrabajador="/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-teoricos.fxml";
     public static String RutaVerMasExamenesPracticosTrabajador="/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/ver-mas/menu-ver-mas-examenes-practicos.fxml";
+    
+    //Menus
     public static String RutaMenuAdministrador;
     public static String RutaMenuAdministradorAutoescuela;
     public static String RutaMenuAdministradorMedico;
     public static String RutaMenuTrabajadorCentro;
     public static String RutaMenuTrabajadorAutoescuela;
     public static String RutaMenuMedico;
+    
+    //Registrar
+    public static String RutaRegistrarExamen;
+    public static String RutaRegistrarExamenMedico;
+    public static String RutaRegistrarPersona;
+    public static String RutaRegistrarExamenTeorico;
+    public static String RutaRegistrarExamenPractico;
+    public static String RutaRegistrarLicencia;
+    public static String RutaRegistrarUsuario;
+    public static String RutaRegistrarCategoria;
+    public static String RutaRegistrarEstadoLicencia;
+    public static String RutaRegistrarInfraccion;
+    public static String RutaRegistrarClinica;
+    public static String RutaRegistrarAutoescuela;
+    public static String RutaRegistrarExamenTeoricoTrabajador;
+    public static String RutaRegistrarExamenPracticoTrabajador;
+    public static String RutaRegistrarExamenMedicoDoctor;
+ 
+    
+    
+    
     
     
 }

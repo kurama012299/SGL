@@ -10,19 +10,17 @@ package logica.validaciones_generales;
  */
 public class ValidacionCantidadCaracteresExacta implements IValidacion{
     
-    private int CantidadCaracteres;
-    private String NombreCampo;
+    private int CantidadCaracteres;    
     
-    
-    public ValidacionCantidadCaracteresExacta(int CantidadCaracteres,String NombreCampo)
+    public ValidacionCantidadCaracteresExacta(int CantidadCaracteres)
     {
         this.CantidadCaracteres=CantidadCaracteres;
-        this.NombreCampo=NombreCampo;
     }
     
     
     @Override
-    public void Validar(Object Texto) throws Exception {
+    public void Validar(Object Texto,String NombreCampo) throws Exception {
+        System.out.println(Texto.toString().length()+" "+ Texto.toString());
         if(Texto.toString().length()!=CantidadCaracteres)
             throw new Exception("El tamaño de el "+ NombreCampo+ " debe ser "+CantidadCaracteres);
     }

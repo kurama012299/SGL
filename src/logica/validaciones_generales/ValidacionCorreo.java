@@ -16,7 +16,7 @@ public class ValidacionCorreo implements IValidacion {
     private final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
     @Override
-    public void Validar(Object Texto) throws Exception {
+    public void Validar(Object Texto,String NombreCampo) throws Exception {
 
         String Correo = Texto.toString().trim();
 

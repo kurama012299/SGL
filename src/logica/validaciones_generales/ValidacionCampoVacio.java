@@ -10,15 +10,12 @@ package logica.validaciones_generales;
  */
 public class ValidacionCampoVacio implements IValidacion{
     
-    private String NombreCampo;
-    
-    public ValidacionCampoVacio(String NombreCampo)
-    {
-        this.NombreCampo=NombreCampo;
-    }
+
+  
     
     @Override
-    public void Validar(Object Entrada) throws Exception {
+    public void Validar(Object Entrada,String NombreCampo) throws Exception {
+        System.out.println(Entrada);
         if(Entrada==null)
             throw new Exception("El "+ NombreCampo+" es obligatorio");
         

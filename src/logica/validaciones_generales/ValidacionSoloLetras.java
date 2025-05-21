@@ -10,15 +10,9 @@ package logica.validaciones_generales;
  */
 public class ValidacionSoloLetras implements IValidacion{
     
-    private final String NombreCampo;
-    
-    public ValidacionSoloLetras (String NombreCampo)
-    {
-        this.NombreCampo=NombreCampo;
-    }
 
     @Override
-    public void Validar(Object Entrada) throws Exception {
+    public void Validar(Object Entrada,String NombreCampo) throws Exception {
        String Texto = Entrada.toString();
          if (!Texto.matches("^[a-zA-Z\\s]+$")) 
             throw new Exception(NombreCampo + " solo puede contener letras (A-Z, a-z)");

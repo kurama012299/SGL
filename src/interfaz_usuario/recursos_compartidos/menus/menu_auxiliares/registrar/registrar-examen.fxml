@@ -3,9 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,26 +16,26 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="465.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="465.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarExamen">
    <children>
       <Label layoutX="33.0" layoutY="17.0" prefHeight="44.0" prefWidth="253.0" text="Registrar Exámen">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </Label>
-      <JFXButton layoutX="402.0" layoutY="397.0" opacity="0.4" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: #8000ff;" text="Registrar" textFill="WHITE">
+      <JFXButton fx:id="btnRegistrar" layoutX="402.0" layoutY="397.0" onAction="#botonRegistrar" opacity="0.4" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: #8000ff;" text="Registrar" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </JFXButton>
-      <TextField layoutX="34.0" layoutY="75.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre y apellidos" style="-fx-background-color: transparent;" />
-      <TextField layoutX="34.0" layoutY="135.0" prefHeight="25.0" prefWidth="200.0" promptText="Carnet identidad" style="-fx-background-color: transparent;" />
-      <JFXButton layoutX="286.0" layoutY="397.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="           Cancelar">
+      <TextField fx:id="txfNombre" layoutX="34.0" layoutY="75.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre y apellidos" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfCarnet" layoutX="34.0" layoutY="135.0" prefHeight="25.0" prefWidth="200.0" promptText="Carnet identidad" style="-fx-background-color: transparent;" />
+      <JFXButton fx:id="btnCancelar" layoutX="286.0" layoutY="397.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="           Cancelar">
          <font>
             <Font size="13.0" />
          </font>
       </JFXButton>
-      <TextField layoutX="34.0" layoutY="195.0" prefHeight="25.0" prefWidth="207.0" promptText="Nombre del examinador" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfNombreExaminador" layoutX="34.0" layoutY="195.0" prefHeight="25.0" prefWidth="207.0" promptText="Nombre del examinador" style="-fx-background-color: transparent;" />
       <Line endX="100.0" layoutX="133.0" layoutY="99.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="134.0" layoutY="160.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="106.66667175292969" endY="-1.52587890625E-5" layoutX="132.0" layoutY="223.0" startX="-100.0" stroke="#8000ff" />
@@ -43,14 +45,15 @@
             <Image url="@../../../imagenes/ico-atras.png" />
          </image>
       </ImageView>
-      <TextField layoutX="32.0" layoutY="315.0" prefHeight="25.0" prefWidth="200.0" promptText="Fecha del exámen" style="-fx-background-color: transparent;" />
-      <Line endX="100.0" layoutX="133.0" layoutY="340.0" startX="-100.0" stroke="#8000ff" />
-      <JFXRadioButton layoutX="286.0" layoutY="105.0" prefHeight="17.0" prefWidth="72.0" text="Práctico">
+      <JFXRadioButton fx:id="rbtPractico" layoutX="286.0" layoutY="105.0" onMouseClicked="#seleccionarTipoConduccion" prefHeight="17.0" prefWidth="72.0" text="Práctico">
          <selectedColor>
             <Color red="0.501960813999176" blue="1.0" />
          </selectedColor>
+         <toggleGroup>
+            <ToggleGroup fx:id="rbtGrupoTipoExamen" />
+         </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton layoutX="286.0" layoutY="165.0" prefHeight="17.0" prefWidth="72.0" text="Médico">
+      <JFXRadioButton fx:id="rbtMedico" layoutX="286.0" layoutY="165.0" onMouseClicked="#seleccionarTipoMedico" prefHeight="17.0" prefWidth="72.0" text="Médico" toggleGroup="$rbtGrupoTipoExamen">
          <selectedColor>
             <Color red="0.501960813999176" blue="1.0" />
          </selectedColor>
@@ -60,7 +63,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXRadioButton layoutX="286.0" layoutY="135.0" prefHeight="17.0" prefWidth="106.0" text="Teórico">
+      <JFXRadioButton fx:id="rbtTeorico" layoutX="286.0" layoutY="135.0" onMouseClicked="#seleccionarTipoConduccion" prefHeight="17.0" prefWidth="106.0" text="Teórico" toggleGroup="$rbtGrupoTipoExamen">
          <selectedColor>
             <Color red="0.501960813999176" blue="1.0" />
          </selectedColor>
@@ -70,7 +73,7 @@
             <Color red="0.501960813999176" blue="1.0" />
          </selectedColor>
       </JFXRadioButton>
-      <ScrollPane layoutX="277.0" layoutY="229.0" prefHeight="119.0" prefWidth="198.0">
+      <ScrollPane fx:id="scrpRestricciones" layoutX="277.0" layoutY="229.0" prefHeight="119.0" prefWidth="198.0">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="165.0" prefWidth="180.0">
                <children>
@@ -108,11 +111,13 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Label layoutX="276.0" layoutY="194.0" prefHeight="27.0" prefWidth="253.0" text="Restricciones:">
+      <Label fx:id="lblRestricciones" layoutX="276.0" layoutY="194.0" prefHeight="27.0" prefWidth="253.0" text="Restricciones:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <ComboBox disable="true" layoutX="36.0" layoutY="255.0" prefHeight="25.0" prefWidth="198.0" promptText="Nombre de la entidad" style="-fx-background-color: transparent;" />
+      <DatePicker fx:id="dtFecha" layoutX="45.0" layoutY="327.0" promptText="Fecha examen" style="-fx-background-color: transparent;" />
+      <Line endX="79.80000305175781" layoutX="137.0" layoutY="360.0" startX="-90.60002136230469" stroke="#8000ff" />
    </children>
 </Pane>

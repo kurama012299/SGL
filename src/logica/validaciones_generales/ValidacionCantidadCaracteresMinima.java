@@ -11,18 +11,17 @@ package logica.validaciones_generales;
 public class ValidacionCantidadCaracteresMinima implements IValidacion{
 
     private int CantidadCaracteres;
-    private String NombreCampo;
+
     
     
-    public ValidacionCantidadCaracteresMinima(int CantidadCaracteres,String NombreCampo)
+    public ValidacionCantidadCaracteresMinima(int CantidadCaracteres)
     {
         this.CantidadCaracteres=CantidadCaracteres;
-        this.NombreCampo=NombreCampo;
     }
     
     
     @Override
-    public void Validar(Object Texto) throws Exception {
+    public void Validar(Object Texto,String NombreCampo) throws Exception {
         if(Texto.toString().length()<CantidadCaracteres)
             throw new Exception("El tamaño mínimo en "+ NombreCampo+ " es de "+CantidadCaracteres);
     }
