@@ -4,7 +4,9 @@
  */
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
+import com.jfoenix.controls.JFXRadioButton;
 import gestor_interfaces.GestorEscenas;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -14,8 +16,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import logica.restricciones.implementacion.ServicioRestriccion;
 import logica.validaciones_generales.ValidacionCampoVacio;
 import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
+import logica.validaciones_generales.ValidacionCarnet;
 import logica.validaciones_generales.ValidacionCompuesta;
 import logica.validaciones_generales.ValidacionFecha;
 import logica.validaciones_generales.ValidacionSoloLetras;
@@ -49,6 +56,8 @@ public class ControladorRegistrarExamen {
     
     @FXML private DatePicker dtFecha;
     
+    @FXML private AnchorPane apnlContenedorRestricciones;
+    
     public void initialize()
     {
         System.out.println("Controlador Registrar Examen Activado");
@@ -59,12 +68,23 @@ public class ControladorRegistrarExamen {
     {
         visibilidadRestricciones(true);
         btnRegistrar.setText("Siguiente");
+        try {
+            generarRadioButtons(ServicioRestriccion.obtenerRestricciones());
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorRegistrarExamen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    @FXML public void seleccionarTipoConduccion()
+    @FXML public void seleccionarTipoTeorico()
     {
         visibilidadRestricciones(false);
         btnRegistrar.setText("Registrar");
+    }
+    
+    @FXML public void seleccionarTipoPractico()
+    {
+        visibilidadRestricciones(false);
+        btnRegistrar.setText("Siguiente");
     }
     
     private void visibilidadRestricciones(boolean esVisible)
@@ -78,14 +98,15 @@ public class ControladorRegistrarExamen {
     @FXML private void botonRegistrar()
     {
         
-        ValidacionCampoVacio campoVacio = new ValidacionCampoVacio();
-        ValidacionSoloLetras campoLetras = new ValidacionSoloLetras();
-        ValidacionSoloNumeros campoNumerico = new ValidacionSoloNumeros();
-        ValidacionFecha campoFecha = new ValidacionFecha();
-        ValidacionCantidadCaracteresExacta campoCantidadExacta = new ValidacionCantidadCaracteresExacta(11);
+        ValidacionCampoVacio validacionCampoVacio = new ValidacionCampoVacio();
+        ValidacionSoloLetras validacionSoloLetras = new ValidacionSoloLetras();
+        ValidacionSoloNumeros validacionSoloNumeros = new ValidacionSoloNumeros();
+        ValidacionFecha validacionFecha = new ValidacionFecha();
+        ValidacionCarnet validacionCarnet = new ValidacionCarnet();
+        ValidacionCantidadCaracteresExacta validacionCantidadCaracteresExacta = new ValidacionCantidadCaracteresExacta(11);
         
-        ValidacionCompuesta campoNombre = new ValidacionCompuesta(campoVacio,campoLetras);
-        ValidacionCompuesta campoCarnet = new ValidacionCompuesta(campoCantidadExacta,campoNumerico);
+        ValidacionCompuesta campoNombre = new ValidacionCompuesta(validacionCampoVacio,validacionSoloLetras);
+        ValidacionCompuesta campoCarnet = new ValidacionCompuesta(validacionCantidadCaracteresExacta,validacionSoloNumeros,validacionCarnet);
 
         
         
@@ -96,7 +117,7 @@ public class ControladorRegistrarExamen {
             campoNombre.Validar(txfNombre.getText(), "nombre");
             campoCarnet.Validar(txfCarnet.getText(), "carnet identidad");
             campoNombre.Validar(txfNombreExaminador.getText(), "nombre examinador");
-            campoFecha.Validar(dtFecha.getValue(), "fecha examen");
+            validacionFecha.Validar(dtFecha.getValue(), "fecha examen");
             
             System.out.println("Datos Correctos");
            
@@ -104,5 +125,25 @@ public class ControladorRegistrarExamen {
             GestorEscenas.cargarError(btnRegistrar.getScene().getWindow(), ex);
         }
          
+    }
+    
+    public void generarRadioButtons(ArrayList<String> opciones) {
+        apnlContenedorRestricciones.getChildren().clear();
+ 
+        VBox vbox = new VBox();
+        vbox.setSpacing(10); // Espacio entre RadioButtons
+    
+        // Generar un RadioButton por cada opción
+        for (String opcion : opciones) {
+            JFXRadioButton rb = new JFXRadioButton(opcion);
+            rb.setStyle("-jfx-selected-color: #8000ff; -jfx-unselected-color: #5a5a5a;");
+            rb.setUserData(opcion); 
+            vbox.getChildren().add(rb);
+        }
+        
+        apnlContenedorRestricciones.getChildren().add(vbox);
+        AnchorPane.setTopAnchor(vbox, 10.0);
+        AnchorPane.setLeftAnchor(vbox, 10.0);
+        AnchorPane.setRightAnchor(vbox, 10.0);
     }
 }
