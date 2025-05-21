@@ -5,8 +5,7 @@
 package logica.infraccion.modelos;
 
 import java.util.Date;
-import logica.persona.modelos.Conductor;
-import logica.persona.modelos.Persona;
+
 
 /**
  *

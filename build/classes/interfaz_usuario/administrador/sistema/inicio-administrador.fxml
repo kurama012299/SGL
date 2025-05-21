@@ -443,7 +443,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0">
+            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Conductores">
                      <font>
@@ -833,19 +833,54 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="PanelReportes" layoutX="10.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelReportes" layoutX="10.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0">
                <children>
                   <Separator layoutX="-10.0" layoutY="-7.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" translateX="1.0" />
-                  <StackPane fx:id="ScatckPaneReporte1" layoutX="79.0" layoutY="61.0" prefHeight="150.0" prefWidth="200.0">
+                  <StackPane fx:id="spnlReporteLicencias" layoutX="46.0" layoutY="25.0" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="ImageViewReporte1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgReporteLicencias" fitHeight="259.0" fitWidth="231.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../recursos_compartidos/imagenes/img-reporte-1.png" />
+                              <Image url="@../../recursos_compartidos/imagenes/img-reporte-licencia.png" />
                            </image>
                         </ImageView>
                      </children>
                   </StackPane>
-                  <Label layoutX="85.0" layoutY="226.0" prefHeight="17.0" prefWidth="189.0" text="Primer Reporte" />
+                  <StackPane fx:id="spnlReporteInfraccionesTipo" layoutX="46.0" layoutY="310.0" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imgReporteInfraccionesTipo" fitHeight="259.0" fitWidth="231.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../recursos_compartidos/imagenes/img-reporte-infracciones-tipo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="spnlReporteExamenes" layoutX="314.0" layoutY="25.0" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imgReporteExamenes" fitHeight="259.0" fitWidth="231.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../recursos_compartidos/imagenes/img-reporte-examenes.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="spnlReporteConductores" layoutX="314.0" layoutY="310.0" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imgReporteConductores" fitHeight="259.0" fitWidth="231.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../recursos_compartidos/imagenes/img-reporte-conductores-licencia-vencida.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="spnlReporteInfracciones" layoutX="580.0" layoutY="25.0" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imgReporteInfracciones" fitHeight="259.0" fitWidth="231.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../recursos_compartidos/imagenes/img-reporte-infracciones.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
                </children>
             </Pane>
          </children>

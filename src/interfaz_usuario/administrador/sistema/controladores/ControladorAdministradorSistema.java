@@ -14,6 +14,7 @@ import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +51,7 @@ import logica.autentificacion.Autentificador;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.gestion_imagenes.GestorImagenes;
+import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.licencia.implementaciones.ServicioLicencia;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.modelos.Licencia;
@@ -417,10 +419,34 @@ public class ControladorAdministradorSistema extends Controlador{
    private Line LineaBuscarLicencias;
    
    @FXML
-   private StackPane ScatckPaneReporte1;
+   private StackPane spnlReporteLicencias;
    
    @FXML
-   private ImageView ImageViewReporte1;
+   private StackPane spnlReporteExamenes;
+      
+   @FXML
+   private StackPane spnlReporteInfracciones;
+   
+   @FXML
+   private StackPane spnlReporteInfraccionesTipo;
+   
+   @FXML
+   private StackPane spnlReporteConductores;
+
+   @FXML
+   private ImageView imgReporteLicencias;
+   
+   @FXML
+   private ImageView imgReporteExamenes;
+   
+   @FXML
+   private ImageView imgReporteInfracciones;
+   
+   @FXML
+   private ImageView imgReporteInfraccionesTipo;
+   
+   @FXML
+   private ImageView imgReporteConductores;
    
    @FXML private HBox hbVentanaPrincipal;
     
@@ -468,7 +494,8 @@ public class ControladorAdministradorSistema extends Controlador{
         
         GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador");
         GestorEscenas.configurarReloj(LabelFechaHora);
-        HoverReportes(ScatckPaneReporte1, ImageViewReporte1);
+        
+        configurarHoverReportes();
         
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -484,30 +511,80 @@ public class ControladorAdministradorSistema extends Controlador{
         this.TransicionInicio();   
     }
     
-    
-    
-    @FXML
-    private void HoverReportes(StackPane container, ImageView preview) {
-        
-         preview.setScaleX(1);
-         preview.setScaleY(1);
-            
-        container.setOnMouseEntered(e -> {
-            preview.setScaleX(1.5);
-            preview.setScaleY(1.8);
-            //container.setStyle("-fx-background-color: #34495e;");
+        private void configurarHoverReportes() {
+        // Licencias
+        configurarReporte(spnlReporteLicencias, imgReporteLicencias, () -> {
+            try {
+                GestorPDF.GenerarReporteLicenciasEmitidas(
+                        ServicioLicencia.ObtenerLicenciasAnual(),
+                        "Reporte de licencias emitidas en " + Year.now().getValue()
+                );
+            } catch (Exception ex) {
+                Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
-        
+
+        /*// Exámenes
+        configurarReporte(spnlReporteExamenes, imgReporteExamenes, () -> {
+            GestorPDF.GenerarReporteExamenes(
+                    ServicioExamen.ObtenerExamenesAnual(),
+                    "Reporte de exámenes realizados en " + Year.now().getValue()
+            );
+        });*/
+
+        // Infracciones
+        configurarReporte(spnlReporteInfracciones, imgReporteInfracciones, () -> {
+            try {
+                GestorPDF.GenerarReporteInfracciones(
+                        ServicioInfraccion.ObtenerInfraccionesAnual(),
+                        "Reporte de infracciones en " + Year.now().getValue()
+                );
+            } catch (Exception ex) {
+                Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        /*
+        // Tipos de infracciones
+        configurarReporte(spnlReporteInfraccionesTipo, imgReporteInfraccionesTipo, () -> {
+            GestorPDF.GenerarReporteTiposInfraccion(
+                    ServicioInfraccion.ObtenerInfraccionesPorTipo(),
+                    "Reporte por tipos de infracciones"
+            );
+        });
+
+        // Conductores
+        configurarReporte(spnlReporteConductores, imgReporteConductores, () -> {
+            GestorPDF.GenerarReporteConductores(
+                    ServicioConductor.ObtenerConductoresRegistrados(),
+                    "Reporte de conductores registrados"
+            );
+        });*/
+    }
+
+    private void configurarReporte(StackPane container, ImageView preview, Runnable accionReporte) {
+        // Efecto hover
+        preview.setScaleX(1);
+        preview.setScaleY(1);
+
+        container.setOnMouseEntered(e -> {
+            preview.setScaleX(1.1);
+            preview.setScaleY(1.1);
+        });
+
         container.setOnMouseExited(e -> {
             preview.setScaleX(1);
             preview.setScaleY(1);
-            //container.setStyle("-fx-background-color: #2c3e50;");
         });
-        container.setOnMouseClicked(e ->{
-             GestorPDF.GenerarMostrarPDF("Prueba", "Reporte.pdf");
+
+        // Acción al hacer click
+        container.setOnMouseClicked(e -> {
+            try {
+                accionReporte.run();
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(container.getScene().getWindow(), ex);
+            }
         });
     }
-    
     @FXML
     public void TransicionLicencias()
     {
