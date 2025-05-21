@@ -7,6 +7,7 @@ package gestor_interfaces;
 
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
 import gestor_interfaces.modelos.Controlador;
 import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.MenuEstadisticas;
@@ -57,6 +58,8 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
@@ -744,6 +747,36 @@ public class GestorEscenas  {
         }
       }
      
+      public static void cargarRegistrarPersona(Window padre) throws Exception {
+        try {
+            String direccion = GestorFXML.RutaRegistrarPersona;
+            URL url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent ruta = cargador.load();
+            /*ControladorVerMasEntidades controlador = cargador.getController();
+            controlador.setDatos(entidad); */
+
+            Scene escena = new Scene(ruta);
+            Stage ventana = new Stage();
+            ventana.initOwner(padre);
+            ventana.initStyle(StageStyle.UTILITY);
+
+
+            ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            ventana.setTitle("");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+      }
+      
     public static void cargarCategorias(Licencia licencia, Pane categoriaMoto, Pane categoriaCarro,Pane categoriaOmnibus,Pane categoriaCamion){
         for(String categoria:licencia.getCategorias())
         {
@@ -824,4 +857,24 @@ public class GestorEscenas  {
             throw new Exception("Error al cargar la interfaz");
         }
       }
+    
+    public static void generarRadioButtons(ArrayList<String> opciones, AnchorPane apnlContenedor) {
+        apnlContenedor.getChildren().clear();
+ 
+        VBox vbox = new VBox();
+        vbox.setSpacing(10); // Espacio entre RadioButtons
+    
+        // Generar un RadioButton por cada opción
+        for (String opcion : opciones) {
+            JFXRadioButton rb = new JFXRadioButton(opcion);
+            rb.setStyle("-jfx-selected-color: #8000ff; -jfx-unselected-color: #5a5a5a;");
+            rb.setUserData(opcion); 
+            vbox.getChildren().add(rb);
+        }
+        
+        apnlContenedor.getChildren().add(vbox);
+        AnchorPane.setTopAnchor(vbox, 10.0);
+        AnchorPane.setLeftAnchor(vbox, 10.0);
+        AnchorPane.setRightAnchor(vbox, 10.0);
+    }
 }

@@ -62,6 +62,7 @@ public class ControladorRegistrarExamen {
     {
         System.out.println("Controlador Registrar Examen Activado");
         visibilidadRestricciones(false);
+        btnCancelar.setOnAction(e -> GestorEscenas.cerrar(btnCancelar));
     }
     
     @FXML public void seleccionarTipoMedico()
@@ -69,9 +70,9 @@ public class ControladorRegistrarExamen {
         visibilidadRestricciones(true);
         btnRegistrar.setText("Siguiente");
         try {
-            generarRadioButtons(ServicioRestriccion.obtenerRestricciones());
+            GestorEscenas.generarRadioButtons(ServicioRestriccion.obtenerRestricciones(),apnlContenedorRestricciones);
         } catch (Exception ex) {
-            Logger.getLogger(ControladorRegistrarExamen.class.getName()).log(Level.SEVERE, null, ex);
+            GestorEscenas.cargarError(rbtMedico.getScene().getWindow(), ex);
         }
     }
     
@@ -120,30 +121,15 @@ public class ControladorRegistrarExamen {
             validacionFecha.Validar(dtFecha.getValue(), "fecha examen");
             
             System.out.println("Datos Correctos");
+            if (rbtMedico.isSelected()) 
+            {   
+                GestorEscenas.cerrar(btnCancelar);
+                GestorEscenas.cargarRegistrarPersona(rbtMedico.getScene().getWindow());
+            }
            
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnRegistrar.getScene().getWindow(), ex);
         }
          
-    }
-    
-    public void generarRadioButtons(ArrayList<String> opciones) {
-        apnlContenedorRestricciones.getChildren().clear();
- 
-        VBox vbox = new VBox();
-        vbox.setSpacing(10); // Espacio entre RadioButtons
-    
-        // Generar un RadioButton por cada opción
-        for (String opcion : opciones) {
-            JFXRadioButton rb = new JFXRadioButton(opcion);
-            rb.setStyle("-jfx-selected-color: #8000ff; -jfx-unselected-color: #5a5a5a;");
-            rb.setUserData(opcion); 
-            vbox.getChildren().add(rb);
-        }
-        
-        apnlContenedorRestricciones.getChildren().add(vbox);
-        AnchorPane.setTopAnchor(vbox, 10.0);
-        AnchorPane.setLeftAnchor(vbox, 10.0);
-        AnchorPane.setRightAnchor(vbox, 10.0);
     }
 }
