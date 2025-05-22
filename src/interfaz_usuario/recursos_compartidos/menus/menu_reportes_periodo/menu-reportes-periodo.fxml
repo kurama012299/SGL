@@ -9,16 +9,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesPeriodo">
    <children>
-      <DatePicker layoutX="34.0" layoutY="69.0" prefHeight="25.0" prefWidth="186.0" style="-fx-background-color: transparent;" />
+      <DatePicker fx:id="dtFechaInicio" layoutX="34.0" layoutY="69.0" prefHeight="25.0" prefWidth="186.0" style="-fx-background-color: transparent;" />
       <Label alignment="CENTER" layoutX="34.0" layoutY="35.0" prefHeight="25.0" prefWidth="175.0" text="Ingrese fecha inicio período:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <DatePicker layoutX="265.0" layoutY="74.0" prefHeight="25.0" prefWidth="194.0" style="-fx-background-color: transparent;" />
+      <DatePicker fx:id="dtFechaFin" layoutX="265.0" layoutY="74.0" prefHeight="25.0" prefWidth="194.0" style="-fx-background-color: transparent;" />
       <Label alignment="CENTER" layoutX="265.0" layoutY="35.0" prefHeight="25.0" prefWidth="186.0" text="Ingrese fecha final del período:">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -26,8 +25,8 @@
       </Label>
       <Line endX="64.66664123535156" endY="1.1444091796875E-5" layoutX="134.0" layoutY="59.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="78.00003051757812" endY="1.1444091796875E-5" layoutX="369.0" layoutY="60.0" startX="-100.0" stroke="#8000ff" />
-      <JFXButton layoutX="252.0" layoutY="123.0" opacity="0.4" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: #8000ff;" text="Mostrar reporte" textFill="WHITE" />
-      <JFXButton layoutX="127.0" layoutY="123.0" opacity="0.69" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: gainsboro;" text="Cancelar">
+      <JFXButton fx:id="btnMostrarReporte" layoutX="252.0" layoutY="123.0" onAction="#mostrarReporte" opacity="0.4" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: #8000ff;" text="Mostrar reporte" textFill="WHITE" />
+      <JFXButton fx:id="btnCerrar" layoutX="127.0" layoutY="123.0" onAction="#cerrar" opacity="0.69" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: gainsboro;" text="Cancelar">
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -50,6 +50,9 @@ public class GestorFXML {
     public static String RutaRegistrarExamenTeoricoTrabajador;
     public static String RutaRegistrarExamenPracticoTrabajador;
     public static String RutaRegistrarExamenMedicoDoctor;
+    
+    //
+    public static String RutaMenuReportesPerido="/interfaz_usuario/recursos_compartidos/menus/menu_reportes_periodo/menu-reportes-periodo.fxml";
  
     
     

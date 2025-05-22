@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package logica.infraccion.implementaciones;
+
+import java.time.LocalDate;
+
 import infraestructura.ConectorBaseDato;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Year;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
@@ -30,21 +34,34 @@ public class ServicioInfraccion {
         return ConsultasInfraccion.ObtenerInfraccionesConsulta();
     }
     
-    public static ObservableList<Infraccion> ObtenerInfraccionesAnual() throws Exception {
-    ObservableList<Infraccion> infracciones = ConsultasInfraccion.ObtenerInfraccionesConsulta();
-    
-    // Filtrar por año actual
-    int añoActual = Year.now().getValue();
-    
-    // Filtrar y ordenar
-    List<Infraccion> infraccionesFiltradas = infracciones.stream()
-        .filter(infraccion -> infraccion.getFecha() != null)
-        .filter(infraccion -> infraccion.getFecha().getYear() == añoActual)
-        .sorted(Comparator.comparing(Infraccion::getFecha).reversed()) // Orden descendente (más reciente primero)
-        .collect(Collectors.toList());
-    
-    return FXCollections.observableArrayList(infraccionesFiltradas);
-}
+    public static ObservableList<Infraccion> obtenerInfraccionesPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
+        // Validar las fechas de entrada
+        if (fechaInicio == null || fechaFin == null) {
+            throw new IllegalArgumentException("Ambas fechas deben ser proporcionadas");
+        }
+        if (fechaInicio.isAfter(fechaFin)) {
+            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de fin");
+        }
+
+        // Obtener todas las infracciones
+        ObservableList<Infraccion> infracciones = ConsultasInfraccion.ObtenerInfraccionesConsulta();
+
+        // Convertir LocalDate a Date para comparación
+        Date fechaInicioDate = java.sql.Date.valueOf(fechaInicio);
+        Date fechaFinDate = java.sql.Date.valueOf(fechaFin.plusDays(1)); // +1 día para incluir la fecha fin
+
+        // Filtrar por el rango de fechas
+        List<Infraccion> infraccionesFiltradas = infracciones.stream()
+                .filter(infraccion -> infraccion.getFecha() != null)
+                .filter(infraccion
+                        -> !infraccion.getFecha().before(fechaInicioDate)
+                && infraccion.getFecha().before(fechaFinDate))
+                .sorted((inf1, inf2) -> inf2.getFecha().compareTo(inf1.getFecha())) // Orden descendente
+                .collect(Collectors.toList());
+
+        return FXCollections.observableArrayList(infraccionesFiltradas);
+    }
+
     
     public static Infraccion ObtenerInfraccionPorId(long Id) throws Exception
     {

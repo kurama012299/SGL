@@ -47,6 +47,7 @@ import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasAut
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasClinicas;
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesPeriodo;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarInfraccion;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarPersona;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarUsuario;
@@ -250,6 +251,37 @@ public class GestorEscenas  {
             Parent Ruta = cargador.load();
             ControladorVerMasConductor controlador = cargador.getController();
             controlador.SetDatos(conductor,licencia); 
+
+            Scene escena = new Scene(Ruta);
+            Stage ventana = new Stage();
+            ventana.initOwner(padre);
+            ventana.initStyle(StageStyle.UTILITY);
+            ventana.setResizable(false);
+
+
+            ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            ventana.setTitle("");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+    public static void cargarMenuReportesPeriodo(Window padre, String reporte) throws Exception {
+        try {
+            String direccion = GestorFXML.RutaMenuReportesPerido;
+            URL Url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(Url);
+            Parent Ruta = cargador.load();
+            ControladorMenuReportesPeriodo controlador = cargador.getController();
+            controlador.setDatos(reporte); 
 
             Scene escena = new Scene(Ruta);
             Stage ventana = new Stage();

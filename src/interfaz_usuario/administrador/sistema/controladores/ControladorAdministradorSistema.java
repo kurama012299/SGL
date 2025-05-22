@@ -7,6 +7,7 @@ package interfaz_usuario.administrador.sistema.controladores;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTooltip;
 import gestor_interfaces.GestorEscenas;
+import gestor_interfaces.GestorFXML;
 import gestor_interfaces.modelos.Controlador;
 import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.EstadisticaUsuario;
@@ -559,10 +560,8 @@ public class ControladorAdministradorSistema extends Controlador{
     private void configurarReporteLicencias() {
     configurarHover(spnlReporteLicencias, imgReporteLicencias, () -> {
         try {
-            GestorPDF.GenerarReporteLicenciasEmitidas(
-                ServicioLicencia.ObtenerLicenciasAnual(),
-                "Reporte de licencias emitidas en " + Year.now().getValue()
-            );
+            GestorEscenas.cargarMenuReportesPeriodo(spnlReporteLicencias.getScene().getWindow(),
+                    "Licencias emitidas"); 
         } catch (Exception ex) {
              GestorEscenas.cargarError(spnlReporteExamenes.getScene().getWindow(), ex);
         }
@@ -572,10 +571,8 @@ public class ControladorAdministradorSistema extends Controlador{
     private void configurarReporteInfracciones() {
         configurarHover(spnlReporteInfracciones, imgReporteInfracciones, () -> {
             try {
-                GestorPDF.GenerarReporteInfracciones(
-                        ServicioInfraccion.ObtenerInfraccionesAnual(),
-                        "Reporte de infracciones en " + Year.now().getValue()
-                );
+                GestorEscenas.cargarMenuReportesPeriodo(spnlReporteLicencias.getScene().getWindow(),
+                    "Infracciones emitidas"); 
             } catch (Exception ex) {
                 GestorEscenas.cargarError(spnlReporteInfracciones.getScene().getWindow(), ex);
             }
@@ -602,7 +599,7 @@ public class ControladorAdministradorSistema extends Controlador{
         container.setOnMouseClicked(e -> {
             try {
                 accionReporte.run();
-                GestorEscenas.cargarConfirmacion(BotonCerrarSesion.getScene().getWindow(), "Reporte generado correctamente");
+                //GestorEscenas.cargarConfirmacion(BotonCerrarSesion.getScene().getWindow(), "Reporte generado correctamente");
             } catch (Exception ex) {
             }
         });
