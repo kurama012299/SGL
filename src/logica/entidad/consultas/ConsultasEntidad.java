@@ -48,6 +48,34 @@ public class ConsultasEntidad {
         return Entidades;
     }
 
+    public static EntidadRelacionada ObtenerEntidadPorNombreConsulta(String nombre) throws Exception {
+        EntidadRelacionada Entidad = null;
+
+        String consulta = "SELECT * FROM \"Entidad\" WHERE \"Nombre\" = ?";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+
+            stmt.setString(1, nombre);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Entidad = new EntidadRelacionada(
+                            rs.getLong("Id"),
+                            rs.getString("Nombre"),
+                            rs.getString("Direccion"),
+                            rs.getString("Telefono"),
+                            rs.getString("Correo"),
+                            rs.getString("NombreDirector"),
+                            rs.getString("Tipo_Entidad"));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new Exception("Error al obtener la entidad de la base de datos", e);
+        }
+
+        return Entidad;
+    }
     public static EntidadRelacionada ObtenerEntidadPorIdConsulta(long Id) throws Exception {
         EntidadRelacionada Entidad = null;
 
