@@ -70,5 +70,9 @@ public class ServicioEntidad {
         }
         return nombresClinicas;
     }
+     
+     public static long guardarEntidadBaseDatos(EntidadRelacionada entidad) throws Exception{
+         return ConsultasEntidad.guardarEntidad(entidad);
+     }
     
 }

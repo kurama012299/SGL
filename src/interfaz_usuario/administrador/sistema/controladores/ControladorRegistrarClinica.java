@@ -8,6 +8,8 @@ import gestor_interfaces.GestorEscenas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import logica.entidad.implementaciones.ServicioEntidad;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.validaciones_generales.ValidacionCampoVacio;
 import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
 import logica.validaciones_generales.ValidacionCantidadCaracteresMaxima;
@@ -65,6 +67,17 @@ public class ControladorRegistrarClinica {
             campoTelefono.Validar(txfTelefono.getText(), "Numero de telefono");
             campoDireccion.Validar(txfDireccion.getText(), "Campo direccion");
 
+            
+            EntidadRelacionada clinica = new EntidadRelacionada(
+                    txfNombreClinica.getText(),
+                    txfDireccion.getText(),
+                    txfTelefono.getText(),
+                    txfCorreo.getText(),
+                    txfNombreDirector.getText(),
+                    "Clinica");
+            
+            long idGenerado = ServicioEntidad.guardarEntidadBaseDatos(clinica);
+            clinica.setId(idGenerado);
             GestorEscenas.cargarConfirmacion(btnRegistrar.getScene().getWindow(), "Se ha registrado con éxito");
             GestorEscenas.cerrar(btnRegistrar);
         } catch (Exception e) {

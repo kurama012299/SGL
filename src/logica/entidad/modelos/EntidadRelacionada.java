@@ -17,6 +17,34 @@ public class EntidadRelacionada {
     private String NombreDirector;
     private String TipoEntidad;
 
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
+    }
+
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+
+    public void setNombreDirector(String NombreDirector) {
+        this.NombreDirector = NombreDirector;
+    }
+
+    public void setTipoEntidad(String TipoEntidad) {
+        this.TipoEntidad = TipoEntidad;
+    }
+
     public EntidadRelacionada(Long Id, String Nombre, String Direccion, String Telefono, String Correo, String NombreDirector, String TipoEntidad) {
         this.Id = Id;
         this.Nombre = Nombre;
@@ -29,6 +57,15 @@ public class EntidadRelacionada {
     public EntidadRelacionada(String nombre)
     {
         this.Nombre = nombre;
+    }
+    
+    public EntidadRelacionada(String Nombre, String Direccion, String Telefono, String Correo, String NombreDirector, String TipoEntidad) {
+        this.Nombre = Nombre;
+        this.Direccion = Direccion;
+        this.Telefono = Telefono;
+        this.Correo = Correo;
+        this.NombreDirector = NombreDirector;
+        this.TipoEntidad = TipoEntidad;
     }
 
     public Long getId() {
