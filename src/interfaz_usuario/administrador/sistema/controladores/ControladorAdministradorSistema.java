@@ -506,7 +506,8 @@ public class ControladorAdministradorSistema extends Controlador{
         GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador");
         GestorEscenas.configurarReloj(LabelFechaHora);
         
-        //configurarHoverReportes();
+       configurarReportes();
+
         
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -539,7 +540,6 @@ public class ControladorAdministradorSistema extends Controlador{
             ivImagenConfig.setScaleY(1);
         });
         menuConfig.getItems().addAll(mostrarInformacion, opciones);
-          //String hover="-fx-background-color: #8000ff; -fx-text-fill: white;";
         ivImagenConfig.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY) {
                 menuConfig.show(ivImagenConfig, e.getScreenX(), e.getScreenY());
@@ -556,79 +556,64 @@ public class ControladorAdministradorSistema extends Controlador{
     }
     
     
-    @FXML
-    private void HoverReportes(StackPane container, ImageView preview) {
-        
-         preview.setScaleX(1);
-         preview.setScaleY(1);
-            
-        container.setOnMouseEntered(e -> {
-            preview.setScaleX(1.5);
-            preview.setScaleY(1.8);
-            //container.setStyle("-fx-background-color: #34495e;");
-        });
-
-        /*// Exámenes
-        configurarReporte(spnlReporteExamenes, imgReporteExamenes, () -> {
-            GestorPDF.GenerarReporteExamenes(
-                    ServicioExamen.ObtenerExamenesAnual(),
-                    "Reporte de exámenes realizados en " + Year.now().getValue()
+    private void configurarReporteLicencias() {
+    configurarHover(spnlReporteExamenes, imgReporteExamenes, () -> {
+        try {
+            GestorPDF.GenerarReporteLicenciasEmitidas(
+                ServicioLicencia.ObtenerLicenciasAnual(),
+                "Reporte de licencias emitidas en " + Year.now().getValue()
             );
-        });*/
+        } catch (Exception ex) {
+             GestorEscenas.cargarError(spnlReporteExamenes.getScene().getWindow(), ex);
+        }
+    });
+}
 
-        // Infracciones
-        configurarReporte(spnlReporteInfracciones, imgReporteInfracciones, () -> {
+    private void configurarReporteInfracciones() {
+        configurarHover(spnlReporteInfracciones, imgReporteInfracciones, () -> {
             try {
                 GestorPDF.GenerarReporteInfracciones(
                         ServicioInfraccion.ObtenerInfraccionesAnual(),
                         "Reporte de infracciones en " + Year.now().getValue()
                 );
             } catch (Exception ex) {
-                Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
+                GestorEscenas.cargarError(spnlReporteInfracciones.getScene().getWindow(), ex);
             }
         });
-        /*
-        // Tipos de infracciones
-        configurarReporte(spnlReporteInfraccionesTipo, imgReporteInfraccionesTipo, () -> {
-            GestorPDF.GenerarReporteTiposInfraccion(
-                    ServicioInfraccion.ObtenerInfraccionesPorTipo(),
-                    "Reporte por tipos de infracciones"
-            );
-        });
-
-        // Conductores
-        configurarReporte(spnlReporteConductores, imgReporteConductores, () -> {
-            GestorPDF.GenerarReporteConductores(
-                    ServicioConductor.ObtenerConductoresRegistrados(),
-                    "Reporte de conductores registrados"
-            );
-        });*/
     }
 
-    private void configurarReporte(StackPane container, ImageView preview, Runnable accionReporte) {
-        // Efecto hover
-        preview.setScaleX(1);
-        preview.setScaleY(1);
+  
 
+    private void configurarHover(StackPane container, ImageView preview, Runnable accionReporte) {
+        // Efectos hover
         container.setOnMouseEntered(e -> {
             preview.setScaleX(1.1);
             preview.setScaleY(1.1);
+            container.setStyle("-fx-background-color: #34495e;");
         });
 
         container.setOnMouseExited(e -> {
             preview.setScaleX(1);
             preview.setScaleY(1);
+            container.setStyle("-fx-background-color: transparent;");
         });
 
         // Acción al hacer click
         container.setOnMouseClicked(e -> {
             try {
                 accionReporte.run();
+                //GestorEscenas.mostrarMensaje("Éxito", "Reporte generado correctamente");
             } catch (Exception ex) {
-                GestorEscenas.cargarError(container.getScene().getWindow(), ex);
             }
         });
     }
+    
+    private void configurarReportes()
+    {
+        configurarReporteLicencias();
+        configurarReporteInfracciones();
+    }
+    
     @FXML
     public void TransicionLicencias()
     {
