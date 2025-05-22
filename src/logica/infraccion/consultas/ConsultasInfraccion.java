@@ -6,12 +6,15 @@ package logica.infraccion.consultas;
 
 import infraestructura.ConectorBaseDato;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.modelos.Infraccion;
+import logica.persona.modelos.Conductor;
 
 /**
  *
@@ -96,4 +99,66 @@ public class ConsultasInfraccion {
         return contador;
     }
 
+    public static long obtenerIdGravedad(String nombreGravedad) throws SQLException, Exception {
+    String sql = "SELECT \"Id\" FROM \"Gravedad\" WHERE \"Nombre\" = ?";
+    
+    try (Connection conn = ConectorBaseDato.Conectar();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, nombreGravedad);
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getLong("Id");
+            }
+        }
+    }
+    throw new SQLException("No se encontró la gravedad: " + nombreGravedad);
+}
+    
+    public static long obtenerIdLicencia(String CI) throws SQLException, Exception {
+    String sql = "SELECT \"Id_Licencia\" FROM \"Persona\" WHERE \"CI\" = ?";
+    
+    try (Connection conn = ConectorBaseDato.Conectar();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, CI);
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getLong("Id_Licencia");
+            }
+        }
+    }
+    throw new SQLException("No se encontró la Persona con CI: " + CI);
+}
+    
+    public static long guardarInfraccion(Infraccion infraccion, Conductor conductor) throws SQLException, Exception {
+        
+        long idGravedad = obtenerIdGravedad(infraccion.getGravedad());
+        long idLicencia = obtenerIdLicencia(conductor.getCI());
+        
+        String guardar = "INSERT INTO \"Infraccion\" (\"Fecha\", \"Lugar\", \"Descripcion\", \"PuntosDeducidos\", \"Pagada\", \"Id_Licencia\", \"Id_Gravedad\", \"Nombre_Oficial\") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING \"Id\"";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
+
+            pstmt.setDate(1, (Date) infraccion.getFecha());
+            pstmt.setString(2, infraccion.getLugar());
+            pstmt.setString(3, infraccion.getDescripcion());
+            pstmt.setInt(4, infraccion.getPuntosDeducidos());
+            pstmt.setBoolean(5, infraccion.isPagada());
+            pstmt.setLong(6, idLicencia);
+            pstmt.setLong(7, idGravedad);
+            pstmt.setString(8, infraccion.getNombreOficial());
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1); // Retorna el ID generado
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al guardar infraccion: " + e.getMessage());
+            throw e;
+        }
+        throw new SQLException("No se pudo guardar la infraccion ni obtener el ID");
+    }
 }

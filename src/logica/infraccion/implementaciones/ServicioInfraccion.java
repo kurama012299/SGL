@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import logica.entidad.consultas.ConsultasEntidad;
+import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.consultas.ConsultasInfraccion;
 import logica.infraccion.modelos.Infraccion;
+import logica.persona.modelos.Conductor;
 
 /**
  *
@@ -47,4 +50,8 @@ public class ServicioInfraccion {
     {
         return ConsultasInfraccion.ObtenerCantidadInfraccionesPorIdConsulta(Id);
     }
+    
+    public static long guardarInfraccionBaseDatos(Infraccion infraccion, Conductor conductor) throws Exception{
+         return ConsultasInfraccion.guardarInfraccion(infraccion, conductor);
+     }
 }
