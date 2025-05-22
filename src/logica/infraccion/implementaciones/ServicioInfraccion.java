@@ -11,18 +11,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Year;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import logica.entidad.consultas.ConsultasEntidad;
-import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.consultas.ConsultasInfraccion;
 import logica.infraccion.modelos.Infraccion;
-import logica.persona.modelos.Conductor;
+
 
 /**
  *
