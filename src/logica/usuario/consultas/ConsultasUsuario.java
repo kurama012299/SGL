@@ -48,4 +48,37 @@ public class ConsultasUsuario {
             throw new Exception("Error al consultar la base de datos: " + e.getMessage());
         }
     }
+    
+    public static Usuario obtenerUsuarioPorIdConsulta(Long idUsuario) throws Exception {
+        String consulta = """
+        SELECT u.*, r."Nombre" AS NombreRol
+        FROM "Usuario" u
+        JOIN "Rol" r ON u."Id_Rol" = r."Id"
+        WHERE u."Id" = ?
+        """;
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+
+            stmt.setLong(1, idUsuario);
+
+            ResultSet rs = stmt.executeQuery();
+
+            // Mapear todos los campos necesarios
+            if (rs.next()) {
+                // Obtener valores, manejando posibles nulos
+                Long Id = rs.getLong("Id");
+                String Nombre = rs.getString("Nombre");
+                String Correo = rs.getString("Correo");
+                String NombreRol = rs.getString("NombreRol");
+                String Foto = rs.getString("Foto");
+                Long NumeroEntidad = rs.getObject("Id_Entidad_Perteneciente", Long.class);
+                return new Usuario(Nombre, Correo, NombreRol, Foto, NumeroEntidad, Id);
+
+            } else {
+                throw new Exception("Usuario no encontrado");
+            }
+        } catch (SQLException e) {
+            throw new Exception("Error en la base de datos: " + e.getMessage());
+        }
+    }
 }

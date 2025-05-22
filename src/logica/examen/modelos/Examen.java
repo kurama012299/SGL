@@ -33,6 +33,16 @@ public class Examen {
         this.Persona=Persona;
         
     }
+    
+    public Examen( Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,String Tipo) {
+        this.Fecha = Fecha;
+        this.Aprobado = Aprobado;
+        this.Tipo = Tipo;
+        this.Entidad = Entidad;
+        this.Examinador=Examinador;
+        this.Persona=Persona;
+        
+    }
 
     public Long getId() {
         return Id;

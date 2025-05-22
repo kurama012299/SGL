@@ -167,5 +167,51 @@ public class ConsultaExamenMedico {
             return examenes;
         }
     }
+    
+    public static boolean CrearExamenMedico(ExamenMedico examen) throws Exception {
+        String consulta = "INSERT INTO \"ExamenMedico\" (\"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\", \"Fecha\", \"Aprobado\") "
+                + "VALUES (?, ?, ?, ?, ?) RETURNING \"Id\"";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+
+            // Establecer parámetros
+            stmt.setLong(1, examen.getPersona().getId());
+            stmt.setLong(2, examen.getExaminador().getId());
+            stmt.setLong(3, examen.getEntidad().getId());
+            stmt.setDate(4, new java.sql.Date(examen.getFecha().getTime()));
+            stmt.setBoolean(5, examen.isAprobado());
+
+            // Ejecutar inserción y obtener ID generado
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Long idExamen = rs.getLong("Id");
+
+                // Insertar restricciones si existen
+                if (!examen.getRestricciones().isEmpty()) {
+                    insertarRestriccionesParaExamen(idExamen, examen.getRestricciones(), conn);
+                }
+
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Error al crear el examen médico: " + e.getMessage());
+        }
+    }
+
+    private static void insertarRestriccionesParaExamen(Long idExamen, ArrayList<String> restricciones, Connection conn) throws SQLException {
+        String consulta = "INSERT INTO \"ExamenMedicoRestriccion\" (\"Id_ExamenMedico\", \"Id_Restriccion\") "
+                + "SELECT ?, r.\"Id\" FROM \"Restriccion\" r WHERE r.\"Nombre\" = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(consulta)) {
+            for (String restriccion : restricciones) {
+                stmt.setLong(1, idExamen);
+                stmt.setString(2, restriccion);
+                stmt.addBatch();
+            }
+            stmt.executeBatch();
+        }
+    }
 }
 

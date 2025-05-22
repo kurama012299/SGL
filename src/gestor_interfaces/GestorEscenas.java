@@ -59,7 +59,9 @@ import java.time.format.DateTimeFormatter;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -812,14 +814,14 @@ public class GestorEscenas  {
         }
       }
      
-      public static void cargarRegistrarPersona(Window padre,Stage ventanaAnterior) throws Exception {
+      public static void cargarRegistrarPersona(Window padre,Stage ventanaAnterior,ExamenMedico examenMedico) throws Exception {
         try {
             String direccion = GestorFXML.RutaRegistrarPersona;
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
             ControladorRegistrarPersona controlador = cargador.getController();
-            controlador.setDatos(ventanaAnterior);
+            controlador.setDatos(examenMedico,ventanaAnterior);
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();
@@ -953,25 +955,62 @@ public class GestorEscenas  {
         }
       }
     
-    public static void generarRadioButtons(ArrayList<String> opciones, AnchorPane apnlContenedor) {
+    public static void generarRadioButtons(ArrayList<String> opciones, AnchorPane apnlContenedor, ScrollPane scrollPane) {
         apnlContenedor.getChildren().clear();
- 
+
         VBox vbox = new VBox();
         vbox.setSpacing(10); // Espacio entre RadioButtons
-    
+
         // Generar un RadioButton por cada opción
         for (String opcion : opciones) {
             JFXRadioButton rb = new JFXRadioButton(opcion);
             rb.setStyle("-jfx-selected-color: #8000ff; -jfx-unselected-color: #5a5a5a;");
-            rb.setUserData(opcion); 
+            rb.setUserData(opcion);
             vbox.getChildren().add(rb);
         }
+
+        // Crear ScrollPane y configurarlo
+        scrollPane = new ScrollPane(vbox);
+        scrollPane.setFitToWidth(true); 
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); 
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+
         
-        apnlContenedor.getChildren().add(vbox);
-        AnchorPane.setTopAnchor(vbox, 10.0);
-        AnchorPane.setLeftAnchor(vbox, 10.0);
-        AnchorPane.setRightAnchor(vbox, 10.0);
+        AnchorPane.setTopAnchor(scrollPane, 15.0);
+        AnchorPane.setLeftAnchor(scrollPane, 15.0);
+        AnchorPane.setRightAnchor(scrollPane, 15.0);
+        AnchorPane.setBottomAnchor(scrollPane, 15.0); 
+        scrollPane.setMaxWidth(450);
+        
+        apnlContenedor.getChildren().add(scrollPane);
     }
-    
+
+        public static ArrayList<JFXRadioButton> obtenerRadioButtonsSeleccionados(AnchorPane apnlContenedor) {
+        ArrayList<JFXRadioButton> seleccionados = new ArrayList<>();
+
+        // Buscar recursivamente en todos los nodos
+        for (Node node : apnlContenedor.getChildren()) {
+            if (node instanceof ScrollPane) {
+                ScrollPane scrollPane = (ScrollPane) node;
+                Node content = scrollPane.getContent();
+
+                if (content instanceof VBox) {
+                    VBox vbox = (VBox) content;
+
+                    for (Node child : vbox.getChildren()) {
+                        if (child instanceof JFXRadioButton) {
+                            JFXRadioButton rb = (JFXRadioButton) child;
+                            if (rb.isSelected()) {
+                                seleccionados.add(rb);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return seleccionados;
+    }
     
 }

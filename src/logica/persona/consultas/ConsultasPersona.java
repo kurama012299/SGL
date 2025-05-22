@@ -13,6 +13,7 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.persona.modelos.Conductor;
+import logica.persona.modelos.Persona;
 
 
 /**
@@ -20,6 +21,73 @@ import logica.persona.modelos.Conductor;
  * @author Angel Hernandez
  */
 public class ConsultasPersona {
+    
+    public static ObservableList<Persona> ObtenerPersonasConsulta() throws Exception {
+        ObservableList<Persona> personas = FXCollections.observableArrayList();
+        
+        String consulta = "SELECT * FROM \"Persona\" "; 
+        
+        try (Connection conn = ConectorBaseDato.Conectar();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(consulta)) {
+            
+            while (rs.next()) {
+                Persona persona = new Persona(
+                        rs.getLong("Id"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
+                        rs.getString("CI"),
+                        rs.getDate("FechaNacimiento"),
+                        rs.getString("Direccion"),
+                        rs.getString("Telefono"),
+                        rs.getString("Correo"),
+                        rs.getString("Foto"));
+                
+                personas.add(persona);
+            }
+            
+        } catch (SQLException e) {
+            throw new Exception("Error al obtener personas");
+        }
+        
+        return personas;
+    }
+    
+    
+    public static Persona ObtenerPersonaPorCIConsulta(String ci) throws Exception {
+        Persona persona = null;
+
+        String consulta = "SELECT * FROM \"Persona\" WHERE \"CI\" = ?";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); 
+                PreparedStatement stmt = conn.prepareStatement(consulta)) {
+
+            stmt.setString(1, ci);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    persona = new Persona(
+                        rs.getLong("Id"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
+                        rs.getString("CI"),
+                        rs.getDate("FechaNacimiento"),
+                        rs.getString("Direccion"),
+                        rs.getString("Telefono"),
+                        rs.getString("Correo"),
+                        rs.getString("Foto")
+                    );
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener persona: "+e.getMessage());
+            throw new Exception("Error al obtener la persona");
+        }
+
+        return persona;
+    }
+    
     
     public static ObservableList<Conductor> ObtenerConductoresConsulta() throws Exception {
         ObservableList<Conductor> Conductores = FXCollections.observableArrayList();

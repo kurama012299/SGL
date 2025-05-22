@@ -133,7 +133,7 @@ public class ControladorVerMasExamenes {
         else
         {
             TextFieldResultado.setText("Reprobado");
-            TextFieldRestricciones.setText("Restricciones que impiden "+"\n"+"conducir "+"\n"+"Pendiente");
+            TextFieldRestricciones.setText(GestorEscenas.convertirArrayRestricciones(ExamenMedico.getRestricciones()).toString());
         }
         TextFieldEntidad.setText(ExamenMedico.getEntidad().getNombre());
         TextFieldFecha.setText(ExamenMedico.getFecha().toString());

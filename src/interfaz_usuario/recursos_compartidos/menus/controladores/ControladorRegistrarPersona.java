@@ -24,7 +24,7 @@ import logica.validaciones_generales.ValidacionSoloNumeros;
  */
 public class ControladorRegistrarPersona {
     
-    private ExamenMedico examenMedico=null;
+
     
     @FXML private JFXButton btnRegistrar;
     
@@ -40,6 +40,10 @@ public class ControladorRegistrarPersona {
     
     private Stage ventanaAnterior;
     
+    private ExamenMedico examenMedico;
+    
+
+    
     @FXML public void initialize()
     {
         System.out.println("Controlador Registrar persona iniciado");
@@ -49,9 +53,9 @@ public class ControladorRegistrarPersona {
         });
     }
     
-    public void setDatos(/*ExamenMedico examenMedico,*/Stage ventana)
+    public void setDatos(ExamenMedico examenMedico,Stage ventana)
     {
-        //this.examenMedico=examenMedico;
+        this.examenMedico=examenMedico;
         this.ventanaAnterior=ventana;
     }
     

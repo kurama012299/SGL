@@ -26,6 +26,12 @@ public class ExamenMedico extends Examen{
     }
     
 
+    public ExamenMedico( Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,ArrayList<String> Restricciones) {
+        super(Fecha, Aprobado, Entidad, Persona, Examinador,"Médico");
+        
+        this.Restricciones=Restricciones;
+    }
+    
     public ArrayList<String> getRestricciones() {
         return Restricciones;
     }
