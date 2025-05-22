@@ -21,6 +21,7 @@ import javafx.scene.control.ToggleGroup;
 import logica.entidad.implementaciones.ServicioEntidad;
 import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.infraccion.modelos.Infraccion;
+import logica.licencia.implementaciones.ServicioLicencia;
 import logica.persona.modelos.Conductor;
 import logica.persona.modelos.Persona;
 import logica.validaciones_generales.ValidacionCampoVacio;
@@ -28,8 +29,10 @@ import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
 import logica.validaciones_generales.ValidacionCantidadCaracteresMaxima;
 import logica.validaciones_generales.ValidacionCarnet;
 import logica.validaciones_generales.ValidacionCompuesta;
+import logica.validaciones_generales.ValidacionConductorExiste;
 import logica.validaciones_generales.ValidacionFecha;
 import logica.validaciones_generales.ValidacionGrupoRadioButton;
+import logica.validaciones_generales.ValidacionIdLicenciaRelacionCI;
 import logica.validaciones_generales.ValidacionSoloLetras;
 import logica.validaciones_generales.ValidacionSoloNumeros;
 
@@ -142,17 +145,22 @@ public class ControladorRegistrarInfraccion {
         
         try {
             campoCarnet.Validar(txfCi.getText(), "Carnet identidad");
+            ValidacionConductorExiste.Validar(txfCi.getText());
             campoNumeroLicencia.Validar(txfNumeroLicencia.getText(), "Numero de licencia");
+            long idLicencia = Long.parseLong(txfNumeroLicencia.getText());
+            ValidacionIdLicenciaRelacionCI.validarRelacionCiLicencia(txfCi.getText(),idLicencia);
             campoNombre.Validar(txfLugarInfraccion.getText(), "Lugar infraccion");
             campoNombre.Validar(txfNombreOficial.getText(), "Nombre oficial");
             validacionFecha.Validar(dpFechaInfraccion.getValue(), "Fecha infraccion");
             campoNombre.Validar(txaDescripcion.getText(), "Descripcion");
             validarGrupoBotones.Validar(grupoGravedadrdbt, "gravedad de la infraccion");
+            
             boolean pagado = rdbtnBotonPagado.isSelected();
             java.sql.Date fecha = java.sql.Date.valueOf(dpFechaInfraccion.getValue());
             int puntos = Integer.parseInt((String) cmbPtosDeducidos.getValue());
             RadioButton seleccionado = (RadioButton) grupoGravedadrdbt.getSelectedToggle();
             String gravedad = seleccionado.getText();
+            
             
             Infraccion infraccion = new Infraccion(
                     fecha,
@@ -160,13 +168,12 @@ public class ControladorRegistrarInfraccion {
                     txaDescripcion.getText(),
                     puntos,
                     pagado,
+                    idLicencia,
                     gravedad,
                     txfNombreOficial.getText());
             
-            Conductor conductor = new Conductor(txfCi.getText());
-                    
-            long idGenerado = ServicioInfraccion.guardarInfraccionBaseDatos(infraccion, conductor);
-            infraccion.setId(idGenerado);
+            ServicioInfraccion.crearInfraccionBaseDatos(infraccion);
+            ServicioLicencia.actualizarPuntosLicencia(idLicencia, puntos);
             
             GestorEscenas.cargarConfirmacion(btnRegistrar.getScene().getWindow(), "Se ha registrado con éxito");
             GestorEscenas.cerrar(btnRegistrar);

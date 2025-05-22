@@ -44,4 +44,7 @@ public class ServicioLicencia {
         return ConsultasLicencia.ObtenerLicenciaPorIdConsulta(Id);
     }
 
+    public static int actualizarPuntosLicencia(long idLicencia, int puntosASumar) throws Exception{
+        return ConsultasLicencia.actualizarPuntosLicenciaConsulta(idLicencia, puntosASumar);
+    }
 }
