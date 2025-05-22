@@ -557,7 +557,7 @@ public class ControladorAdministradorSistema extends Controlador{
     
     
     private void configurarReporteLicencias() {
-    configurarHover(spnlReporteExamenes, imgReporteExamenes, () -> {
+    configurarHover(spnlReporteLicencias, imgReporteLicencias, () -> {
         try {
             GestorPDF.GenerarReporteLicenciasEmitidas(
                 ServicioLicencia.ObtenerLicenciasAnual(),
@@ -602,7 +602,7 @@ public class ControladorAdministradorSistema extends Controlador{
         container.setOnMouseClicked(e -> {
             try {
                 accionReporte.run();
-                //GestorEscenas.mostrarMensaje("Éxito", "Reporte generado correctamente");
+                GestorEscenas.cargarConfirmacion(BotonCerrarSesion.getScene().getWindow(), "Reporte generado correctamente");
             } catch (Exception ex) {
             }
         });
