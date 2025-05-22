@@ -54,6 +54,7 @@ import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasEx
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesTeoricosTrabajador;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasInfracciones;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasLicencias;
+import java.awt.Insets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javafx.animation.KeyFrame;
@@ -955,13 +956,16 @@ public class GestorEscenas  {
         }
       }
     
-    public static void generarRadioButtons(ArrayList<String> opciones, AnchorPane apnlContenedor, ScrollPane scrollPane) {
-        apnlContenedor.getChildren().clear();
+    public static void generarRadioButtons(ArrayList<String> opciones, ScrollPane scrollPaneContenedor) {
+        // Crear el AnchorPane que contendrá los RadioButtons
+        AnchorPane apnlContenedor = new AnchorPane();
 
+        // Crear el VBox para organizar los RadioButtons
         VBox vbox = new VBox();
-        vbox.setSpacing(10); // Espacio entre RadioButtons
+        vbox.setSpacing(10);
 
-        // Generar un RadioButton por cada opción
+
+        // Generar RadioButtons
         for (String opcion : opciones) {
             JFXRadioButton rb = new JFXRadioButton(opcion);
             rb.setStyle("-jfx-selected-color: #8000ff; -jfx-unselected-color: #5a5a5a;");
@@ -969,24 +973,24 @@ public class GestorEscenas  {
             vbox.getChildren().add(rb);
         }
 
-        // Crear ScrollPane y configurarlo
-        scrollPane = new ScrollPane(vbox);
-        scrollPane.setFitToWidth(true); 
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); 
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        // Añadir el VBox al AnchorPane con anclajes
+        apnlContenedor.getChildren().add(vbox);
+        AnchorPane.setTopAnchor(vbox, 0.0);
+        AnchorPane.setLeftAnchor(vbox, 0.0);
+        AnchorPane.setRightAnchor(vbox, 0.0);
 
+        // Configurar el ScrollPane
+        scrollPaneContenedor.setContent(apnlContenedor);
+        scrollPaneContenedor.setFitToWidth(true);
+        scrollPaneContenedor.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneContenedor.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 
-        
-        AnchorPane.setTopAnchor(scrollPane, 15.0);
-        AnchorPane.setLeftAnchor(scrollPane, 15.0);
-        AnchorPane.setRightAnchor(scrollPane, 15.0);
-        AnchorPane.setBottomAnchor(scrollPane, 15.0); 
-        scrollPane.setMaxWidth(450);
-        
-        apnlContenedor.getChildren().add(scrollPane);
+        // Ajustar el tamaño del contenido
+        vbox.minWidthProperty().bind(scrollPaneContenedor.widthProperty().subtract(20));
+        apnlContenedor.minHeightProperty().bind(vbox.heightProperty().add(30));
     }
 
-        public static ArrayList<JFXRadioButton> obtenerRadioButtonsSeleccionados(AnchorPane apnlContenedor) {
+    public static ArrayList<JFXRadioButton> obtenerRadioButtonsSeleccionados(AnchorPane apnlContenedor) {
         ArrayList<JFXRadioButton> seleccionados = new ArrayList<>();
 
         // Buscar recursivamente en todos los nodos
@@ -1012,5 +1016,5 @@ public class GestorEscenas  {
 
         return seleccionados;
     }
-    
+
 }

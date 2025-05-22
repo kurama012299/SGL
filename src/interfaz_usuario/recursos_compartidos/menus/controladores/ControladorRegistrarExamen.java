@@ -136,7 +136,7 @@ public class ControladorRegistrarExamen {
         visibilidadRestricciones(true);
         btnRegistrar.setText("Siguiente");
         try {
-            GestorEscenas.generarRadioButtons(ServicioRestriccion.obtenerRestricciones(),apnlContenedorRestricciones,scrpRestricciones);
+            GestorEscenas.generarRadioButtons(ServicioRestriccion.obtenerRestricciones(),scrpRestricciones);
         } catch (Exception ex) {
             GestorEscenas.cargarError(rbtMedico.getScene().getWindow(), ex);
         }
