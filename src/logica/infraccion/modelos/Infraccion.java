@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Angel Hernandez
  */
-public class Infraccion {
+public class Infraccion { 
     private Long Id;
     private Date Fecha;
     private String Lugar;
@@ -30,6 +30,17 @@ public class Infraccion {
         this.PuntosDeducidos = PuntosDeducidos;
         this.Pagada = Pagada;
         this.IdLicencia = IdLicencia;
+        this.Gravedad = Gravedad;
+        this.NombreOficial = NombreOficial;
+    }
+    
+    public Infraccion(Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, String Gravedad, String NombreOficial){
+        
+        this.Fecha = Fecha;
+        this.Lugar = Lugar;
+        this.Descripcion = Descripcion;
+        this.PuntosDeducidos = PuntosDeducidos;
+        this.Pagada = Pagada;
         this.Gravedad = Gravedad;
         this.NombreOficial = NombreOficial;
     }
@@ -73,6 +84,10 @@ public class Infraccion {
 
     public String getNombreOficial() {
         return NombreOficial;
+    }
+    
+    public void setId(long Id){
+        this.Id = Id;
     }
     
     @Override

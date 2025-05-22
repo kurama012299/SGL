@@ -48,6 +48,10 @@ public class Persona {
         this.Foto = Foto;
     }
     
+     public Persona(String CI){
+         
+         this.CI = CI;
+     }
     
     public Long getId() {
         return Id;
