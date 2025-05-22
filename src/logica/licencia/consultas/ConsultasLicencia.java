@@ -143,5 +143,28 @@ public class ConsultasLicencia {
         throw new RuntimeException("Error al cargar categorías de la licencia", e);
     }
 }
+    
+   
+public static int actualizarPuntosLicenciaConsulta(long idLicencia, int puntosASumar) throws SQLException, Exception {
+   
+    String consulta = "UPDATE \"Licencia\" SET \"CantPuntos\" = LEAST(\"CantPuntos\" + ?, 36), " +
+                 "\"Id_Estado\" = CASE WHEN \"CantPuntos\" + ? >= 36 THEN 4 ELSE \"Id_Estado\" END " +
+                 "WHERE \"Id\" = ? RETURNING \"CantPuntos\"";
+
+    try (Connection conn = ConectorBaseDato.Conectar();
+         PreparedStatement pstmt = conn.prepareStatement(consulta)) {
+        
+        pstmt.setInt(1, puntosASumar);
+        pstmt.setInt(2, puntosASumar);
+        pstmt.setLong(3, idLicencia);
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt("CantPuntos");
+            }
+        }
+    }
+    throw new SQLException("No se pudo actualizar los puntos de la licencia");
+}
 
 }

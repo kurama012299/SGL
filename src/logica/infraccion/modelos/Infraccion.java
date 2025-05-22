@@ -34,13 +34,14 @@ public class Infraccion {
         this.NombreOficial = NombreOficial;
     }
     
-    public Infraccion(Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, String Gravedad, String NombreOficial){
+    public Infraccion(Date Fecha, String Lugar, String Descripcion, int PuntosDeducidos, boolean Pagada, long idLicencia, String Gravedad, String NombreOficial){
         
         this.Fecha = Fecha;
         this.Lugar = Lugar;
         this.Descripcion = Descripcion;
         this.PuntosDeducidos = PuntosDeducidos;
         this.Pagada = Pagada;
+        this.IdLicencia = idLicencia;
         this.Gravedad = Gravedad;
         this.NombreOficial = NombreOficial;
     }

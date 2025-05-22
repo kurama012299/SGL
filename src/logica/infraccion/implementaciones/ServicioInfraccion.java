@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package logica.infraccion.implementaciones;
+import infraestructura.ConectorBaseDato;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
@@ -51,7 +56,24 @@ public class ServicioInfraccion {
         return ConsultasInfraccion.ObtenerCantidadInfraccionesPorIdConsulta(Id);
     }
     
-    public static long guardarInfraccionBaseDatos(Infraccion infraccion, Conductor conductor) throws Exception{
-         return ConsultasInfraccion.guardarInfraccion(infraccion, conductor);
+    public static void crearInfraccionBaseDatos(Infraccion infraccion) throws Exception{
+         ConsultasInfraccion.crearInfraccionConsulta(infraccion);
      }
+    
+    public static long obtenerIdGravedad(String nombreGravedad) throws SQLException, Exception {
+    String sql = "SELECT \"Id\" FROM \"Gravedad\" WHERE \"Nombre\" = ?";
+    
+    try (Connection conn = ConectorBaseDato.Conectar();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setString(1, nombreGravedad);
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getLong("Id");
+            }
+        }
+    }
+    throw new SQLException("No se encontró la gravedad: " + nombreGravedad);
+}
 }
