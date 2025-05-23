@@ -28,7 +28,7 @@
          </font>
       </Label>
       <TextField fx:id="TextFieldIdLicencia" disable="true" editable="false" layoutX="81.0" layoutY="133.0" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" text="123g34" />
-      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="16.0" layoutY="337.0" onAction="#cerrar" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
+      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="16.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
       <JFXButton cancelButton="true" layoutX="418.0" layoutY="337.0" opacity="0.4" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: red;" text="       Eliminar" textFill="WHITE" />
       <Label layoutX="16.0" layoutY="173.0" prefHeight="25.0" prefWidth="169.0" text="Gravedad de la infracción:">
          <font>

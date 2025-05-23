@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.infraccion.modelos.Infraccion;
+import logica.infraccion.modelos.Infraccion;
 import logica.persona.modelos.Conductor;
 
 /**

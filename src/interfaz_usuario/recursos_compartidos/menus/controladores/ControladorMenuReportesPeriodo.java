@@ -9,6 +9,7 @@ import gestor_interfaces.GestorEscenas;
 import java.time.LocalDate;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import logica.examen.implementaciones.ServicioExamenesGenerales;
 import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.licencia.implementaciones.ServicioLicencia;
 import logica.pdf_gestion.GestorPDF;
@@ -62,6 +63,18 @@ public class ControladorMenuReportesPeriodo {
                             + dtFechaInicio.getValue() + " hasta " + dtFechaFin.getValue()
                     );
                     break;
+                /*case "Infracciones por tipo":
+                    break;*/
+                case "Examenes emitidos":
+                    GestorPDF.GenerarReporteExamenes(
+                            ServicioExamenesGenerales.obtenerExamenesPorPeriodo(
+                                    dtFechaInicio.getValue(),
+                                    dtFechaFin.getValue()
+                            ),
+                            "Reporte de examenes emitidos desde "
+                            + dtFechaInicio.getValue() + " hasta " + dtFechaFin.getValue()
+                    );
+                        break;
 
             }
             

@@ -30,6 +30,7 @@ import javafx.application.Platform;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import logica.examen.modelos.Examen;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
@@ -296,5 +297,81 @@ public class GestorPDF {
         subtituloPdf.setSpacingAfter(15f);
         document.add(subtituloPdf);
     }
+
+    
+    private static void agregarTablaExamenes(Document document, ObservableList<Examen> examenes, Map<String, Font> estilos)
+            throws DocumentException, Exception {
+
+        // Columnas: Codigo, Nombre Persona, Tipo, Fecha, Resultado(Aprobado-Suspenso),Entidad
+        PdfPTable tabla = new PdfPTable(6);
+        tabla.setWidthPercentage(100);
+        tabla.setSplitLate(false); // Evita que las celdas se dividan en páginas
+
+        // Configurar anchos relativos de columnas
+        float[] anchosColumnas = {1f, 2f, 1.5f, 1.5f, 1.5f, 1.5f};
+        tabla.setWidths(anchosColumnas);
+
+        // Configuración común para todas las celdas
+        tabla.setExtendLastRow(false);
+        tabla.setHeaderRows(1); // La primera fila es cabecera
+
+        // Cabecera de la tabla (con alineación vertical superior)
+        agregarCeldaCabecera(tabla, "Codigo", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Nombre", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Tipo", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Fecha", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Resultado", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Entidad", estilos.get("cabecera"));
+
+        // Datos de los examenes
+        boolean fondoGris = false;
+        for (Examen examen : examenes) {
+            BaseColor colorFondo = fondoGris ? BaseColor.LIGHT_GRAY : BaseColor.WHITE;
+
+            // Celda con texto que se ajusta (wrap) y alineación superior
+            agregarCeldaDatosAjustable(tabla, examen.getId().toString(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, examen.getPersona().getNombre() + examen.getPersona().getApellidos(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, examen.getTipo(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, examen.getFecha().toString(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, (examen.isAprobado())?"Aprobado":"Reprobado", estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, examen.getEntidad().getNombre(),estilos.get("datos"), colorFondo);
+            
+            fondoGris = !fondoGris; 
+        }
+
+        document.add(tabla);
+    }
+    
+     public static void GenerarReporteExamenes(ObservableList<Examen> examenes, String tituloReporte) {
+    try {
+        // 1. Configuración inicial del documento
+        File pdfFile = File.createTempFile("reporte_examenes_", ".pdf");
+        pdfFile.deleteOnExit();
+
+        Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
+        PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+        document.open();
+
+        // 2. Estilos de fuentes
+        Map<String, Font> estilos = crearEstilosFuentes();
+
+        // 3. Agregar encabezado
+        agregarEncabezado(document, tituloReporte, "Reporte detallado de examenes", estilos);
+
+        // 4. Agregar tabla con datos de infracciones
+        agregarTablaExamenes(document, examenes, estilos);
+
+        // 5. Agregar pie de página
+        agregarPiePagina(document, estilos.get("footer"));
+
+        document.close();
+
+        // 6. Abrir el PDF automáticamente
+        abrirDocumento(pdfFile);
+
+    } catch (Exception e) {
+        manejarErrorGeneracionReporte(e);
+    }
+}
 
 }
