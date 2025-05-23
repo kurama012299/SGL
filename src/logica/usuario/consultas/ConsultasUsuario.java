@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import logica.usuario.modelos.Usuario;
 /**
  *
@@ -80,5 +81,51 @@ public class ConsultasUsuario {
         } catch (SQLException e) {
             throw new Exception("Error en la base de datos: " + e.getMessage());
         }
+    }
+    
+     public static ArrayList<Usuario> obtenerCorreosUsuarios() throws Exception {
+         
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+         String consulta = "SELECT u.\"Correo\",u.\"Nombre\""+
+                     "FROM \"Usuario\"u";
+                    
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+            try{
+                ResultSet rs = stmt.executeQuery();         
+                while (rs.next()) {
+                    Usuario usuarioNuevo= new Usuario(
+                            rs.getString("Correo"),
+                            rs.getString("Nombre"));
+                    usuarios.add(usuarioNuevo);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return usuarios;
+        }
+    }
+     
+    public static long crearUsuario(Usuario usuario,Long idRol,String clave) throws SQLException, Exception {
+        String guardar = "INSERT INTO \"Usuario\" (\"Correo\", \"Clave\", \"Nombre\", \"Id_Rol\", \"Foto\", \"Id_Entidad_Perteneciente\") VALUES (?, ?, ?, ?, ?, ?) RETURNING \"Id\"";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
+
+            pstmt.setString(1, usuario.getCorreo());
+            pstmt.setString(2, clave);
+            pstmt.setString(3, usuario.getNombre());
+            pstmt.setLong(4, idRol);
+            pstmt.setString(5, usuario.getFoto());
+            pstmt.setLong(6, usuario.getEntidadPerteneciente());
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1); // Retorna el ID generado
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al guardar usuario: " + e.getMessage());
+            throw e;
+        }
+        throw new SQLException("Error al crear el usuario en la base de datos");
     }
 }

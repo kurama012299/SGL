@@ -198,6 +198,7 @@ public class ControladorRegistrarExamen {
 
             System.out.println("Datos Correctos");
 
+            
             if (rbtMedico.isSelected()) {
                 Usuario u = ServicioUsuario.obtenerUsuarioPorId(Long.parseLong(txfIdExaminador.getText()));
                 ExamenMedico examenMedico = new ExamenMedico(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),

@@ -4,6 +4,7 @@
  */
 package logica.usuario.implementaciones;
 
+import java.util.ArrayList;
 import logica.usuario.consultas.ConsultasUsuario;
 import logica.usuario.modelos.Usuario;
 
@@ -16,6 +17,16 @@ public class ServicioUsuario {
     public static Usuario obtenerUsuarioPorId(long id) throws Exception
     {
         return ConsultasUsuario.obtenerUsuarioPorIdConsulta(id);
+    }
+    
+    public static ArrayList<Usuario> obtenerCorreosUsuario() throws Exception
+    {
+        return ConsultasUsuario.obtenerCorreosUsuarios();
+    }
+    
+    public static Long crearUsuarioBd(Usuario usuario,Long idRol,String clave) throws Exception
+    {
+        return ConsultasUsuario.crearUsuario(usuario, idRol, clave);
     }
     
 }

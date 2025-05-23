@@ -5,7 +5,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -606,11 +608,19 @@
                   <CheckBox layoutX="697.0" layoutY="64.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>
-                        <JFXButton layoutX="483.0" layoutY="4.0" prefHeight="25.0" prefWidth="3.0" text=" " />
+                        <JFXButton fx:id="btnEscondidoConfiguracion" layoutX="483.0" layoutY="4.0" prefHeight="31.0" prefWidth="31.0" text=" ">
+                           <contextMenu>
+                              <ContextMenu fx:id="menuConfig">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                                    <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                                 </items>
+                              </ContextMenu>
+                           </contextMenu></JFXButton>
                         <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="454.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../recursos_compartidos/imagenes/ico-notificacion.png" />
@@ -827,7 +837,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="PanelReportes" layoutX="10.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0">
+            <Pane fx:id="PanelReportes" layoutX="10.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
                <children>
                   <Separator layoutX="-10.0" layoutY="-7.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" translateX="1.0" />
                   <StackPane fx:id="spnlReporteLicencias" layoutX="46.0" layoutY="25.0" prefHeight="150.0" prefWidth="200.0">
