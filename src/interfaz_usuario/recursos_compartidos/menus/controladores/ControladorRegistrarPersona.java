@@ -96,7 +96,7 @@ public class ControladorRegistrarPersona {
 
         try {
 
-            //campoCorreo.Validar(txfCorreo, "Campo correo"); 
+            campoCorreo.Validar(txfCorreo, "Campo correo"); 
             campoTelefono.Validar(txfTelefono.getText(), "Campo telefono");
             campoDireccion.Validar(txfDireccion.getText(), "Campo direccion");
 

@@ -64,6 +64,7 @@ import logica.licencia.modelos.Licencia;
 import logica.pdf_gestion.GestorPDF;
 import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
+import logica.usuario.implementaciones.ServicioUsuario;
 
 /**
  *
@@ -458,7 +459,10 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML private ImageView ivImagenConfig;
     
-    
+   @FXML private ContextMenu menuConfig;
+   
+   @FXML private Button btnEscondidoConfiguracion;
+   
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
     private ImageView ImagenInicio;
@@ -475,7 +479,6 @@ public class ControladorAdministradorSistema extends Controlador{
     @FXML
     public void initialize() throws Exception 
     {
-        
         configuracionCentro();
         GestorEscenas.configurarEfectoLinea(new ArrayList<TextField>(Arrays.asList(TextFieldBuscarAutoescuela,
                                                                                 TextFieldBuscarClinica,
@@ -507,8 +510,7 @@ public class ControladorAdministradorSistema extends Controlador{
         GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador");
         GestorEscenas.configurarReloj(LabelFechaHora);
         
-       configurarReportes();
-
+        configurarReportes();
         
         BotonCerrarSesion.setOnAction(e ->
         {
@@ -527,7 +529,7 @@ public class ControladorAdministradorSistema extends Controlador{
     
     @FXML private void configuracionCentro()
     {
-        ContextMenu menuConfig=new ContextMenu();
+        
         MenuItem mostrarInformacion = new MenuItem("Reporte centro");
         MenuItem opciones = new MenuItem("Opciones");
         ivImagenConfig.setOnMouseEntered(e
@@ -554,6 +556,8 @@ public class ControladorAdministradorSistema extends Controlador{
                 GestorEscenas.cargarError(menuConfig, ex);
             }
         });
+        btnEscondidoConfiguracion.setDisable(true);
+           
     }
     
     

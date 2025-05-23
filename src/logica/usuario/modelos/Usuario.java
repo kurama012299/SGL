@@ -31,7 +31,22 @@ public class Usuario {
     {
         this.Nombre=Nombre;
     }
-
+    
+    public Usuario(String correo,String nombre)
+    {
+        this.Correo=correo;
+        this.Nombre=nombre;
+    }
+    
+    public Usuario (String Nombre, String Correo, String Rol,String Foto ,Long EntidadPerteneciente)
+    {
+        this.Nombre=Nombre;
+        this.Correo = Correo;
+        this.Foto = Foto;
+        this.Rol = Rol;
+        this.EntidadPerteneciente = EntidadPerteneciente;
+    }
+    
     public String getNombre() {
         return Nombre;
     }
