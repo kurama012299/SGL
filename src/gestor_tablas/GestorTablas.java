@@ -182,6 +182,7 @@ public class GestorTablas {
 
     
     public static void ConfigurarColumnasExamenes(
+            
             TableColumn<ExamenConduccion, String> columnaFotoExamen,
             TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
             TableColumn<ExamenConduccion, String> columnaTipoExamen,
@@ -189,6 +190,8 @@ public class GestorTablas {
             TableColumn<ExamenConduccion, String> columnaExaminadorExamen,
             TableColumn<ExamenConduccion, String> columnaResultadoExamen,
             TableColumn<ExamenConduccion, String> columnaDetallesExamen) {
+        
+        
 
         // Configuración de la columna de nombre completo
         columnaExaminadoExamen.setCellValueFactory(cellData -> {
@@ -209,14 +212,11 @@ public class GestorTablas {
         });
 
         columnaResultadoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion examen = cellData.getValue();
+        boolean aprobado = cellData.getValue().isAprobado();
+        return new SimpleStringProperty(aprobado ? "Aprobado" : "Reprobado");
+    });
 
-            if (examen.isAprobado()) {
-                return new SimpleStringProperty("Aprobado");
-            }
-            return new SimpleStringProperty("Reprobado");
-        });
-
+        
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
     }
@@ -245,6 +245,7 @@ public class GestorTablas {
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaTelefono, "Telefono");
         configurarColumnaPorDefecto(columnaCorreo, "Correo");
+        
     }
 
     
@@ -340,12 +341,12 @@ public class GestorTablas {
         });
 
         columnaResultadoExamen.setCellValueFactory(cellData -> {
-            ExamenConduccion examen = cellData.getValue();
-            if (examen.isAprobado()) {
-                return new SimpleStringProperty("Aprobado");
-            }
-            return new SimpleStringProperty("Reprobado");
-        });
+        boolean aprobado = cellData.getValue().isAprobado();
+        return new SimpleStringProperty(aprobado ? "Aprobado" : "Reprobado");
+    });
+    
+    
+    
 
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
@@ -392,15 +393,16 @@ public class GestorTablas {
         });
 
         columnaResultadoExamen.setCellValueFactory(cellData -> {
-            ExamenMedico examen = cellData.getValue();
-            if (examen.isAprobado() && examen.getRestricciones().isEmpty()) {
-                return new SimpleStringProperty("Aprobado");
-            } else if (examen.isAprobado() && !examen.getRestricciones().isEmpty()) {
-                return new SimpleStringProperty("Aprobado Condicional");
-            }
-            return new SimpleStringProperty("Reprobado");
-        });
+        ExamenMedico examen = cellData.getValue();
+        if (examen.isAprobado()) {
+            return examen.getRestricciones().isEmpty() 
+                ? new SimpleStringProperty("Aprobado") 
+                : new SimpleStringProperty("Aprobado Condicional");
+        }
+        return new SimpleStringProperty("Reprobado");
+    });
 
+   
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
 

@@ -32,6 +32,17 @@ public class Persona {
         this.Correo = Correo;
         this.Foto = Foto;
     }
+    
+    public Persona(String Nombre, String Apellidos, String CI, Date FechaNacimiento, String Direccion, String Telefono, String Correo, String Foto) {
+        this.Nombre = Nombre;
+        this.Apellidos = Apellidos;
+        this.CI = CI;
+        this.FechaNacimiento = FechaNacimiento;
+        this.Direccion = Direccion;
+        this.Telefono = Telefono;
+        this.Correo = Correo;
+        this.Foto = Foto;
+    }
 
     public Persona(String nombre,String apellidos,String CI)
     {
@@ -87,6 +98,30 @@ public class Persona {
 
     public String getFoto() {
         return Foto;
+    }
+
+    public void setFechaNacimiento(Date FechaNacimiento) {
+        this.FechaNacimiento = FechaNacimiento;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
+    }
+
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+
+    public void setFoto(String Foto) {
+        this.Foto = Foto;
+    }
+
+    public void setId(long id) {
+        this.Id=id;
     }
     
     

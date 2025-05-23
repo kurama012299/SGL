@@ -23,4 +23,9 @@ public class ServicioPersona {
     {
         return ConsultasPersona.ObtenerPersonaPorCIConsulta(ci);
     }
+    
+    public static long crearPersona(Persona persona) throws Exception
+    {
+        return ConsultasPersona.crearPersonaConsulta(persona);
+    }
 }

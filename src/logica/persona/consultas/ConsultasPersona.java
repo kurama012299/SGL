@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.persona.modelos.Conductor;
 import logica.persona.modelos.Persona;
+import java.sql.Types;
 
 
 /**
@@ -192,5 +193,42 @@ public class ConsultasPersona {
         }
 
         return Conductor;
+    }
+    
+    public static long crearPersonaConsulta(Persona persona) throws Exception {
+        String consulta = "INSERT INTO \"Persona\" (\"Nombre\", \"Apellidos\", \"CI\", \"FechaNacimiento\", "
+                + "\"Direccion\", \"Telefono\", \"Correo\", \"Foto\", \"Id_Licencia\") "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Establecer parámetros
+            stmt.setString(1, persona.getNombre());
+            stmt.setString(2, persona.getApellidos());
+            stmt.setString(3, persona.getCI());
+            stmt.setDate(4, new java.sql.Date(persona.getFechaNacimiento().getTime()));
+            stmt.setString(5, persona.getDireccion());
+            stmt.setString(6, persona.getTelefono());
+            stmt.setString(7, persona.getCorreo());
+            stmt.setString(8, persona.getFoto());
+            stmt.setNull(9, Types.BIGINT);
+
+            // Ejecutar inserción
+            int filasAfectadas = stmt.executeUpdate();
+
+            if (filasAfectadas == 0) {
+                throw new SQLException("No se pudo insertar la persona");
+            }
+            
+             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getLong(1);
+            }
+        }
+        throw new SQLException("No se obtuvo el ID generado");
+
+        } catch (SQLException e) {
+            throw new Exception("Error al crear la persona en la base de datos");
+        }
     }
 }

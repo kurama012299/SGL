@@ -72,6 +72,7 @@ import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.modelos.Infraccion;
+import logica.persona.modelos.Persona;
 
 
 /**
@@ -149,6 +150,8 @@ public class GestorEscenas  {
     public static void cargarError(Window ventanaPadre, Exception ex) {
         try {
             // Cargar el panel de error
+            System.out.println(ex.getLocalizedMessage());
+            System.out.println(ex.getMessage());
             URL url = GestorEscenas.class.getResource("/interfaz_usuario/recursos_compartidos/errores/mensaje-error.fxml");
             FXMLLoader cargador = new FXMLLoader(url);
             Parent root = cargador.load();
@@ -847,14 +850,14 @@ public class GestorEscenas  {
         }
       }
      
-      public static void cargarRegistrarPersona(Window padre,Stage ventanaAnterior,ExamenMedico examenMedico) throws Exception {
+      public static void cargarRegistrarPersona(Window padre,Stage ventanaAnterior,ExamenMedico examenMedico,Persona persona) throws Exception {
         try {
             String direccion = GestorFXML.RutaRegistrarPersona;
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
             ControladorRegistrarPersona controlador = cargador.getController();
-            controlador.setDatos(examenMedico,ventanaAnterior);
+            controlador.setDatos(examenMedico,ventanaAnterior,persona);
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();

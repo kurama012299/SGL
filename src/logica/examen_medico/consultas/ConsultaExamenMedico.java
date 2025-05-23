@@ -168,9 +168,9 @@ public class ConsultaExamenMedico {
         }
     }
     
-    public static boolean CrearExamenMedico(ExamenMedico examen) throws Exception {
+    public static boolean crearExamenMedicoConsulta(ExamenMedico examen) throws Exception {
         String consulta = "INSERT INTO \"ExamenMedico\" (\"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\", \"Fecha\", \"Aprobado\") "
-                + "VALUES (?, ?, ?, ?, ?) RETURNING \"Id\"";
+                + "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 

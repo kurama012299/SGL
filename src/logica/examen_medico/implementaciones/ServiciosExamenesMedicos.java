@@ -26,8 +26,8 @@ public class ServiciosExamenesMedicos {
         return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionPorIdConsulta(Id);
     }
     
-    public static void CrearExamenMedico(ExamenMedico examenMedico) throws Exception
+    public static void crearExamenMedico(ExamenMedico examenMedico) throws Exception
     {
-        ConsultaExamenMedico.CrearExamenMedico(examenMedico);
+        ConsultaExamenMedico.crearExamenMedicoConsulta(examenMedico);
     }
 }

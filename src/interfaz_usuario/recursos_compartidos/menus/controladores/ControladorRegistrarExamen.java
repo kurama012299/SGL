@@ -8,7 +8,10 @@ import com.jfoenix.controls.JFXRadioButton;
 import gestor_interfaces.GestorEscenas;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -33,6 +36,7 @@ import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
 import logica.examen_medico.validaciones.ValidacionCrearExamenMedico;
 import logica.persona.implementaciones.ServicioPersona;
+import logica.persona.modelos.Persona;
 import logica.restricciones.implementacion.ServicioRestriccion;
 import logica.usuario.implementaciones.ServicioUsuario;
 import logica.usuario.modelos.Usuario;
@@ -206,14 +210,17 @@ public class ControladorRegistrarExamen {
                 
                 if (ValidacionCrearExamenMedico.validarExamenMedico(txfNombre.getText(), txfCarnet.getText(),u )) {
                     //Crear Examen y salir
-                    ServiciosExamenesMedicos.CrearExamenMedico(examenMedico);
+                    ServiciosExamenesMedicos.crearExamenMedico(examenMedico);
                     GestorEscenas.cerrar(btnCancelar);
                     
                 } else {
                     // Primero: Obtener referencia a la ventana actual
                     Window ventanaActual = rbtMedico.getScene().getWindow();
-
-                    GestorEscenas.cargarRegistrarPersona(ventanaActual, (Stage) rbtMedico.getScene().getWindow(),examenMedico);
+                    
+                    Map<String,String> nombreApellidos = separarNombreApellidos(txfNombre.getText());
+   
+                    Persona persona = new Persona(nombreApellidos.get("nombre"), nombreApellidos.get("apellidos"), txfCarnet.getText());
+                    GestorEscenas.cargarRegistrarPersona(ventanaActual, (Stage) rbtMedico.getScene().getWindow(),examenMedico,persona);
                 }
 
             } else if (rbtTeorico.isSelected() || (rbtPractico.isSelected() && !rbtAprobado.isSelected())) {
@@ -241,5 +248,31 @@ public class ControladorRegistrarExamen {
         }
 
         return restricciones;
+    }
+    
+    public static Map<String, String> separarNombreApellidos(String nombreCompleto) {
+    nombreCompleto = nombreCompleto.trim().replaceAll("\\s+", " ");
+    String[] partes = nombreCompleto.split(" ");
+        Map<String, String> resultado = new HashMap<>();
+
+        if (partes.length == 0) {
+            resultado.put("nombre", "");
+            resultado.put("apellidos", "");
+        } else if (partes.length <= 2) {
+            resultado.put("nombre", partes[0]);
+            resultado.put("apellidos", partes.length > 1 ? partes[1] : "");
+        } else {
+            // Para 3+ palabras
+            int splitPoint = partes.length - 2; // Separa las últimas 2 palabras como apellidos
+
+
+            String nombre = String.join(" ", Arrays.copyOfRange(partes, 0, splitPoint));
+            String apellidos = String.join(" ", Arrays.copyOfRange(partes, splitPoint, partes.length));
+
+            resultado.put("nombre", nombre);
+            resultado.put("apellidos", apellidos);
+        }
+
+        return resultado;
     }
 }
