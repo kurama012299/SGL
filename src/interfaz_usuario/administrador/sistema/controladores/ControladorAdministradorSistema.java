@@ -5,29 +5,17 @@
 package interfaz_usuario.administrador.sistema.controladores;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTooltip;
 import gestor_interfaces.GestorEscenas;
-import gestor_interfaces.GestorFXML;
 import gestor_interfaces.modelos.Controlador;
 import gestor_interfaces.modelos.Estadistica;
-import gestor_interfaces.modelos.EstadisticaUsuario;
 import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
-import java.io.File;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.Year;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import javafx.collections.ObservableList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
@@ -45,26 +33,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import logica.autentificacion.Autentificador;
-import logica.entidad.modelos.EntidadRelacionada;
-import logica.examen_conduccion.modelos.ExamenConduccion;
-import logica.infraccion.modelos.Infraccion;
-import logica.licencia.modelos.Licencia;
-import logica.persona.modelos.Conductor;
 import logica.excel_gestor.GestorExcel;
 import logica.autentificacion.Autentificador;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.gestion_imagenes.GestorImagenes;
-import logica.infraccion.implementaciones.ServicioInfraccion;
-import logica.licencia.implementaciones.ServicioLicencia;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.modelos.Licencia;
-import logica.pdf_gestion.GestorPDF;
-import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
-import logica.usuario.implementaciones.ServicioUsuario;
 
 /**
  *
@@ -582,6 +558,17 @@ public class ControladorAdministradorSistema extends Controlador{
             }
         });
     }
+    
+    private void configurarReporteExamenes() {
+        configurarHover(spnlReporteExamenes, imgReporteExamenes, () -> {
+            try {
+                GestorEscenas.cargarMenuReportesPeriodo(spnlReporteExamenes.getScene().getWindow(),
+                    "Examenes emitidos"); 
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(spnlReporteExamenes.getScene().getWindow(), ex);
+            }
+        });
+    }
 
   
 
@@ -613,6 +600,7 @@ public class ControladorAdministradorSistema extends Controlador{
     {
         configurarReporteLicencias();
         configurarReporteInfracciones();
+        configurarReporteExamenes();
     }
     
     @FXML
