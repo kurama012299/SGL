@@ -569,6 +569,18 @@ public class ControladorAdministradorSistema extends Controlador{
             }
         });
     }
+    
+    private void configurarReporteInfraccionesTipo()
+    {
+        configurarHover(spnlReporteInfraccionesTipo, imgReporteInfraccionesTipo, () -> {
+            try {
+                GestorEscenas.cargarMenuReportesTipo(spnlReporteInfraccionesTipo.getScene().getWindow(),
+                    "Infracciones por tipo"); 
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(spnlReporteInfraccionesTipo.getScene().getWindow(), ex);
+            }
+        });
+    }
 
   
 
@@ -601,6 +613,7 @@ public class ControladorAdministradorSistema extends Controlador{
         configurarReporteLicencias();
         configurarReporteInfracciones();
         configurarReporteExamenes();
+        configurarReporteInfraccionesTipo();
     }
     
     @FXML
