@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.collections.FXCollections;
@@ -213,5 +214,22 @@ public class ConsultaExamenMedico {
             stmt.executeBatch();
         }
     }
+    
+     public static LocalDate obtenerFechaMasViejaExamen() throws Exception {
+        LocalDate fechaMasVieja=null;
+
+         String consulta = "SELECT em.\"Fecha\" FROM \"ExamenMedico\" em ORDER BY em.\"Fecha\" ASC LIMIT 1";
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+            try{
+                ResultSet rs = stmt.executeQuery();         
+                if (rs.next()) {
+                   fechaMasVieja = rs.getDate("Fecha").toLocalDate();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return fechaMasVieja;
+        }
+     }
 }
 

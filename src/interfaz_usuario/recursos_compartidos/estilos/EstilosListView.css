@@ -1,0 +1,38 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 24 may 2025, 17:59:13
+    Author     : Kris
+*/
+
+.list-view {
+    -fx-background-color: #ffffff; /* Fondo blanco */
+    -fx-border-color: #e0e0e0; /* Borde gris claro */
+    -fx-border-radius: 4px;
+    -fx-padding: 0;
+}
+
+/* Estilo de las celdas (items) */
+.list-cell {
+    -fx-background-color: transparent; /* Fondo transparente por defecto */
+    -fx-text-fill: #333333; /* Color de texto oscuro */
+    -fx-font-size: 12px;
+}
+
+/* Efecto hover (al pasar el mouse) */
+.list-cell:hover {
+    -fx-background-color: #8000ff; /* Gris muy claro */
+    -fx-text-fill: white;
+    -fx-cursor: hand; /* Cambia el cursor a "mano" */
+}
+
+/* Scrollbar del ListView (opcional) */
+.list-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+.list-view .scroll-bar .thumb {
+    -fx-background-color: #c1c1c1;
+    -fx-background-radius: 5px;
+}

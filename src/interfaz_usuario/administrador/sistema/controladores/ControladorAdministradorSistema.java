@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,11 +27,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import logica.excel_gestor.GestorExcel;
 import logica.autentificacion.Autentificador;
@@ -505,9 +505,13 @@ public class ControladorAdministradorSistema extends Controlador{
     
     @FXML private void configuracionCentro()
     {
-        
-        MenuItem mostrarInformacion = new MenuItem("Reporte centro");
-        MenuItem opciones = new MenuItem("Opciones");
+        ListView<String>lista= new ListView<>();
+        lista.getItems().addAll("Reporte centro","Opciones");
+        lista.setPrefSize(110, 51);
+        lista.getStylesheets().add(getClass().getResource("/interfaz_usuario/recursos_compartidos/estilos/EstilosListView.css").toExternalForm());
+        Popup menuContexto = new Popup();
+        menuContexto.getContent().add(lista);
+        menuContexto.setAutoHide(true);
         ivImagenConfig.setOnMouseEntered(e
                 -> {
             ivImagenConfig.setScaleX(1.2);
@@ -518,19 +522,27 @@ public class ControladorAdministradorSistema extends Controlador{
             ivImagenConfig.setScaleX(1);
             ivImagenConfig.setScaleY(1);
         });
-        menuConfig.getItems().addAll(mostrarInformacion, opciones);
         ivImagenConfig.setOnMouseClicked(e -> {
-            if (e.getButton() == MouseButton.PRIMARY) {
-                menuConfig.show(ivImagenConfig, e.getScreenX(), e.getScreenY());
+            if(!menuContexto.isShowing())
+            {
+                lista.getSelectionModel().clearSelection();
+                menuContexto.show(ivImagenConfig,e.getScreenX(),e.getScreenY());
             }
         });
-        String direccion="/interfaz_usuario/recursos_compartidos/menus/menu_configuracion/menu-configuracion-centro.fxml";
-        mostrarInformacion.setOnAction(e ->{
-            try {
-                GestorEscenas.cargarPanelAuxiliar(hbVentanaPrincipal.getScene().getWindow(), direccion, true, "Informacion Centro");
-            } catch (Exception ex) {
-                GestorEscenas.cargarError(menuConfig, ex);
+        lista.getSelectionModel().selectedItemProperty().addListener((obs,valorViejo,nuevoValor)->{
+            if(nuevoValor!=null)
+            {
+                if (((String) nuevoValor).equalsIgnoreCase("Reporte centro")) {
+                    String direccion = "/interfaz_usuario/recursos_compartidos/menus/menu_configuracion/menu-configuracion-centro.fxml";
+                    try {
+                        GestorEscenas.cargarPanelAuxiliar(hbVentanaPrincipal.getScene().getWindow(), direccion, true, "Informacion Centro");
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(menuConfig, ex);
+                    }
+
+                }
             }
+            menuContexto.hide();
         });
         btnEscondidoConfiguracion.setDisable(true);
            
