@@ -4,6 +4,7 @@
  */
 package logica.examen_medico.implementaciones;
 
+import java.time.LocalDate;
 import javafx.collections.ObservableList;
 import logica.examen_medico.consultas.ConsultaExamenMedico;
 import logica.examen_medico.modelos.ExamenMedico;
@@ -29,5 +30,10 @@ public class ServiciosExamenesMedicos {
     public static void crearExamenMedico(ExamenMedico examenMedico) throws Exception
     {
         ConsultaExamenMedico.crearExamenMedicoConsulta(examenMedico);
+    }
+    
+    public static LocalDate obtenerFechaMasViejaExamen() throws Exception
+    {
+        return ConsultaExamenMedico.obtenerFechaMasViejaExamen();
     }
 }

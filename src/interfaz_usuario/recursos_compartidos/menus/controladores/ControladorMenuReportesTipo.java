@@ -5,11 +5,13 @@
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
 import gestor_interfaces.GestorEscenas;
+import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 
 /**
  *
@@ -18,15 +20,16 @@ import javafx.scene.control.ComboBox;
 public class ControladorMenuReportesTipo {
     
     private String reporte;
+    private LocalDate fechaActual=LocalDate.now();
     @FXML private Button btnMostrarReporte;
     @FXML private Button btnCerrar;
     @FXML private ComboBox cmbTipoInfraccion;
     @FXML private ComboBox cmbFechaEscogidaAnno;
     
-    public void initialize() {
+    public void initialize() throws Exception {
         System.out.println("Controlador Menu Reportes Tipo Iniciado"); 
         llenarComboBox();
-        cmbFechaEscogidaAnno.setValue(2025);
+        cmbFechaEscogidaAnno.setValue(String.valueOf(fechaActual.getYear()));
     }
     
     public void setDatos(String reporte) {
@@ -34,13 +37,13 @@ public class ControladorMenuReportesTipo {
     }
     
     
-    private void llenarComboBox()
+    private void llenarComboBox() throws Exception
     {
         cmbTipoInfraccion.setItems(FXCollections.observableArrayList(
                 "Leve","Grave","Muy grave"
         ));
         ObservableList<Integer>annos = FXCollections.observableArrayList();
-        for(int anno=2000;anno<=2025;anno++)
+        for(int anno=ServiciosExamenesMedicos.obtenerFechaMasViejaExamen().getYear();anno<=fechaActual.getYear();anno++)
         {
             annos.add(anno);
         }
