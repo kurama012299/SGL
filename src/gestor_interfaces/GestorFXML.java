@@ -53,7 +53,7 @@ public class GestorFXML {
     
     //
     public static String RutaMenuReportesPerido="/interfaz_usuario/recursos_compartidos/menus/menu_reportes_periodo/menu-reportes-periodo.fxml";
- 
+    public static String RutaMenuReportesTipo="/interfaz_usuario/recursos_compartidos/menus/menu_reportes_periodo/menu-reportes-infraccion.fxml";
     
     
     

@@ -26,6 +26,7 @@ public class ControladorMenuReportesPeriodo {
     @FXML private DatePicker dtFechaInicio;
     @FXML private DatePicker dtFechaFin;
     @FXML private JFXButton btnCerrar;
+    
 
     public void initialize() {
         System.out.println("Controlador Menu Reportes Periodo Iniciado");

@@ -48,6 +48,7 @@ import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasCli
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesPeriodo;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesTipo;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarInfraccion;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarPersona;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarUsuario;
@@ -284,6 +285,37 @@ public class GestorEscenas  {
             FXMLLoader cargador = new FXMLLoader(Url);
             Parent Ruta = cargador.load();
             ControladorMenuReportesPeriodo controlador = cargador.getController();
+            controlador.setDatos(reporte); 
+
+            Scene escena = new Scene(Ruta);
+            Stage ventana = new Stage();
+            ventana.initOwner(padre);
+            ventana.initStyle(StageStyle.UTILITY);
+            ventana.setResizable(false);
+
+
+            ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            ventana.setTitle("");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new Exception("Error al cargar la interfaz");
+        }
+    }
+    
+    public static void cargarMenuReportesTipo(Window padre, String reporte) throws Exception {
+        try {
+            String direccion = GestorFXML.RutaMenuReportesTipo;
+            URL Url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(Url);
+            Parent Ruta = cargador.load();
+            ControladorMenuReportesTipo controlador = cargador.getController();
             controlador.setDatos(reporte); 
 
             Scene escena = new Scene(Ruta);
