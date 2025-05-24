@@ -14,7 +14,9 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -38,7 +40,12 @@ public class ControladorLogin {
     private TextField Usuario;
     
     @FXML
-    private TextField Clave;
+    private PasswordField Clave;
+    
+    @FXML
+    private TextField txfOculto;
+    
+    @FXML private ImageView ivIconoContra;
     
     @FXML
     private Label OlvidasteClave;
@@ -55,6 +62,7 @@ public class ControladorLogin {
         GestorEscenas.ponerIconoVentana(VentanaPrincipal, "Login");
         ConfigurarNavegacionConTeclas(Usuario, Clave);
         GestorEscenas.configurarEfectoLinea(new ArrayList<TextField>(Arrays.asList(Clave,Usuario)), new ArrayList<Line>(Arrays.asList(LineaClave,LineaUsuario)));
+        GestorEscenas.mostrarOcultarContra(Clave, txfOculto, ivIconoContra);
     }
     
     @FXML
@@ -111,7 +119,7 @@ public class ControladorLogin {
     private void EntrarTeclaCorreo()
     {
         Usuario.setOnKeyPressed((t) -> {
-            if(t.getCode()== KeyCode.ENTER){
+            if(t.getCode() == KeyCode.ENTER){
                 Entrar.fire();
             }
         });

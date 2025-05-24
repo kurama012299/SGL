@@ -64,6 +64,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -1082,6 +1083,36 @@ public class GestorEscenas  {
         }
 
         return seleccionados;
+    }
+    
+    //Funcion para mostrar y ocultar texto en el campo de contrasenna
+    public static void mostrarOcultarContra(PasswordField txfContra,TextField txfOculto,ImageView ivBoton)
+    {
+        txfOculto.setVisible(false);
+        txfOculto.setManaged(false);
+        ivBoton.setOnMouseEntered(e ->{
+            ivBoton.setScaleX(1.3);
+            ivBoton.setScaleY(1.3);
+        });
+        
+        ivBoton.setOnMouseExited(e ->{
+            ivBoton.setScaleX(1);
+            ivBoton.setScaleY(1);
+        });
+        ivBoton.setOnMousePressed(e ->{
+            txfOculto.setText(txfContra.getText());
+            txfOculto.setVisible(true);
+            txfOculto.setManaged(true);
+            txfContra.setVisible(false);
+            txfContra.setManaged(false);
+        });
+        ivBoton.setOnMouseReleased(e ->{
+            txfContra.setText(txfOculto.getText());
+            txfContra.setVisible(true);
+            txfContra.setManaged(true);
+            txfOculto.setVisible(false);
+            txfOculto.setManaged(false);
+        });   
     }
 
 }
