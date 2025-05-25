@@ -170,7 +170,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="407.0" layoutY="95.0" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                  <JFXButton fx:id="btnExportarAutoescuela" focusTraversable="false" layoutX="407.0" layoutY="95.0" onAction="#ExportarAutoescuelas" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -212,7 +212,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="407.0" layoutY="95.0" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                  <JFXButton fx:id="btnExportarClinica" focusTraversable="false" layoutX="407.0" layoutY="95.0" onAction="#ExportarClinicas" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -254,7 +254,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="558.0" layoutY="95.0" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                  <JFXButton fx:id="btnExportarEntidades" focusTraversable="false" layoutX="558.0" layoutY="95.0" onAction="#ExportarEntidades" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -310,7 +310,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="518.0" layoutY="94.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                  <JFXButton fx:id="btnExportarInfracciones" focusTraversable="false" layoutX="518.0" layoutY="94.0" onAction="#ExportarInfracciones" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -380,7 +380,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="398.0" layoutY="94.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                  <JFXButton fx:id="btnExportarExamenes" focusTraversable="false" layoutX="398.0" layoutY="94.0" onAction="#ExportarExamenes" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -402,27 +402,33 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXRadioButton layoutX="599.0" layoutY="48.0" prefHeight="17.0" prefWidth="96.0" text="Aprobado">
+                  <JFXRadioButton fx:id="rdbtAprobadoExamen" layoutX="599.0" layoutY="48.0" prefHeight="17.0" prefWidth="96.0" text="Aprobado">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="filtroResultadoExamen" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton fx:id="rdbtExamenTeorico" layoutX="705.0" layoutY="32.0" prefHeight="17.0" prefWidth="75.0" text="Teórico">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="filtrosTipoExamen" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton fx:id="rdbtExamenPractico" layoutX="705.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Práctico" toggleGroup="$filtrosTipoExamen">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="705.0" layoutY="32.0" prefHeight="17.0" prefWidth="75.0" text="Teórico">
+                  <JFXRadioButton fx:id="rdbtExamenMedico" layoutX="705.0" layoutY="87.0" prefHeight="17.0" prefWidth="75.0" text="Médico" toggleGroup="$filtrosTipoExamen">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="705.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Práctico">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <JFXRadioButton layoutX="705.0" layoutY="87.0" prefHeight="17.0" prefWidth="75.0" text="Médico">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                  </JFXRadioButton>
-                  <JFXRadioButton layoutX="599.0" layoutY="71.0" prefHeight="17.0" prefWidth="96.0" text="Reprobado">
+                  <JFXRadioButton fx:id="rdbtReprobadoExamen" layoutX="599.0" layoutY="71.0" prefHeight="17.0" prefWidth="96.0" text="Reprobado" toggleGroup="$filtroResultadoExamen">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
@@ -528,7 +534,7 @@
                         <Image url="@../../recursos_compartidos/imagenes/ico-buscar.png" />
                      </image>
                   </ImageView>
-                  <JFXButton focusTraversable="false" layoutX="358.0" layoutY="94.0" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
+                  <JFXButton fx:id="btnExportarLicencias" focusTraversable="false" layoutX="358.0" layoutY="94.0" onAction="#ExportarLicencias" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>

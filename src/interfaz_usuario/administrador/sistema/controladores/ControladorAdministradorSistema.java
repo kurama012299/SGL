@@ -21,9 +21,11 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -439,6 +441,30 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML private Button btnEscondidoConfiguracion;
    
+   @FXML private ToggleGroup filtroResultadoExamen;
+   
+   @FXML private RadioButton rdbtAprobadoExamen;
+   
+   @FXML private RadioButton rdbtReprobadoExamen;
+   
+   @FXML private RadioButton rdbtExamenTeorico;
+   
+   @FXML private RadioButton rdbtExamenPractico;
+   
+   @FXML private RadioButton rdbtExamenMedico;
+   
+   @FXML private Button btnExportarAutoescuela;
+   
+   @FXML private Button btnExportarClinica;
+   
+   @FXML private Button btnExportarEntidades;
+   
+   @FXML private Button btnExportarInfracciones;
+   
+   @FXML private Button btnExportarExamenes;
+   
+   @FXML private Button btnExportarLicencias;
+   
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
     private ImageView ImagenInicio;
@@ -501,7 +527,6 @@ public class ControladorAdministradorSistema extends Controlador{
         System.out.println("Controlador Administrador Sistema Iniciado");
         this.TransicionInicio();   
     }
-    
     
     @FXML private void configuracionCentro()
     {
@@ -739,8 +764,14 @@ public class ControladorAdministradorSistema extends Controlador{
     @FXML
     public void TransicionExamenes()
     {
-        GestorTablas.ConfigurarColumnasExamenes(ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen,ColumnaResultadoExamen,ColumnaDetallesExamen);
-        GestorTablas.cargarTablaExamenes(TablaExamenes);
+        ArrayList<RadioButton>botonesRadio= new ArrayList<>();
+        botonesRadio.add(rdbtAprobadoExamen);
+        botonesRadio.add(rdbtReprobadoExamen);
+        botonesRadio.add(rdbtExamenTeorico);
+        botonesRadio.add(rdbtExamenPractico);
+        botonesRadio.add(rdbtExamenMedico);
+        
+        GestorTablas.cargarFiltrosTablaExamen(TablaExamenes, botonesRadio, filtroResultadoExamen, ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen, ColumnaResultadoExamen, ColumnaDetallesExamen);
         
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores,PanelReportes, PanelInicio, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenes,PanelesOcultar);
@@ -1104,7 +1135,70 @@ public class ControladorAdministradorSistema extends Controlador{
         try {
             GestorExcel.ExportarConductoresExcel(TablaConductor.getItems(), "Tabla conductores SGL",(Stage)BotonExportarConductores.getScene().getWindow());
         } catch (Exception ex) {
-            Logger.getLogger(ControladorAdministradorSistema.class.getName()).log(Level.SEVERE, null, ex);
+            GestorEscenas.cargarError(BotonExportarConductores.getScene().getWindow(), ex);
         }
     }
+    
+    @FXML
+    public void ExportarAutoescuelas()
+    {
+        try {
+            GestorExcel.ExportarEntidadesTipoExcel(TablaAE.getItems(), "Tabla autoescuela SGL",(Stage)btnExportarAutoescuela.getScene().getWindow());
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(btnExportarAutoescuela.getScene().getWindow(), ex);
+        }
+    }
+    
+    @FXML
+    public void ExportarClinicas()
+    {
+        try {
+            GestorExcel.ExportarEntidadesTipoExcel(TablaClinica.getItems(), "Tabla clínicas SGL",(Stage)btnExportarClinica.getScene().getWindow());
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(btnExportarClinica.getScene().getWindow(), ex);
+        }
+    }
+    
+    @FXML
+    public void ExportarEntidades()
+    {
+        try {
+            GestorExcel.ExportarEntidadesGeneralesExcel(TablaEntidad.getItems(), "Tabla entidades SGL",(Stage)btnExportarEntidades.getScene().getWindow());
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(btnExportarEntidades.getScene().getWindow(), ex);
+        }
+    }
+        
+    
+    @FXML
+    public void ExportarInfracciones()
+    {
+        try {
+            GestorExcel.ExportarInfraccionesExcel(TablaInfraccion.getItems(), "Tabla infracciones SGL",(Stage)btnExportarInfracciones.getScene().getWindow());
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(btnExportarInfracciones.getScene().getWindow(), ex);
+        }
+    }
+    
+    
+    @FXML
+    public void ExportarExamenes()
+    {
+        try {
+            GestorExcel.ExportarExamenesExcel(TablaExamenes.getItems(), "Tabla examenes SGL",(Stage)btnExportarExamenes.getScene().getWindow());
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(btnExportarExamenes.getScene().getWindow(), ex);
+        }
+    }
+    
+    @FXML
+    public void ExportarLicencias()
+    {
+        try {
+            GestorExcel.ExportarLicenciasExcel(TablaLicencia.getItems(), "Tabla licencias SGL",(Stage)btnExportarLicencias.getScene().getWindow());
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(btnExportarLicencias.getScene().getWindow(), ex);
+        }
+    }
+    
 }

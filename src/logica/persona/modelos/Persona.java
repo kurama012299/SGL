@@ -72,6 +72,10 @@ public class Persona {
         return Nombre;
     }
 
+    public String getNombreApellidos()
+    {
+        return Nombre+"  "+Apellidos;
+    }
     public String getApellidos() {
         return Apellidos;
     }

@@ -33,7 +33,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <ComboBox fx:id="cmbTipoInfraccion" layoutX="33.0" layoutY="74.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: transaparent;" stylesheets="@../../estilos/EstilosComboBox.css" />
+      <ComboBox fx:id="cmbTipoInfraccion" layoutX="33.0" layoutY="74.0" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: transparent;" stylesheets="@../../estilos/EstilosComboBox.css" />
       <ComboBox fx:id="cmbFechaEscogidaAnno" layoutX="265.0" layoutY="74.0" prefHeight="25.0" prefWidth="186.0" style="-fx-background-color: transparent;" stylesheets="@../../estilos/EstilosComboBox.css" />
    </children>
 </Pane>

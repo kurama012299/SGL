@@ -21,12 +21,21 @@ public class ServicioUsuario {
     
     public static ArrayList<Usuario> obtenerCorreosUsuario() throws Exception
     {
-        return ConsultasUsuario.obtenerCorreosUsuarios();
+        return ConsultasUsuario.obtenerCorreosUsuariosConsulta();
     }
     
     public static Long crearUsuarioBd(Usuario usuario,Long idRol,String clave) throws Exception
     {
-        return ConsultasUsuario.crearUsuario(usuario, idRol, clave);
+        return ConsultasUsuario.crearUsuarioConsulta(usuario, idRol, clave);
     }
     
+    public static ArrayList<Usuario> obtenerUsuariosExamenesConduccion() throws Exception
+    {
+        return ConsultasUsuario.obtenerUsuariosExamenesConduccionConsulta();
+    }
+    
+    public static ArrayList<Usuario> obtenerUsuariosExamenesMedicos() throws Exception
+    {
+        return ConsultasUsuario.obtenerUsuariosExamenesMedicoConsulta();
+    }
 }
