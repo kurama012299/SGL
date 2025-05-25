@@ -12,6 +12,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
+import logica.infraccion.implementaciones.ServicioInfraccion;
+import logica.pdf_gestion.GestorPDF;
+
 
 /**
  *
@@ -53,9 +56,26 @@ public class ControladorMenuReportesTipo {
     @FXML
     public void mostrarReporte() {
         
+        String tipo = (String) cmbTipoInfraccion.getValue();
+        int annio = 0;
+        try{
+            Object valor = cmbFechaEscogidaAnno.getValue();
+            annio = Integer.parseInt(valor.toString());
+        }catch(NumberFormatException | NullPointerException e){
+            e.printStackTrace();
+        }
+        
+       
         try {
             switch (reporte) {
                 case "Infracciones por tipo":
+                    GestorPDF.GenerarReporteInfraccionesPorTipo(
+                            ServicioInfraccion.obtenerInfraccionesPorAnioYTipo(annio, tipo),
+                            "Reporte de infracciones emitidas en el  "
+                            + annio,
+                            tipo
+                    );
+                                 
                     break;
             }
             
