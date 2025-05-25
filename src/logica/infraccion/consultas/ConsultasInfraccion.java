@@ -105,7 +105,7 @@ public class ConsultasInfraccion {
         
         long idGravedad = ServicioInfraccion.obtenerIdGravedad(infraccion.getGravedad());
         
-        String guardar = "INSERT INTO \"Infraccion\" (\"Fecha\", \"Lugar\", \"Descripcion\", \"PuntosDeducidos\", \"Pagada\", \"Id_Licencia\", \"Id_Gravedad\", \"Nombre_Oficial\") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING \"Id\"";
+        String guardar = "INSERT INTO \"Infraccion\" (\"Fecha\", \"Lugar\", \"Descripcion\", \"PuntosDeducidos\", \"Pagada\", \"Id_Licencia\", \"Id_Gravedad\", \"Nombre_Oficial\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
 
@@ -114,15 +114,21 @@ public class ConsultasInfraccion {
             pstmt.setString(3, infraccion.getDescripcion());
             pstmt.setInt(4, infraccion.getPuntosDeducidos());
             pstmt.setBoolean(5, infraccion.isPagada());
-           pstmt.setLong(6, infraccion.getIdLicencia());
+            pstmt.setLong(6, infraccion.getIdLicencia());
             pstmt.setLong(7, idGravedad);
             pstmt.setString(8, infraccion.getNombreOficial());
+         
+            // Ejecutar la inserción
+            int filasAfectadas = pstmt.executeUpdate();
+
+            if (filasAfectadas == 0) {
+                throw new SQLException("No se insertó ningún registro");
+            }
 
         } catch (SQLException e) {
             System.err.println("Error al guardar infraccion: " + e.getMessage());
-            throw e;
+            throw new Exception("Error al guardar infraccion");
         }
-        throw new SQLException("No se pudo guardar la infraccion ni obtener el ID");
     }
     
     
