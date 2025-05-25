@@ -46,44 +46,19 @@ public class ControladorRegistrarUsuario {
     EntidadRelacionada clinica=null;
     
     private Stage ventanaAnterior;
-    private Image ivViejoIconoContra;
     private boolean esAutoescuela=false;
     
     @FXML public void initialize()
     {
         System.out.println("Controlador registrar usuario iniciado");
         
-        ivViejoIconoContra=(Image)ivIconoContra.getImage();
         btnAtras.setOnAction(e ->{
             GestorEscenas.cerrar(btnAtras);
         });
-        //mostrarOcultarContra();
+        GestorEscenas.mostrarOcultarContra(txfClave,txfOculto,ivIconoContra);
     }
     
-    /*@FXML private void mostrarOcultarContra()
-    {
-        txfOculto.setEditable(false);
-        //Image ivIconoContraNuevo= new Image(getClass().getResourceAsStream("interfaz_usuario/recursos_compartidos/imagenes/ico-visible-contra.png"));
-        ivIconoContra.setOnMouseEntered(e ->{
-            ivIconoContra.setScaleX(1.3);
-            ivIconoContra.setScaleY(1.3);
-            //ivIconoContra.setImage(ivIconoContraNuevo);
-        });
-        
-        ivIconoContra.setOnMouseExited(e ->{
-            ivIconoContra.setScaleX(1);
-            ivIconoContra.setScaleY(1);
-            //ivIconoContra.setImage(ivViejoIconoContra);
-        });
-        
-        ivIconoContra.setOnMouseClicked(e ->{
-            //txfClave.setDisable(true);
-            txfOculto.setText(txfClave.getText());
-            //txfClave.setText(txfMostrado.getText());
-            //ivIconoContra.setImage(ivIconoContraNuevo);
-        });
-        
-    }*/
+    
     
     @FXML public void setDatos(EntidadRelacionada autoescuela,EntidadRelacionada clinica,Stage ventana)
     {
