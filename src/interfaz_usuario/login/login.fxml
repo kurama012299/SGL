@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -68,9 +69,15 @@
                </font>
             </Label>
             <TextField fx:id="Usuario" alignment="CENTER" layoutX="89.0" layoutY="206.0" onKeyPressed="#EntrarTeclaCorreo" prefHeight="25.0" prefWidth="268.0" promptText="Usuario" style="-fx-background-color: transparent;" />
-            <TextField fx:id="Clave" alignment="CENTER" layoutX="90.0" layoutY="260.0" onKeyPressed="#EntrarTeclaClave" prefHeight="25.0" prefWidth="268.0" promptText="Contraseña" style="-fx-background-color: transparent;" />
             <Line fx:id="LineaUsuario" endX="123.66665649414062" layoutX="235.0" layoutY="230.0" startX="-147.00003051757812" stroke="#6501c9" />
             <Line fx:id="LineaClave" endX="123.66665649414062" layoutX="234.0" layoutY="285.0" startX="-147.00003051757812" stroke="#6501c9" />
+            <TextField fx:id="txfOculto" alignment="CENTER" layoutX="88.0" layoutY="260.0" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: transparent;" />
+            <PasswordField fx:id="Clave" alignment="CENTER" layoutX="88.0" layoutY="260.0" onAction="#EntrarTeclaClave" prefHeight="25.0" prefWidth="272.0" promptText="Clave" style="-fx-background-color: transparent;" />
+            <ImageView fx:id="ivIconoContra" fitHeight="25.0" fitWidth="26.0" layoutX="328.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_compartidos/imagenes/ico-visible-contra.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
