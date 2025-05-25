@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -88,5 +90,89 @@ public class ServicioInfraccion {
         }
     }
     throw new SQLException("No se encontró la gravedad: " + nombreGravedad);
+}
+    
+    
+    public static ObservableList<Infraccion> obtenerInfraccionesPorAnioYTipo(int anio, String tipoInfraccion) throws Exception {
+    // Validación de parámetros mejorada
+    if (tipoInfraccion == null || tipoInfraccion.trim().isEmpty()) {
+        throw new IllegalArgumentException("El tipo de infracción no puede ser nulo o vacío");
+    }
+    if (anio < 1900 || anio > LocalDate.now().getYear() + 1) {
+        throw new IllegalArgumentException("El año debe estar entre 1900 y " + (LocalDate.now().getYear() + 1));
+    }
+
+    // Obtener todas las infracciones con depuración detallada
+    ObservableList<Infraccion> infracciones = ConsultasInfraccion.ObtenerInfraccionesConsulta();
+
+    // Filtrar por año y tipo de infracción con conversión segura de fechas
+    List<Infraccion> infraccionesFiltradas = infracciones.stream()
+            .filter(infraccion -> {
+                if (infraccion.getFecha() == null) {
+                    System.out.println("Infracción " + infraccion.getId() + " descartada - fecha nula");
+                    return false;
+                }
+                return true;
+            })
+            .filter(infraccion -> {
+                try {
+                    Date fechaInfraccion = infraccion.getFecha();
+                    LocalDate fechaConvertida;
+                    
+                    // Manejo diferenciado para java.sql.Date
+                    if (fechaInfraccion instanceof java.sql.Date) {
+                        fechaConvertida = ((java.sql.Date) fechaInfraccion).toLocalDate();
+                    } else {
+                        fechaConvertida = fechaInfraccion.toInstant()
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate();
+                    }
+                    
+                    boolean coincideAnio = fechaConvertida.getYear() == anio;
+                    if (!coincideAnio) {
+                        System.out.println("Infracción " + infraccion.getId() + " descartada - año " + fechaConvertida.getYear());
+                    }
+                    return coincideAnio;
+                } catch (Exception e) {
+                    System.err.println("\nERROR en conversión de fecha - Infracción ID: " + infraccion.getId());
+                    System.err.println("Tipo de fecha: " + infraccion.getFecha().getClass().getName());
+                    System.err.println("Valor de fecha: " + infraccion.getFecha());
+                    e.printStackTrace();
+                    return false;
+                }
+            })
+            .filter(infraccion -> {
+                boolean gravedadCoincide = tipoInfraccion.equalsIgnoreCase(infraccion.getGravedad());
+                if (!gravedadCoincide) {
+                    System.out.println("Infracción " + infraccion.getId() + " descartada - gravedad '" + 
+                            infraccion.getGravedad() + "' no coincide con '" + tipoInfraccion + "'");
+                }
+                return gravedadCoincide;
+            })
+            .sorted((inf1, inf2) -> {
+                // Manejo seguro para ordenación descendente
+                if (inf1.getFecha() == null || inf2.getFecha() == null) {
+                    return 0;
+                }
+                
+                try {
+                    Date fecha1 = inf1.getFecha();
+                    Date fecha2 = inf2.getFecha();
+                    
+                    // Conversión segura para comparación
+                    Instant instant1 = (fecha1 instanceof java.sql.Date) ? 
+                            Instant.ofEpochMilli(fecha1.getTime()) : fecha1.toInstant();
+                    Instant instant2 = (fecha2 instanceof java.sql.Date) ? 
+                            Instant.ofEpochMilli(fecha2.getTime()) : fecha2.toInstant();
+                    
+                    return instant2.compareTo(instant1);
+                } catch (Exception e) {
+                    System.err.println("Error al comparar fechas para ordenación");
+                    return 0;
+                }
+            })
+            .collect(Collectors.toList());
+
+    return FXCollections.observableArrayList(infraccionesFiltradas);
 }
 }

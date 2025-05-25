@@ -64,8 +64,6 @@ public class ControladorMenuReportesPeriodo {
                             + dtFechaInicio.getValue() + " hasta " + dtFechaFin.getValue()
                     );
                     break;
-                /*case "Infracciones por tipo":
-                    break;*/
                 case "Examenes emitidos":
                     GestorPDF.GenerarReporteExamenes(
                             ServicioExamenesGenerales.obtenerExamenesPorPeriodo(

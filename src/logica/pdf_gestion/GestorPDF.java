@@ -374,4 +374,36 @@ public class GestorPDF {
     }
 }
 
+     
+      public static void GenerarReporteInfraccionesPorTipo(ObservableList<Infraccion> infracciones, String tituloReporte, String tipo) {
+    try {
+        // 1. Configuración inicial del documento
+        File pdfFile = File.createTempFile("reporte_infracciones_por_tipo", ".pdf");
+        pdfFile.deleteOnExit();
+
+        Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
+        PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+        document.open();
+
+        // 2. Estilos de fuentes
+        Map<String, Font> estilos = crearEstilosFuentes();
+
+        // 3. Agregar encabezado
+        agregarEncabezado(document, tituloReporte, "Reporte detallado de infracciones " + tipo + ":", estilos);
+
+        // 4. Agregar tabla con datos de infracciones
+        agregarTablaInfracciones(document, infracciones, estilos);
+
+        // 5. Agregar pie de página
+        agregarPiePagina(document, estilos.get("footer"));
+
+        document.close();
+
+        // 6. Abrir el PDF automáticamente
+        abrirDocumento(pdfFile);
+
+    } catch (Exception e) {
+        manejarErrorGeneracionReporte(e);
+    }
+}
 }
