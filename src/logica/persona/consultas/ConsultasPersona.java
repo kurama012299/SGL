@@ -129,7 +129,7 @@ public class ConsultasPersona {
     public static Conductor ObtenerConductorPorIdConsulta(long Id) throws Exception {
         Conductor Conductor = null;
 
-        String consulta = "SELECT * FROM \"Persona\" WHERE id = ?";
+        String consulta = "SELECT * FROM \"Persona\" WHERE \"Id\" = ?";
 
         try (Connection conn = ConectorBaseDato.Conectar(); 
                 PreparedStatement stmt = conn.prepareStatement(consulta)) {

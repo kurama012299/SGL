@@ -43,10 +43,9 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txfIdExaminador" layoutX="34.0" layoutY="195.0" prefHeight="25.0" prefWidth="207.0" promptText="Id del examinador" style="-fx-background-color: transparent;" />
       <Line endX="100.0" layoutX="133.0" layoutY="99.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="134.0" layoutY="160.0" startX="-100.0" stroke="#8000ff" />
-      <Line endX="106.66667175292969" endY="-1.52587890625E-5" layoutX="132.0" layoutY="223.0" startX="-100.0" stroke="#8000ff" />
+      <Line endX="99.99998474121094" endY="-0.3333282470703125" layoutX="132.0" layoutY="223.0" startX="-100.0" stroke="#8000ff" />
       <Line endX="100.0" layoutX="128.0" layoutY="331.0" startX="-100.0" stroke="#8000ff" />
       <JFXRadioButton fx:id="rbtPractico" layoutX="286.0" layoutY="105.0" onMouseClicked="#seleccionarTipoPractico" prefHeight="17.0" prefWidth="72.0" text="Práctico">
          <selectedColor>
@@ -138,5 +137,13 @@
          </font>
       </Label>
       <Line endX="75.50779724121094" endY="3.0517578125E-5" layoutX="137.0" layoutY="435.0" startX="-100.0" stroke="#8000ff" />
+      <ComboBox fx:id="cmbNombreExaminador" layoutX="34.0" layoutY="191.0" prefHeight="25.0" prefWidth="198.0" style="-fx-background-color: transparent;" stylesheets="@../../../estilos/EstilosComboBox.css">
+         <styleClass>
+            <String fx:value="combo-box" />
+            <String fx:value="combo-box-popup" />
+            <String fx:value="list-cell" />
+            <String fx:value="list-view" />
+         </styleClass>
+      </ComboBox>
    </children>
 </Pane>

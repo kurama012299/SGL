@@ -83,7 +83,7 @@ public class ConsultasUsuario {
         }
     }
     
-     public static ArrayList<Usuario> obtenerCorreosUsuarios() throws Exception {
+    public static ArrayList<Usuario> obtenerCorreosUsuariosConsulta() throws Exception {
          
         ArrayList<Usuario> usuarios = new ArrayList<>();
 
@@ -105,8 +105,62 @@ public class ConsultasUsuario {
             return usuarios;
         }
     }
+    
+    public static ArrayList<Usuario> obtenerUsuariosExamenesConduccionConsulta() throws Exception {
+         
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+         String consulta = "SELECT ur.\"Nombre\" "+
+                     "FROM \"Usuario\" ur "+
+                     "WHERE ur.\"Id_Rol\" IN(?, ?, ?, ?)";
+                    
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+            stmt.setInt(1, 1);
+            stmt.setInt(2, 2);
+            stmt.setInt(3, 4);
+            stmt.setInt(4, 5);
+            try{
+                ResultSet rs = stmt.executeQuery();         
+                while (rs.next()) {
+                    Usuario usuarioNuevo= new Usuario(
+                            rs.getString("Nombre"));
+                    usuarios.add(usuarioNuevo);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return usuarios;
+        }
+    }
+    
+    public static ArrayList<Usuario> obtenerUsuariosExamenesMedicoConsulta() throws Exception {
+         
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+         String consulta = "SELECT u.\"Nombre\" "+
+                     "FROM \"Usuario\" u " +
+                     "WHERE u.\"Id_Rol\" IN(?, ?, ?, ?)";
+                    
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+            stmt.setInt(1, 1);
+            stmt.setInt(2, 3);
+            stmt.setInt(3, 4);
+            stmt.setInt(4, 6);
+            try{
+                ResultSet rs = stmt.executeQuery();         
+                while (rs.next()) {
+                    Usuario usuarioNuevo= new Usuario(
+                            rs.getString("Nombre"));
+                    usuarios.add(usuarioNuevo);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return usuarios;
+        }
+    }
      
-    public static long crearUsuario(Usuario usuario,Long idRol,String clave) throws SQLException, Exception {
+    public static long crearUsuarioConsulta(Usuario usuario,Long idRol,String clave) throws SQLException, Exception {
         String guardar = "INSERT INTO \"Usuario\" (\"Correo\", \"Clave\", \"Nombre\", \"Id_Rol\", \"Foto\", \"Id_Entidad_Perteneciente\") VALUES (?, ?, ?, ?, ?, ?) RETURNING \"Id\"";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {

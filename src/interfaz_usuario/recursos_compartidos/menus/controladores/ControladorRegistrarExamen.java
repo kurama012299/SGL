@@ -84,6 +84,8 @@ public class ControladorRegistrarExamen {
     
     @FXML private ComboBox<String> cmbNombreEntidad;
     
+    @FXML private ComboBox<String> cmbNombreExaminador;
+    
     @FXML private RadioButton rbtAprobado;
     
     public void initialize()
@@ -92,6 +94,7 @@ public class ControladorRegistrarExamen {
         visibilidadRestricciones(false);
         btnCancelar.setOnAction(e -> GestorEscenas.cerrar(btnCancelar));
         cmbNombreEntidad.setDisable(true);
+        cmbNombreExaminador.setDisable(true);
         automaticoComboBox();
         
     }
@@ -100,8 +103,22 @@ public class ControladorRegistrarExamen {
     {
         ArrayList<String>autoescuelas= new ArrayList<>();
         ArrayList<String>clinicas=new ArrayList<>();
+        ArrayList<Usuario>examinadoresAutoescuela= new ArrayList<>();
+        ArrayList<Usuario>examinadoresMedicos= new ArrayList<>();
+        ArrayList<String>nombresExaminadoresAutoescuelas=new ArrayList<>();
+        ArrayList<String>nombresExaminadoresMedicos=new ArrayList<>();
         ObjectProperty<RadioButton>seleccion= new SimpleObjectProperty<>();
         try {
+           examinadoresAutoescuela=ServicioUsuario.obtenerUsuariosExamenesConduccion();
+           examinadoresMedicos=ServicioUsuario.obtenerUsuariosExamenesMedicos();
+           for(Usuario au: examinadoresAutoescuela)
+           {
+               nombresExaminadoresAutoescuelas.add(au.getNombre());
+           }
+           for(Usuario med: examinadoresMedicos)
+           {
+               nombresExaminadoresMedicos.add(med.getNombre());
+           }
            autoescuelas=ServicioEntidad.obtenerNombresAutoescuelas();
            clinicas=ServicioEntidad.obtenerNombresClinicas();
         } catch (Exception e) {
@@ -115,18 +132,29 @@ public class ControladorRegistrarExamen {
             }
         });
         
+        String[]nombresExaminadoresAuto=nombresExaminadoresAutoescuelas.toArray(new String[0]);
+        String[]nombresExaminadoresMed=nombresExaminadoresMedicos.toArray(new String[0]);
+        
         String[]nombresAutoescuelas=autoescuelas.toArray(new String[0]);
         String[]nombresClinicas=clinicas.toArray(new String[0]);
         seleccion.addListener((obs,valorViejo,valorNuevo)->{
            if(valorNuevo!= null){
                if(valorNuevo.getText().equalsIgnoreCase("Práctico") || valorNuevo.getText().equalsIgnoreCase("Teórico"))
                {
+                   cmbNombreExaminador.getItems().clear();
+                   cmbNombreExaminador.setDisable(false);
+                   cmbNombreExaminador.getItems().addAll(nombresExaminadoresAuto);
+                   
                    cmbNombreEntidad.getItems().clear();
                    cmbNombreEntidad.setDisable(false);
                    cmbNombreEntidad.getItems().addAll(nombresAutoescuelas);
                }
                else if(valorNuevo.getText().equalsIgnoreCase("Médico"))
                {
+                   cmbNombreExaminador.getItems().clear();
+                   cmbNombreExaminador.setDisable(false);
+                   cmbNombreExaminador.getItems().addAll(nombresExaminadoresMed);
+                   
                    cmbNombreEntidad.setDisable(false);
                    cmbNombreEntidad.getItems().clear();
                    cmbNombreEntidad.getItems().addAll(nombresClinicas);

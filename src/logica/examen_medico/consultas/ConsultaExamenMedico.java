@@ -101,7 +101,7 @@ public class ConsultaExamenMedico {
                      "LEFT JOIN \"Persona\" p ON em.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON em.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON em.\"Id_Entidad\" = ent.\"Id\"" +
-                     "WHERE em.\"Id_Examinador\" = ? " ;
+                     "WHERE em.\"Id\" = ? " ;
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 stmt.setLong(1, Id);
