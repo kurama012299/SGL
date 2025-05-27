@@ -4,9 +4,19 @@
  */
 package logica.persona.implementaciones;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import logica.infraccion.consultas.ConsultasInfraccion;
+import logica.infraccion.modelos.Infraccion;
+import logica.licencia.implementaciones.ServicioLicencia;
+import logica.licencia.modelos.Licencia;
 import logica.persona.consultas.ConsultasPersona;
 import logica.persona.modelos.Conductor;
+import logica.persona.modelos.Persona;
 
 /**
  *
@@ -28,4 +38,11 @@ public class ServicioConductor{
     {
         return ConsultasPersona.ObtenerConductorPorIdLicenciaConsulta(IdLicencia);
     }
+     
+      public static ObservableList<Conductor> obtenerConductoresConLicenciaVencida(LocalDate fechaInicio, LocalDate fechaFin) throws Exception{
+        return ConsultasPersona.obtenerConductoresConLicenciaVencidaPeriodo(fechaInicio, fechaFin);
+    }
+      
+       
+
 }

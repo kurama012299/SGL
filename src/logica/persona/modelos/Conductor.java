@@ -26,6 +26,11 @@ public class Conductor extends Persona{
      public Conductor(String CI){
          super(CI);
      }
+     
+     public Conductor(String nombre, String apellidos, String CI, long idLicencia){
+         super(nombre,apellidos,CI);
+         this.IdLicencia=idLicencia;
+     }
     
 
     public Long getIdLicencia() {
