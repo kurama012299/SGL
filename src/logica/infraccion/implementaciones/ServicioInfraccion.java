@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.infraccion.consultas.ConsultasInfraccion;
 import logica.infraccion.modelos.Infraccion;
+import logica.persona.modelos.Conductor;
 
 
 /**

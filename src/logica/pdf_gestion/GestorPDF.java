@@ -32,8 +32,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import logica.examen.modelos.Examen;
 import logica.infraccion.modelos.Infraccion;
+import logica.licencia.implementaciones.ServicioLicencia;
 import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
+import logica.persona.modelos.Conductor;
 
 
 
@@ -406,4 +408,80 @@ public class GestorPDF {
         manejarErrorGeneracionReporte(e);
     }
 }
+      
+      
+       public static void GenerarReporteConductoresLicenciasVencidas(ObservableList<Conductor> conductores, String tituloReporte) {
+        try {
+            // 1. Configuración inicial del documento
+            File pdfFile = File.createTempFile("reporte_conductores_licencias_vencidas_", ".pdf");
+            pdfFile.deleteOnExit();
+
+            Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
+            PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+            document.open();
+
+            // 2. Estilos de fuentes
+            Map<String, Font> estilos = crearEstilosFuentes();
+
+            // 3. Agregar encabezado
+            agregarEncabezado(document, tituloReporte, "Reporte de conductores con licencias vencidas", estilos);
+
+            // 4. Agregar tabla con datos de licencias
+            agregarTablaConductores(document, conductores, estilos);
+
+            // 5. Agregar pie de página
+            agregarPiePagina(document, estilos.get("footer"));
+
+            document.close();
+
+            // 6. Abrir el PDF automáticamente
+            abrirDocumento(pdfFile);
+
+        } catch (Exception e) {
+            manejarErrorGeneracionReporte(e);
+        }
+    }
+
+   
+    private static void agregarTablaConductores(Document document, ObservableList<Conductor> conductores, Map<String, Font> estilos)
+            throws DocumentException, Exception {
+
+        // Columnas: Nombre, CI, Tipo, Fecha Vencimiento, Estado
+        PdfPTable tabla = new PdfPTable(5);
+        tabla.setWidthPercentage(100);
+        tabla.setSplitLate(false); // Evita que las celdas se dividan en páginas
+
+        // Configurar anchos relativos de columnas
+        float[] anchosColumnas = {2f, 2f, 1.5f, 1.5f, 1.5f};
+        tabla.setWidths(anchosColumnas);
+
+        // Configuración común para todas las celdas
+        tabla.setExtendLastRow(false);
+        tabla.setHeaderRows(1); // La primera fila es cabecera
+
+        // Cabecera de la tabla (con alineación vertical superior)
+        agregarCeldaCabecera(tabla, "Nombre Conductor", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Carnet Identidad", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Tipo Licencia", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Fecha Vencimiento", estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Estado", estilos.get("cabecera"));
+        
+        // Datos de los conductores
+        boolean fondoGris = false;
+        for (Conductor conductor : conductores) {
+            Licencia licencia = ServicioLicencia.ObtenerLicenciaPorId(conductor.getIdLicencia());
+            BaseColor colorFondo = fondoGris ? BaseColor.LIGHT_GRAY : BaseColor.WHITE;
+
+            // Celda con texto que se ajusta (wrap) y alineación superior
+            agregarCeldaDatosAjustable(tabla, conductor.getNombre() + conductor.getApellidos(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, conductor.getCI(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, licencia.getTipo(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, licencia.getFechaVencimiento().toString(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, licencia.getEstado(), estilos.get("datos"), colorFondo);
+            
+            fondoGris = !fondoGris; 
+        }
+
+        document.add(tabla);
+    }
 }

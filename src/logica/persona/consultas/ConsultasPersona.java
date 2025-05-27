@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import logica.persona.modelos.Conductor;
 import logica.persona.modelos.Persona;
 import java.sql.Types;
+import java.time.LocalDate;
 
 
 /**
@@ -231,4 +232,51 @@ public class ConsultasPersona {
             throw new Exception("Error al crear la persona en la base de datos");
         }
     }
+    
+    public static ObservableList<Conductor> obtenerConductoresConLicenciaVencidaPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
+    // Validar las fechas de entrada
+    if (fechaInicio == null || fechaFin == null) {
+        throw new IllegalArgumentException("Ambas fechas deben ser proporcionadas");
+    }
+    if (fechaInicio.isAfter(fechaFin)) {
+        throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de fin");
+    }
+
+    ObservableList<Conductor> conductoresVencidos = FXCollections.observableArrayList();
+    
+    // Consulta SQL optimizada que obtiene directamente los conductores con licencias vencidas en el periodo
+    String consulta = "SELECT p.*, l.\"Fecha_Vencimiento\" " +
+                     "FROM \"Persona\" p " +
+                     "JOIN \"Licencia\" l ON p.\"Id_Licencia\" = l.\"Id\" " +
+                     "WHERE p.\"Id_Licencia\" IS NOT NULL " +
+                     "AND l.\"Fecha_Vencimiento\" BETWEEN ? AND ? " +
+                     "AND l.\"Id_Estado\" = (SELECT \"Id\" FROM \"Estado\" WHERE \"Nombre\" = 'Vencida')";
+    
+    try (Connection conn = ConectorBaseDato.Conectar();
+         PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        
+        // Convertir LocalDate a java.sql.Date
+        stmt.setDate(1, java.sql.Date.valueOf(fechaInicio));
+        stmt.setDate(2, java.sql.Date.valueOf(fechaFin));
+        
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Conductor conductor = new Conductor(
+                    rs.getString("Nombre"),
+                    rs.getString("Apellidos"),
+                    rs.getString("CI"),
+                    rs.getLong("Id_Licencia"));
+               
+                
+                conductoresVencidos.add(conductor);
+            }
+        }
+        
+    } /*catch (SQLException e) {
+        System.out.println("Error al obtener conductores con licencia vencida: " + e.getMessage());
+        throw new Exception("Error al obtener conductores con licencia vencida en el periodo especificado");
+    }*/
+    
+    return conductoresVencidos;
+}
 }

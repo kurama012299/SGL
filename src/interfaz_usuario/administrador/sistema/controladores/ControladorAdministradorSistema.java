@@ -618,6 +618,17 @@ public class ControladorAdministradorSistema extends Controlador{
             }
         });
     }
+    
+     private void configurarReporteConductoresLicenciasVencidas() {
+    configurarHover(spnlReporteConductores, imgReporteConductores, () -> {
+        try {
+            GestorEscenas.cargarMenuReportesPeriodo(spnlReporteConductores.getScene().getWindow(),
+                    "Licencias vencidas"); 
+        } catch (Exception ex) {
+             GestorEscenas.cargarError(spnlReporteConductores.getScene().getWindow(), ex);
+        }
+    });
+}
 
   
 
@@ -651,6 +662,7 @@ public class ControladorAdministradorSistema extends Controlador{
         configurarReporteInfracciones();
         configurarReporteExamenes();
         configurarReporteInfraccionesTipo();
+        configurarReporteConductoresLicenciasVencidas();
     }
     
     @FXML
