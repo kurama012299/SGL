@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
@@ -443,6 +444,8 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML private ToggleGroup filtroResultadoExamen;
    
+   @FXML private ToggleGroup filtrosTipoExamen;
+   
    @FXML private RadioButton rdbtAprobadoExamen;
    
    @FXML private RadioButton rdbtReprobadoExamen;
@@ -474,8 +477,6 @@ public class ControladorAdministradorSistema extends Controlador{
     private ImageView ImagenAutoescuela;
     private ImageView ImagenClinica;
     private ImageView ImagenEntidades; 
-    
-    
     
     
     @FXML
@@ -776,14 +777,8 @@ public class ControladorAdministradorSistema extends Controlador{
     @FXML
     public void TransicionExamenes()
     {
-        ArrayList<RadioButton>botonesRadio= new ArrayList<>();
-        botonesRadio.add(rdbtAprobadoExamen);
-        botonesRadio.add(rdbtReprobadoExamen);
-        botonesRadio.add(rdbtExamenTeorico);
-        botonesRadio.add(rdbtExamenPractico);
-        botonesRadio.add(rdbtExamenMedico);
-        
-        GestorTablas.cargarFiltrosTablaExamen(TablaExamenes, botonesRadio, filtroResultadoExamen, ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen, ColumnaResultadoExamen, ColumnaDetallesExamen);
+        GestorTablas.ConfigurarColumnasExamenes(ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen, ColumnaResultadoExamen, ColumnaDetallesExamen);
+        GestorTablas.cargarTablaExamenes(TablaExamenes);
         
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores,PanelReportes, PanelInicio, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenes,PanelesOcultar);

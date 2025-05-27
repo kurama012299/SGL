@@ -362,7 +362,7 @@
                   <Separator layoutX="-10.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="723.0" prefWidth="19.0" translateX="-4.0" />
                </children>
             </Pane>
-            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="850.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Exámenes">
                      <font>
@@ -614,7 +614,7 @@
                   <CheckBox layoutX="697.0" layoutY="64.0" mnemonicParsing="false" style="-fx-border-style: solid;" stylesheets="@../../recursos_compartidos/estilos/EstilosCheckBox.css" />
                </children>
             </Pane>
-            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="PanelInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="849.0" style="-fx-background-color: ghostwhite;">
                      <children>
