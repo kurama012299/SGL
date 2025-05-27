@@ -5,20 +5,16 @@
 package logica.examen_medico.consultas;
 
 import infraestructura.ConectorBaseDato;
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_medico.modelos.ExamenMedico;
-import logica.persona.modelos.Aprendiz;
 import logica.persona.modelos.Persona;
 import logica.usuario.modelos.Usuario;
 
@@ -169,9 +165,9 @@ public class ConsultaExamenMedico {
         }
     }
     
-    public static boolean crearExamenMedicoConsulta(ExamenMedico examen) throws Exception {
+    public static void crearExamenMedicoConsulta(ExamenMedico examen) throws Exception {
         String consulta = "INSERT INTO \"ExamenMedico\" (\"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\", \"Fecha\", \"Aprobado\") "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?) RETURNING \"Id\"";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
@@ -192,9 +188,7 @@ public class ConsultaExamenMedico {
                     insertarRestriccionesParaExamen(idExamen, examen.getRestricciones(), conn);
                 }
 
-                return true;
             }
-            return false;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new Exception("Error al crear el examen médico: " + e.getMessage());

@@ -9,12 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.examen_conduccion.modelos.ExamenConduccion;
-import logica.examen_medico.modelos.ExamenMedico;
 import logica.persona.modelos.Persona;
 import logica.usuario.modelos.Usuario;
 
@@ -273,4 +271,28 @@ public class ConsultaExamen {
             return examenes;
         }
      }
+     
+     public static boolean CrearExamenTeorico(ExamenConduccion examen) throws Exception {
+        String consulta = "INSERT INTO \"ExamenTeorico\" (\"Fecha\", \"Aprobado\", \"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\") "
+                + "VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+
+            // Convertir java.util.Date a java.sql.Date
+            java.sql.Date fechaSql = new java.sql.Date(examen.getFecha().getTime());
+
+            stmt.setDate(1, fechaSql);
+            stmt.setBoolean(2, examen.isAprobado());
+            stmt.setLong(3, examen.getPersona().getId());
+            stmt.setLong(4, examen.getExaminador().getId());
+            stmt.setLong(5, examen.getEntidad().getId());
+
+            int filasAfectadas = stmt.executeUpdate();
+            return filasAfectadas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Error al crear el examen teórico: " + e.getMessage());
+        }
+    }
 }

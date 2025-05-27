@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.examen.modelos.Examen;
-import logica.examen_conduccion.implementaciones.ServiciosExamenes;
+import logica.examen_conduccion.implementaciones.ServiciosExamenesConduccion;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
@@ -20,7 +20,7 @@ import logica.examen_medico.modelos.ExamenMedico;
  *
  * @author Adrian
  */
-public class ServicioExamenesGenerales {
+public class ServicioExamenes {
     
      public static ObservableList<Examen> obtenerExamenesPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
         // Validar las fechas de entrada
@@ -53,8 +53,8 @@ public class ServicioExamenesGenerales {
     public static ObservableList<Examen> obtenerTodosLosExamenes() throws Exception{
         
         ObservableList<Examen> examenes = FXCollections.observableArrayList();
-        ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
-        ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
+        ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
+        ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
         ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
         
         examenes.addAll(examenesMedicos);

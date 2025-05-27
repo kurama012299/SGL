@@ -12,7 +12,7 @@ import logica.examen_conduccion.modelos.ExamenConduccion;
  *
  * @author Kris
  */
-public class ServiciosExamenes {
+public class ServiciosExamenesConduccion {
     
     public static ObservableList<ExamenConduccion> ObtenerExamenesTeoricos() throws Exception {
         return ConsultaExamen.ObtenerExamenesTeoricosConsultas();
@@ -38,5 +38,9 @@ public class ServiciosExamenes {
         return ConsultaExamen.ObtenerExamenesPracticosPorIdRolConsultas(Id);
     }
     
+    public static void crearExamenTeorico(ExamenConduccion examen) throws Exception
+    {
+        ConsultaExamen.CrearExamenTeorico(examen);
+    }
     
 }

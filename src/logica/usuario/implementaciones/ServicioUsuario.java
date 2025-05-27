@@ -14,9 +14,9 @@ import logica.usuario.modelos.Usuario;
  */
 public class ServicioUsuario {
     
-    public static Usuario obtenerUsuarioPorId(long id) throws Exception
+    public static Usuario obtenerUsuarioPorNombre(String nombre) throws Exception
     {
-        return ConsultasUsuario.obtenerUsuarioPorIdConsulta(id);
+        return ConsultasUsuario.obtenerUsuarioPorNombreConsulta(nombre);
     }
     
     public static ArrayList<Usuario> obtenerCorreosUsuario() throws Exception

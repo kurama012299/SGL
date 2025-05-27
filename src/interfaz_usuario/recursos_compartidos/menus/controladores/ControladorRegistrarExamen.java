@@ -12,13 +12,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -28,10 +24,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import logica.entidad.implementaciones.ServicioEntidad;
+import logica.examen.implementaciones.ServicioExamenes;
+import logica.examen_conduccion.implementaciones.ServiciosExamenesConduccion;
+import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.examen_conduccion.validaciones.ValidacionCrearExamenTeorico;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
 import logica.examen_medico.validaciones.ValidacionCrearExamenMedico;
@@ -73,8 +72,6 @@ public class ControladorRegistrarExamen {
     @FXML private TextField txfNombre;
     
     @FXML private TextField txfCarnet;
-    
-    @FXML private TextField txfIdExaminador;
     
     @FXML private DatePicker dtFecha;
     
@@ -210,7 +207,6 @@ public class ControladorRegistrarExamen {
         
         
         ValidacionCompuesta campoNombre = new ValidacionCompuesta(validacionCampoVacio,validacionSoloLetras);
-        ValidacionCompuesta campoId = new ValidacionCompuesta(validacionCampoVacio,validacionSoloNumeros);
         ValidacionCompuesta campoCarnet = new ValidacionCompuesta(validacionCantidadCaracteresExacta,validacionSoloNumeros,validacionCarnet);
 
         
@@ -219,25 +215,24 @@ public class ControladorRegistrarExamen {
 
             campoNombre.Validar(txfNombre.getText(), "nombre");
             campoCarnet.Validar(txfCarnet.getText(), "carnet identidad");
-            campoId.Validar(txfIdExaminador.getText(), "id examinador");
             validacionFecha.Validar(dtFecha.getValue(), "fecha examen");
             validacionGrupoBotones.Validar(rbtGrupoTipoExamen, "opciones de tipo de examen");
             validacionComboBoxVacio.Validar(cmbNombreEntidad, "nombre entidad");
+            validacionComboBoxVacio.Validar(cmbNombreExaminador, "nombre examinador");
 
             System.out.println("Datos Correctos");
 
-            
-            if (rbtMedico.isSelected()) {
-                Usuario u = ServicioUsuario.obtenerUsuarioPorId(Long.parseLong(txfIdExaminador.getText()));
+            Usuario examinador = ServicioUsuario.obtenerUsuarioPorNombre(cmbNombreExaminador.getValue());
+            if (rbtMedico.isSelected()) {      
                 ExamenMedico examenMedico = new ExamenMedico(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
                         rbtAprobado.isSelected(),
                         ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue().toString()),
                         ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText()),
-                        u,
+                        examinador,
                         obtenerRestricciones());
                 
                 
-                if (ValidacionCrearExamenMedico.validarExamenMedico(txfNombre.getText(), txfCarnet.getText(),u )) {
+                if (ValidacionCrearExamenMedico.validarExamenMedico(txfNombre.getText(), txfCarnet.getText(),examinador )) {
                     //Crear Examen y salir
                     ServiciosExamenesMedicos.crearExamenMedico(examenMedico);
                     GestorEscenas.cerrar(btnCancelar);
@@ -253,10 +248,29 @@ public class ControladorRegistrarExamen {
                 }
 
             } else if (rbtTeorico.isSelected() || (rbtPractico.isSelected() && !rbtAprobado.isSelected())) {
+                ExamenConduccion examen;
+                if(rbtTeorico.isSelected())
+                {
+                    
+                    examen = new ExamenConduccion(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), 
+                            rbtAprobado.isSelected(),
+                            ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue().toString()),
+                            ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText()),
+                            examinador, "Teorico");
+                    
+                    ValidacionCrearExamenTeorico.validarCrearExamenTeorico(txfNombre.getText(),  txfCarnet.getText(), examinador);
+                    ServiciosExamenesConduccion.crearExamenTeorico(examen);
+                    GestorEscenas.cerrar(btnCancelar);
+                }
+                else
+                {
+                    //Crear Practico
+                }
                 GestorEscenas.cargarConfirmacion(btnRegistrar.getScene().getWindow(), "Se ha registrado con éxito");
                 GestorEscenas.cerrar(btnRegistrar);
             } else if (rbtPractico.isSelected() && rbtAprobado.isSelected()) {
-                //Transicion a registrar licencia
+                //Crear licencia
+                
             }
 
         } catch (Exception ex) {

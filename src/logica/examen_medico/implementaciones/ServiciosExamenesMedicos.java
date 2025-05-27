@@ -4,7 +4,11 @@
  */
 package logica.examen_medico.implementaciones;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javafx.collections.ObservableList;
 import logica.examen_medico.consultas.ConsultaExamenMedico;
 import logica.examen_medico.modelos.ExamenMedico;
@@ -25,6 +29,19 @@ public class ServiciosExamenesMedicos {
     
     public static ExamenMedico ObtenerExamenesMedicoPorId(Long Id) throws Exception {
         return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionPorIdConsulta(Id);
+    }
+    
+    
+    public static ArrayList<ExamenMedico> ObtenerExamenesMedicoPorCI(String ci) throws Exception {
+        ArrayList<ExamenMedico> examenes = new ArrayList<>();
+        for(ExamenMedico e : ObtenerExamenesMedico())
+        {
+            if(e.getPersona().getCI().equals(ci))
+            {
+                examenes.add(e);
+            }
+        }
+            return examenes;
     }
     
     public static void crearExamenMedico(ExamenMedico examenMedico) throws Exception
