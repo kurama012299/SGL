@@ -4,6 +4,7 @@
  */
 package logica.examen_medico.validaciones;
 
+
 import javafx.collections.ObservableList;
 import logica.persona.implementaciones.ServicioPersona;
 import logica.persona.modelos.Persona;
@@ -30,8 +31,10 @@ public class ValidacionCrearExamenMedico {
             }
         }
         
-        if(u.getRol().equals("Administrador autoescuela") || u.getRol().equals("Trabajador centro") || u.getRol().equals("Trabajador autoescuela"))
+        if(u.getRol().equals("Administrador autoescuela") || u.getRol().equals("Trabajador autoescuela"))
             throw new Exception("Ese usuario no puede crear examenes medicos");
         return existePersona;
     }
+    
+   
 }

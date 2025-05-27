@@ -27,7 +27,7 @@ import javafx.stage.Window;
 import logica.autentificacion.Autentificador;
 import logica.entidad.implementaciones.ServicioEntidad;
 import logica.entidad.modelos.EntidadRelacionada;
-import logica.examen_conduccion.implementaciones.ServiciosExamenes;
+import logica.examen_conduccion.implementaciones.ServiciosExamenesConduccion;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
@@ -274,8 +274,8 @@ public class GestorTablas {
     
     public static void cargarTablaExamenes(TableView<ExamenConduccion> tablaExamenes) {
         try {
-            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
-            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
+            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
+            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
             ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
             ObservableList<ExamenConduccion> examenesMedicosNuevos = FXCollections.observableArrayList();
             for (int i = 0; i < examenesMedicos.size(); i++) {
@@ -292,9 +292,10 @@ public class GestorTablas {
         }
     }
     
+
     public static void cargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) {
         try {
-            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenes.ObtenerExamenesPracticos();
+            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
             tablaExamenes.setItems(examenesPracticos);
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
@@ -306,7 +307,7 @@ public class GestorTablas {
     
     public static void cargarTablaExamenesTeoricosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) {
         try {
-            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricos();
+            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
             tablaExamenes.setItems(examenesTeoricos);
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
@@ -463,7 +464,7 @@ public class GestorTablas {
     
     public static void cargarTablaExamenesTeoricosTraAutoescuela(TableView<ExamenConduccion> tablaExamenes, Long id) {
         try {
-            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenes.ObtenerExamenesTeoricosPorIDRol(id);
+            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorIDRol(id);
             tablaExamenes.setItems(examenesTeoricos);
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
@@ -475,7 +476,7 @@ public class GestorTablas {
     
     public static void cargarTablaExamenesPracticosTraAutoescuela(TableView<ExamenConduccion> tablaExamenes, Long id) {
         try {
-            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenes.ObtenerExamenesPracticosPorIDRol(id);
+            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticosPorIDRol(id);
             tablaExamenes.setItems(examenesPracticos);
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);

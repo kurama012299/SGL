@@ -21,6 +21,11 @@ public class ExamenConduccion extends Examen {
         super(Id, Fecha, Aprobado, Entidad, Persona, Examinador, Tipo);
     }
     
+    public ExamenConduccion( Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador, String Tipo) {
+        
+        super( Fecha, Aprobado, Entidad, Persona, Examinador, Tipo);
+    }
+    
 
     
 }

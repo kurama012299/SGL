@@ -13,28 +13,33 @@ import java.util.Date;
  */
 public class ConvertidorFecha {
     public static Date convertirFecha(String fechaString) throws Exception {
-        // Verificar que el String tenga exactamente 6 caracteres
-        if (fechaString == null || fechaString.length() != 6) {
-            throw new IllegalArgumentException("El formato debe ser DDMMAA (6 dígitos)");
+        // Verificar que el String tenga exactamente 6 caracteres numéricos
+        if (fechaString == null || fechaString.length() != 6 || !fechaString.matches("\\d+")) {
+            throw new IllegalArgumentException("El formato debe ser DDMMAA (6 dígitos numéricos)");
         }
 
         // Separar día, mes y año
-        String dia = fechaString.substring(0, 2);
+        String dia = fechaString.substring(4, 6);
         String mes = fechaString.substring(2, 4);
-        String anio = "20" + fechaString.substring(4, 6); // Asumimos siglo 21 (2000s)
+        String anio = fechaString.substring(0, 2);
+
+        // Determinar el siglo (asumir que años 00-20 son 2000s y 21-99 son 1900s)
+        int anioNum = Integer.parseInt(anio);
+        String siglo = (anioNum <= 20) ? "20" : "19";
+        String anioCompleto = siglo + anio;
 
         // Formatear como yyyy-MM-dd
-        String fechaFormateada = anio + "-" + mes + "-" + dia;
+        String fechaFormateada = anioCompleto + "-" + mes + "-" + dia;
 
         // Convertir a Date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false); // Validación estricta de fechas
-        
+
         try {
             return sdf.parse(fechaFormateada);
         } catch (Exception e) {
-            throw new Exception("Fecha inválida: " + fechaString + 
-                             ". Error: " + e.getMessage());
+            throw new Exception("Fecha inválida: " + fechaString
+                    + ". Formato esperado: DDMMAA (ej: 100489 para 10-04-1989). Error: " + e.getMessage());
         }
     }
 }

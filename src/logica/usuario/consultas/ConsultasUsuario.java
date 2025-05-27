@@ -50,39 +50,39 @@ public class ConsultasUsuario {
         }
     }
     
-    public static Usuario obtenerUsuarioPorIdConsulta(Long idUsuario) throws Exception {
+    public static Usuario obtenerUsuarioPorNombreConsulta(String nombre) throws Exception {
         String consulta = """
-        SELECT u.*, r."Nombre" AS NombreRol
-        FROM "Usuario" u
-        JOIN "Rol" r ON u."Id_Rol" = r."Id"
-        WHERE u."Id" = ?
-        """;
+    SELECT u."Id", u."Nombre", u."Correo", u."Foto", 
+           u."Id_Entidad_Perteneciente", r."Nombre" AS "NombreRol"
+    FROM "Usuario" u
+    JOIN "Rol" r ON u."Id_Rol" = r."Id"
+    WHERE u."Nombre" = ?
+    """;
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
-            stmt.setLong(1, idUsuario);
+            stmt.setString(1, nombre);
 
-            ResultSet rs = stmt.executeQuery();
-
-            // Mapear todos los campos necesarios
-            if (rs.next()) {
-                // Obtener valores, manejando posibles nulos
-                Long Id = rs.getLong("Id");
-                String Nombre = rs.getString("Nombre");
-                String Correo = rs.getString("Correo");
-                String NombreRol = rs.getString("NombreRol");
-                String Foto = rs.getString("Foto");
-                Long NumeroEntidad = rs.getObject("Id_Entidad_Perteneciente", Long.class);
-                return new Usuario(Nombre, Correo, NombreRol, Foto, NumeroEntidad, Id);
-
-            } else {
-                throw new Exception("Usuario no encontrado");
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Construir el objeto Usuario manejando posibles valores nulos
+                    return new Usuario(
+                            rs.getString("Nombre"),
+                            rs.getString("Correo"),
+                            rs.getString("NombreRol"),
+                            rs.getString("Foto"),
+                            rs.getObject("Id_Entidad_Perteneciente", Long.class),
+                            rs.getLong("Id")
+                    );
+                } else {
+                    throw new Exception("Usuario con nombre '" + nombre + "' no encontrado");
+                }
             }
         } catch (SQLException e) {
-            throw new Exception("Error en la base de datos: " + e.getMessage());
+            throw new Exception("Error al obtener usuario por nombre: " + e.getMessage(), e);
         }
     }
-    
+
     public static ArrayList<Usuario> obtenerCorreosUsuariosConsulta() throws Exception {
          
         ArrayList<Usuario> usuarios = new ArrayList<>();
