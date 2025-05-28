@@ -20,38 +20,28 @@ import logica.examen_medico.modelos.ExamenMedico;
  */
 public class ControladorVerMasExamenes {
     
-    private ExamenConduccion ExamenConduccion=null;
-    private ExamenMedico ExamenMedico=null;
+    private ExamenConduccion examenConduccion=null;
+    private ExamenMedico examenMedico=null;
     
-    @FXML
-    private TextField TextFieldExaminado;
+    @FXML private TextField txfExaminado;
     
-    @FXML
-    private TextField TextFieldExaminador;
+    @FXML private TextField txfExaminador;
     
-    @FXML
-    private TextField TextFieldId;
+    @FXML private TextField txfId;
     
-    @FXML
-    private TextArea TextFieldRestricciones;
+    @FXML private TextArea txfRestricciones;
     
-    @FXML
-    private TextField TextFieldTipo;
+    @FXML private TextField txfTipo;
     
-    @FXML
-    private TextField TextFieldResultado;
+    @FXML private TextField txfResultado;
     
-    @FXML
-    private TextField TextFieldFecha;
+    @FXML private TextField txfFecha;
     
-    @FXML
-    private TextField TextFieldEntidad;
+    @FXML private TextField txfEntidad;
     
-    @FXML
-    private Label LabelRestriccion;
+    @FXML private Label lblRestriccion;
     
-    @FXML
-    private Label LabelFecha;
+    @FXML private Label lblFecha;
     
     @FXML private Button btnAtras;
     
@@ -69,74 +59,74 @@ public class ControladorVerMasExamenes {
     
     public void SetDatos(ExamenConduccion examenConduccion,ExamenMedico examenMedico)
     {
-        this.ExamenConduccion=examenConduccion;
-        this.ExamenMedico = examenMedico;
+        this.examenConduccion=examenConduccion;
+        this.examenMedico = examenMedico;
         if(examenConduccion == null && examenMedico != null)
         {
             visibilidadRestricciones(true);
-            IniciarMedico();
+            iniciarMedico();
         }
         else if(examenConduccion != null)
         {
-            LabelFecha.setLayoutY(LabelFecha.getLayoutY()-50);
-            TextFieldFecha.setLayoutY(TextFieldFecha.getLayoutY()-50);
+            lblFecha.setLayoutY(lblFecha.getLayoutY()-50);
+            txfFecha.setLayoutY(txfFecha.getLayoutY()-50);
             visibilidadRestricciones(false);
-            IniciarConduccion();
+            iniciarConduccion();
         }
     }
     
     private void visibilidadRestricciones(boolean esVisible)
     {
-        TextFieldRestricciones.setVisible(esVisible);
-        TextFieldRestricciones.setManaged(esVisible);
-        LabelRestriccion.setVisible(esVisible);
-        LabelRestriccion.setManaged(esVisible);
+        txfRestricciones.setVisible(esVisible);
+        txfRestricciones.setManaged(esVisible);
+        lblRestriccion.setVisible(esVisible);
+        lblRestriccion.setManaged(esVisible);
     }
-    public void IniciarConduccion()
+    public void iniciarConduccion()
     {
         System.out.println("Iniciar llamado");
-        TextFieldId.setText(ExamenConduccion.getPersona().getCI());
-        TextFieldExaminado.setText(ExamenConduccion.getPersona().getNombre()+ExamenConduccion.getPersona().getApellidos());
-        TextFieldExaminador.setText(ExamenConduccion.getExaminador().getNombre());
-        TextFieldTipo.setText(ExamenConduccion.getTipo());
-        if(ExamenConduccion.isAprobado())
+        txfId.setText(examenConduccion.getPersona().getCI());
+        txfExaminado.setText(examenConduccion.getPersona().getNombre()+examenConduccion.getPersona().getApellidos());
+        txfExaminador.setText(examenConduccion.getExaminador().getNombre());
+        txfTipo.setText(examenConduccion.getTipo());
+        if(examenConduccion.isAprobado())
         {
-            TextFieldResultado.setText("Aprobado");
+            txfResultado.setText("Aprobado");
         }
         else
         {
-            TextFieldResultado.setText("Reprobado");
+            txfResultado.setText("Reprobado");
         }
-        TextFieldEntidad.setText(ExamenConduccion.getEntidad().getNombre());
-        TextFieldFecha.setText(ExamenConduccion.getFecha().toString());
+        txfEntidad.setText(examenConduccion.getEntidad().getNombre());
+        txfFecha.setText(examenConduccion.getFecha().toString());
        
     }
     
-    public void IniciarMedico()
+    public void iniciarMedico()
     {
         System.out.println("Iniciar llamado");
         
-        TextFieldId.setText(ExamenMedico.getPersona().getCI());
-        TextFieldExaminado.setText(ExamenMedico.getPersona().getNombre()+ExamenMedico.getPersona().getApellidos());
-        TextFieldExaminador.setText(ExamenMedico.getExaminador().getNombre());
-        TextFieldTipo.setText(ExamenMedico.getTipo());
-        if(ExamenMedico.isAprobado() && ExamenMedico.getRestricciones().size()==0)
+        txfId.setText(examenMedico.getPersona().getCI());
+        txfExaminado.setText(examenMedico.getPersona().getNombre()+examenMedico.getPersona().getApellidos());
+        txfExaminador.setText(examenMedico.getExaminador().getNombre());
+        txfTipo.setText(examenMedico.getTipo());
+        if(examenMedico.isAprobado() && examenMedico.getRestricciones().size()==0)
         {
-            TextFieldResultado.setText("Aprobado");
-            TextFieldRestricciones.setText("Ninguna");
+            txfResultado.setText("Aprobado");
+            txfRestricciones.setText("Ninguna");
         }
-        else if(ExamenMedico.isAprobado() && ExamenMedico.getRestricciones().size()!=0)
+        else if(examenMedico.isAprobado() && examenMedico.getRestricciones().size()!=0)
         {
-            TextFieldResultado.setText("Aprobado condicional");
-            TextFieldRestricciones.setText(GestorEscenas.convertirArrayRestricciones(ExamenMedico.getRestricciones()).toString());
+            txfResultado.setText("Aprobado condicional");
+            txfRestricciones.setText(GestorEscenas.convertirArrayRestricciones(examenMedico.getRestricciones()).toString());
         }
         else
         {
-            TextFieldResultado.setText("Reprobado");
-            TextFieldRestricciones.setText(GestorEscenas.convertirArrayRestricciones(ExamenMedico.getRestricciones()).toString());
+            txfResultado.setText("Reprobado");
+            txfRestricciones.setText(GestorEscenas.convertirArrayRestricciones(examenMedico.getRestricciones()).toString());
         }
-        TextFieldEntidad.setText(ExamenMedico.getEntidad().getNombre());
-        TextFieldFecha.setText(ExamenMedico.getFecha().toString());
+        txfEntidad.setText(examenMedico.getEntidad().getNombre());
+        txfFecha.setText(examenMedico.getFecha().toString());
         
     }
     

@@ -6,6 +6,8 @@ package interfaz_usuario.administrador.sistema.controladores;
 
 import com.jfoenix.controls.JFXButton;
 import gestor_interfaces.GestorEscenas;
+import static gestor_interfaces.GestorEscenas.cerrarPrograma;
+import gestor_interfaces.GestorFXML;
 import gestor_interfaces.modelos.Controlador;
 import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.MenuEstadisticas;
@@ -517,7 +519,13 @@ public class ControladorAdministradorSistema extends Controlador{
         
         BotonCerrarSesion.setOnAction(e ->
         {
-            GestorEscenas.cerrarPrograma();
+            try {
+                GestorEscenas.cargarMensajeCerrarSesion(BotonCerrarSesion.getScene().getWindow());
+                
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(BotonCerrarSesion.getScene().getWindow(), ex);
+            }
+            
         });
         
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes, Autoescuela, Clinica, Entidades};

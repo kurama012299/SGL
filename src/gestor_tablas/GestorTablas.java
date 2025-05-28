@@ -8,6 +8,8 @@ import gestor_interfaces.GestorEscenas;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +21,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -542,7 +545,7 @@ public class GestorTablas {
             tablaEntidad.setItems(entidades);
             llenarColumnaDetalles(tablaEntidad, tablaEntidad.getItems().size() - 1);
         } catch (Exception ex) {
-
+            GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
         }
     }
 

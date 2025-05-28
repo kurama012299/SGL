@@ -28,7 +28,7 @@
          </font>
       </Label>
       <TextField fx:id="TextFieldCI" disable="true" editable="false" layoutX="35.0" layoutY="95.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent;" text="04112767283" />
-      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="27.0" layoutY="337.0"  prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
+      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="27.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
       <JFXButton cancelButton="true" layoutX="418.0" layoutY="337.0" opacity="0.4" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: red;" text="       Eliminar" textFill="WHITE" />
       <Label layoutX="172.0" layoutY="82.0" prefHeight="19.0" prefWidth="78.0" text="Licencia Id:">
          <font>
@@ -41,7 +41,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="TextFieldEstado" disable="true" editable="false" layoutX="400.0" layoutY="203.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="Vigente" />
+      <TextField fx:id="TextFieldEstado" disable="true" editable="false" layoutX="400.0" layoutY="203.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="Vigente" />
       <Label layoutX="26.0" layoutY="268.0" prefHeight="25.0" prefWidth="59.0" text="Emisión">
          <font>
             <Font name="System Bold" size="13.0" />
