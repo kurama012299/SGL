@@ -4,11 +4,9 @@
  */
 package logica.examen_medico.implementaciones;
 
-import java.time.Instant;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import javafx.collections.ObservableList;
 import logica.examen_medico.consultas.ConsultaExamenMedico;
 import logica.examen_medico.modelos.ExamenMedico;

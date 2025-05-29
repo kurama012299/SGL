@@ -4,9 +4,12 @@
  */
 package logica.examen_conduccion.implementaciones;
 
+import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import logica.examen_conduccion.consultas.ConsultaExamen;
 import logica.examen_conduccion.modelos.ExamenConduccion;
+import static logica.examen_medico.implementaciones.ServiciosExamenesMedicos.ObtenerExamenesMedico;
+import logica.examen_medico.modelos.ExamenMedico;
 
 /**
  *
@@ -40,7 +43,24 @@ public class ServiciosExamenesConduccion {
     
     public static void crearExamenTeorico(ExamenConduccion examen) throws Exception
     {
-        ConsultaExamen.CrearExamenTeorico(examen);
+        ConsultaExamen.crearExamenTeorico(examen);
     }
     
+     public static void crearExamenPractico(ExamenConduccion examen) throws Exception
+    {
+        ConsultaExamen.crearExamenPractico(examen);
+    }
+     
+     
+    public static ArrayList<ExamenConduccion> ObtenerExamenesTeoricosPorCI(String ci) throws Exception {
+        ArrayList<ExamenConduccion> examenes = new ArrayList<>();
+        for(ExamenConduccion e : ObtenerExamenesTeoricos())
+        {
+            if(e.getPersona().getCI().equals(ci))
+            {
+                examenes.add(e);
+            }
+        }
+            return examenes;
+    }
 }

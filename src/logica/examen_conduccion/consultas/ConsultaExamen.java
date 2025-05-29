@@ -272,8 +272,32 @@ public class ConsultaExamen {
         }
      }
      
-     public static boolean CrearExamenTeorico(ExamenConduccion examen) throws Exception {
+     public static boolean crearExamenTeorico(ExamenConduccion examen) throws Exception {
         String consulta = "INSERT INTO \"ExamenTeorico\" (\"Fecha\", \"Aprobado\", \"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\") "
+                + "VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+
+            // Convertir java.util.Date a java.sql.Date
+            java.sql.Date fechaSql = new java.sql.Date(examen.getFecha().getTime());
+
+            stmt.setDate(1, fechaSql);
+            stmt.setBoolean(2, examen.isAprobado());
+            stmt.setLong(3, examen.getPersona().getId());
+            stmt.setLong(4, examen.getExaminador().getId());
+            stmt.setLong(5, examen.getEntidad().getId());
+
+            int filasAfectadas = stmt.executeUpdate();
+            return filasAfectadas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Error al crear el examen teórico: " + e.getMessage());
+        }
+    }
+     
+     public static boolean crearExamenPractico(ExamenConduccion examen) throws Exception {
+        String consulta = "INSERT INTO \"ExamenPractico\" (\"Fecha\", \"Aprobado\", \"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\") "
                 + "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {

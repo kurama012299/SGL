@@ -37,6 +37,7 @@ public class ValidacionCrearExamenTeorico {
         
         ExamenMedico examenMedico = revisarExamenMedicoValido(ServiciosExamenesMedicos.ObtenerExamenesMedicoPorCI(ci));
         
+        
         if(usuario.getRol().equals("AdministradorMedico") || usuario.getRol().equals("Medico"))
             throw new Exception("Ese usuario no puede crear examenes medicos");
         

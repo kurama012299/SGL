@@ -64,14 +64,15 @@ public class ControladorRegistrarPersona {
         this.examenMedico=examenMedico;
         this.ventanaAnterior=ventana;
         this.persona = persona;
-        System.out.println(persona.getNombre());
+        mostrarRestricciones();
         
     }
     
     
     @FXML private void mostrarRestricciones()
     {
-        if(examenMedico.getRestricciones().size()==0)
+        
+        if(examenMedico.getRestricciones().isEmpty())
         {
             txaRestricciones.setText("Ninguna");
         }

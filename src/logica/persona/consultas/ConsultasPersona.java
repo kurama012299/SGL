@@ -24,7 +24,7 @@ import java.time.LocalDate;
  */
 public class ConsultasPersona {
     
-    public static ObservableList<Persona> ObtenerPersonasConsulta() throws Exception {
+    public static ObservableList<Persona> obtenerPersonasConsulta() throws Exception {
         ObservableList<Persona> personas = FXCollections.observableArrayList();
         
         String consulta = "SELECT * FROM \"Persona\" "; 
@@ -56,7 +56,7 @@ public class ConsultasPersona {
     }
     
     
-    public static Persona ObtenerPersonaPorCIConsulta(String ci) throws Exception {
+    public static Persona obtenerPersonaPorCIConsulta(String ci) throws Exception {
         Persona persona = null;
 
         String consulta = "SELECT * FROM \"Persona\" WHERE \"CI\" = ?";
@@ -91,7 +91,7 @@ public class ConsultasPersona {
     }
     
     
-    public static ObservableList<Conductor> ObtenerConductoresConsulta() throws Exception {
+    public static ObservableList<Conductor> obtenerConductoresConsulta() throws Exception {
         ObservableList<Conductor> Conductores = FXCollections.observableArrayList();
         
         String consulta = "SELECT * FROM \"Persona\" WHERE \"Id_Licencia\"<>0"; 
@@ -126,7 +126,7 @@ public class ConsultasPersona {
     }
     
     
-    public static Conductor ObtenerConductorPorIdConsulta(long Id) throws Exception {
+    public static Conductor obtenerConductorPorIdConsulta(long Id) throws Exception {
         Conductor Conductor = null;
 
         String consulta = "SELECT * FROM \"Persona\" WHERE \"Id\" = ?";
@@ -161,7 +161,7 @@ public class ConsultasPersona {
         return Conductor;
     }
     
-    public static Conductor ObtenerConductorPorIdLicenciaConsulta(long IdLicencia) throws Exception {
+    public static Conductor obtenerConductorPorIdLicenciaConsulta(long IdLicencia) throws Exception {
         Conductor Conductor = null;
 
         String consulta = "SELECT * FROM \"Persona\" WHERE \"Id_Licencia\" = ?";

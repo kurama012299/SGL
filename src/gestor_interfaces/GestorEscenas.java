@@ -50,6 +50,7 @@ import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoc
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesPeriodo;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesTipo;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarInfraccion;
+import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarLicencia;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarPersona;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarUsuario;
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesPracticosTrabajador;
@@ -891,6 +892,36 @@ public class GestorEscenas  {
             Parent ruta = cargador.load();
             ControladorRegistrarPersona controlador = cargador.getController();
             controlador.setDatos(examenMedico,ventanaAnterior,persona);
+
+            Scene escena = new Scene(ruta);
+            Stage ventana = new Stage();
+            ventana.initOwner(padre);
+            ventana.initStyle(StageStyle.UTILITY);
+
+
+            ventana.initModality(Modality.WINDOW_MODAL);
+            
+
+            ventana.setTitle("");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+          
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            throw new Exception("Error al cargar la interfaz");
+        }
+      }
+      
+      public static void cargarRegistrarLicencia(Window padre,Stage ventanaAnterior,ExamenMedico examenMedico) throws Exception {
+        try {
+            String direccion = GestorFXML.RutaRegistrarLicencia;
+            URL url = GestorEscenas.class.getResource(direccion);
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent ruta = cargador.load();
+            ControladorRegistrarLicencia controlador = cargador.getController();
+            controlador.setDatos(examenMedico,ventanaAnterior);
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();

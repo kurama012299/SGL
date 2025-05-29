@@ -5,9 +5,6 @@
 package interfaz_usuario.recursos_compartidos.menus.controladores;
 
 import gestor_interfaces.GestorEscenas;
-import java.util.Date;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
@@ -18,12 +15,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import logica.entidad.implementaciones.ServicioEntidad;
 import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.implementaciones.ServicioLicencia;
-import logica.persona.modelos.Conductor;
-import logica.persona.modelos.Persona;
 import logica.validaciones_generales.ValidacionCampoVacio;
 import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
 import logica.validaciones_generales.ValidacionCantidadCaracteresMaxima;

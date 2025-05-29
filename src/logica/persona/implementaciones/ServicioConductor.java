@@ -26,17 +26,17 @@ public class ServicioConductor{
 
     
     public static ObservableList<Conductor> ObtenerConductores() throws Exception {
-        return ConsultasPersona.ObtenerConductoresConsulta();
+        return ConsultasPersona.obtenerConductoresConsulta();
     }
     
     public static Conductor ObtenerConductorPorId(long Id) throws Exception
     {
-        return ConsultasPersona.ObtenerConductorPorIdConsulta(Id);
+        return ConsultasPersona.obtenerConductorPorIdConsulta(Id);
     }
     
      public static Conductor ObtenerConductorPorIdLicencia(long IdLicencia) throws Exception
     {
-        return ConsultasPersona.ObtenerConductorPorIdLicenciaConsulta(IdLicencia);
+        return ConsultasPersona.obtenerConductorPorIdLicenciaConsulta(IdLicencia);
     }
      
       public static ObservableList<Conductor> obtenerConductoresConLicenciaVencida(LocalDate fechaInicio, LocalDate fechaFin) throws Exception{

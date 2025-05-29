@@ -16,12 +16,12 @@ public class ServicioPersona {
     
     public static ObservableList<Persona> obtenerPersonas() throws Exception
     {
-        return ConsultasPersona.ObtenerPersonasConsulta();
+        return ConsultasPersona.obtenerPersonasConsulta();
     }
     
     public static Persona obtenerPersonaPorCi(String ci) throws Exception
     {
-        return ConsultasPersona.ObtenerPersonaPorCIConsulta(ci);
+        return ConsultasPersona.obtenerPersonaPorCIConsulta(ci);
     }
     
     public static long crearPersona(Persona persona) throws Exception

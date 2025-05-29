@@ -15,6 +15,7 @@ import java.util.Map;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -24,16 +25,18 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import logica.entidad.implementaciones.ServicioEntidad;
-import logica.examen.implementaciones.ServicioExamenes;
 import logica.examen_conduccion.implementaciones.ServiciosExamenesConduccion;
 import logica.examen_conduccion.modelos.ExamenConduccion;
+import logica.examen_conduccion.validaciones.ValidacionCrearExamenPractico;
 import logica.examen_conduccion.validaciones.ValidacionCrearExamenTeorico;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
 import logica.examen_medico.validaciones.ValidacionCrearExamenMedico;
+import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioPersona;
 import logica.persona.modelos.Persona;
 import logica.restricciones.implementacion.ServicioRestriccion;
@@ -98,13 +101,13 @@ public class ControladorRegistrarExamen {
     
     @FXML private void automaticoComboBox()
     {
-        ArrayList<String>autoescuelas= new ArrayList<>();
-        ArrayList<String>clinicas=new ArrayList<>();
-        ArrayList<Usuario>examinadoresAutoescuela= new ArrayList<>();
-        ArrayList<Usuario>examinadoresMedicos= new ArrayList<>();
-        ArrayList<String>nombresExaminadoresAutoescuelas=new ArrayList<>();
-        ArrayList<String>nombresExaminadoresMedicos=new ArrayList<>();
-        ObjectProperty<RadioButton>seleccion= new SimpleObjectProperty<>();
+        ArrayList<String> autoescuelas= new ArrayList<>();
+        ArrayList<String> clinicas=new ArrayList<>();
+        ArrayList<Usuario> examinadoresAutoescuela= new ArrayList<>();
+        ArrayList<Usuario> examinadoresMedicos= new ArrayList<>();
+        ArrayList<String> nombresExaminadoresAutoescuelas=new ArrayList<>();
+        ArrayList<String> nombresExaminadoresMedicos=new ArrayList<>();
+        ObjectProperty<RadioButton> seleccion= new SimpleObjectProperty<>();
         try {
            examinadoresAutoescuela=ServicioUsuario.obtenerUsuariosExamenesConduccion();
            examinadoresMedicos=ServicioUsuario.obtenerUsuariosExamenesMedicos();
@@ -226,50 +229,81 @@ public class ControladorRegistrarExamen {
             if (rbtMedico.isSelected()) {      
                 ExamenMedico examenMedico = new ExamenMedico(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
                         rbtAprobado.isSelected(),
-                        ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue().toString()),
+                        ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue()),
                         ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText()),
                         examinador,
                         obtenerRestricciones());
                 
                 
                 if (ValidacionCrearExamenMedico.validarExamenMedico(txfNombre.getText(), txfCarnet.getText(),examinador )) {
-                    //Crear Examen y salir
+                    //Crear Examen Medico y salir
                     ServiciosExamenesMedicos.crearExamenMedico(examenMedico);
                     GestorEscenas.cerrar(btnCancelar);
                     
                 } else {
-                    // Primero: Obtener referencia a la ventana actual
                     Window ventanaActual = rbtMedico.getScene().getWindow();
                     
                     Map<String,String> nombreApellidos = separarNombreApellidos(txfNombre.getText());
-   
+                    System.out.println(examenMedico.getRestricciones());
                     Persona persona = new Persona(nombreApellidos.get("nombre"), nombreApellidos.get("apellidos"), txfCarnet.getText());
                     GestorEscenas.cargarRegistrarPersona(ventanaActual, (Stage) rbtMedico.getScene().getWindow(),examenMedico,persona);
                 }
 
-            } else if (rbtTeorico.isSelected() || (rbtPractico.isSelected() && !rbtAprobado.isSelected())) {
+            } else if (rbtTeorico.isSelected()) {
                 ExamenConduccion examen;
                 if(rbtTeorico.isSelected())
                 {
-                    
+                    //Crear examen teorico
                     examen = new ExamenConduccion(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), 
                             rbtAprobado.isSelected(),
-                            ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue().toString()),
+                            ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue()),
                             ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText()),
                             examinador, "Teorico");
                     
-                    ValidacionCrearExamenTeorico.validarCrearExamenTeorico(txfNombre.getText(),  txfCarnet.getText(), examinador);
+                    ExamenMedico examenMedico = ValidacionCrearExamenTeorico.validarCrearExamenTeorico(txfNombre.getText(),
+                            txfCarnet.getText(), examinador);
+                    
+                    if(examen.getFecha().before(examenMedico.getFecha()))
+                        throw new Exception("No puede realizar el examen teorico antes del medico");
+                    
                     ServiciosExamenesConduccion.crearExamenTeorico(examen);
                     GestorEscenas.cerrar(btnCancelar);
-                }
-                else
-                {
-                    //Crear Practico
                 }
                 GestorEscenas.cargarConfirmacion(btnRegistrar.getScene().getWindow(), "Se ha registrado con éxito");
                 GestorEscenas.cerrar(btnRegistrar);
             } else if (rbtPractico.isSelected() && rbtAprobado.isSelected()) {
-                //Crear licencia
+                //Examen Practico
+                ExamenConduccion examen;
+                examen = new ExamenConduccion(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())
+                        , rbtAprobado.isSelected(), ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue())
+                        , ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText())
+                        , examinador, "Practico");
+                
+                ExamenMedico examenMedico = ValidacionCrearExamenPractico.validarCrearExamenPractico(txfNombre.getText(),
+                        txfCarnet.getText(), examinador);   
+                
+                if(examen.getFecha().before(examenMedico.getFecha()))
+                        throw new Exception("No puede realizar el examen practico antes del medico");
+                
+                if(examen.getFecha().before(ValidacionCrearExamenPractico.revisarExamenTeoricoValido(
+                        ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorCI(
+                                txfCarnet.getText())).getFecha()))
+                    throw new Exception("No puede realizar el examen practico antes del teorico");
+                    
+                if(rbtAprobado.isSelected())
+                {
+                    Window ventanaActual = rbtTeorico.getScene().getWindow();
+                    
+                    //Cargar Menu Crear Licencia
+                    GestorEscenas.cargarRegistrarLicencia(ventanaActual,
+                            (Stage) rbtMedico.getScene().getWindow(),
+                            ValidacionCrearExamenPractico.revisarExamenMedicoValido(
+                                    ServiciosExamenesMedicos.ObtenerExamenesMedicoPorCI(txfCarnet.getText()))
+                    );
+                    
+                }
+                
+                
                 
             }
 
@@ -278,20 +312,43 @@ public class ControladorRegistrarExamen {
         }
          
     }
-    
-    private ArrayList<String> obtenerRestricciones()
-    {
-        ArrayList<String> restricciones = new ArrayList<>();
-        ArrayList<JFXRadioButton> rbtSeleccionados = GestorEscenas.obtenerRadioButtonsSeleccionados(apnlContenedorRestricciones);
 
-        
-        for(JFXRadioButton rbt: rbtSeleccionados)
-        {
-            restricciones.add(rbt.getText());
+    private ArrayList<String> obtenerRestricciones() {
+        ArrayList<String> restricciones = new ArrayList<>();
+
+        try {
+            // Obtener el contenido del ScrollPane
+            Node content = scrpRestricciones.getContent();
+
+            if (content instanceof AnchorPane) {
+                AnchorPane anchorPane = (AnchorPane) content;
+
+                // Buscar recursivamente en todos los nodos
+                for (Node node : anchorPane.getChildren()) {
+                    if (node instanceof VBox) {
+                        VBox vbox = (VBox) node;
+
+                        for (Node child : vbox.getChildren()) {
+                            if (child instanceof JFXRadioButton) {
+                                JFXRadioButton rb = (JFXRadioButton) child;
+                                if (rb.isSelected()) {
+                                    System.out.println("RadioButton seleccionado: " + rb.getText());
+                                    restricciones.add(rb.getText().trim());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error al obtener restricciones: " + e.getMessage());
+            e.printStackTrace();
         }
 
+        System.out.println("Total restricciones encontradas: " + restricciones.size());
         return restricciones;
-    }
+}
+    
     
     public static Map<String, String> separarNombreApellidos(String nombreCompleto) {
     nombreCompleto = nombreCompleto.trim().replaceAll("\\s+", " ");
