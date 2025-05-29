@@ -47,6 +47,7 @@ import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasAut
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasClinicas;
 import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasEntidades;
 import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoctor;
+import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarDosAcciones;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesPeriodo;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesTipo;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarInfraccion;
@@ -155,7 +156,7 @@ public class GestorEscenas  {
             // Cargar el panel de error
             System.out.println(ex.getLocalizedMessage());
             System.out.println(ex.getMessage());
-            URL url = GestorEscenas.class.getResource("/interfaz_usuario/recursos_compartidos/errores/mensaje-error.fxml");
+            URL url = GestorEscenas.class.getResource(GestorFXML.RutaMenuError);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent root = cargador.load();
 
@@ -186,7 +187,7 @@ public class GestorEscenas  {
     public static void cargarConfirmacion(Window ventanaPadre, String mensaje) {
         try {
             // Cargar el panel de error
-            URL url = GestorEscenas.class.getResource("/interfaz_usuario/recursos_compartidos/errores/mensaje-confirmacion.fxml");
+            URL url = GestorEscenas.class.getResource(GestorFXML.RutaMenuConfirmacion);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent root = cargador.load();
 
@@ -211,6 +212,45 @@ public class GestorEscenas  {
             alertaSimple.setHeaderText("No se pudo cargar el panel de error");
             alertaSimple.setContentText(e.getMessage());
             alertaSimple.showAndWait();
+        }
+    }
+
+    
+    public static void cargarMensajeCerrarSesion(Window ventanaPadre) {
+        
+        ControladorMenuAuxiliarDosAcciones controlador=null;
+        
+        try {
+            // Cargar el panel de error
+            URL url = GestorEscenas.class.getResource(GestorFXML.RutaMenuCerrarSesion);
+            FXMLLoader cargador = new FXMLLoader(url);
+            Parent root = cargador.load();
+
+            // Obtener el controlador y configurar el mensaje
+            controlador = cargador.getController();
+           
+
+            // Configurar la ventana
+            Stage ventana = new Stage();
+            ventana.initStyle(StageStyle.UTILITY);
+            ventana.initOwner(ventanaPadre);
+            ventana.initModality(Modality.WINDOW_MODAL);
+            ventana.setScene(new Scene(root));
+
+            // Mostrar la ventana
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+            // Fallback básico si falla la carga del FXML
+            Alert alertaSimple = new Alert(Alert.AlertType.ERROR);
+            alertaSimple.setTitle("Error crítico");
+            alertaSimple.setHeaderText("No se pudo cargar el panel de error");
+            alertaSimple.setContentText(e.getMessage());
+            alertaSimple.showAndWait();
+        }
+       
+        if (controlador.esAceptado()) {
+            cerrarPrograma();
         }
     }
 

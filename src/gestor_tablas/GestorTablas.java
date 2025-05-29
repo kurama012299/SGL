@@ -8,6 +8,8 @@ import gestor_interfaces.GestorEscenas;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +21,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -43,7 +46,6 @@ import logica.persona.modelos.Conductor;
 public class GestorTablas {
 
     private static <T> void llenarColumnaDetalles(TableView<T> Tabla, int cantidadFilas) {
-        Tabla.refresh();
         TableColumn<T, ?> ultimaColumna = (TableColumn<T, ?>) Tabla.getColumns().get(Tabla.getColumns().size() - 1);
         Platform.runLater(() -> {
             // Buscar TODAS las celdas visibles
@@ -162,7 +164,6 @@ public class GestorTablas {
                         "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
                 )
         );
-        tabla.refresh();
         TableColumn<T, ?> primeraColumna = (TableColumn<T, ?>) tabla.getColumns().get(0);
         Platform.runLater(() -> {
             // Buscar TODAS las celdas visibles
@@ -294,118 +295,7 @@ public class GestorTablas {
         }
     }
     
-    public static void cargarFiltrosTablaExamen(TableView<ExamenConduccion> tablaExamenes,ArrayList<RadioButton> radioButtons,ToggleGroup grupoResultado,
-            TableColumn<ExamenConduccion, String> columnaFotoExamen,
-            TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
-            TableColumn<ExamenConduccion, String> columnaTipoExamen,
-            TableColumn<ExamenConduccion, Date> columnaFechaExamen,
-            TableColumn<ExamenConduccion, String> columnaExaminadorExamen,
-            TableColumn<ExamenConduccion, String> columnaResultadoExamen,
-            TableColumn<ExamenConduccion, String> columnaDetallesExamen)
-    {
-        ObservableList<ExamenConduccion>datosOriginales=FXCollections.observableArrayList();
-        
-        boolean algunoSeleccionado=false;
-        for (RadioButton radioButton : radioButtons) {
-            if(radioButton.isSelected())
-            {
-                algunoSeleccionado=true;
-            }
-        }
-        if(algunoSeleccionado)
-        {
-            ConfigurarColumnasExamenes(columnaFotoExamen, columnaExaminadoExamen, columnaTipoExamen, columnaFechaExamen, columnaExaminadorExamen, columnaResultadoExamen, columnaDetallesExamen);
-            cargarTablaExamenes(tablaExamenes);
-        }
-        else
-        {
-            try {
-            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
-            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
-            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
-            ObservableList<ExamenConduccion> examenesMedicosNuevos = FXCollections.observableArrayList();
-            for (int i = 0; i < examenesMedicos.size(); i++) {
-                ExamenConduccion examen = new ExamenConduccion(examenesMedicos.get(i).getId(), examenesMedicos.get(i).getFecha(), examenesMedicos.get(i).isAprobado(), examenesMedicos.get(i).getEntidad(), examenesMedicos.get(i).getPersona(), examenesMedicos.get(i).getExaminador(), examenesMedicos.get(i).getTipo());
-                examenesMedicosNuevos.add(examen);
-            }
 
-            datosOriginales = FXCollections.concat(examenesTeoricos, examenesPracticos, examenesMedicosNuevos);
-             } catch (Exception ex) {
-            //Capturar Error
-        }
-            FilteredList<ExamenConduccion>datosFiltrados=new FilteredList<>(datosOriginales);
-            tablaExamenes.setItems(datosFiltrados);
-            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
-            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
-            
-            
-            
-            ConfigurarColumnasExamenes(columnaFotoExamen, columnaExaminadoExamen, columnaTipoExamen, columnaFechaExamen, columnaExaminadorExamen, columnaResultadoExamen, columnaDetallesExamen);
-            
-            
-            radioButtons.get(0).selectedProperty().addListener((obs, valorViejo, valorNuevo) -> {
-                actualizarFiltro(datosFiltrados, radioButtons,tablaExamenes);
-            });
-            radioButtons.get(1).selectedProperty().addListener((obs, valorViejo, valorNuevo) -> {
-                actualizarFiltro(datosFiltrados, radioButtons,tablaExamenes);
-            });
-            radioButtons.get(2).selectedProperty().addListener((obs, valorViejo, valorNuevo) -> {
-                actualizarFiltro(datosFiltrados, radioButtons,tablaExamenes);
-            });
-            radioButtons.get(3).selectedProperty().addListener((obs, valorViejo, valorNuevo) -> {
-                actualizarFiltro(datosFiltrados, radioButtons,tablaExamenes);
-            });
-            radioButtons.get(4).selectedProperty().addListener((obs, valorViejo, valorNuevo) -> {
-                actualizarFiltro(datosFiltrados, radioButtons,tablaExamenes);
-            });
-        }
-    }
-    
-    private static void actualizarFiltro(FilteredList<ExamenConduccion>datosFiltrados,
-                                            ArrayList<RadioButton> rdbtBotones,TableView<ExamenConduccion> examenes)
-    {
-        datosFiltrados.setPredicate(ExamenConduccion ->{
-            boolean estadoOk=true;
-            if(rdbtBotones.get(0).isSelected())
-            {
-                estadoOk = ExamenConduccion.isAprobado();
-            }
-            else if(rdbtBotones.get(1).isSelected())
-            {
-                estadoOk=!ExamenConduccion.isAprobado();
-            }
-            
-            boolean tipoOk = true;
-            if(rdbtBotones.get(2).isSelected())
-            {
-                tipoOk="Teórico".equalsIgnoreCase(ExamenConduccion.getTipo());
-            }
-            else if(rdbtBotones.get(3).isSelected())
-            {
-                tipoOk="Práctico".equalsIgnoreCase(ExamenConduccion.getTipo());
-            }
-            else if(rdbtBotones.get(4).isSelected())
-            {
-                tipoOk="Médico".equalsIgnoreCase(ExamenConduccion.getTipo());
-            }
-            
-            llenarColumnaDetalles(examenes, examenes.getItems().size() - 1);
-            llenarColumnaFotos(examenes, examenes.getItems().size() - 1);
-            examenes.refresh();
-            
-            return estadoOk && tipoOk;
-             
-        });
-        examenes.refresh();
-            llenarColumnaDetalles(examenes, examenes.getItems().size() - 1);
-            llenarColumnaFotos(examenes, examenes.getItems().size() - 1);
-           
-
-        
-        
-    }
-
-    
     public static void cargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) {
         try {
             ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
@@ -655,7 +545,7 @@ public class GestorTablas {
             tablaEntidad.setItems(entidades);
             llenarColumnaDetalles(tablaEntidad, tablaEntidad.getItems().size() - 1);
         } catch (Exception ex) {
-
+            GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
         }
     }
 

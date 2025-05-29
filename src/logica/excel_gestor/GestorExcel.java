@@ -345,7 +345,7 @@ public class GestorExcel {
             }
 
             for (int i = 0; i < encabezados.length; i++) {
-                autoSizeColumn(hoja, i);
+                hoja.setColumnView(i, encabezados[i].length()*2);
         }
             // Guardar y cerrar el libro
             libro.write();

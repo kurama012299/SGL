@@ -33,6 +33,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-alignment: CENTER_LEFT;
 }
 
+.tabla-especial .table-cell
+{
+    -fx-padding: 8px;
+}
+
 /* Filas alternadas (Zebra Stripe) */
 .table-row-cell:even {
     -fx-background-color: #f9f9f9;

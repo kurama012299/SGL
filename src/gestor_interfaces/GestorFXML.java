@@ -56,7 +56,9 @@ public class GestorFXML {
     public static String RutaMenuReportesTipo="/interfaz_usuario/recursos_compartidos/menus/menu_reportes_periodo/menu-reportes-infraccion.fxml";
     
     
-    
+    public static String RutaMenuCerrarSesion="/interfaz_usuario/recursos_compartidos/errores/mensaje-cerrar-sesion.fxml";
+    public static String RutaMenuConfirmacion="/interfaz_usuario/recursos_compartidos/errores/mensaje-confirmacion.fxml";
+    public static String RutaMenuError="/interfaz_usuario/recursos_compartidos/errores/mensaje-error.fxml";
     
     
 }

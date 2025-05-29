@@ -23,10 +23,15 @@ import logica.pdf_gestion.GestorPDF;
 public class ControladorMenuReportesTipo {
     
     private String reporte;
+    
     private LocalDate fechaActual=LocalDate.now();
+    
     @FXML private Button btnMostrarReporte;
+    
     @FXML private Button btnCerrar;
+    
     @FXML private ComboBox cmbTipoInfraccion;
+    
     @FXML private ComboBox cmbFechaEscogidaAnno;
     
     public void initialize() throws Exception {
