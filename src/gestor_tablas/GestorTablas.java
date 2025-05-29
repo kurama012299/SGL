@@ -5,6 +5,8 @@
 package gestor_tablas;
 
 import gestor_interfaces.GestorEscenas;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
@@ -13,6 +15,7 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.Node;
@@ -74,8 +77,8 @@ public class GestorTablas {
             }
         });
     }
-
     
+  
     private static void mostrarDetalles(Object objeto, Window ventana) throws Exception {
         switch (Autentificador.usuario.getRol()) {
             case "Administrador":
@@ -528,7 +531,7 @@ public class GestorTablas {
             TableColumn<EntidadRelacionada, String> columnaDireccionEntidad,
             TableColumn<EntidadRelacionada, String> columnaTelefonoEntidad,
             TableColumn<EntidadRelacionada, String> columnaCorreoEntidad,
-            TableColumn<EntidadRelacionada, String> columnaDetallesEntidad) {
+            TableColumn<EntidadRelacionada, Void> columnaDetallesEntidad) {
 
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaDirectorEntidad, "NombreDirector");
@@ -536,16 +539,59 @@ public class GestorTablas {
         configurarColumnaPorDefecto(columnaDireccionEntidad, "Direccion");
         configurarColumnaPorDefecto(columnaTelefonoEntidad, "Telefono");
         configurarColumnaPorDefecto(columnaCorreoEntidad, "Correo");
-    }
-
+        
+        columnaDetallesEntidad.setCellFactory(param -> new TableCell<EntidadRelacionada, Void>(){
+            private final Label lbvVerMas = new Label("Ver mas");
+            {
+                lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                lbvVerMas.setOnMouseClicked(e ->{
+                    EntidadRelacionada entidad= getTableView().getItems().get(getIndex());
+                    try {
+                        mostrarDetalles(entidad, lbvVerMas.getScene().getWindow());
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(lbvVerMas.getScene().getWindow(), ex);
+                    }
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : lbvVerMas);
+            }
+        });
+ }
+           
     
-    public static void cargarTablaEntidades(TableView<EntidadRelacionada> tablaEntidad) {
-        try {
-            ObservableList<EntidadRelacionada> entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
-            tablaEntidad.setItems(entidades);
-            llenarColumnaDetalles(tablaEntidad, tablaEntidad.getItems().size() - 1);
-        } catch (Exception ex) {
-            GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
+    public static void cargarTablaEntidades(TableView<EntidadRelacionada> tablaEntidad,String entidad) {
+        switch (entidad) {
+            case "Autoescuela":
+                ObservableList<EntidadRelacionada> autoescuelas = FXCollections.observableArrayList();
+                try {
+                    autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
+                    tablaEntidad.setItems(autoescuelas);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
+                }
+                break;
+            case "Clinicas":
+                ObservableList<EntidadRelacionada> clinicas = FXCollections.observableArrayList();
+                try {
+                    clinicas = ServicioEntidad.ObtenerClinicas();
+                    tablaEntidad.setItems(clinicas);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
+                }
+                break;
+            default:
+                ObservableList<EntidadRelacionada> entidades = FXCollections.observableArrayList();
+                try {
+                    entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
+                    tablaEntidad.setItems(entidades);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
+                }
         }
     }
 
@@ -607,14 +653,14 @@ public class GestorTablas {
 
     
     public static void configurarColumnasInfracciones(
-            TableColumn<Infraccion, String> columnaFotoInfraccion,
+            TableColumn<Infraccion, Void> columnaFotoInfraccion,
             TableColumn<Infraccion, String> columnaNombreInfraccion,
             TableColumn<Infraccion, String> columnaTipoInfraccion,
             TableColumn<Infraccion, Date> columnaFechaInfraccion,
             TableColumn<Infraccion, String> columnaLugarInfraccion,
             TableColumn<Infraccion, Long> columnaLicenciaInfraccion,
             TableColumn<Infraccion, Integer> columnaPtosDeducidosInfraccion,
-            TableColumn<Infraccion, String> columnaDetallesInfraccion) {
+            TableColumn<Infraccion, Void> columnaDetallesInfraccion) {
 
         columnaTipoInfraccion.setCellValueFactory(cellData -> {
             Infraccion infraccion = cellData.getValue();
@@ -637,17 +683,61 @@ public class GestorTablas {
         });
 
         // Configuración estándar para otras columnas
-        columnaFotoInfraccion.setCellValueFactory(cellData -> {
-            try {
-                Infraccion infraccion = cellData.getValue();
+        columnaFotoInfraccion.setCellFactory(param -> new TableCell<Infraccion, Void>() {
+            private final ImageView imagen = new ImageView();
 
-                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(infraccion.getIdLicencia()).getFoto()
+            {
+                Image icono = new Image(
+                        Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                                "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
+                        )
                 );
-            } catch (Exception ex) {
-                return null;
+                try {
+                    imagen.setFitHeight(40);
+                    imagen.setFitWidth(40);
+                    imagen.setPreserveRatio(true);
+                    imagen.setImage(icono);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(imagen.getScene().getWindow(), ex);
+                }
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                if(empty)
+                    setGraphic(null);
+                else
+                    setGraphic(imagen);
+            }
+        }
+    );
+
+        
+        columnaDetallesInfraccion.setCellFactory(param -> new TableCell<Infraccion, Void>(){
+            private final Label lbvVerMas = new Label("Ver mas");
+            {
+                lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                lbvVerMas.setOnMouseClicked(e ->{
+                    Infraccion infraccion= getTableView().getItems().get(getIndex());
+                    try {
+                        mostrarDetalles(infraccion, lbvVerMas.getScene().getWindow());
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(lbvVerMas.getScene().getWindow(), ex);
+                    }
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : lbvVerMas);
             }
         });
-
+        
+        
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaLicenciaInfraccion, "IdLicencia");
         configurarColumnaPorDefecto(columnaFechaInfraccion, "Fecha");
@@ -657,14 +747,48 @@ public class GestorTablas {
     }
 
     
-    public static void cargarTablaInfracciones(TableView<Infraccion> tablaInfraccion) {
-        try {
-            ObservableList<Infraccion> infracciones = ServicioInfraccion.ObtenerInfracciones();
-            tablaInfraccion.setItems(infracciones);
-            llenarColumnaDetalles(tablaInfraccion, tablaInfraccion.getItems().size() - 1);
-            llenarColumnaFotos(tablaInfraccion, tablaInfraccion.getItems().size() - 1);
-        } catch (Exception ex) {
-
+    public static void cargarTablaInfracciones(TableView<Infraccion> tablaInfraccion,String gravedad) {
+        
+        switch (gravedad) {
+            
+            case "Leve":
+                ObservableList<Infraccion> infraccionesLeves = FXCollections.observableArrayList();
+                try {
+                    infraccionesLeves = ServicioInfraccion.obtenerInfraccionesTipo(gravedad);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaInfraccion.getScene().getWindow(), ex);
+                }
+                tablaInfraccion.setItems(infraccionesLeves);
+                break;
+                
+            case "Grave":
+                ObservableList<Infraccion> infraccionesGraves = FXCollections.observableArrayList();
+                try {
+                    infraccionesGraves = ServicioInfraccion.obtenerInfraccionesTipo(gravedad);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaInfraccion.getScene().getWindow(), ex);
+                }
+                tablaInfraccion.setItems(infraccionesGraves);
+                break;
+                
+            case "Muy grave":
+                ObservableList<Infraccion> infraccionesMuyGrave = FXCollections.observableArrayList();
+                try {
+                    infraccionesMuyGrave = ServicioInfraccion.obtenerInfraccionesTipo(gravedad);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaInfraccion.getScene().getWindow(), ex);
+                }
+                tablaInfraccion.setItems(infraccionesMuyGrave);
+                break;
+                
+            default:
+                ObservableList<Infraccion> infracciones= FXCollections.observableArrayList();
+                try {
+                    infracciones = ServicioInfraccion.ObtenerInfracciones();
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaInfraccion.getScene().getWindow(), ex);
+                }
+                tablaInfraccion.setItems(infracciones);
         }
     }
 
@@ -729,3 +853,4 @@ public class GestorTablas {
     }
 
 }
+

@@ -176,4 +176,16 @@ public class ServicioInfraccion {
 
     return FXCollections.observableArrayList(infraccionesFiltradas);
 }
+    
+    
+    public static ObservableList<Infraccion> obtenerInfraccionesTipo(String tipo) throws Exception
+    {
+        ObservableList<Infraccion>infraccionesTipo= FXCollections.observableArrayList();
+        for(Infraccion inf: ConsultasInfraccion.ObtenerInfraccionesConsulta())
+        {
+            if(inf.getGravedad().equals(tipo))
+                infraccionesTipo.add(inf);
+        }
+        return infraccionesTipo;
+    }
 }

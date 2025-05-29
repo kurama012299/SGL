@@ -194,7 +194,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelClinica" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0">
+            <Pane fx:id="PanelClinica" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Clínica">
                      <font>
@@ -236,7 +236,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelEntidades" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelEntidades" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="850.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Entidades">
                      <font>
@@ -271,12 +271,12 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXRadioButton layoutX="428.0" layoutY="80.0" prefHeight="17.0" prefWidth="75.0" text="Clínica">
+                  <JFXRadioButton fx:id="rdbtClinica" layoutX="428.0" layoutY="80.0" prefHeight="17.0" prefWidth="75.0" text="Clinicas">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="428.0" layoutY="107.0" prefHeight="17.0" prefWidth="93.0" text="Autoescuela">
+                  <JFXRadioButton fx:id="rdbtAutoescuela" layoutX="428.0" layoutY="107.0" prefHeight="17.0" prefWidth="93.0" text="Autoescuela">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
@@ -332,17 +332,17 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXRadioButton layoutX="414.0" layoutY="50.0" prefHeight="17.0" prefWidth="75.0" text="Leve">
+                  <JFXRadioButton fx:id="rdbtLeve" layoutX="414.0" layoutY="50.0" prefHeight="17.0" prefWidth="75.0" text="Leve">
                      <selectedColor>
                         <Color red="0.7647058963775635" green="0.729411780834198" blue="0.125490203499794" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="414.0" layoutY="80.0" prefHeight="17.0" prefWidth="96.0" text="Grave">
+                  <JFXRadioButton fx:id="rdbtGrave" layoutX="414.0" layoutY="80.0" prefHeight="17.0" prefWidth="96.0" text="Grave">
                      <selectedColor>
                         <Color red="0.8235294222831726" green="0.46666666865348816" blue="0.054901961237192154" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="414.0" layoutY="110.0" prefHeight="17.0" prefWidth="96.0" text="Muy grave">
+                  <JFXRadioButton fx:id="rdbtMuyGrave" layoutX="414.0" layoutY="110.0" prefHeight="17.0" prefWidth="96.0" text="Muy grave">
                      <selectedColor>
                         <Color red="0.8196078538894653" green="0.05882352963089943" blue="0.05882352963089943" />
                      </selectedColor>
@@ -414,16 +414,13 @@
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="filtrosTipoExamen" />
-                     </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton fx:id="rdbtExamenPractico" layoutX="705.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Práctico" toggleGroup="$filtrosTipoExamen">
+                  <JFXRadioButton fx:id="rdbtExamenPractico" layoutX="705.0" layoutY="59.0" prefHeight="17.0" prefWidth="96.0" text="Práctico">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton fx:id="rdbtExamenMedico" layoutX="705.0" layoutY="87.0" prefHeight="17.0" prefWidth="75.0" text="Médico" toggleGroup="$filtrosTipoExamen">
+                  <JFXRadioButton fx:id="rdbtExamenMedico" layoutX="705.0" layoutY="87.0" prefHeight="17.0" prefWidth="75.0" text="Médico">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
