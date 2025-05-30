@@ -13,7 +13,7 @@ import javafx.scene.control.ToggleGroup;
 public class ValidacionGrupoRadioButton implements IValidacion{
 
     @Override
-    public void Validar(Object Entrada, String nombreCampo) throws Exception {
+    public void validar(Object Entrada, String nombreCampo) throws Exception {
         ToggleGroup grupoBotones=(ToggleGroup)Entrada;
         if(grupoBotones.getSelectedToggle()==null)
             throw new Exception("Debe seleccionar una de las "+nombreCampo);

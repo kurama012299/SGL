@@ -23,7 +23,6 @@ import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
 import logica.infraccion.modelos.Infraccion;
-import logica.licencia.implementaciones.ServicioLicencia;
 import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
@@ -37,7 +36,7 @@ import logica.persona.modelos.Conductor;
  */
 public class GestorExcel {
 
-    public static void ExportarConductoresExcel(ObservableList<Conductor> listaConductores, String NombreBaseArchivo, Stage ventanaPadre) throws Exception {
+    public static void exportarConductoresExcel(ObservableList<Conductor> listaConductores, String NombreBaseArchivo, Stage ventanaPadre) throws Exception {
         try {
             // Configurar el FileChooser
             FileChooser fileChooser = new FileChooser();
@@ -95,7 +94,8 @@ public class GestorExcel {
         }
     }
     
-    public static void ExportarEntidadesTipoExcel(ObservableList<EntidadRelacionada> listaEntidades, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
+    
+    public static void exportarEntidadesTipoExcel(ObservableList<EntidadRelacionada> listaEntidades, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
         try {
             // Configurar el FileChooser
             FileChooser fileChooser = new FileChooser();
@@ -159,7 +159,8 @@ public class GestorExcel {
         }
     }
     
-    public static void ExportarEntidadesGeneralesExcel(ObservableList<EntidadRelacionada> listaEntidades, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
+    
+    public static void exportarEntidadesGeneralesExcel(ObservableList<EntidadRelacionada> listaEntidades, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
         try {
             // Configurar el FileChooser
             FileChooser fileChooser = new FileChooser();
@@ -219,7 +220,7 @@ public class GestorExcel {
     }
     
     
-    public static void ExportarInfraccionesExcel(ObservableList<Infraccion> listaInfracciones, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
+    public static void exportarInfraccionesExcel(ObservableList<Infraccion> listaInfracciones, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
         try {
             // Configurar el FileChooser
             FileChooser fileChooser = new FileChooser();
@@ -279,7 +280,7 @@ public class GestorExcel {
     }
     
     
-    public static void ExportarExamenesExcel(ObservableList<ExamenConduccion> listaExamenes, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
+    public static void exportarExamenesExcel(ObservableList<ExamenConduccion> listaExamenes, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
         try {
             // Configurar el FileChooser
             FileChooser fileChooser = new FileChooser();
@@ -359,7 +360,7 @@ public class GestorExcel {
     }
     
     
-    public static void ExportarLicenciasExcel(ObservableList<Licencia> listaLicencias, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
+    public static void exportarLicenciasExcel(ObservableList<Licencia> listaLicencias, String nombreBaseArchivo, Stage ventanaPadre) throws Exception {
         try {
             // Configurar el FileChooser
             FileChooser fileChooser = new FileChooser();

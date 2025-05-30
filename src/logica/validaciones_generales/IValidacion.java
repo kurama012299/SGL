@@ -10,5 +10,5 @@ package logica.validaciones_generales;
  */
 public interface IValidacion {
     
-    public void Validar(Object Entrada,String nombreCampo) throws Exception;
+    public void validar(Object Entrada,String nombreCampo) throws Exception;
 }

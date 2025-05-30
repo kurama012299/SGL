@@ -216,12 +216,12 @@ public class ControladorRegistrarExamen {
         
         try {
 
-            campoNombre.Validar(txfNombre.getText(), "nombre");
-            campoCarnet.Validar(txfCarnet.getText(), "carnet identidad");
-            validacionFecha.Validar(dtFecha.getValue(), "fecha examen");
-            validacionGrupoBotones.Validar(rbtGrupoTipoExamen, "opciones de tipo de examen");
-            validacionComboBoxVacio.Validar(cmbNombreEntidad, "nombre entidad");
-            validacionComboBoxVacio.Validar(cmbNombreExaminador, "nombre examinador");
+            campoNombre.validar(txfNombre.getText(), "nombre");
+            campoCarnet.validar(txfCarnet.getText(), "carnet identidad");
+            validacionFecha.validar(dtFecha.getValue(), "fecha examen");
+            validacionGrupoBotones.validar(rbtGrupoTipoExamen, "opciones de tipo de examen");
+            validacionComboBoxVacio.validar(cmbNombreEntidad, "nombre entidad");
+            validacionComboBoxVacio.validar(cmbNombreExaminador, "nombre examinador");
 
             System.out.println("Datos Correctos");
 

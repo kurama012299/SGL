@@ -548,7 +548,7 @@ public class ControladorAdministradorSistema extends Controlador{
         ImagenClinica = (ImageView) Clinica.getGraphic();
         ImagenEntidades = (ImageView) Entidades.getGraphic();
        
-        ImagenUsuario.setImage(GestorImagenes.CargarImagen(Autentificador.usuario.getFoto()));
+        ImagenUsuario.setImage(GestorImagenes.cargarImagen(Autentificador.usuario.getFoto()));
         
         GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador");
         GestorEscenas.configurarReloj(LabelFechaHora);
@@ -1292,7 +1292,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void ExportarConductores()
     {
         try {
-            GestorExcel.ExportarConductoresExcel(TablaConductor.getItems(), "Tabla conductores SGL",(Stage)BotonExportarConductores.getScene().getWindow());
+            GestorExcel.exportarConductoresExcel(TablaConductor.getItems(), "Tabla conductores SGL",(Stage)BotonExportarConductores.getScene().getWindow());
         } catch (Exception ex) {
             GestorEscenas.cargarError(BotonExportarConductores.getScene().getWindow(), ex);
         }
@@ -1302,7 +1302,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void ExportarAutoescuelas()
     {
         try {
-            GestorExcel.ExportarEntidadesTipoExcel(TablaAE.getItems(), "Tabla autoescuela SGL",(Stage)btnExportarAutoescuela.getScene().getWindow());
+            GestorExcel.exportarEntidadesTipoExcel(TablaAE.getItems(), "Tabla autoescuela SGL",(Stage)btnExportarAutoescuela.getScene().getWindow());
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnExportarAutoescuela.getScene().getWindow(), ex);
         }
@@ -1312,7 +1312,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void ExportarClinicas()
     {
         try {
-            GestorExcel.ExportarEntidadesTipoExcel(TablaClinica.getItems(), "Tabla clínicas SGL",(Stage)btnExportarClinica.getScene().getWindow());
+            GestorExcel.exportarEntidadesTipoExcel(TablaClinica.getItems(), "Tabla clínicas SGL",(Stage)btnExportarClinica.getScene().getWindow());
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnExportarClinica.getScene().getWindow(), ex);
         }
@@ -1322,7 +1322,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void ExportarEntidades()
     {
         try {
-            GestorExcel.ExportarEntidadesGeneralesExcel(TablaEntidad.getItems(), "Tabla entidades SGL",(Stage)btnExportarEntidades.getScene().getWindow());
+            GestorExcel.exportarEntidadesGeneralesExcel(TablaEntidad.getItems(), "Tabla entidades SGL",(Stage)btnExportarEntidades.getScene().getWindow());
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnExportarEntidades.getScene().getWindow(), ex);
         }
@@ -1333,7 +1333,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void ExportarInfracciones()
     {
         try {
-            GestorExcel.ExportarInfraccionesExcel(TablaInfraccion.getItems(), "Tabla infracciones SGL",(Stage)btnExportarInfracciones.getScene().getWindow());
+            GestorExcel.exportarInfraccionesExcel(TablaInfraccion.getItems(), "Tabla infracciones SGL",(Stage)btnExportarInfracciones.getScene().getWindow());
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnExportarInfracciones.getScene().getWindow(), ex);
         }
@@ -1344,7 +1344,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void ExportarExamenes()
     {
         try {
-            GestorExcel.ExportarExamenesExcel(TablaExamenes.getItems(), "Tabla examenes SGL",(Stage)btnExportarExamenes.getScene().getWindow());
+            GestorExcel.exportarExamenesExcel(TablaExamenes.getItems(), "Tabla examenes SGL",(Stage)btnExportarExamenes.getScene().getWindow());
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnExportarExamenes.getScene().getWindow(), ex);
         }
@@ -1354,7 +1354,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void ExportarLicencias()
     {
         try {
-            GestorExcel.ExportarLicenciasExcel(TablaLicencia.getItems(), "Tabla licencias SGL",(Stage)btnExportarLicencias.getScene().getWindow());
+            GestorExcel.exportarLicenciasExcel(TablaLicencia.getItems(), "Tabla licencias SGL",(Stage)btnExportarLicencias.getScene().getWindow());
         } catch (Exception ex) {
             GestorEscenas.cargarError(btnExportarLicencias.getScene().getWindow(), ex);
         }

@@ -138,16 +138,16 @@ public class ControladorRegistrarInfraccion {
         ValidacionCompuesta campoNumeroLicencia= new ValidacionCompuesta(validacionSoloNumeros,validacionCampoVacio,validacionCantidadCaracteresMaxima);
         
         try {
-            campoCarnet.Validar(txfCi.getText(), "Carnet identidad");
+            campoCarnet.validar(txfCi.getText(), "Carnet identidad");
             ValidacionConductorExiste.Validar(txfCi.getText());
-            campoNumeroLicencia.Validar(txfNumeroLicencia.getText(), "Numero de licencia");
+            campoNumeroLicencia.validar(txfNumeroLicencia.getText(), "Numero de licencia");
             long idLicencia = Long.parseLong(txfNumeroLicencia.getText());
             ValidacionIdLicenciaRelacionCI.validarRelacionCiLicencia(txfCi.getText(),idLicencia);
-            campoNombre.Validar(txfLugarInfraccion.getText(), "Lugar infraccion");
-            campoNombre.Validar(txfNombreOficial.getText(), "Nombre oficial");
-            validacionFecha.Validar(dpFechaInfraccion.getValue(), "Fecha infraccion");
-            campoNombre.Validar(txaDescripcion.getText(), "Descripcion");
-            validarGrupoBotones.Validar(grupoGravedadrdbt, "gravedad de la infraccion");
+            campoNombre.validar(txfLugarInfraccion.getText(), "Lugar infraccion");
+            campoNombre.validar(txfNombreOficial.getText(), "Nombre oficial");
+            validacionFecha.validar(dpFechaInfraccion.getValue(), "Fecha infraccion");
+            campoNombre.validar(txaDescripcion.getText(), "Descripcion");
+            validarGrupoBotones.validar(grupoGravedadrdbt, "gravedad de la infraccion");
             
             boolean pagado = rdbtnBotonPagado.isSelected();
             java.sql.Date fecha = java.sql.Date.valueOf(dpFechaInfraccion.getValue());

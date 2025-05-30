@@ -19,7 +19,7 @@ public class Autentificador {
     public static Usuario usuario;
     public static String existeUsuario(String correo,String clave) throws Exception
     {
-        usuario = ConsultasUsuario.ObtenerUsuario(correo, clave);
+        usuario = ConsultasUsuario.obtenerUsuario(correo, clave);
         System.out.println(usuario);
         ConsultasInicioSesion.crearInicioSesion(usuario.getId());
         return usuario.getRol();

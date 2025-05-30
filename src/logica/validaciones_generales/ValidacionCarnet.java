@@ -14,7 +14,7 @@ import java.time.Period;
 public class ValidacionCarnet implements IValidacion{
 
     @Override
-    public void Validar(Object Entrada, String nombreCampo) throws Exception {
+    public void validar(Object Entrada, String nombreCampo) throws Exception {
         
         // Extraer los primeros 6 dígitos (AAMMDD)
         String fechaStr = Entrada.toString().substring(0, 6);

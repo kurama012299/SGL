@@ -61,11 +61,11 @@ public class ControladorRegistrarClinica {
         
         try {
             
-            campoNombre.Validar(txfNombreClinica.getText(), "Nombre clinica");
-            campoNombre.Validar(txfNombreDirector.getText(), "Nombre director");
-            campoCorreo.Validar(txfCorreo.getText(), "Campo Correo");
-            campoTelefono.Validar(txfTelefono.getText(), "Numero de telefono");
-            campoDireccion.Validar(txfDireccion.getText(), "Campo direccion");
+            campoNombre.validar(txfNombreClinica.getText(), "Nombre clinica");
+            campoNombre.validar(txfNombreDirector.getText(), "Nombre director");
+            campoCorreo.validar(txfCorreo.getText(), "Campo Correo");
+            campoTelefono.validar(txfTelefono.getText(), "Numero de telefono");
+            campoDireccion.validar(txfDireccion.getText(), "Campo direccion");
 
             
             EntidadRelacionada clinica = new EntidadRelacionada(

@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class ValidacionCorreo implements IValidacion {
 
     @Override
-    public void Validar(Object Texto,String NombreCampo) throws Exception {
+    public void validar(Object Texto,String NombreCampo) throws Exception {
 
         String correo = Texto.toString().trim();
         if (!correo.endsWith("@gmail.com")) {

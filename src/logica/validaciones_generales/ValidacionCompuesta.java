@@ -21,12 +21,12 @@ public class ValidacionCompuesta implements IValidacion{
     }
 
     @Override
-    public void Validar(Object Texto,String NombreCampo) throws Exception {
+    public void validar(Object Texto,String NombreCampo) throws Exception {
         
         int i=0;
         while(i<Validaciones.size())
         {
-            Validaciones.get(i).Validar(Texto.toString(), NombreCampo);
+            Validaciones.get(i).validar(Texto.toString(), NombreCampo);
             i++;
         }
     }

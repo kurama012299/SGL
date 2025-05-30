@@ -20,7 +20,7 @@ public class ValidacionCantidadCaracteresMaxima implements IValidacion{
     
     
     @Override
-    public void Validar(Object Texto,String NombreCampo) throws Exception {
+    public void validar(Object Texto,String NombreCampo) throws Exception {
         if(Texto.toString().length()>CantidadCaracteres)
             throw new Exception("El tamaño máximo en "+ NombreCampo+ " es de "+CantidadCaracteres);
     }

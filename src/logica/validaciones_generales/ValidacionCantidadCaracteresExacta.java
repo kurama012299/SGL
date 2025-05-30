@@ -19,7 +19,7 @@ public class ValidacionCantidadCaracteresExacta implements IValidacion{
     
     
     @Override
-    public void Validar(Object Texto,String NombreCampo) throws Exception {
+    public void validar(Object Texto,String NombreCampo) throws Exception {
         System.out.println(Texto.toString().length()+" "+ Texto.toString());
         if(Texto.toString().length()!=CantidadCaracteres)
             throw new Exception("El tamaño de el "+ NombreCampo+ " debe ser "+CantidadCaracteres);

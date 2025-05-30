@@ -17,23 +17,23 @@ import logica.usuario.modelos.Usuario;
  */
 public class ExamenMedico extends Examen{
     
-    private ArrayList<String> Restricciones= new ArrayList<>();
+    private ArrayList<String> restricciones= new ArrayList<>();
     
     public ExamenMedico(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,ArrayList<String> Restricciones) {
         super(Id, Fecha, Aprobado, Entidad, Persona, Examinador,"Médico");
         
-        this.Restricciones=Restricciones;
+        this.restricciones=Restricciones;
     }
     
 
     public ExamenMedico( Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,ArrayList<String> Restricciones) {
         super(Fecha, Aprobado, Entidad, Persona, Examinador,"Médico");
         
-        this.Restricciones=Restricciones;
+        this.restricciones=Restricciones;
     }
     
     public ArrayList<String> getRestricciones() {
-        return Restricciones;
+        return restricciones;
     }
     
     
@@ -41,14 +41,14 @@ public class ExamenMedico extends Examen{
     @Override
     public String toString()
     {
-         return "Id: "+ Id +"\n"+
-                "Fecha: "+ Fecha +"\n"+
-                "Aprobado: "+ Aprobado +"\n"+
-                "Tipo: "+Tipo+"\n"+ 
-                "Entidad: " + Entidad +"\n"+
-                "Persona: " + Persona +"\n"+
-                "Examinador: " + Examinador+"\n"+
-                "Restricciones" + Restricciones ;
+         return "Id: "+ id +"\n"+
+                "Fecha: "+ fecha +"\n"+
+                "Aprobado: "+ aprobado +"\n"+
+                "Tipo: "+tipo+"\n"+ 
+                "Entidad: " + entidad +"\n"+
+                "Persona: " + persona +"\n"+
+                "Examinador: " + examinador+"\n"+
+                "Restricciones" + restricciones ;
     }
     
 }

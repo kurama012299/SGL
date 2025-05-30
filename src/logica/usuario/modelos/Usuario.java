@@ -10,76 +10,76 @@ package logica.usuario.modelos;
  */
 public class Usuario {
     
-    private String Nombre;
-    private String Correo;
-    private String Rol;
-    private String Foto;
-    private Long EntidadPerteneciente;
-    private Long Id;
+    private String nombre;
+    private String correo;
+    private String rol;
+    private String foto;
+    private Long entidadPerteneciente;
+    private Long id;
     
-    public Usuario (String Nombre, String Correo, String Rol,String Foto ,Long EntidadPerteneciente, Long Id)
+    public Usuario(String Nombre, String Correo, String Rol,String Foto ,Long EntidadPerteneciente, Long Id)
     {
-        this.Nombre=Nombre;
-        this.Correo = Correo;
-        this.Foto = Foto;
-        this.Rol = Rol;
-        this.EntidadPerteneciente = EntidadPerteneciente;
-        this.Id=Id;
+        this.nombre=Nombre;
+        this.correo = Correo;
+        this.foto = Foto;
+        this.rol = Rol;
+        this.entidadPerteneciente = EntidadPerteneciente;
+        this.id=Id;
     }
     
     public Usuario(String Nombre)
     {
-        this.Nombre=Nombre;
+        this.nombre=Nombre;
     }
     
     public Usuario(String correo,String nombre)
     {
-        this.Correo=correo;
-        this.Nombre=nombre;
+        this.correo=correo;
+        this.nombre=nombre;
     }
     
-    public Usuario (String Nombre, String Correo, String Rol,String Foto ,Long EntidadPerteneciente)
+    public Usuario(String Nombre, String Correo, String Rol,String Foto ,Long EntidadPerteneciente)
     {
-        this.Nombre=Nombre;
-        this.Correo = Correo;
-        this.Foto = Foto;
-        this.Rol = Rol;
-        this.EntidadPerteneciente = EntidadPerteneciente;
+        this.nombre=Nombre;
+        this.correo = Correo;
+        this.foto = Foto;
+        this.rol = Rol;
+        this.entidadPerteneciente = EntidadPerteneciente;
     }
     
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
     public String getRol() {
-        return Rol;
+        return rol;
     }
 
     public String getFoto() {
-        return Foto;
+        return foto;
     }
 
     public Long getEntidadPerteneciente() {
-        return EntidadPerteneciente;
+        return entidadPerteneciente;
     }
     
     public Long getId()
     {
-        return Id;
+        return id;
     }
     
     @Override
     public String toString()
     {
-        return  "Id: " + Id +"\n"+
-                "Nombre: "+ Nombre +"\n"+
-                "Correo: "+ Correo +"\n"+
-                "Foto: " + Foto +"\n"+
-                "Rol: " + Rol +"\n"+
-                "Entidad Perteneciente: "+ EntidadPerteneciente;
+        return  "Id: " + id +"\n"+
+                "Nombre: "+ nombre +"\n"+
+                "Correo: "+ correo +"\n"+
+                "Foto: " + foto +"\n"+
+                "Rol: " + rol +"\n"+
+                "Entidad Perteneciente: "+ entidadPerteneciente;
     }
 }

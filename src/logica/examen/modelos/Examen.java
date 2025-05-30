@@ -15,100 +15,100 @@ import logica.usuario.modelos.Usuario;
  */
 public class Examen {
     
-    protected Long Id;
-    protected Date Fecha;
-    protected boolean Aprobado;
-    protected EntidadRelacionada Entidad;
-    protected Persona Persona;
-    protected Usuario Examinador;
-    protected String Tipo;
+    protected Long id;
+    protected Date fecha;
+    protected boolean aprobado;
+    protected EntidadRelacionada entidad;
+    protected Persona persona;
+    protected Usuario examinador;
+    protected String tipo;
 
     public Examen(Long Id, Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,String Tipo) {
-        this.Id = Id;
-        this.Fecha = Fecha;
-        this.Aprobado = Aprobado;
-        this.Tipo = Tipo;
-        this.Entidad = Entidad;
-        this.Examinador=Examinador;
-        this.Persona=Persona;
+        this.id = Id;
+        this.fecha = Fecha;
+        this.aprobado = Aprobado;
+        this.tipo = Tipo;
+        this.entidad = Entidad;
+        this.examinador=Examinador;
+        this.persona=Persona;
         
     }
     
     public Examen( Date Fecha, boolean Aprobado, EntidadRelacionada Entidad, Persona Persona, Usuario Examinador,String Tipo) {
-        this.Fecha = Fecha;
-        this.Aprobado = Aprobado;
-        this.Tipo = Tipo;
-        this.Entidad = Entidad;
-        this.Examinador=Examinador;
-        this.Persona=Persona;
+        this.fecha = Fecha;
+        this.aprobado = Aprobado;
+        this.tipo = Tipo;
+        this.entidad = Entidad;
+        this.examinador=Examinador;
+        this.persona=Persona;
         
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long Id) {
-        this.Id = Id;
+        this.id = Id;
     }
 
     public Date getFecha() {
-        return Fecha;
+        return fecha;
     }
 
     public void setFecha(Date Fecha) {
-        this.Fecha = Fecha;
+        this.fecha = Fecha;
     }
 
     public boolean isAprobado() {
-        return Aprobado;
+        return aprobado;
     }
 
     public void setAprobado(boolean Aprobado) {
-        this.Aprobado = Aprobado;
+        this.aprobado = Aprobado;
     }
 
     public EntidadRelacionada getEntidad() {
-        return Entidad;
+        return entidad;
     }
 
     public void setEntidad(EntidadRelacionada Entidad) {
-        this.Entidad = Entidad;
+        this.entidad = Entidad;
     }
 
     public Persona getPersona() {
-        return Persona;
+        return persona;
     }
 
     public void setPersona(Persona Persona) {
-        this.Persona = Persona;
+        this.persona = Persona;
     }
 
     public Usuario getExaminador() {
-        return Examinador;
+        return examinador;
     }
 
     public void setExaminador(Usuario Examinador) {
-        this.Examinador = Examinador;
+        this.examinador = Examinador;
     }
 
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
     public void setTipo(String Tipo) {
-        this.Tipo = Tipo;
+        this.tipo = Tipo;
     }
     
     @Override
     public String toString()
     {
-         return "Id: "+ Id +"\n"+
-                "Fecha: "+ Fecha +"\n"+
-                "Aprobado: "+ Aprobado +"\n"+
-                "Tipo"+Tipo+"\n"+
-                "Entidad: " + Entidad.getNombre() +"\n"+
-                "Persona: " + Persona.getNombre() +"\n"+
-                "Examinador: " + Examinador.getNombre()+"\n";
+         return "Id: "+ id +"\n"+
+                "Fecha: "+ fecha +"\n"+
+                "Aprobado: "+ aprobado +"\n"+
+                "Tipo"+tipo+"\n"+
+                "Entidad: " + entidad.getNombre() +"\n"+
+                "Persona: " + persona.getNombre() +"\n"+
+                "Examinador: " + examinador.getNombre()+"\n";
     }
 }

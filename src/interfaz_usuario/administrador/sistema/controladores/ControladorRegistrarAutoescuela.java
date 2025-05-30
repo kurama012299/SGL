@@ -67,11 +67,11 @@ public class ControladorRegistrarAutoescuela {
 
         try {
 
-            campoNombre.Validar(txfNombreAutoescuela.getText(), "Nombre autoescuela");
-            campoNombre.Validar(txfNombreDirector.getText(), "Nombre director");
-            campoCorreo.Validar(txfCorreo.getText(), "Campo Correo");
-            campoTelefono.Validar(txfTelefono.getText(), "Numero de telefono");
-            campoDireccion.Validar(txfDireccion.getText(), "Campo direccion");
+            campoNombre.validar(txfNombreAutoescuela.getText(), "Nombre autoescuela");
+            campoNombre.validar(txfNombreDirector.getText(), "Nombre director");
+            campoCorreo.validar(txfCorreo.getText(), "Campo Correo");
+            campoTelefono.validar(txfTelefono.getText(), "Numero de telefono");
+            campoDireccion.validar(txfDireccion.getText(), "Campo direccion");
 
             EntidadRelacionada autoescuela = new EntidadRelacionada(
                     txfNombreAutoescuela.getText(),

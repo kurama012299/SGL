@@ -14,7 +14,7 @@ public class ValidacionCampoVacio implements IValidacion{
   
     
     @Override
-    public void Validar(Object Entrada,String NombreCampo) throws Exception {
+    public void validar(Object Entrada,String NombreCampo) throws Exception {
         System.out.println(Entrada);
         if(Entrada==null)
             throw new Exception("El "+ NombreCampo+" es obligatorio");

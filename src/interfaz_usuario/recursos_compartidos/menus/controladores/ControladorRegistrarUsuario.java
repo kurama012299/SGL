@@ -93,15 +93,15 @@ public class ControladorRegistrarUsuario {
         try {
             Usuario usuarioGuardar=null; 
             
-            campoNombre.Validar(txfNombreApellido.getText(), "Campo nombre y apellidos");
-            campoCorreo.Validar(txfCorreo.getText(), "Campo correo");
+            campoNombre.validar(txfNombreApellido.getText(), "Campo nombre y apellidos");
+            campoCorreo.validar(txfCorreo.getText(), "Campo correo");
             ArrayList<Usuario>usuariosCorreos= ServicioUsuario.obtenerCorreosUsuario();
             for(Usuario us:usuariosCorreos)
             {
                 if(us.getCorreo().equalsIgnoreCase(txfCorreo.getText()))
                     throw new Exception("Este correo ya existe ");
             }
-            campoClave.Validar(txfClave.getText(), "Campo clave");
+            campoClave.validar(txfClave.getText(), "Campo clave");
             
             System.out.println("Datos Correctos");
             

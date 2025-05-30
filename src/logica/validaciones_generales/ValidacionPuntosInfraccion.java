@@ -11,7 +11,7 @@ package logica.validaciones_generales;
 public class ValidacionPuntosInfraccion implements IValidacion {
 
     @Override
-    public void Validar(Object Entrada, String nombreCampo) throws Exception {
+    public void validar(Object Entrada, String nombreCampo) throws Exception {
 
         String puntos = Entrada.toString();
         int puntosInt = Integer.parseInt(puntos.trim());

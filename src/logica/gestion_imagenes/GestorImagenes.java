@@ -15,7 +15,7 @@ public class GestorImagenes {
 
     public static String IMAGENES_URL = "/imagenes/";
 
-    public static Image CargarImagen(String nombreArchivo) throws Exception {
+    public static Image cargarImagen(String nombreArchivo) throws Exception {
         try {
             InputStream is = GestorImagenes.class.getResourceAsStream(IMAGENES_URL + nombreArchivo);
             if (is != null) {

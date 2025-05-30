@@ -13,7 +13,7 @@ public class ValidacionSoloNumeros implements IValidacion{
 
 
     @Override
-    public void Validar(Object Entrada,String NombreCampo) throws Exception {
+    public void validar(Object Entrada,String NombreCampo) throws Exception {
        String Texto = Entrada.toString();
          if (!Texto.matches("^[0-9]+$")) 
             throw new Exception(NombreCampo + " solo puede contener números");

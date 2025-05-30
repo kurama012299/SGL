@@ -16,7 +16,7 @@ import logica.usuario.modelos.Usuario;
  */
 public class ConsultasUsuario {
 
-    public static Usuario ObtenerUsuario(String EntradaCorreo, String EntradaClave) throws Exception {
+    public static Usuario obtenerUsuario(String EntradaCorreo, String EntradaClave) throws Exception {
         String Consulta = """
         SELECT u."Id",u."Nombre", u."Correo", r."Nombre" AS NombreRol, 
                u."Foto", u."Id_Entidad_Perteneciente"

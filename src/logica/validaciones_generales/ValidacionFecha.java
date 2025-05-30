@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class ValidacionFecha implements IValidacion {
 
     @Override
-    public void Validar(Object Entrada, String nombreCampo) throws Exception {
+    public void validar(Object Entrada, String nombreCampo) throws Exception {
 
         LocalDate fecha = (LocalDate) Entrada;
         if (fecha == null) {

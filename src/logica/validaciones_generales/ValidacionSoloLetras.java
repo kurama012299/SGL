@@ -12,7 +12,7 @@ public class ValidacionSoloLetras implements IValidacion{
     
 
     @Override
-    public void Validar(Object Entrada,String NombreCampo) throws Exception {
+    public void validar(Object Entrada,String NombreCampo) throws Exception {
        String Texto = Entrada.toString();
          if (!Texto.matches("^[a-zA-Z\\s]+$")) 
             throw new Exception(NombreCampo + " solo puede contener letras (A-Z, a-z)");
