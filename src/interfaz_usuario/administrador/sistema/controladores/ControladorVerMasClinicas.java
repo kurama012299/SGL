@@ -5,6 +5,8 @@
 package interfaz_usuario.administrador.sistema.controladores;
 
 import gestor_interfaces.GestorEscenas;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -54,6 +56,9 @@ public class ControladorVerMasClinicas {
 
     @FXML
     private Button btnEditar;
+    
+    @FXML
+    private Button btnEliminar;
 
     @FXML
     private Button btnagregarUsuario;
@@ -126,6 +131,16 @@ public class ControladorVerMasClinicas {
                 btnEditar.setText("Guardar");
             }
         });
+        
+         btnEliminar.setOnAction(e -> {
+            try {
+                ServicioEntidad.eliminarEntidad(clinica.getId());
+                GestorEscenas.cargarConfirmacion(btnEditar.getScene().getWindow(), "Entidad eliminada");
+                GestorEscenas.cerrar(btnAtras);
+            } catch (Exception ex) {
+                Logger.getLogger(ControladorVerMasClinicas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         });
     }
 
     private void editarCasillas(boolean enable) {

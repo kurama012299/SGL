@@ -8,9 +8,12 @@ import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.GestorEstadisticas;
 import gestor_interfaces.modelos.Estadistica;
 import infraestructura.ConectorBaseDato;
+import interfaz_usuario.administrador.sistema.controladores.ControladorVerMasClinicas;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarUsuario;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -55,6 +58,8 @@ public class ControladorVerMasAutoescuelas {
     @FXML private Button btnAtras;
     
     @FXML private Button btnEditar;
+    
+    @FXML private Button btnEliminar;
     
     @FXML private Button btnagregarUsuario;
 
@@ -127,6 +132,16 @@ public class ControladorVerMasAutoescuelas {
                 btnEditar.setText("Guardar");
             }
         });
+    
+    btnEliminar.setOnAction(e -> {
+            try {
+                ServicioEntidad.eliminarEntidad(autoescuela.getId());
+                GestorEscenas.cargarConfirmacion(btnEditar.getScene().getWindow(), "Entidad eliminada");
+                GestorEscenas.cerrar(btnAtras);
+            } catch (Exception ex) {
+                Logger.getLogger(ControladorVerMasClinicas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         });
     }
 
     private void editarCasillas(boolean enable) {

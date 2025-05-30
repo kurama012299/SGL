@@ -272,4 +272,23 @@ public class ConsultasEntidad {
             throw new Exception("Error al actualizar la entidad");
         }
     }
+    
+    public static void eliminarEntidadConsulta(Long id) throws Exception {
+    if (id == null) {
+        throw new IllegalArgumentException("El ID de la entidad no puede ser nulo");
+    }
+
+    String consulta = "DELETE FROM \"Entidad\" WHERE \"Id\" = ?";
+    
+    try (Connection conn = ConectorBaseDato.Conectar();
+         PreparedStatement pstmt = conn.prepareStatement(consulta)) {
+         
+        pstmt.setLong(1, id);
+         pstmt.executeUpdate();
+        
+                
+    } catch (SQLException e) {
+        throw new Exception("Error al eliminar la entidad de la base de datos", e);
+    }
+}
 }
