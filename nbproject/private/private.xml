@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Documents/GitHub/SGL/src/gestor_interfaces/GestorEscenas.java</file>
+            <file>file:/D:/Documents/GitHub/SGL/src/interfaz_usuario/administrador/sistema/controladores/ControladorVerMasClinicas.java</file>
+            <file>file:/D:/Documents/GitHub/SGL/src/interfaz_usuario/administrador/sistema/controladores/ControladorVerMasAutoescuelas.java</file>
+            <file>file:/D:/Documents/GitHub/SGL/src/logica/entidad/implementaciones/ServicioEntidad.java</file>
+            <file>file:/D:/Documents/GitHub/SGL/src/logica/entidad/consultas/ConsultasEntidad.java</file>
+        </group>
     </open-files>
 </project-private>
