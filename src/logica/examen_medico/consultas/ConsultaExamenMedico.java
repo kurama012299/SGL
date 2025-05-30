@@ -39,7 +39,7 @@ public class ConsultaExamenMedico {
                      "LEFT JOIN \"Persona\" p ON em.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON em.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON em.\"Id_Entidad\" = ent.\"Id\"" ;
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
@@ -100,7 +100,7 @@ public class ConsultaExamenMedico {
                      "LEFT JOIN \"Usuario\" u ON em.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON em.\"Id_Entidad\" = ent.\"Id\"" +
                      "WHERE em.\"Id\" = ? " ;
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 stmt.setLong(1, Id);
                 ResultSet rs = stmt.executeQuery();         
@@ -141,7 +141,7 @@ public class ConsultaExamenMedico {
                      "LEFT JOIN \"Usuario\" u ON em.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON em.\"Id_Entidad\" = ent.\"Id\"" +
                      "WHERE em.\"Id_Examinador\" = ? " ;
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 stmt.setLong(1, Id);
                 ResultSet rs = stmt.executeQuery();         
@@ -172,7 +172,7 @@ public class ConsultaExamenMedico {
         String consulta = "INSERT INTO \"ExamenMedico\" (\"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\", \"Fecha\", \"Aprobado\") "
                 + "VALUES (?, ?, ?, ?, ?) RETURNING \"Id\"";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             // Establecer parámetros
             stmt.setLong(1, examen.getPersona().getId());
@@ -216,7 +216,7 @@ public class ConsultaExamenMedico {
         LocalDate fechaMasVieja=null;
 
          String consulta = "SELECT em.\"Fecha\" FROM \"ExamenMedico\" em ORDER BY em.\"Fecha\" ASC LIMIT 1";
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 ResultSet rs = stmt.executeQuery();         
                 if (rs.next()) {

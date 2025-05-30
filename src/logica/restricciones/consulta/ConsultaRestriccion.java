@@ -21,7 +21,7 @@ public class ConsultaRestriccion {
 
         String query = "SELECT \"Nombre\" FROM \"Restriccion\"";
 
-        try (Connection conn = ConectorBaseDato.Conectar();
+        try (Connection conn = ConectorBaseDato.conectar();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query)) {
 

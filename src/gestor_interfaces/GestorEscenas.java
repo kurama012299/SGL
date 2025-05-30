@@ -819,7 +819,7 @@ public class GestorEscenas  {
     //Funcion para cerrar el programa
     public static void cerrarPrograma()
     {
-        ConectorBaseDato.CerrarConexionBD();
+        ConectorBaseDato.cerrarConexionBD();
         Platform.exit();
     }
     

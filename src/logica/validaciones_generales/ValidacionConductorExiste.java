@@ -25,7 +25,7 @@ public class ValidacionConductorExiste {
 public static void verificarExistenciaCI(String CI) throws SQLException, Exception {
     String sql = "SELECT 1 FROM \"Persona\" WHERE \"CI\" = ?";
     
-    try (Connection conn = ConectorBaseDato.Conectar();
+    try (Connection conn = ConectorBaseDato.conectar();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
         
         pstmt.setString(1, CI);
@@ -46,7 +46,7 @@ public static void verificarExistenciaCI(String CI) throws SQLException, Excepti
 public static void verificarEsConductor(String CI) throws SQLException, Exception {
     String sql = "SELECT \"Id_Licencia\" FROM \"Persona\" WHERE \"CI\" = ?";
     
-    try (Connection conn = ConectorBaseDato.Conectar();
+    try (Connection conn = ConectorBaseDato.conectar();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
         
         pstmt.setString(1, CI);

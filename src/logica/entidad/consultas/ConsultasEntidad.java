@@ -26,7 +26,7 @@ public class ConsultasEntidad {
 
         String consulta = "SELECT * FROM \"Entidad\"";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(consulta)) {
 
             while (rs.next()) {
                 EntidadRelacionada Entidad = new EntidadRelacionada(
@@ -54,7 +54,7 @@ public class ConsultasEntidad {
 
         String consulta = "SELECT * FROM \"Entidad\" WHERE \"Nombre\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setString(1, nombre);
 
@@ -82,7 +82,7 @@ public class ConsultasEntidad {
 
         String consulta = "SELECT * FROM \"Entidad\" WHERE \"Id\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setLong(1, Id);
 
@@ -110,7 +110,7 @@ public class ConsultasEntidad {
         ObservableList<EntidadRelacionada> Autoescuelas = FXCollections.observableArrayList();
         String consulta = "SELECT * FROM \"Entidad\" WHERE \"Tipo_Entidad\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta)) {
 
             pstmt.setString(1, "Autoescuela");
 
@@ -142,7 +142,7 @@ public class ConsultasEntidad {
         String consulta = "SELECT * FROM \"Entidad\""
                 + "WHERE \"Id\" = ? AND \"Tipo_Entidad\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setLong(1, Id);
             stmt.setString(2, "Autoescuela");
@@ -171,7 +171,7 @@ public class ConsultasEntidad {
         ObservableList<EntidadRelacionada> Clinicas = FXCollections.observableArrayList();
         String consulta = "SELECT * FROM \"Entidad\" WHERE \"Tipo_Entidad\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta)) {
 
             pstmt.setString(1, "Clinica");
 
@@ -203,7 +203,7 @@ public class ConsultasEntidad {
         String consulta = "SELECT * FROM \"Entidad\""
                 + "WHERE \"Id\" = ? AND \"Tipo_Entidad\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setLong(1, Id);
             stmt.setString(2, "Clinica");
@@ -231,7 +231,7 @@ public class ConsultasEntidad {
     public static long guardarEntidad(EntidadRelacionada entidad) throws SQLException, Exception {
         String guardar = "INSERT INTO \"Entidad\" (\"Nombre\", \"Direccion\", \"Telefono\", \"Correo\", \"NombreDirector\", \"Tipo_Entidad\") VALUES (?, ?, ?, ?, ?, ?) RETURNING \"Id\"";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
 
             pstmt.setString(1, entidad.getNombre());
             pstmt.setString(2, entidad.getDireccion());
@@ -255,7 +255,7 @@ public class ConsultasEntidad {
     public static void actualizarEntidadConsulta(EntidadRelacionada entidad) throws Exception{
         String consulta = "UPDATE \"Entidad\" SET \"Telefono\" = ?, \"Correo\" = ?, \"NombreDirector\" = ? WHERE \"Id\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta)) {
 
             pstmt.setString(1, entidad.getTelefono());
             pstmt.setString(2, entidad.getCorreo());
@@ -280,7 +280,7 @@ public class ConsultasEntidad {
 
     String consulta = "DELETE FROM \"Entidad\" WHERE \"Id\" = ?";
     
-    try (Connection conn = ConectorBaseDato.Conectar();
+    try (Connection conn = ConectorBaseDato.conectar();
          PreparedStatement pstmt = conn.prepareStatement(consulta)) {
          
         pstmt.setLong(1, id);

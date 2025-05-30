@@ -19,7 +19,6 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -46,7 +45,7 @@ import logica.persona.modelos.Conductor;
 public class GestorPDF {
     
     //Licencia
-    public static void GenerarReporteLicenciasEmitidas(ObservableList<Licencia> licencias, String tituloReporte) {
+    public static void generarReporteLicenciasEmitidas(ObservableList<Licencia> licencias, String tituloReporte) {
         try {
             // 1. Configuración inicial del documento
             File pdfFile = File.createTempFile("reporte_licencias_emitidas_", ".pdf");
@@ -78,7 +77,7 @@ public class GestorPDF {
         }
     }
 
-   
+    
     private static void agregarTablaLicencias(Document document, ObservableList<Licencia> licencias, Map<String, Font> estilos)
             throws DocumentException, Exception {
 
@@ -88,7 +87,7 @@ public class GestorPDF {
         tabla.setSplitLate(false); // Evita que las celdas se dividan en páginas
 
         // Configurar anchos relativos de columnas
-        float[] anchosColumnas = {1.5f, 1f, 1.5f, 1.5f, 2f, 1.5f,1.5f};
+        float[] anchosColumnas = {1.5f, 1f, 1.5f, 1.5f, 2f, 1.5f, 1.5f};
         tabla.setWidths(anchosColumnas);
 
         // Configuración común para todas las celdas
@@ -102,7 +101,7 @@ public class GestorPDF {
         agregarCeldaCabecera(tabla, "Fecha Vencimiento", estilos.get("cabecera"));
         agregarCeldaCabecera(tabla, "Restricciones", estilos.get("cabecera"));
         agregarCeldaCabecera(tabla, "Carnet Identidad", estilos.get("cabecera"));
-        agregarCeldaCabecera(tabla, "Categoria",  estilos.get("cabecera"));
+        agregarCeldaCabecera(tabla, "Categoria", estilos.get("cabecera"));
 
         // Datos de las licencias
         boolean fondoGris = false;
@@ -115,10 +114,10 @@ public class GestorPDF {
             agregarCeldaDatosAjustable(tabla, licencia.getFechaEmision().toString(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, licencia.getFechaVencimiento().toString(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, obtenerRestriccionesFormateadas(licencia.getRestricciones()), estilos.get("datos"), colorFondo);
-            agregarCeldaDatosAjustable(tabla, ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId()).getCI(),estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId()).getCI(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, obtenerCategoriasFormateadas(licencia.getCategorias()), estilos.get("datos"), colorFondo);
-            
-            fondoGris = !fondoGris; 
+
+            fondoGris = !fondoGris;
         }
 
         document.add(tabla);
@@ -131,7 +130,7 @@ public class GestorPDF {
         }
         return String.join(", ", restricciones);
     }
-    
+
     
     private static String obtenerCategoriasFormateadas(List<String> categorias) {
         if (categorias == null || categorias.isEmpty()) {
@@ -140,41 +139,41 @@ public class GestorPDF {
         return String.join(", ", categorias);
     }
 
-
-
+    
     //Infracciones
-    public static void GenerarReporteInfracciones(ObservableList<Infraccion> infracciones, String tituloReporte) {
-    try {
-        // 1. Configuración inicial del documento
-        File pdfFile = File.createTempFile("reporte_infracciones_", ".pdf");
-        pdfFile.deleteOnExit();
+    public static void generarReporteInfracciones(ObservableList<Infraccion> infracciones, String tituloReporte) {
+        try {
+            // 1. Configuración inicial del documento
+            File pdfFile = File.createTempFile("reporte_infracciones_", ".pdf");
+            pdfFile.deleteOnExit();
 
-        Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
-        PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
-        document.open();
+            Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
+            PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+            document.open();
 
-        // 2. Estilos de fuentes
-        Map<String, Font> estilos = crearEstilosFuentes();
+            // 2. Estilos de fuentes
+            Map<String, Font> estilos = crearEstilosFuentes();
 
-        // 3. Agregar encabezado
-        agregarEncabezado(document, tituloReporte, "Reporte detallado de infracciones", estilos);
+            // 3. Agregar encabezado
+            agregarEncabezado(document, tituloReporte, "Reporte detallado de infracciones", estilos);
 
-        // 4. Agregar tabla con datos de infracciones
-        agregarTablaInfracciones(document, infracciones, estilos);
+            // 4. Agregar tabla con datos de infracciones
+            agregarTablaInfracciones(document, infracciones, estilos);
 
-        // 5. Agregar pie de página
-        agregarPiePagina(document, estilos.get("footer"));
+            // 5. Agregar pie de página
+            agregarPiePagina(document, estilos.get("footer"));
 
-        document.close();
+            document.close();
 
-        // 6. Abrir el PDF automáticamente
-        abrirDocumento(pdfFile);
+            // 6. Abrir el PDF automáticamente
+            abrirDocumento(pdfFile);
 
-    } catch (Exception e) {
-        manejarErrorGeneracionReporte(e);
+        } catch (Exception e) {
+            manejarErrorGeneracionReporte(e);
+        }
     }
-}
 
+    
     private static void agregarTablaInfracciones(Document document, ObservableList<Infraccion> infracciones, Map<String, Font> estilos)
             throws DocumentException {
 
@@ -226,9 +225,7 @@ public class GestorPDF {
 
         document.add(tabla);
     }
-    
-    
-    
+
     //Utiles
     private static void agregarCeldaDatosAjustable(PdfPTable tabla, String texto, Font font, BaseColor bgColor) {
         PdfPCell celda = new PdfPCell(new Phrase(texto != null ? texto : "", font));
@@ -241,6 +238,7 @@ public class GestorPDF {
         tabla.addCell(celda);
     }
 
+    
     private static void agregarCeldaCabecera(PdfPTable tabla, String texto, Font font) {
         PdfPCell celda = new PdfPCell(new Phrase(texto, font));
         celda.setBackgroundColor(BaseColor.GRAY);
@@ -250,6 +248,7 @@ public class GestorPDF {
         celda.setNoWrap(false); // Permite ajuste de texto
         tabla.addCell(celda);
     }
+
     
     private static void agregarPiePagina(Document document, Font fontFooter) throws DocumentException {
         Paragraph footer = new Paragraph(
@@ -260,12 +259,14 @@ public class GestorPDF {
         document.add(footer);
     }
 
+    
     private static void abrirDocumento(File pdfFile) throws IOException {
         if (Desktop.isDesktopSupported()) {
             Desktop.getDesktop().open(pdfFile);
         }
     }
 
+    
     private static void manejarErrorGeneracionReporte(Exception e) {
         e.printStackTrace();
         // Aquí podrías lanzar una excepción personalizada o mostrar un diálogo de error
@@ -277,6 +278,7 @@ public class GestorPDF {
             alert.showAndWait();
         });
     }
+
     
     private static Map<String, Font> crearEstilosFuentes() {
         Map<String, Font> estilos = new HashMap<>();
@@ -288,6 +290,7 @@ public class GestorPDF {
         return estilos;
     }
 
+    
     private static void agregarEncabezado(Document document, String titulo, String subtitulo, Map<String, Font> estilos) throws DocumentException {
         Paragraph tituloPdf = new Paragraph(titulo, estilos.get("titulo"));
         tituloPdf.setAlignment(Element.ALIGN_CENTER);
@@ -335,82 +338,83 @@ public class GestorPDF {
             agregarCeldaDatosAjustable(tabla, examen.getPersona().getNombre() + examen.getPersona().getApellidos(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, examen.getTipo(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, examen.getFecha().toString(), estilos.get("datos"), colorFondo);
-            agregarCeldaDatosAjustable(tabla, (examen.isAprobado())?"Aprobado":"Reprobado", estilos.get("datos"), colorFondo);
-            agregarCeldaDatosAjustable(tabla, examen.getEntidad().getNombre(),estilos.get("datos"), colorFondo);
-            
-            fondoGris = !fondoGris; 
+            agregarCeldaDatosAjustable(tabla, (examen.isAprobado()) ? "Aprobado" : "Reprobado", estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, examen.getEntidad().getNombre(), estilos.get("datos"), colorFondo);
+
+            fondoGris = !fondoGris;
         }
 
         document.add(tabla);
     }
+
     
-     public static void GenerarReporteExamenes(ObservableList<Examen> examenes, String tituloReporte) {
-    try {
-        // 1. Configuración inicial del documento
-        File pdfFile = File.createTempFile("reporte_examenes_", ".pdf");
-        pdfFile.deleteOnExit();
+    public static void generarReporteExamenes(ObservableList<Examen> examenes, String tituloReporte) {
+        try {
+            // 1. Configuración inicial del documento
+            File pdfFile = File.createTempFile("reporte_examenes_", ".pdf");
+            pdfFile.deleteOnExit();
 
-        Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
-        PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
-        document.open();
+            Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
+            PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+            document.open();
 
-        // 2. Estilos de fuentes
-        Map<String, Font> estilos = crearEstilosFuentes();
+            // 2. Estilos de fuentes
+            Map<String, Font> estilos = crearEstilosFuentes();
 
-        // 3. Agregar encabezado
-        agregarEncabezado(document, tituloReporte, "Reporte detallado de examenes", estilos);
+            // 3. Agregar encabezado
+            agregarEncabezado(document, tituloReporte, "Reporte detallado de examenes", estilos);
 
-        // 4. Agregar tabla con datos de infracciones
-        agregarTablaExamenes(document, examenes, estilos);
+            // 4. Agregar tabla con datos de infracciones
+            agregarTablaExamenes(document, examenes, estilos);
 
-        // 5. Agregar pie de página
-        agregarPiePagina(document, estilos.get("footer"));
+            // 5. Agregar pie de página
+            agregarPiePagina(document, estilos.get("footer"));
 
-        document.close();
+            document.close();
 
-        // 6. Abrir el PDF automáticamente
-        abrirDocumento(pdfFile);
+            // 6. Abrir el PDF automáticamente
+            abrirDocumento(pdfFile);
 
-    } catch (Exception e) {
-        manejarErrorGeneracionReporte(e);
+        } catch (Exception e) {
+            manejarErrorGeneracionReporte(e);
+        }
     }
-}
 
-     
-      public static void GenerarReporteInfraccionesPorTipo(ObservableList<Infraccion> infracciones, String tituloReporte, String tipo) {
-    try {
-        // 1. Configuración inicial del documento
-        File pdfFile = File.createTempFile("reporte_infracciones_por_tipo", ".pdf");
-        pdfFile.deleteOnExit();
+    
+    public static void generarReporteInfraccionesPorTipo(ObservableList<Infraccion> infracciones, String tituloReporte, String tipo) {
+        try {
+            // 1. Configuración inicial del documento
+            File pdfFile = File.createTempFile("reporte_infracciones_por_tipo", ".pdf");
+            pdfFile.deleteOnExit();
 
-        Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
-        PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
-        document.open();
+            Document document = new Document(PageSize.A4.rotate()); // Horizontal para más columnas
+            PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+            document.open();
 
-        // 2. Estilos de fuentes
-        Map<String, Font> estilos = crearEstilosFuentes();
+            // 2. Estilos de fuentes
+            Map<String, Font> estilos = crearEstilosFuentes();
 
-        // 3. Agregar encabezado
-        agregarEncabezado(document, tituloReporte, "Reporte detallado de infracciones " + tipo + ":", estilos);
+            // 3. Agregar encabezado
+            agregarEncabezado(document, tituloReporte, "Reporte detallado de infracciones " + tipo + ":", estilos);
 
-        // 4. Agregar tabla con datos de infracciones
-        agregarTablaInfracciones(document, infracciones, estilos);
+            // 4. Agregar tabla con datos de infracciones
+            agregarTablaInfracciones(document, infracciones, estilos);
 
-        // 5. Agregar pie de página
-        agregarPiePagina(document, estilos.get("footer"));
+            // 5. Agregar pie de página
+            agregarPiePagina(document, estilos.get("footer"));
 
-        document.close();
+            document.close();
 
-        // 6. Abrir el PDF automáticamente
-        abrirDocumento(pdfFile);
+            // 6. Abrir el PDF automáticamente
+            abrirDocumento(pdfFile);
 
-    } catch (Exception e) {
-        manejarErrorGeneracionReporte(e);
+        } catch (Exception e) {
+            manejarErrorGeneracionReporte(e);
+        }
     }
-}
-      
-      
-       public static void GenerarReporteConductoresLicenciasVencidas(ObservableList<Conductor> conductores, String tituloReporte) {
+
+    
+    public static void generarReporteConductoresLicenciasVencidas(ObservableList<Conductor> conductores, String tituloReporte) {
         try {
             // 1. Configuración inicial del documento
             File pdfFile = File.createTempFile("reporte_conductores_licencias_vencidas_", ".pdf");
@@ -442,7 +446,7 @@ public class GestorPDF {
         }
     }
 
-   
+    
     private static void agregarTablaConductores(Document document, ObservableList<Conductor> conductores, Map<String, Font> estilos)
             throws DocumentException, Exception {
 
@@ -457,7 +461,7 @@ public class GestorPDF {
 
         // Configuración común para todas las celdas
         tabla.setExtendLastRow(false);
-        tabla.setHeaderRows(1); // La primera fila es cabecera
+        tabla.setHeaderRows(1);
 
         // Cabecera de la tabla (con alineación vertical superior)
         agregarCeldaCabecera(tabla, "Nombre Conductor", estilos.get("cabecera"));
@@ -465,7 +469,7 @@ public class GestorPDF {
         agregarCeldaCabecera(tabla, "Tipo Licencia", estilos.get("cabecera"));
         agregarCeldaCabecera(tabla, "Fecha Vencimiento", estilos.get("cabecera"));
         agregarCeldaCabecera(tabla, "Estado", estilos.get("cabecera"));
-        
+
         // Datos de los conductores
         boolean fondoGris = false;
         for (Conductor conductor : conductores) {
@@ -478,8 +482,8 @@ public class GestorPDF {
             agregarCeldaDatosAjustable(tabla, licencia.getTipo(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, licencia.getFechaVencimiento().toString(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, licencia.getEstado(), estilos.get("datos"), colorFondo);
-            
-            fondoGris = !fondoGris; 
+
+            fondoGris = !fondoGris;
         }
 
         document.add(tabla);

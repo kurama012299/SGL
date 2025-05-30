@@ -24,7 +24,7 @@ public class GestorEstadisticas {
         String Consulta = "SELECT * FROM obtenerestadisticasusuario (?)";
         EstadisticaUsuario Estadistica = null;
 
-        try (Connection conn = ConectorBaseDato.Conectar();
+        try (Connection conn = ConectorBaseDato.conectar();
                 PreparedStatement pstmt = conn.prepareStatement(Consulta)) {
 
             pstmt.setLong(1, IdUsuario);
@@ -48,7 +48,7 @@ public class GestorEstadisticas {
     public static ArrayList<Estadistica> ObtenerEstadisticasMenuAdministrador() throws Exception {
         ArrayList<Estadistica> estadisticas = new ArrayList<>();
 
-        try (Connection conn = ConectorBaseDato.Conectar()) {
+        try (Connection conn = ConectorBaseDato.conectar()) {
             // 1. Cantidad de conductores
             estadisticas.add(ObtenerCantidadConductores(conn));
 
@@ -75,7 +75,7 @@ public class GestorEstadisticas {
     {
          ArrayList<Estadistica> estadisticas = new ArrayList<>();
 
-        try (Connection conn = ConectorBaseDato.Conectar()) {
+        try (Connection conn = ConectorBaseDato.conectar()) {
             
             // 1. Total examenes
             estadisticas.add(ObtenerCantidadExamenes(conn));

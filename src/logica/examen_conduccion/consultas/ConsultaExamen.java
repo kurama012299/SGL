@@ -38,7 +38,7 @@ public class ConsultaExamen {
                      "LEFT JOIN \"Usuario\" u ON et.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON et.\"Id_Entidad\" = ent.\"Id\"" ;
          
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
@@ -84,7 +84,7 @@ public class ConsultaExamen {
                      "LEFT JOIN \"Persona\" p ON ep.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON ep.\"Id_Entidad\" = ent.\"Id\"" ;
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
@@ -133,7 +133,7 @@ public class ConsultaExamen {
                      "LEFT JOIN \"Usuario\" u ON et.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON et.\"Id_Entidad\" = ent.\"Id\""+
                      "WHERE et.\"Id\" = ? ";
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 stmt.setLong(1, Id);
                 
@@ -182,7 +182,7 @@ public class ConsultaExamen {
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON ep.\"Id_Entidad\" = ent.\"Id\""+
                      "WHERE ep.\"Id\" = ? ";
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 stmt.setLong(1, Id);
                 
@@ -230,7 +230,7 @@ public class ConsultaExamen {
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON ep.\"Id_Entidad\" = ent.\"Id\""+
                      "WHERE ep.\"Id_Examinador\" = ? ";
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 stmt.setLong(1, Id);
                 
@@ -280,7 +280,7 @@ public class ConsultaExamen {
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON ep.\"Id_Entidad\" = ent.\"Id\""+
                      "WHERE ep.\"Id_Examinador\" = ? ";
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 stmt.setLong(1, Id);
                 
@@ -319,7 +319,7 @@ public class ConsultaExamen {
         String consulta = "INSERT INTO \"ExamenTeorico\" (\"Fecha\", \"Aprobado\", \"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\") "
                 + "VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             java.sql.Date fechaSql = new java.sql.Date(examen.getFecha().getTime());
 
@@ -342,7 +342,7 @@ public class ConsultaExamen {
         String consulta = "INSERT INTO \"ExamenPractico\" (\"Fecha\", \"Aprobado\", \"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\") "
                 + "VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             java.sql.Date fechaSql = new java.sql.Date(examen.getFecha().getTime());
 

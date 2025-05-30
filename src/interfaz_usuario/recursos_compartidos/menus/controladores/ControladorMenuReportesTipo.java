@@ -74,7 +74,7 @@ public class ControladorMenuReportesTipo {
         try {
             switch (reporte) {
                 case "Infracciones por tipo":
-                    GestorPDF.GenerarReporteInfraccionesPorTipo(
+                    GestorPDF.generarReporteInfraccionesPorTipo(
                             ServicioInfraccion.obtenerInfraccionesPorAnioYTipo(annio, tipo),
                             "Reporte de infracciones emitidas en el  "
                             + annio,

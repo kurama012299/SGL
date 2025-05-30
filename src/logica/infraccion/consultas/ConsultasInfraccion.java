@@ -29,7 +29,7 @@ public class ConsultasInfraccion {
                 + "FROM \"Infraccion\" "
                 + "LEFT JOIN \"Gravedad\" ON \"Infraccion\".\"Id_Gravedad\" = \"Gravedad\".\"Id\" ";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta); ResultSet rs = pstmt.executeQuery()) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta); ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
 
@@ -63,7 +63,7 @@ public class ConsultasInfraccion {
                 + "LEFT JOIN \"Gravedad\" ON \"Infraccion\".\"Id_Gravedad\" = \"Gravedad\".\"Id\" "
                 + "WHERE \"Id\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setLong(1, Id);
 
@@ -109,7 +109,7 @@ public class ConsultasInfraccion {
                 + " \"Pagada\", \"Id_Licencia\", \"Id_Gravedad\", \"Nombre_Oficial\")"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
 
             pstmt.setDate(1, (Date) infraccion.getFecha());
             pstmt.setString(2, infraccion.getLugar());

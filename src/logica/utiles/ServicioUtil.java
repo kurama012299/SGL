@@ -28,7 +28,7 @@ public class ServicioUtil {
         String consulta = "SELECT \"Nombre\""
                 + "FROM \"Tipo\"";
 
-        try (Connection conn = ConectorBaseDato.Conectar();
+        try (Connection conn = ConectorBaseDato.conectar();
                 PreparedStatement pstmt = conn.prepareStatement(consulta); ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {

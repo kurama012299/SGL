@@ -24,7 +24,7 @@ import logica.licencia.modelos.Licencia;
 public class ServicioLicencia {
  
     public static ObservableList<Licencia> ObtenerLicencias() throws Exception {
-        return ConsultasLicencia.ObtenerLicenciasConsulta();
+        return ConsultasLicencia.obtenerLicenciasConsulta();
     }
 
     public static ObservableList<Licencia> obtenerLicenciasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
@@ -41,7 +41,7 @@ public class ServicioLicencia {
         Date fechaFinDate = java.sql.Date.valueOf(fechaFin.plusDays(1));
 
         // Obtener todas las licencias
-        ObservableList<Licencia> licencias = ConsultasLicencia.ObtenerLicenciasConsulta();
+        ObservableList<Licencia> licencias = ConsultasLicencia.obtenerLicenciasConsulta();
 
         // Filtrar por el rango de fechas
         List<Licencia> licenciasFiltradas = licencias.stream()
@@ -56,7 +56,7 @@ public class ServicioLicencia {
     }
 
     public static Licencia ObtenerLicenciaPorId(long Id) throws Exception {
-        return ConsultasLicencia.ObtenerLicenciaPorIdConsulta(Id);
+        return ConsultasLicencia.obtenerLicenciaPorIdConsulta(Id);
     }
 
     public static int actualizarPuntosLicencia(long idLicencia, int puntosASumar) throws Exception{

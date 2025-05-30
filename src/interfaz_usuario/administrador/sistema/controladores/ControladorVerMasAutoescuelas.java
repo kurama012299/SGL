@@ -157,7 +157,7 @@ public class ControladorVerMasAutoescuelas {
 
     private double TotalExamenesAprobados() throws SQLException, Exception {
 
-        try (Connection conn = ConectorBaseDato.Conectar()) {
+        try (Connection conn = ConectorBaseDato.conectar()) {
             Estadistica Estadistica = GestorEstadisticas.obtenerCantidadExamenesAutoescuelaAprobados(conn);
             return Estadistica.GetValor();
         }

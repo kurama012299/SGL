@@ -24,7 +24,7 @@ public class ConsultaCentro {
 
         String consulta = "SELECT * FROM \"Centro\"";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); 
+        try (Connection conn = ConectorBaseDato.conectar(); 
                 PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {

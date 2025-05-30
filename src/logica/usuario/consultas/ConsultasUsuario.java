@@ -25,7 +25,7 @@ public class ConsultasUsuario {
         WHERE u."Correo" = ? AND u."Clave" = ?
         """;
 
-        try (Connection conn = ConectorBaseDato.Conectar(); 
+        try (Connection conn = ConectorBaseDato.conectar(); 
         PreparedStatement stmt = conn.prepareStatement(Consulta)) {
 
             stmt.setString(1, EntradaCorreo);
@@ -59,7 +59,7 @@ public class ConsultasUsuario {
     WHERE u."Nombre" = ?
     """;
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setString(1, nombre);
 
@@ -90,7 +90,7 @@ public class ConsultasUsuario {
          String consulta = "SELECT u.\"Correo\",u.\"Nombre\""+
                      "FROM \"Usuario\"u";
                     
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
@@ -114,7 +114,7 @@ public class ConsultasUsuario {
                      "FROM \"Usuario\" ur "+
                      "WHERE ur.\"Id_Rol\" IN(?, ?, ?, ?)";
                     
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             stmt.setInt(1, 1);
             stmt.setInt(2, 2);
             stmt.setInt(3, 4);
@@ -141,7 +141,7 @@ public class ConsultasUsuario {
                      "FROM \"Usuario\" u " +
                      "WHERE u.\"Id_Rol\" IN(?, ?, ?, ?)";
                     
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             stmt.setInt(1, 1);
             stmt.setInt(2, 3);
             stmt.setInt(3, 4);
@@ -163,7 +163,7 @@ public class ConsultasUsuario {
     public static long crearUsuarioConsulta(Usuario usuario,Long idRol,String clave) throws SQLException, Exception {
         String guardar = "INSERT INTO \"Usuario\" (\"Correo\", \"Clave\", \"Nombre\", \"Id_Rol\", \"Foto\", \"Id_Entidad_Perteneciente\") VALUES (?, ?, ?, ?, ?, ?) RETURNING \"Id\"";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
 
             pstmt.setString(1, usuario.getCorreo());
             pstmt.setString(2, clave);

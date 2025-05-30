@@ -79,7 +79,7 @@ public class ServicioInfraccion {
     public static long obtenerIdGravedad(String nombreGravedad) throws SQLException, Exception {
     String sql = "SELECT \"Id\" FROM \"Gravedad\" WHERE \"Nombre\" = ?";
     
-    try (Connection conn = ConectorBaseDato.Conectar();
+    try (Connection conn = ConectorBaseDato.conectar();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
         
         pstmt.setString(1, nombreGravedad);

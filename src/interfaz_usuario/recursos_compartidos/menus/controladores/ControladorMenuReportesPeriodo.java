@@ -48,7 +48,7 @@ public class ControladorMenuReportesPeriodo {
         try {
             switch (reporte) {
                 case "Licencias emitidas":
-                    GestorPDF.GenerarReporteLicenciasEmitidas(
+                    GestorPDF.generarReporteLicenciasEmitidas(
                             ServicioLicencia.obtenerLicenciasPorPeriodo(
                                     dtFechaInicio.getValue(),
                                     dtFechaFin.getValue()
@@ -58,7 +58,7 @@ public class ControladorMenuReportesPeriodo {
                     );
                     break;
                 case "Infracciones emitidas":
-                    GestorPDF.GenerarReporteInfracciones(
+                    GestorPDF.generarReporteInfracciones(
                             ServicioInfraccion.obtenerInfraccionesPorPeriodo(
                                     dtFechaInicio.getValue(),
                                     dtFechaFin.getValue()
@@ -68,7 +68,7 @@ public class ControladorMenuReportesPeriodo {
                     );
                     break;
                 case "Examenes emitidos":
-                    GestorPDF.GenerarReporteExamenes(ServicioExamenes.obtenerExamenesPorPeriodo(
+                    GestorPDF.generarReporteExamenes(ServicioExamenes.obtenerExamenesPorPeriodo(
                                     dtFechaInicio.getValue(),
                                     dtFechaFin.getValue()
                             ),
@@ -77,7 +77,7 @@ public class ControladorMenuReportesPeriodo {
                     );
                     break;
                 case "Licencias vencidas":
-                    GestorPDF.GenerarReporteConductoresLicenciasVencidas(
+                    GestorPDF.generarReporteConductoresLicenciasVencidas(
                             ServicioConductor.obtenerConductoresConLicenciaVencida(
                                     dtFechaInicio.getValue(),
                                     dtFechaFin.getValue()),

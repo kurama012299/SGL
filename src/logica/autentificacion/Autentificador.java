@@ -21,7 +21,7 @@ public class Autentificador {
     {
         usuario = ConsultasUsuario.ObtenerUsuario(correo, clave);
         System.out.println(usuario);
-        ConsultasInicioSesion.CrearInicioSesion(usuario.getId());
+        ConsultasInicioSesion.crearInicioSesion(usuario.getId());
         return usuario.getRol();
     }
 }

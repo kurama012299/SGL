@@ -41,11 +41,11 @@ public class ConectorBaseDato {
         }
     }
 
-    public static Connection Conectar() throws Exception {
+    public static Connection conectar() throws Exception {
         return BD.getConnection(); // Obtiene una conexión del pool
     }
 
-    public static void CerrarConexionBD() {
+    public static void cerrarConexionBD() {
         if (BD != null && !BD.isClosed()) {
             BD.close();
             System.out.println("Pool de conexiones cerrado");

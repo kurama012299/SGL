@@ -18,14 +18,14 @@ import java.time.LocalDateTime;
 public class ConsultasInicioSesion {
     
     
-    public static void CrearInicioSesion(long id) throws Exception {
+    public static void crearInicioSesion(long id) throws Exception {
         LocalDateTime FechaInicio = LocalDateTime.now();
 
         // Consulta SQL con parámetros preparados
         String Consulta = "INSERT INTO \"InicioSesion\" (\"Id_Usuario\", \"Fecha\") "
                 + "VALUES (?, ?)";
 
-        try (Connection conexion = ConectorBaseDato.Conectar();
+        try (Connection conexion = ConectorBaseDato.conectar();
         PreparedStatement pstmt = conexion.prepareStatement(Consulta)) {
 
 

@@ -29,7 +29,7 @@ public class ConsultasPersona {
         
         String consulta = "SELECT * FROM \"Persona\" "; 
         
-        try (Connection conn = ConectorBaseDato.Conectar();
+        try (Connection conn = ConectorBaseDato.conectar();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(consulta)) {
             
@@ -61,7 +61,7 @@ public class ConsultasPersona {
 
         String consulta = "SELECT * FROM \"Persona\" WHERE \"CI\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); 
+        try (Connection conn = ConectorBaseDato.conectar(); 
                 PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setString(1, ci);
@@ -96,7 +96,7 @@ public class ConsultasPersona {
         
         String consulta = "SELECT * FROM \"Persona\" WHERE \"Id_Licencia\"<>0"; 
         
-        try (Connection conn = ConectorBaseDato.Conectar();
+        try (Connection conn = ConectorBaseDato.conectar();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(consulta)) {
             
@@ -131,7 +131,7 @@ public class ConsultasPersona {
 
         String consulta = "SELECT * FROM \"Persona\" WHERE \"Id\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); 
+        try (Connection conn = ConectorBaseDato.conectar(); 
                 PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setLong(1, Id);
@@ -166,7 +166,7 @@ public class ConsultasPersona {
 
         String consulta = "SELECT * FROM \"Persona\" WHERE \"Id_Licencia\" = ?";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); 
+        try (Connection conn = ConectorBaseDato.conectar(); 
                 PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
             stmt.setLong(1, IdLicencia);
@@ -201,7 +201,7 @@ public class ConsultasPersona {
                 + "\"Direccion\", \"Telefono\", \"Correo\", \"Foto\", \"Id_Licencia\") "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement stmt = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS)) {
 
             // Establecer parámetros
             stmt.setString(1, persona.getNombre());
@@ -252,7 +252,7 @@ public class ConsultasPersona {
                      "AND l.\"Fecha_Vencimiento\" BETWEEN ? AND ? " +
                      "AND l.\"Id_Estado\" = (SELECT \"Id\" FROM \"Estado\" WHERE \"Nombre\" = 'Vencida')";
     
-    try (Connection conn = ConectorBaseDato.Conectar();
+    try (Connection conn = ConectorBaseDato.conectar();
          PreparedStatement stmt = conn.prepareStatement(consulta)) {
         
         // Convertir LocalDate a java.sql.Date

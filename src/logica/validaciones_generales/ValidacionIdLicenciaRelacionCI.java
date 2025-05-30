@@ -19,7 +19,7 @@ public static void validarRelacionCiLicencia(String CI, long idLicencia) throws 
                 "JOIN \"Licencia\" l ON p.\"Id_Licencia\" = l.\"Id\" " +
                 "WHERE p.\"CI\" = ? AND l.\"Id\" = ?";
     
-    try (Connection conn = ConectorBaseDato.Conectar();
+    try (Connection conn = ConectorBaseDato.conectar();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
         
         pstmt.setString(1, CI);
