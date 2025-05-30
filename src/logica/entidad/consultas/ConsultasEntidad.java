@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import logica.entidad.modelos.EntidadRelacionada;
 
 /**
@@ -250,4 +251,25 @@ public class ConsultasEntidad {
         throw new SQLException("No se pudo guardar la entidad ni obtener el ID");
     }
 
+    
+    public static void actualizarEntidadConsulta(EntidadRelacionada entidad) throws Exception{
+        String consulta = "UPDATE \"Entidad\" SET \"Telefono\" = ?, \"Correo\" = ?, \"NombreDirector\" = ? WHERE \"Id\" = ?";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta)) {
+
+            pstmt.setString(1, entidad.getTelefono());
+            pstmt.setString(2, entidad.getCorreo());
+            pstmt.setString(3, entidad.getNombreDirector());
+            pstmt.setLong(4, entidad.getId());
+        
+    int filasAfectadas = pstmt.executeUpdate();
+                
+                if (filasAfectadas == 0) {
+                    throw new Exception("Error al editar la entidad");
+                    
+                }
+        }catch (SQLException e) {
+            throw new Exception("Error al actualizar la entidad");
+        }
+    }
 }
