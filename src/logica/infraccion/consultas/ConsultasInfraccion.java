@@ -12,11 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.infraccion.modelos.Infraccion;
-import logica.infraccion.modelos.Infraccion;
-import logica.persona.modelos.Conductor;
 
 /**
  *
@@ -24,7 +21,7 @@ import logica.persona.modelos.Conductor;
  */
 public class ConsultasInfraccion {
 
-    public static ObservableList<Infraccion> ObtenerInfraccionesConsulta() throws SQLException, Exception {
+    public static ObservableList<Infraccion> obtenerInfraccionesConsulta() throws SQLException, Exception {
         ObservableList<Infraccion> Infracciones = FXCollections.observableArrayList();
 
         String consulta = "SELECT \"Infraccion\".*, "
@@ -56,7 +53,8 @@ public class ConsultasInfraccion {
         return Infracciones;
     }
 
-    public static Infraccion ObtenerInfraccionPorIdConsulta(long Id) throws Exception {
+    
+    public static Infraccion obtenerInfraccionPorIdConsulta(long Id) throws Exception {
         Infraccion Infraccion = null;
 
         String consulta = "SELECT \"Infraccion\".*, "
@@ -92,8 +90,9 @@ public class ConsultasInfraccion {
         return Infraccion;
     }
     
-    public static int ObtenerCantidadInfraccionesPorIdConsulta(Long Id) throws Exception{
-        ObservableList<Infraccion> Infracciones =  ObtenerInfraccionesConsulta();
+    
+    public static int obtenerCantidadInfraccionesPorIdConsulta(Long Id) throws Exception{
+        ObservableList<Infraccion> Infracciones =  obtenerInfraccionesConsulta();
         int contador = 0;
         for(int i = 0; i<Infracciones.size(); i++)
             if(Infracciones.get(i).getIdLicencia().equals(Id))
@@ -101,11 +100,14 @@ public class ConsultasInfraccion {
         return contador;
     }
     
+    
     public static void crearInfraccionConsulta(Infraccion infraccion) throws SQLException, Exception {
         
         long idGravedad = ServicioInfraccion.obtenerIdGravedad(infraccion.getGravedad());
         
-        String guardar = "INSERT INTO \"Infraccion\" (\"Fecha\", \"Lugar\", \"Descripcion\", \"PuntosDeducidos\", \"Pagada\", \"Id_Licencia\", \"Id_Gravedad\", \"Nombre_Oficial\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String guardar = "INSERT INTO \"Infraccion\" (\"Fecha\", \"Lugar\", \"Descripcion\", \"PuntosDeducidos\","
+                + " \"Pagada\", \"Id_Licencia\", \"Id_Gravedad\", \"Nombre_Oficial\")"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
 
@@ -118,7 +120,6 @@ public class ConsultasInfraccion {
             pstmt.setLong(7, idGravedad);
             pstmt.setString(8, infraccion.getNombreOficial());
          
-            // Ejecutar la inserción
             int filasAfectadas = pstmt.executeUpdate();
 
             if (filasAfectadas == 0) {
@@ -126,10 +127,8 @@ public class ConsultasInfraccion {
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al guardar infraccion: " + e.getMessage());
             throw new Exception("Error al guardar infraccion");
         }
     }
-    
     
 }

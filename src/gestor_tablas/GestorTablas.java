@@ -784,7 +784,7 @@ public class GestorTablas {
             default:
                 ObservableList<Infraccion> infracciones= FXCollections.observableArrayList();
                 try {
-                    infracciones = ServicioInfraccion.ObtenerInfracciones();
+                    infracciones = ServicioInfraccion.obtenerInfracciones();
                 } catch (Exception ex) {
                     GestorEscenas.cargarError(tablaInfraccion.getScene().getWindow(), ex);
                 }

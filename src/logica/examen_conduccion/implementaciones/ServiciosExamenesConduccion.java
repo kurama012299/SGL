@@ -18,27 +18,27 @@ import logica.examen_medico.modelos.ExamenMedico;
 public class ServiciosExamenesConduccion {
     
     public static ObservableList<ExamenConduccion> ObtenerExamenesTeoricos() throws Exception {
-        return ConsultaExamen.ObtenerExamenesTeoricosConsultas();
+        return ConsultaExamen.obtenerExamenesTeoricosConsultas();
     }
     
     public static ObservableList<ExamenConduccion> ObtenerExamenesPracticos() throws Exception {
-        return ConsultaExamen.ObtenerExamenesPracticosConsultas();
+        return ConsultaExamen.obtenerExamenesPracticosConsultas();
     }
     
     public static ExamenConduccion ObtenerExamenesTeoricosPorID(Long Id) throws Exception {
-        return ConsultaExamen.ObtenerExamenesTeoricosPorIdConsultas(Id);
+        return ConsultaExamen.obtenerExamenesTeoricosPorIdConsultas(Id);
     }
     
     public static ExamenConduccion ObtenerExamenesPracticosPorID(Long Id) throws Exception {
-        return ConsultaExamen.ObtenerExamenesPracticosPorIdConsultas(Id);
+        return ConsultaExamen.obtenerExamenesPracticosPorIdConsultas(Id);
     }
     
     public static ObservableList<ExamenConduccion> ObtenerExamenesTeoricosPorIDRol(Long Id) throws Exception {
-        return ConsultaExamen.ObtenerExamenesTeoricosPorIdRolConsultas(Id);
+        return ConsultaExamen.obtenerExamenesTeoricosPorIdRolConsultas(Id);
     }
     
     public static ObservableList<ExamenConduccion> ObtenerExamenesPracticosPorIDRol(Long Id) throws Exception {
-        return ConsultaExamen.ObtenerExamenesPracticosPorIdRolConsultas(Id);
+        return ConsultaExamen.obtenerExamenesPracticosPorIdRolConsultas(Id);
     }
     
     public static void crearExamenTeorico(ExamenConduccion examen) throws Exception

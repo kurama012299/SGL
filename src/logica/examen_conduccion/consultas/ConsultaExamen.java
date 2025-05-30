@@ -22,8 +22,8 @@ import logica.usuario.modelos.Usuario;
  */
 public class ConsultaExamen {
     
-    //Consulta para los examenesTeoricos
-    public static ObservableList<ExamenConduccion> ObtenerExamenesTeoricosConsultas() throws Exception {
+
+    public static ObservableList<ExamenConduccion> obtenerExamenesTeoricosConsultas() throws Exception {
         ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT et.\"Id\",et.\"Fecha\",et.\"Aprobado\","+
@@ -37,13 +37,20 @@ public class ConsultaExamen {
                      "LEFT JOIN \"Persona\" p ON et.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON et.\"Id_Examinador\" = u.\"Id\"" + 
                      "LEFT JOIN \"Entidad\" ent ON et.\"Id_Entidad\" = ent.\"Id\"" ;
+         
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
             try{
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    
+                    Persona persona= new Persona(rs.getLong("id_persona"),
+                            rs.getString("nombre_persona"),
+                            rs.getString("apellidos_persona"),
+                            rs.getString("ci_persona"));
+                    
                     ExamenConduccion teorico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -54,18 +61,16 @@ public class ConsultaExamen {
                             "Teórico"
                             );              
                     examenes.add(teorico);
-                    
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new Exception("Error al obtener los examenes teoricos");
             }
             return examenes;
         }
     }
     
-    
-    //Consulta para los examenesPracticos
-    public static ObservableList<ExamenConduccion> ObtenerExamenesPracticosConsultas() throws Exception {
+
+    public static ObservableList<ExamenConduccion> obtenerExamenesPracticosConsultas() throws Exception {
         ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT ep.\"Id\",ep.\"Fecha\",ep.\"Aprobado\","+
@@ -84,8 +89,15 @@ public class ConsultaExamen {
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    
+                    Persona persona = new Persona(
+                            rs.getLong("id_persona"),
+                            rs.getString("nombre_persona"),
+                            rs.getString("apellidos_persona"),
+                            rs.getString("ci_persona"));
+                    
                     ExamenConduccion practico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -98,14 +110,14 @@ public class ConsultaExamen {
                     examenes.add(practico);  
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new Exception("Error al obtener los examenes practicos");
             }
             return examenes;
         }
     }
     
     
-    public static ExamenConduccion ObtenerExamenesTeoricosPorIdConsultas(Long Id) throws Exception {
+    public static ExamenConduccion obtenerExamenesTeoricosPorIdConsultas(Long Id) throws Exception {
 
         ExamenConduccion ExamenTeorico=null;
         
@@ -128,8 +140,14 @@ public class ConsultaExamen {
                 ResultSet rs = stmt.executeQuery();         
                 if (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    
+                    Persona persona= new Persona(rs.getLong("id_persona"),
+                            rs.getString("nombre_persona"),
+                            rs.getString("apellidos_persona"),
+                            rs.getString("ci_persona"));
+                    
                     ExamenTeorico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -141,14 +159,14 @@ public class ConsultaExamen {
                             );               
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new Exception("Error al obtener los examenes teoricos");
             }
             return ExamenTeorico;
         }
     }
 
     
-     public static ExamenConduccion ObtenerExamenesPracticosPorIdConsultas(Long Id) throws Exception {
+     public static ExamenConduccion obtenerExamenesPracticosPorIdConsultas(Long Id) throws Exception {
 
         ExamenConduccion ExamenPractico=null;
         
@@ -171,8 +189,14 @@ public class ConsultaExamen {
                 ResultSet rs = stmt.executeQuery();         
                 if (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    
+                    Persona persona= new Persona(rs.getLong("id_persona"),
+                            rs.getString("nombre_persona"),
+                            rs.getString("apellidos_persona"),
+                            rs.getString("ci_persona"));
+                    
                     ExamenPractico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -184,14 +208,14 @@ public class ConsultaExamen {
                             );               
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new Exception("Error al obtener los examenes practicos");
             }
             return ExamenPractico;
         }
     }
 
 
-     public static ObservableList<ExamenConduccion> ObtenerExamenesPracticosPorIdRolConsultas(Long Id) throws Exception {
+     public static ObservableList<ExamenConduccion> obtenerExamenesPracticosPorIdRolConsultas(Long Id) throws Exception {
         ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT ep.\"Id\",ep.\"Fecha\",ep.\"Aprobado\","+
@@ -214,8 +238,14 @@ public class ConsultaExamen {
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    
+                    Persona persona= new Persona(rs.getLong("id_persona"),
+                            rs.getString("nombre_persona"),
+                            rs.getString("apellidos_persona"),
+                            rs.getString("ci_persona"));
+                    
                     ExamenConduccion practico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -228,14 +258,14 @@ public class ConsultaExamen {
                     examenes.add(practico);  
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new Exception("Error al obtener los examenes practicos");
             }
             return examenes;
         }
      }
      
      
-     public static ObservableList<ExamenConduccion> ObtenerExamenesTeoricosPorIdRolConsultas(Long Id) throws Exception {
+     public static ObservableList<ExamenConduccion> obtenerExamenesTeoricosPorIdRolConsultas(Long Id) throws Exception {
         ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT ep.\"Id\",ep.\"Fecha\",ep.\"Aprobado\","+
@@ -258,8 +288,14 @@ public class ConsultaExamen {
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    
+                    Persona persona= new Persona(rs.getLong("id_persona"),
+                            rs.getString("nombre_persona"),
+                            rs.getString("apellidos_persona"),
+                            rs.getString("ci_persona"));
+                    
                     ExamenConduccion practico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -272,11 +308,12 @@ public class ConsultaExamen {
                     examenes.add(practico);  
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new Exception("Error al obtener los examenes teoricos");
             }
             return examenes;
         }
      }
+     
      
      public static boolean crearExamenTeorico(ExamenConduccion examen) throws Exception {
         String consulta = "INSERT INTO \"ExamenTeorico\" (\"Fecha\", \"Aprobado\", \"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\") "
@@ -284,7 +321,6 @@ public class ConsultaExamen {
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
-            // Convertir java.util.Date a java.sql.Date
             java.sql.Date fechaSql = new java.sql.Date(examen.getFecha().getTime());
 
             stmt.setDate(1, fechaSql);
@@ -297,10 +333,10 @@ public class ConsultaExamen {
             return filasAfectadas > 0;
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            throw new Exception("Error al crear el examen teórico: " + e.getMessage());
+            throw new Exception("Error al crear el examen teórico");
         }
     }
+     
      
      public static boolean crearExamenPractico(ExamenConduccion examen) throws Exception {
         String consulta = "INSERT INTO \"ExamenPractico\" (\"Fecha\", \"Aprobado\", \"Id_Persona\", \"Id_Examinador\", \"Id_Entidad\") "
@@ -308,7 +344,6 @@ public class ConsultaExamen {
 
         try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement stmt = conn.prepareStatement(consulta)) {
 
-            // Convertir java.util.Date a java.sql.Date
             java.sql.Date fechaSql = new java.sql.Date(examen.getFecha().getTime());
 
             stmt.setDate(1, fechaSql);
@@ -321,8 +356,7 @@ public class ConsultaExamen {
             return filasAfectadas > 0;
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            throw new Exception("Error al crear el examen teórico: " + e.getMessage());
+            throw new Exception("Error al crear el examen teórico" );
         }
     }
 }

@@ -114,7 +114,7 @@ public class ControladorVerMasLicencias {
             GestorEscenas.cerrar(btnAtras);
         });
         TextFieldCI.setText(Conductor.getCI());
-        String CantInfraccionesStr = Integer.toString(ServicioInfraccion.ObtenerCantidadInfraccionesPorId(Licencia.getId()));
+        String CantInfraccionesStr = Integer.toString(ServicioInfraccion.obtenerCantidadInfraccionesPorId(Licencia.getId()));
         TextFieldCantidadInfracciones.setText(CantInfraccionesStr);
         TextFieldRenovada.setText(ControladorVerMasInfracciones.Pagado(Licencia.EstaRenovada()));
         String CantPuntosStr = Integer.toString(Licencia.getCantPuntos());

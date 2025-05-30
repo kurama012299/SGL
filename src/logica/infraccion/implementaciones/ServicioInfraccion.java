@@ -20,7 +20,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.infraccion.consultas.ConsultasInfraccion;
 import logica.infraccion.modelos.Infraccion;
-import logica.persona.modelos.Conductor;
 
 
 /**
@@ -29,12 +28,12 @@ import logica.persona.modelos.Conductor;
  */
 public class ServicioInfraccion {
     
-    public static ObservableList<Infraccion> ObtenerInfracciones() throws Exception {
-        return ConsultasInfraccion.ObtenerInfraccionesConsulta();
+    public static ObservableList<Infraccion> obtenerInfracciones() throws Exception {
+        return ConsultasInfraccion.obtenerInfraccionesConsulta();
     }
     
+    
     public static ObservableList<Infraccion> obtenerInfraccionesPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
-        // Validar las fechas de entrada
         if (fechaInicio == null || fechaFin == null) {
             throw new IllegalArgumentException("Ambas fechas deben ser proporcionadas");
         }
@@ -43,7 +42,7 @@ public class ServicioInfraccion {
         }
 
         // Obtener todas las infracciones
-        ObservableList<Infraccion> infracciones = ConsultasInfraccion.ObtenerInfraccionesConsulta();
+        ObservableList<Infraccion> infracciones = ConsultasInfraccion.obtenerInfraccionesConsulta();
 
         // Convertir LocalDate a Date para comparación
         Date fechaInicioDate = java.sql.Date.valueOf(fechaInicio);
@@ -62,19 +61,20 @@ public class ServicioInfraccion {
     }
 
     
-    public static Infraccion ObtenerInfraccionPorId(long Id) throws Exception
-    {
-        return ConsultasInfraccion.ObtenerInfraccionPorIdConsulta(Id);
+    public static Infraccion obtenerInfraccionPorId(long Id) throws Exception{
+        return ConsultasInfraccion.obtenerInfraccionPorIdConsulta(Id);
     }
     
-    public static int ObtenerCantidadInfraccionesPorId(long Id) throws Exception
-    {
-        return ConsultasInfraccion.ObtenerCantidadInfraccionesPorIdConsulta(Id);
+    
+    public static int obtenerCantidadInfraccionesPorId(long Id) throws Exception{
+        return ConsultasInfraccion.obtenerCantidadInfraccionesPorIdConsulta(Id);
     }
+    
     
     public static void crearInfraccionBaseDatos(Infraccion infraccion) throws Exception{
          ConsultasInfraccion.crearInfraccionConsulta(infraccion);
      }
+    
     
     public static long obtenerIdGravedad(String nombreGravedad) throws SQLException, Exception {
     String sql = "SELECT \"Id\" FROM \"Gravedad\" WHERE \"Nombre\" = ?";
@@ -95,7 +95,6 @@ public class ServicioInfraccion {
     
     
     public static ObservableList<Infraccion> obtenerInfraccionesPorAnioYTipo(int anio, String tipoInfraccion) throws Exception {
-    // Validación de parámetros mejorada
     if (tipoInfraccion == null || tipoInfraccion.trim().isEmpty()) {
         throw new IllegalArgumentException("El tipo de infracción no puede ser nulo o vacío");
     }
@@ -103,8 +102,7 @@ public class ServicioInfraccion {
         throw new IllegalArgumentException("El año debe estar entre 1900 y " + (LocalDate.now().getYear() + 1));
     }
 
-    // Obtener todas las infracciones con depuración detallada
-    ObservableList<Infraccion> infracciones = ConsultasInfraccion.ObtenerInfraccionesConsulta();
+    ObservableList<Infraccion> infracciones = ConsultasInfraccion.obtenerInfraccionesConsulta();
 
     // Filtrar por año y tipo de infracción con conversión segura de fechas
     List<Infraccion> infraccionesFiltradas = infracciones.stream()
@@ -178,10 +176,9 @@ public class ServicioInfraccion {
 }
     
     
-    public static ObservableList<Infraccion> obtenerInfraccionesTipo(String tipo) throws Exception
-    {
+    public static ObservableList<Infraccion> obtenerInfraccionesTipo(String tipo) throws Exception{
         ObservableList<Infraccion>infraccionesTipo= FXCollections.observableArrayList();
-        for(Infraccion inf: ConsultasInfraccion.ObtenerInfraccionesConsulta())
+        for(Infraccion inf: ConsultasInfraccion.obtenerInfraccionesConsulta())
         {
             if(inf.getGravedad().equals(tipo))
                 infraccionesTipo.add(inf);
