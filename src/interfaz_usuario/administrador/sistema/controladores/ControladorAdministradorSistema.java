@@ -852,7 +852,7 @@ public class ControladorAdministradorSistema extends Controlador{
     {
         limpiarFiltros();
         //Llenado de tabla
-        GestorTablas.ConfigurarColumnasConductores(ColumnaFoto, ColumnaNombre, ColumnaCI, ColumnaTelefono, ColumnaCorreo);
+        GestorTablas.configurarColumnasConductores(ColumnaFoto, ColumnaNombre, ColumnaCI, ColumnaTelefono, ColumnaCorreo);
         GestorTablas.cargarTablaConductores(TablaConductor);
         
         
@@ -925,7 +925,7 @@ public class ControladorAdministradorSistema extends Controlador{
     public void TransicionExamenes()
     {
         limpiarFiltros();
-        GestorTablas.ConfigurarColumnasExamenes(ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen, ColumnaResultadoExamen, ColumnaDetallesExamen);
+        GestorTablas.configurarColumnasExamenes(ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen, ColumnaResultadoExamen, ColumnaDetallesExamen);
         GestorTablas.cargarTablaExamenes(TablaExamenes);
         
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores,PanelReportes, PanelInicio, PanelClinica, PanelAutoescuela, PanelEntidades};

@@ -9,102 +9,102 @@ package logica.entidad.modelos;
  * @author Angel Hernandez
  */
 public class EntidadRelacionada {
-    private Long Id;
-    private String Nombre;
-    private String Direccion;
-    private String Telefono;
-    private String Correo;
-    private String NombreDirector;
-    private String TipoEntidad;
+    private Long id;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    private String correo;
+    private String nombreDirector;
+    private String tipoEntidad;
 
     public void setId(Long Id) {
-        this.Id = Id;
+        this.id = Id;
     }
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
     public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+        this.direccion = Direccion;
     }
 
     public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+        this.telefono = Telefono;
     }
 
     public void setCorreo(String Correo) {
-        this.Correo = Correo;
+        this.correo = Correo;
     }
 
     public void setNombreDirector(String NombreDirector) {
-        this.NombreDirector = NombreDirector;
+        this.nombreDirector = NombreDirector;
     }
 
     public void setTipoEntidad(String TipoEntidad) {
-        this.TipoEntidad = TipoEntidad;
+        this.tipoEntidad = TipoEntidad;
     }
 
     public EntidadRelacionada(Long Id, String Nombre, String Direccion, String Telefono, String Correo, String NombreDirector, String TipoEntidad) {
-        this.Id = Id;
-        this.Nombre = Nombre;
-        this.Direccion = Direccion;
-        this.Telefono = Telefono;
-        this.Correo = Correo;
-        this.NombreDirector = NombreDirector;
-        this.TipoEntidad = TipoEntidad;
+        this.id = Id;
+        this.nombre = Nombre;
+        this.direccion = Direccion;
+        this.telefono = Telefono;
+        this.correo = Correo;
+        this.nombreDirector = NombreDirector;
+        this.tipoEntidad = TipoEntidad;
     }
     public EntidadRelacionada(String nombre)
     {
-        this.Nombre = nombre;
+        this.nombre = nombre;
     }
     
     public EntidadRelacionada(String Nombre, String Direccion, String Telefono, String Correo, String NombreDirector, String TipoEntidad) {
-        this.Nombre = Nombre;
-        this.Direccion = Direccion;
-        this.Telefono = Telefono;
-        this.Correo = Correo;
-        this.NombreDirector = NombreDirector;
-        this.TipoEntidad = TipoEntidad;
+        this.nombre = Nombre;
+        this.direccion = Direccion;
+        this.telefono = Telefono;
+        this.correo = Correo;
+        this.nombreDirector = NombreDirector;
+        this.tipoEntidad = TipoEntidad;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public String getDireccion() {
-        return Direccion;
+        return direccion;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
     public String getNombreDirector() {
-        return NombreDirector;
+        return nombreDirector;
     }
 
     public String getTipoEntidad() {
-        return TipoEntidad;
+        return tipoEntidad;
     }
     
     @Override
     public String toString()
     {
-        return  "Id: "+ Id +"\n"+
-                "Nombre: "+ Nombre +"\n"+
-                "Direccion: "+ Direccion +"\n"+
-                "Telefono: " + Telefono +"\n"+
-                "Correo: " + Correo +"\n"+
-                "NombreDirector: " + NombreDirector+"\n"+
-                "TipoEntidad: " + TipoEntidad +"\n" ;
+        return  "Id: "+ id +"\n"+
+                "Nombre: "+ nombre +"\n"+
+                "Direccion: "+ direccion +"\n"+
+                "Telefono: " + telefono +"\n"+
+                "Correo: " + correo +"\n"+
+                "NombreDirector: " + nombreDirector+"\n"+
+                "TipoEntidad: " + tipoEntidad +"\n" ;
     }
 }

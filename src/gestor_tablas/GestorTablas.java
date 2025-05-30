@@ -5,27 +5,17 @@
 package gestor_tablas;
 
 import gestor_interfaces.GestorEscenas;
-import java.text.Normalizer;
-import java.text.Normalizer.Form;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,8 +33,6 @@ import logica.licencia.implementaciones.ServicioLicencia;
 import logica.licencia.modelos.Licencia;
 import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
-
-
 
 public class GestorTablas {
 
@@ -77,8 +65,7 @@ public class GestorTablas {
             }
         });
     }
-    
-  
+
     private static void mostrarDetalles(Object objeto, Window ventana) throws Exception {
         switch (Autentificador.usuario.getRol()) {
             case "Administrador":
@@ -110,12 +97,13 @@ public class GestorTablas {
                     GestorEscenas.cargarVerMasLicencias(ventana, conductor, licencia);
                 } else if (objeto instanceof EntidadRelacionada) {
                     EntidadRelacionada entidad = (EntidadRelacionada) objeto;
-                    if(entidad.getTipoEntidad().equalsIgnoreCase("Clinica")){
-                       GestorEscenas.cargarVerMasClinicas(ventana, entidad);
-                    }else if(entidad.getTipoEntidad().equalsIgnoreCase("Autoescuela")){
-                        GestorEscenas.cargarVerMasAutoescuelas(ventana, entidad); 
-                    }else 
-                    GestorEscenas.cargarVerMasEntidades(ventana, entidad);
+                    if (entidad.getTipoEntidad().equalsIgnoreCase("Clinica")) {
+                        GestorEscenas.cargarVerMasClinicas(ventana, entidad);
+                    } else if (entidad.getTipoEntidad().equalsIgnoreCase("Autoescuela")) {
+                        GestorEscenas.cargarVerMasAutoescuelas(ventana, entidad);
+                    } else {
+                        GestorEscenas.cargarVerMasEntidades(ventana, entidad);
+                    }
                 }
 
                 break;
@@ -156,11 +144,10 @@ public class GestorTablas {
 
                 break;
             default:
-            //capturar error
+            throw new Exception("Error al cargar detalles");
             }
     }
 
-    
     private static <T> void llenarColumnaFotos(TableView<T> tabla, int cantidadFilas) {
         Image icono = new Image(
                 Thread.currentThread().getContextClassLoader().getResourceAsStream(
@@ -190,9 +177,7 @@ public class GestorTablas {
         });
     }
 
-    
-    public static void ConfigurarColumnasExamenes(
-            
+    public static void configurarColumnasExamenes(
             TableColumn<ExamenConduccion, String> columnaFotoExamen,
             TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
             TableColumn<ExamenConduccion, String> columnaTipoExamen,
@@ -200,8 +185,6 @@ public class GestorTablas {
             TableColumn<ExamenConduccion, String> columnaExaminadorExamen,
             TableColumn<ExamenConduccion, String> columnaResultadoExamen,
             TableColumn<ExamenConduccion, String> columnaDetallesExamen) {
-        
-        
 
         // Configuración de la columna de nombre completo
         columnaExaminadoExamen.setCellValueFactory(cellData -> {
@@ -222,17 +205,15 @@ public class GestorTablas {
         });
 
         columnaResultadoExamen.setCellValueFactory(cellData -> {
-        boolean aprobado = cellData.getValue().isAprobado();
-        return new SimpleStringProperty(aprobado ? "Aprobado" : "Reprobado");
-    });
+            boolean aprobado = cellData.getValue().isAprobado();
+            return new SimpleStringProperty(aprobado ? "Aprobado" : "Reprobado");
+        });
 
-        
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
     }
 
-    
-    public static void ConfigurarColumnasConductores(
+    public static void configurarColumnasConductores(
             TableColumn<Conductor, String> columnaFoto,
             TableColumn<Conductor, String> columnaNombre,
             TableColumn<Conductor, String> columnaCi,
@@ -255,30 +236,27 @@ public class GestorTablas {
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaTelefono, "Telefono");
         configurarColumnaPorDefecto(columnaCorreo, "Correo");
-        
+
     }
 
-    
     private static <T, S> void configurarColumnaPorDefecto(TableColumn<T, S> columna, String propiedad) {
         if (columna != null) {
             columna.setCellValueFactory(new PropertyValueFactory<>(propiedad));
         }
     }
 
-    
-    public static void cargarTablaConductores(TableView<Conductor> tablaConductor) {
+    public static void cargarTablaConductores(TableView<Conductor> tablaConductor) throws Exception {
         try {
             ObservableList<Conductor> conductores = ServicioConductor.ObtenerConductores();
             tablaConductor.setItems(conductores);
             llenarColumnaDetalles(tablaConductor, tablaConductor.getItems().size() - 1);
             llenarColumnaFotos(tablaConductor, tablaConductor.getItems().size() - 1);
         } catch (Exception ex) {
-            //Capturar Error
+            throw new Exception("Error al cargar la tabla");
         }
     }
 
-    
-    public static void cargarTablaExamenes(TableView<ExamenConduccion> tablaExamenes) {
+    public static void cargarTablaExamenes(TableView<ExamenConduccion> tablaExamenes) throws Exception {
         try {
             ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
             ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
@@ -294,35 +272,33 @@ public class GestorTablas {
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
         } catch (Exception ex) {
-            //Capturar Error
+            throw new Exception("Error al cargar la tabla");
         }
     }
-    
 
-    public static void cargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) {
+    public static void cargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) throws Exception {
         try {
             ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
             tablaExamenes.setItems(examenesPracticos);
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
         } catch (Exception ex) {
-            //Capturar Error
+            throw new Exception("Error al cargar la tabla");
         }
     }
 
-    
-    public static void cargarTablaExamenesTeoricosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) {
+    public static void cargarTablaExamenesTeoricosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) throws Exception {
         try {
             ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
             tablaExamenes.setItems(examenesTeoricos);
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
         } catch (Exception ex) {
-            //Capturar Error
+            throw new Exception("Error al cargar la tabla");
         }
     }
-    
 
+    
     public static void configurarColumnasExamenesAdminAutoescuela(
             TableColumn<ExamenConduccion, String> columnaFotoExamen,
             TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
@@ -351,12 +327,9 @@ public class GestorTablas {
         });
 
         columnaResultadoExamen.setCellValueFactory(cellData -> {
-        boolean aprobado = cellData.getValue().isAprobado();
-        return new SimpleStringProperty(aprobado ? "Aprobado" : "Reprobado");
-    });
-    
-    
-    
+            boolean aprobado = cellData.getValue().isAprobado();
+            return new SimpleStringProperty(aprobado ? "Aprobado" : "Reprobado");
+        });
 
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
@@ -403,16 +376,15 @@ public class GestorTablas {
         });
 
         columnaResultadoExamen.setCellValueFactory(cellData -> {
-        ExamenMedico examen = cellData.getValue();
-        if (examen.isAprobado()) {
-            return examen.getRestricciones().isEmpty() 
-                ? new SimpleStringProperty("Aprobado") 
-                : new SimpleStringProperty("Aprobado Condicional");
-        }
-        return new SimpleStringProperty("Reprobado");
-    });
+            ExamenMedico examen = cellData.getValue();
+            if (examen.isAprobado()) {
+                return examen.getRestricciones().isEmpty()
+                        ? new SimpleStringProperty("Aprobado")
+                        : new SimpleStringProperty("Aprobado Condicional");
+            }
+            return new SimpleStringProperty("Reprobado");
+        });
 
-   
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
 
@@ -539,13 +511,14 @@ public class GestorTablas {
         configurarColumnaPorDefecto(columnaDireccionEntidad, "Direccion");
         configurarColumnaPorDefecto(columnaTelefonoEntidad, "Telefono");
         configurarColumnaPorDefecto(columnaCorreoEntidad, "Correo");
-        
-        columnaDetallesEntidad.setCellFactory(param -> new TableCell<EntidadRelacionada, Void>(){
+
+        columnaDetallesEntidad.setCellFactory(param -> new TableCell<EntidadRelacionada, Void>() {
             private final Label lbvVerMas = new Label("Ver mas");
+
             {
                 lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
-                lbvVerMas.setOnMouseClicked(e ->{
-                    EntidadRelacionada entidad= getTableView().getItems().get(getIndex());
+                lbvVerMas.setOnMouseClicked(e -> {
+                    EntidadRelacionada entidad = getTableView().getItems().get(getIndex());
                     try {
                         mostrarDetalles(entidad, lbvVerMas.getScene().getWindow());
                     } catch (Exception ex) {
@@ -553,18 +526,17 @@ public class GestorTablas {
                     }
                 });
             }
-            
+
             @Override
-            protected void updateItem(Void item,boolean empty)
-            {
+            protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
                 setGraphic(empty ? null : lbvVerMas);
             }
         });
- }
-           
+    }
+
     
-    public static void cargarTablaEntidades(TableView<EntidadRelacionada> tablaEntidad,String entidad) {
+    public static void cargarTablaEntidades(TableView<EntidadRelacionada> tablaEntidad, String entidad) {
         switch (entidad) {
             case "Autoescuela":
                 ObservableList<EntidadRelacionada> autoescuelas = FXCollections.observableArrayList();
@@ -701,26 +673,26 @@ public class GestorTablas {
                     GestorEscenas.cargarError(imagen.getScene().getWindow(), ex);
                 }
             }
-            
+
             @Override
-            protected void updateItem(Void item,boolean empty)
-            {
+            protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                if(empty)
+                if (empty) {
                     setGraphic(null);
-                else
+                } else {
                     setGraphic(imagen);
+                }
             }
         }
-    );
+        );
 
-        
-        columnaDetallesInfraccion.setCellFactory(param -> new TableCell<Infraccion, Void>(){
+        columnaDetallesInfraccion.setCellFactory(param -> new TableCell<Infraccion, Void>() {
             private final Label lbvVerMas = new Label("Ver mas");
+
             {
                 lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
-                lbvVerMas.setOnMouseClicked(e ->{
-                    Infraccion infraccion= getTableView().getItems().get(getIndex());
+                lbvVerMas.setOnMouseClicked(e -> {
+                    Infraccion infraccion = getTableView().getItems().get(getIndex());
                     try {
                         mostrarDetalles(infraccion, lbvVerMas.getScene().getWindow());
                     } catch (Exception ex) {
@@ -728,16 +700,14 @@ public class GestorTablas {
                     }
                 });
             }
-            
+
             @Override
-            protected void updateItem(Void item,boolean empty)
-            {
+            protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
                 setGraphic(empty ? null : lbvVerMas);
             }
         });
-        
-        
+
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaLicenciaInfraccion, "IdLicencia");
         configurarColumnaPorDefecto(columnaFechaInfraccion, "Fecha");
@@ -747,10 +717,10 @@ public class GestorTablas {
     }
 
     
-    public static void cargarTablaInfracciones(TableView<Infraccion> tablaInfraccion,String gravedad) {
-        
+    public static void cargarTablaInfracciones(TableView<Infraccion> tablaInfraccion, String gravedad) {
+
         switch (gravedad) {
-            
+
             case "Leve":
                 ObservableList<Infraccion> infraccionesLeves = FXCollections.observableArrayList();
                 try {
@@ -760,7 +730,7 @@ public class GestorTablas {
                 }
                 tablaInfraccion.setItems(infraccionesLeves);
                 break;
-                
+
             case "Grave":
                 ObservableList<Infraccion> infraccionesGraves = FXCollections.observableArrayList();
                 try {
@@ -770,7 +740,7 @@ public class GestorTablas {
                 }
                 tablaInfraccion.setItems(infraccionesGraves);
                 break;
-                
+
             case "Muy grave":
                 ObservableList<Infraccion> infraccionesMuyGrave = FXCollections.observableArrayList();
                 try {
@@ -780,9 +750,9 @@ public class GestorTablas {
                 }
                 tablaInfraccion.setItems(infraccionesMuyGrave);
                 break;
-                
+
             default:
-                ObservableList<Infraccion> infracciones= FXCollections.observableArrayList();
+                ObservableList<Infraccion> infracciones = FXCollections.observableArrayList();
                 try {
                     infracciones = ServicioInfraccion.obtenerInfracciones();
                 } catch (Exception ex) {
@@ -853,4 +823,3 @@ public class GestorTablas {
     }
 
 }
-
