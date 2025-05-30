@@ -74,5 +74,13 @@ public class ServicioEntidad {
      public static long guardarEntidadBaseDatos(EntidadRelacionada entidad) throws Exception{
          return ConsultasEntidad.guardarEntidad(entidad);
      }
+     
+     public static void actualizarEntidad(EntidadRelacionada entidad) throws Exception{
+         ConsultasEntidad.actualizarEntidadConsulta(entidad);
+     }
+     
+     public static void eliminarEntidad(Long id) throws Exception {
+         ConsultasEntidad.eliminarEntidadConsulta(id);
+     }
     
 }
