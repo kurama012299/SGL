@@ -17,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import logica.entidad.implementaciones.ServicioEntidad;
 import logica.entidad.modelos.EntidadRelacionada;
 
 /**
@@ -53,6 +54,8 @@ public class ControladorVerMasAutoescuelas {
     
     @FXML private Button btnAtras;
     
+    @FXML private Button btnEditar;
+    
     @FXML private Button btnagregarUsuario;
 
     @FXML
@@ -79,8 +82,63 @@ public class ControladorVerMasAutoescuelas {
         txfNombre.setText(autoescuela.getNombre());
         txfTelefono.setText(autoescuela.getTelefono());
         txfDireccion.setText(autoescuela.getDireccion());
+        
+    btnEditar.setOnAction(e -> {
 
+            if (btnEditar.getText().equals("Guardar")) {
+
+                // Modo guardar
+                try {
+                    System.out.println("Guardando cambios...");
+
+                    // Actualizar el objeto con los nuevos valores
+                    autoescuela.setCorreo(txfCorreo.getText());
+                    autoescuela.setNombreDirector(txfDirector.getText());
+                    autoescuela.setTelefono(txfTelefono.getText());
+
+                    // Guardar en la base de datos
+                    ServicioEntidad.actualizarEntidad(autoescuela);
+
+                    // Desactivar edición
+                    txfCorreo.setEditable(false);
+                    txfDirector.setEditable(false);
+                    txfTelefono.setEditable(false);
+                    txfCorreo.setDisable(true);
+                    txfDirector.setDisable(true);
+                    txfTelefono.setDisable(true);
+                    editarCasillas(false);
+                    btnEditar.setText("Editar");
+                    GestorEscenas.cargarConfirmacion(btnEditar.getScene().getWindow(), "Cambios guardados");
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(btnEditar.getScene().getWindow(), ex);
+                }
+
+            } else {
+
+                // Modo edición
+                System.out.println("Modo edición activado");
+                txfCorreo.setEditable(true);
+                txfDirector.setEditable(true);
+                txfTelefono.setEditable(true);
+                txfCorreo.setDisable(false);
+                txfDirector.setDisable(false);
+                txfTelefono.setDisable(false);
+                editarCasillas(true);
+                btnEditar.setText("Guardar");
+            }
+        });
     }
+
+    private void editarCasillas(boolean enable) {
+        String style = enable ? "-fx-background-color: #ffffff; -fx-border-color: #4CAF50;"
+                : "-fx-background-color: #f4f4f4; -fx-border-color: #cccccc;";
+
+        txfCorreo.setStyle(style);
+        txfDirector.setStyle(style);
+        txfTelefono.setStyle(style);
+    }    
+
+    
 
     private double TotalExamenesAprobados() throws SQLException, Exception {
 
