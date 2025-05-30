@@ -12,6 +12,8 @@ import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -178,7 +180,11 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     @FXML public void transicionExamenPractico() {
         
         GestorTablas.configurarColumnasExamenesAdminAutoescuela(tblcFotoPractico, tblcExaminadoPractico, tblcFechaPractico, tblcExaminadorPractico, tblcResultadoPractico, tblcAutoescuela, tblcDetallesPractico);
-        GestorTablas.cargarTablaExamenesPracticosAdminAutoescuela(tblExamenesPracticos);
+        try {
+            GestorTablas.cargarTablaExamenesPracticosAdminAutoescuela(tblExamenesPracticos);
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(tblExamenesPracticos.getScene().getWindow(), ex);
+        }
         
         
         Pane[] panelesOcultar = {pnlInicio, pnlExamenesTeoricos};
@@ -203,7 +209,11 @@ public class ControladorAdministradorAutoescuela extends Controlador{
     @FXML public void transicionExamenTeorico() {
         
         GestorTablas.configurarColumnasExamenesAdminAutoescuela(tblcFotoTeorico, tblcExaminadoTeorico, tblcFechaTeorico, tblcExaminadorTeorico, tblcResultadoTeorico, tblcAutoescuelaTeorico, tblcDetallesTeorico);
-        GestorTablas.cargarTablaExamenesTeoricosAdminAutoescuela(tblExamenesTeoricos);
+        try {
+            GestorTablas.cargarTablaExamenesTeoricosAdminAutoescuela(tblExamenesTeoricos);
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(tblExamenesTeoricos.getScene().getWindow(), ex);
+        }
         
         Pane[] panelesOcultar = {pnlInicio, pnlExamenesPracticos};
         GestorEscenas.mostrarOcultarPaneles(pnlExamenesTeoricos, panelesOcultar);

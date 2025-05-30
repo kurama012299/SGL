@@ -369,48 +369,6 @@ public class ControladorAdministradorSistema extends Controlador{
    private Label LabelFechaHora;
    
    @FXML
-   private TextField TextFieldBuscarAutoescuela;
-   
-   @FXML
-   private TextField TextFieldBuscarClinica;
-   
-   @FXML
-   private TextField TextFieldBuscarEntidades;
-   
-   @FXML
-   private TextField TextFieldBuscarConductores;
-   
-   @FXML
-   private TextField TextFieldBuscarExamenes;
-   
-   @FXML
-   private TextField TextFieldBuscarInfracciones;
-   
-   @FXML
-   private TextField TextFieldBuscarLicencias;
-   
-   @FXML
-   private Line LineaBuscarAutoescuela;
-   
-   @FXML
-   private Line LineaBuscarClinica;
-   
-   @FXML
-   private Line LineaBuscarEntidades;
-   
-   @FXML
-   private Line LineaBuscarConductores;
-   
-   @FXML
-   private Line LineaBuscarExamenes;
-   
-   @FXML
-   private Line LineaBuscarInfracciones;
-   
-   @FXML
-   private Line LineaBuscarLicencias;
-   
-   @FXML
    private StackPane spnlReporteLicencias;
    
    @FXML
@@ -523,20 +481,6 @@ public class ControladorAdministradorSistema extends Controlador{
             }
        
         configuracionCentro();
-        GestorEscenas.configurarEfectoLinea(new ArrayList<TextField>(Arrays.asList(TextFieldBuscarAutoescuela,
-                                                                                TextFieldBuscarClinica,
-                                                                                TextFieldBuscarEntidades,
-                                                                                TextFieldBuscarConductores,
-                                                                                TextFieldBuscarExamenes,
-                                                                                TextFieldBuscarInfracciones,
-                                                                                TextFieldBuscarLicencias)),
-                                            new ArrayList<Line>(Arrays.asList(LineaBuscarAutoescuela,
-                                                                            LineaBuscarClinica,
-                                                                            LineaBuscarEntidades,
-                                                                            LineaBuscarConductores,
-                                                                            LineaBuscarExamenes,
-                                                                            LineaBuscarInfracciones,
-                                                                            LineaBuscarLicencias)));
         
         ImagenLicencias = (ImageView) Licencias.getGraphic();
         ImagenConductores = (ImageView) Conductores.getGraphic();
@@ -853,7 +797,11 @@ public class ControladorAdministradorSistema extends Controlador{
         limpiarFiltros();
         //Llenado de tabla
         GestorTablas.configurarColumnasConductores(ColumnaFoto, ColumnaNombre, ColumnaCI, ColumnaTelefono, ColumnaCorreo);
-        GestorTablas.cargarTablaConductores(TablaConductor);
+        try {
+            GestorTablas.cargarTablaConductores(TablaConductor);
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(BotonCerrarSesion.getScene().getWindow(), ex);
+        }
         
         
         
@@ -926,7 +874,11 @@ public class ControladorAdministradorSistema extends Controlador{
     {
         limpiarFiltros();
         GestorTablas.configurarColumnasExamenes(ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen, ColumnaResultadoExamen, ColumnaDetallesExamen);
-        GestorTablas.cargarTablaExamenes(TablaExamenes);
+        try {
+            GestorTablas.cargarTablaExamenes(TablaExamenes);
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(BotonCerrarSesion.getScene().getWindow(), ex);
+        }
         
         Pane[] PanelesOcultar={PanelInfracciones, PanelLicencias, PanelConductores,PanelReportes, PanelInicio, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelExamenes,PanelesOcultar);

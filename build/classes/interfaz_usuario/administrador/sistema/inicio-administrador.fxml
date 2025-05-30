@@ -249,18 +249,11 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../recursos_compartidos/imagenes/ico-buscar.png" />
-                     </image>
-                  </ImageView>
                   <JFXButton fx:id="btnExportarEntidades" focusTraversable="false" layoutX="558.0" layoutY="95.0" onAction="#ExportarEntidades" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <TextField fx:id="TextFieldBuscarEntidades" layoutX="54.0" layoutY="95.0" prefHeight="25.0" prefWidth="328.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line fx:id="LineaBuscarEntidades" endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="418.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../recursos_compartidos/imagenes/ico-filtros.png" />
