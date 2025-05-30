@@ -27,6 +27,7 @@ public class ConsultaExamen {
         ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT et.\"Id\",et.\"Fecha\",et.\"Aprobado\","+
+                    "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -42,7 +43,7 @@ public class ConsultaExamen {
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     ExamenConduccion teorico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -68,6 +69,7 @@ public class ConsultaExamen {
         ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT ep.\"Id\",ep.\"Fecha\",ep.\"Aprobado\","+
+                    "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -83,7 +85,7 @@ public class ConsultaExamen {
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     ExamenConduccion practico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -108,6 +110,7 @@ public class ConsultaExamen {
         ExamenConduccion ExamenTeorico=null;
         
          String consulta = "SELECT et.\"Id\",et.\"Fecha\",et.\"Aprobado\","+
+                    "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -126,7 +129,7 @@ public class ConsultaExamen {
                 if (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     ExamenTeorico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -150,6 +153,7 @@ public class ConsultaExamen {
         ExamenConduccion ExamenPractico=null;
         
          String consulta = "SELECT ep.\"Id\",ep.\"Fecha\",ep.\"Aprobado\","+
+                     "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -168,7 +172,7 @@ public class ConsultaExamen {
                 if (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     ExamenPractico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -191,6 +195,7 @@ public class ConsultaExamen {
         ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT ep.\"Id\",ep.\"Fecha\",ep.\"Aprobado\","+
+                     "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -210,7 +215,7 @@ public class ConsultaExamen {
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     ExamenConduccion practico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -234,6 +239,7 @@ public class ConsultaExamen {
         ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT ep.\"Id\",ep.\"Fecha\",ep.\"Aprobado\","+
+                    "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -253,7 +259,7 @@ public class ConsultaExamen {
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     ExamenConduccion practico = new ExamenConduccion(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),

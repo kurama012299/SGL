@@ -33,6 +33,15 @@ public class Licencia {
         this.Estado = Estado;
     }
     
+        public Licencia( Date FechaEmision, Date FechaVencimiento, boolean Renovada, int CantPuntos, String Tipo, String Estado) {
+        this.FechaEmision = FechaEmision;
+        this.FechaVencimiento = FechaVencimiento;
+        this.Renovada = Renovada;
+        this.CantPuntos = CantPuntos;
+        this.Tipo = Tipo;
+        this.Estado = Estado;
+    }
+    
     public Long getId() {
         return Id;
     }
@@ -132,7 +141,7 @@ public class Licencia {
     }
 
     
-    public void SetCategorias(ArrayList<String> Categorias) {
+    public void setCategorias(ArrayList<String> Categorias) {
         this.Categorias = Categorias;
     }
 }

@@ -262,10 +262,11 @@ public class ConsultasPersona {
         try (ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Conductor conductor = new Conductor(
-                    rs.getString("Nombre"),
-                    rs.getString("Apellidos"),
-                    rs.getString("CI"),
-                    rs.getLong("Id_Licencia"));
+                        rs.getLong("Id"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
+                        rs.getString("CI"),
+                        rs.getLong("Id_Licencia"));
                
                 
                 conductoresVencidos.add(conductor);

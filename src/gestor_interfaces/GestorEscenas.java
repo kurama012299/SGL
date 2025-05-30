@@ -77,6 +77,7 @@ import javafx.util.Duration;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.modelos.Infraccion;
 import logica.persona.modelos.Persona;
+import java.util.Date;
 
 
 /**
@@ -954,14 +955,14 @@ public class GestorEscenas  {
         }
       }
       
-      public static void cargarRegistrarLicencia(Window padre,Stage ventanaAnterior,ExamenMedico examenMedico) throws Exception {
+      public static void cargarRegistrarLicencia(Window padre,Stage ventanaAnterior,ExamenMedico examenMedico,ExamenConduccion examen) throws Exception {
         try {
             String direccion = GestorFXML.RutaRegistrarLicencia;
             URL url = GestorEscenas.class.getResource(direccion);
             FXMLLoader cargador = new FXMLLoader(url);
             Parent ruta = cargador.load();
             ControladorRegistrarLicencia controlador = cargador.getController();
-            controlador.setDatos(examenMedico,ventanaAnterior);
+            controlador.setDatos(examenMedico,ventanaAnterior,examen);
 
             Scene escena = new Scene(ruta);
             Stage ventana = new Stage();

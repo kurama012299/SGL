@@ -29,6 +29,7 @@ public class ConsultaExamenMedico {
         ObservableList<ExamenMedico> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT em.\"Id\",em.\"Fecha\",em.\"Aprobado\","+
+                     "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -44,7 +45,7 @@ public class ConsultaExamenMedico {
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     ExamenMedico examen = new ExamenMedico(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -88,6 +89,7 @@ public class ConsultaExamenMedico {
          ExamenMedico examen=null;
          
          String consulta = "SELECT em.\"Id\",em.\"Fecha\",em.\"Aprobado\","+
+                     "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -105,7 +107,7 @@ public class ConsultaExamenMedico {
                 if (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     examen = new ExamenMedico(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),
@@ -128,6 +130,7 @@ public class ConsultaExamenMedico {
         ObservableList<ExamenMedico> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT em.\"Id\",em.\"Fecha\",em.\"Aprobado\","+
+                     "p.\"Id\" as id_persona, " + 
                      "p.\"Nombre\" as nombre_persona, "+ 
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
@@ -145,7 +148,7 @@ public class ConsultaExamenMedico {
                 while (rs.next()) {
                     EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
-                    Persona persona= new Persona(rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
+                    Persona persona= new Persona(rs.getLong("id_persona"),rs.getString("nombre_persona"),rs.getString("apellidos_persona"), rs.getString("ci_persona"));
                     ExamenMedico examen = new ExamenMedico(
                             rs.getLong("Id"),
                             rs.getDate("Fecha"),

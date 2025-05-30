@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import logica.examen_medico.modelos.ExamenMedico;
 import logica.licencia.consultas.ConsultasLicencia;
 import logica.licencia.modelos.Licencia;
 
@@ -60,5 +61,15 @@ public class ServicioLicencia {
 
     public static int actualizarPuntosLicencia(long idLicencia, int puntosASumar) throws Exception{
         return ConsultasLicencia.actualizarPuntosLicenciaConsulta(idLicencia, puntosASumar);
+    }
+    
+    public static void crearLicencia(Licencia licencia,ExamenMedico examenMedico) throws Exception
+    {
+        ConsultasLicencia.crearLicenciaConsulta(licencia, examenMedico);
+    }
+    
+    public static long obtenerProximoIdLicencia() throws Exception
+    {
+        return ConsultasLicencia.obtenerProximoIdLicenciaConsulta();
     }
 }

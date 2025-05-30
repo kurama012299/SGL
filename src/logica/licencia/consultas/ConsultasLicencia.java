@@ -131,7 +131,7 @@ public class ConsultasLicencia {
 
             // Inicializar la lista si es null
             if (Licencia.getCategorias() == null) {
-                Licencia.SetCategorias(new ArrayList<>());
+                Licencia.setCategorias(new ArrayList<>());
             }
 
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -166,75 +166,89 @@ public class ConsultasLicencia {
         throw new SQLException("No se pudo actualizar los puntos de la licencia");
     }
 
-    public static void crearLicencia(Licencia licencia, ExamenMedico examenMedico) throws Exception {
-        Connection conn = null;
-        try {
-            conn = ConectorBaseDato.Conectar();
-            conn.setAutoCommit(false); // Iniciar transacción
+    public static void crearLicenciaConsulta(Licencia licencia, ExamenMedico examenMedico) throws Exception {
+    Connection conn = null;
+    try {
+        conn = ConectorBaseDato.Conectar();
+        conn.setAutoCommit(false); // Iniciar transacción
 
-            long idTipo = obtenerIdTipoPorNombre(licencia.getTipo());
-            long idEstado = obtenerIdEstadoPorNombre(licencia.getEstado());
+        long idTipo = obtenerIdTipoPorNombre(licencia.getTipo());
+        long idEstado = obtenerIdEstadoPorNombre(licencia.getEstado());
+        long idPersona = examenMedico.getPersona().getId(); // Obtener ID de la persona
+        System.out.println(idPersona);
 
-            // 1. Insertar la licencia
-            String consultaLicencia = "INSERT INTO \"Licencia\" (\"Fecha_Emision\", \"Fecha_Vencimiento\", \"Renovada\", \"CantPuntos\", \"Id_Tipo\", \"Id_Estado\", \"Id_Examen_Medico\") "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING \"Id\"";
+        // 1. Insertar la licencia
+        String consultaLicencia = "INSERT INTO \"Licencia\" (\"Fecha_Emision\", \"Fecha_Vencimiento\", \"Renovada\", \"CantPuntos\", \"Id_Tipo\", \"Id_Estado\", \"Id_Examen_Medico\") "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING \"Id\"";
 
-            try (PreparedStatement stmt = conn.prepareStatement(consultaLicencia)) {
-                // Convertir java.util.Date a java.sql.Date
-                java.sql.Date fechaEmision = new java.sql.Date(licencia.getFechaEmision().getTime());
-                java.sql.Date fechaVencimiento = new java.sql.Date(licencia.getFechaVencimiento().getTime());
+        try (PreparedStatement stmt = conn.prepareStatement(consultaLicencia)) {
+            // Convertir java.util.Date a java.sql.Date
+            java.sql.Date fechaEmision = new java.sql.Date(licencia.getFechaEmision().getTime());
+            java.sql.Date fechaVencimiento = new java.sql.Date(licencia.getFechaVencimiento().getTime());
 
-                stmt.setDate(1, fechaEmision);
-                stmt.setDate(2, fechaVencimiento);
-                stmt.setBoolean(3, licencia.EstaRenovada());
-                stmt.setInt(4, licencia.getCantPuntos());
-                stmt.setLong(5, idTipo);
-                stmt.setLong(6, idEstado);
-                stmt.setLong(7, examenMedico.getId());
+            stmt.setDate(1, fechaEmision);
+            stmt.setDate(2, fechaVencimiento);
+            stmt.setBoolean(3, licencia.EstaRenovada());
+            stmt.setInt(4, licencia.getCantPuntos());
+            stmt.setLong(5, idTipo);
+            stmt.setLong(6, idEstado);
+            stmt.setLong(7, examenMedico.getId());
 
-                ResultSet rs = stmt.executeQuery();
-                if (!rs.next()) {
-                    throw new SQLException("No se pudo obtener el ID de la licencia creada");
-                }
-                long idLicencia = rs.getLong("Id");
+            ResultSet rs = stmt.executeQuery();
+            if (!rs.next()) {
+                throw new SQLException("No se pudo obtener el ID de la licencia creada");
+            }
+            long idLicencia = rs.getLong("Id");
 
-                // 2. Insertar las categorías asociadas
-                if (licencia.getCategorias() != null && !licencia.getCategorias().isEmpty()) {
-                    String consultaCategorias = "INSERT INTO \"Licencia_Categoria\" (\"Id_Licencia\", \"Id_Categoria\") "
-                            + "VALUES (?, (SELECT \"Id\" FROM \"Categoria\" WHERE \"Nombre\" = ?))";
+            // 2. Insertar las categorías asociadas
+            if (licencia.getCategorias() != null && !licencia.getCategorias().isEmpty()) {
+                String consultaCategorias = "INSERT INTO \"Licencia_Categoria\" (\"Id_Licencia\", \"Id_Categoria\") "
+                        + "VALUES (?, (SELECT \"Id\" FROM \"Categoria\" WHERE \"Nombre\" = ?))";
 
-                    try (PreparedStatement stmtCategorias = conn.prepareStatement(consultaCategorias)) {
-                        for (String categoria : licencia.getCategorias()) {
-                            stmtCategorias.setLong(1, idLicencia);
-                            stmtCategorias.setString(2, categoria);
-                            stmtCategorias.addBatch();
-                        }
-                        stmtCategorias.executeBatch();
+                try (PreparedStatement stmtCategorias = conn.prepareStatement(consultaCategorias)) {
+                    for (String categoria : licencia.getCategorias()) {
+                        stmtCategorias.setLong(1, idLicencia);
+                        stmtCategorias.setString(2, categoria);
+                        stmtCategorias.addBatch();
                     }
+                    stmtCategorias.executeBatch();
                 }
+            }
 
-                conn.commit(); // Confirmar transacción
-            }
-        } catch (SQLException e) {
-            if (conn != null) {
-                try {
-                    conn.rollback(); // Revertir en caso de error
-                } catch (SQLException ex) {
-                    throw new Exception("Error al revertir la transacción", ex);
+            // 3. Actualizar la persona con el ID de la licencia
+            String actualizarPersona = "UPDATE \"Persona\" SET \"Id_Licencia\" = ? WHERE \"Id\" = ?";
+            try (PreparedStatement stmtPersona = conn.prepareStatement(actualizarPersona)) {
+                stmtPersona.setLong(1, idLicencia);
+                stmtPersona.setLong(2, idPersona);
+                int affectedRows = stmtPersona.executeUpdate();
+                
+                if (affectedRows == 0) {
+                    throw new SQLException("No se pudo actualizar la persona con el ID de licencia");
                 }
             }
-            throw new Exception("Error al crear la licencia: " + e.getMessage(), e);
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.setAutoCommit(true);
-                    conn.close();
-                } catch (SQLException e) {
-                    System.err.println("Error al cerrar la conexión: " + e.getMessage());
-                }
+
+            conn.commit(); // Confirmar transacción
+        }
+    } catch (SQLException e) {
+        if (conn != null) {
+            try {
+                conn.rollback(); // Revertir en caso de error
+            } catch (SQLException ex) {
+                throw new Exception("Error al revertir la transacción", ex);
+            }
+        }
+        throw new Exception("Error al crear la licencia: " + e.getMessage(), e);
+    } finally {
+        if (conn != null) {
+            try {
+                conn.setAutoCommit(true);
+                conn.close();
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar la conexión: " + e.getMessage());
             }
         }
     }
+}
 
     private static long obtenerIdTipoPorNombre(String nombreTipo) throws Exception {
         String consulta = "SELECT \"Id\" FROM \"Tipo\" WHERE \"Nombre\" = ?";
@@ -272,5 +286,24 @@ public class ConsultasLicencia {
         } catch (SQLException e) {
             throw new Exception("Error al obtener ID del estado de licencia", e);
         }
+    }
+    
+    public static long obtenerProximoIdLicenciaConsulta() throws Exception {
+        long id = 0;
+
+        String consulta = "SELECT nextval('\"Licencia_Codigo_seq\"') AS next_id";
+
+        try (Connection conn = ConectorBaseDato.Conectar(); PreparedStatement pstmt = conn.prepareStatement(consulta); ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                id = rs.getLong("next_id"); 
+            } else {
+                throw new Exception("No se pudo obtener el próximo ID de la secuencia");
+            }
+        } catch (SQLException e) {
+            throw new Exception("Error al obtener el próximo ID de licencia");
+        }
+
+        return id;
     }
 }

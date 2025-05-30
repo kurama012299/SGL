@@ -44,6 +44,14 @@ public class Persona {
         this.Foto = Foto;
     }
 
+    public Persona(long id,String nombre,String apellidos,String CI)
+    {
+        this.Id=id;
+        this.Nombre = nombre;
+        this.Apellidos= apellidos;
+        this.CI=CI;
+    }
+    
     public Persona(String nombre,String apellidos,String CI)
     {
         this.Nombre = nombre;

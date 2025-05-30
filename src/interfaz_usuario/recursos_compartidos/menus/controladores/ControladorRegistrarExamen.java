@@ -251,26 +251,26 @@ public class ControladorRegistrarExamen {
 
             } else if (rbtTeorico.isSelected()) {
                 ExamenConduccion examen;
-                if(rbtTeorico.isSelected())
-                {
-                    //Crear examen teorico
-                    examen = new ExamenConduccion(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), 
-                            rbtAprobado.isSelected(),
-                            ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue()),
-                            ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText()),
-                            examinador, "Teorico");
-                    
-                    ExamenMedico examenMedico = ValidacionCrearExamenTeorico.validarCrearExamenTeorico(txfNombre.getText(),
-                            txfCarnet.getText(), examinador);
-                    
-                    if(examen.getFecha().before(examenMedico.getFecha()))
-                        throw new Exception("No puede realizar el examen teorico antes del medico");
-                    
-                    ServiciosExamenesConduccion.crearExamenTeorico(examen);
-                    GestorEscenas.cerrar(btnCancelar);
+
+                //Crear examen teorico
+                examen = new ExamenConduccion(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                        rbtAprobado.isSelected(),
+                        ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue()),
+                        ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText()),
+                        examinador, "Teorico");
+
+                ExamenMedico examenMedico = ValidacionCrearExamenTeorico.validarCrearExamenTeorico(txfNombre.getText(),
+                        txfCarnet.getText(), examinador);
+
+                if (examen.getFecha().before(examenMedico.getFecha())) {
+                    throw new Exception("No puede realizar el examen teorico antes del medico");
                 }
+
+                ServiciosExamenesConduccion.crearExamenTeorico(examen);
+
                 GestorEscenas.cargarConfirmacion(btnRegistrar.getScene().getWindow(), "Se ha registrado con éxito");
                 GestorEscenas.cerrar(btnRegistrar);
+                
             } else if (rbtPractico.isSelected() && rbtAprobado.isSelected()) {
                 //Examen Practico
                 ExamenConduccion examen;
@@ -290,6 +290,8 @@ public class ControladorRegistrarExamen {
                                 txfCarnet.getText())).getFecha()))
                     throw new Exception("No puede realizar el examen practico antes del teorico");
                     
+                
+                
                 if(rbtAprobado.isSelected())
                 {
                     Window ventanaActual = rbtTeorico.getScene().getWindow();
@@ -298,13 +300,12 @@ public class ControladorRegistrarExamen {
                     GestorEscenas.cargarRegistrarLicencia(ventanaActual,
                             (Stage) rbtMedico.getScene().getWindow(),
                             ValidacionCrearExamenPractico.revisarExamenMedicoValido(
-                                    ServiciosExamenesMedicos.ObtenerExamenesMedicoPorCI(txfCarnet.getText()))
+                                    ServiciosExamenesMedicos.ObtenerExamenesMedicoPorCI(txfCarnet.getText())),
+                             examen
                     );
-                    
-                }
-                
-                
-                
+                }  
+                else
+                    ServiciosExamenesConduccion.crearExamenPractico(examen);
             }
 
         } catch (Exception ex) {
