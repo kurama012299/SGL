@@ -43,6 +43,19 @@ public class ServicioConductor{
         return ConsultasPersona.obtenerConductoresConLicenciaVencidaPeriodo(fechaInicio, fechaFin);
     }
       
+      public static ObservableList<Conductor> obtenerConductoresPorEstado(String estado) throws Exception
+    {
+        ObservableList<Conductor>conductoresPorEstado= FXCollections.observableArrayList();
+        ObservableList<Licencia>licencias= ServicioLicencia.ObtenerLicencias();
+        int i=0;
+        for (Conductor con : ConsultasPersona.obtenerConductoresConsulta()) {
+            if (licencias.get(i++).getEstado().equalsIgnoreCase(estado)) {
+                conductoresPorEstado.add(ServicioConductor.ObtenerConductorPorIdLicencia(licencias.get(i-1).getId()));
+            }
+        }
+        return conductoresPorEstado;
+    }
+      
        
 
 }

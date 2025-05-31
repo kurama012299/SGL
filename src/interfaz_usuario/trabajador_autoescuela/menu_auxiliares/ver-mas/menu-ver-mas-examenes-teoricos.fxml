@@ -27,22 +27,10 @@
          </font>
       </Label>
       <TextField fx:id="TextFieldId" disable="true" editable="false" layoutX="35.0" layoutY="148.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="04112767283" />
-      <JFXButton cancelButton="true" layoutX="11.0" layoutY="246.0" fx:id="btnAtras" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
-      <JFXButton cancelButton="true" layoutX="415.0" layoutY="246.0" opacity="0.4" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: red;" text="       Eliminar" textFill="WHITE" />
-      <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="426.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../recursos_compartidos/imagenes/ico-eliminar.png" />
-         </image>
-      </ImageView>
+      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="11.0" layoutY="246.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
       <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="20.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../recursos_compartidos/imagenes/ico-atras.png" />
-         </image>
-      </ImageView>
-      <JFXButton cancelButton="true" layoutX="310.0" layoutY="246.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="    Editar" />
-      <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="321.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../recursos_compartidos/imagenes/ico-editar.png" />
          </image>
       </ImageView>
       <Label layoutX="14.0" layoutY="204.0" prefHeight="25.0" prefWidth="78.0" text="Resultado:">

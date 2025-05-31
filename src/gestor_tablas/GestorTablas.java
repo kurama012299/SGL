@@ -213,12 +213,14 @@ public class GestorTablas {
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
     }
 
-    public static void configurarColumnasConductores(
-            TableColumn<Conductor, String> columnaFoto,
+
+    public static void ConfigurarColumnasConductores(
+            TableColumn<Conductor, Void> columnaFoto,
             TableColumn<Conductor, String> columnaNombre,
             TableColumn<Conductor, String> columnaCi,
             TableColumn<Conductor, String> columnaTelefono,
-            TableColumn<Conductor, String> columnaCorreo) {
+            TableColumn<Conductor, String> columnaCorreo,
+            TableColumn<Conductor, Void> columnaDetalles) {
 
         // Configuración de la columna de nombre completo
         columnaNombre.setCellValueFactory(cellData -> {
@@ -233,6 +235,60 @@ public class GestorTablas {
             return new SimpleStringProperty(conductor.getCI());
         });
 
+        columnaDetalles.setCellFactory(param -> new TableCell<Conductor, Void>(){
+            private final Label lbvVerMas = new Label("Ver mas");
+            {
+                lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                lbvVerMas.setOnMouseClicked(e ->{
+                    Conductor conductor= getTableView().getItems().get(getIndex());
+                    try {
+                        mostrarDetalles(conductor, lbvVerMas.getScene().getWindow());
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(lbvVerMas.getScene().getWindow(), ex);
+                    }
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : lbvVerMas);
+            }
+        });
+        
+        columnaFoto.setCellFactory(param -> new TableCell<Conductor, Void>() {
+            private final ImageView imagen = new ImageView();
+
+            {
+                Image icono = new Image(
+                        Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                                "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
+                        )
+                );
+                try {
+                    imagen.setFitHeight(40);
+                    imagen.setFitWidth(40);
+                    imagen.setPreserveRatio(true);
+                    imagen.setImage(icono);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(imagen.getScene().getWindow(), ex);
+                }
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                if(empty)
+                    setGraphic(null);
+                else
+                    setGraphic(imagen);
+            }
+        }
+    );
+
+        
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaTelefono, "Telefono");
         configurarColumnaPorDefecto(columnaCorreo, "Correo");
@@ -245,14 +301,57 @@ public class GestorTablas {
         }
     }
 
-    public static void cargarTablaConductores(TableView<Conductor> tablaConductor) throws Exception {
-        try {
-            ObservableList<Conductor> conductores = ServicioConductor.ObtenerConductores();
-            tablaConductor.setItems(conductores);
-            llenarColumnaDetalles(tablaConductor, tablaConductor.getItems().size() - 1);
-            llenarColumnaFotos(tablaConductor, tablaConductor.getItems().size() - 1);
-        } catch (Exception ex) {
-            throw new Exception("Error al cargar la tabla");
+    public static void cargarTablaConductores(TableView<Conductor> tablaConductor,String estado) throws Exception{
+        
+        switch (estado) {
+            
+            case "Vigente":
+                ObservableList<Conductor> estadoVigente = FXCollections.observableArrayList();
+                try {
+                    estadoVigente = ServicioConductor.obtenerConductoresPorEstado(estado);
+                } catch (Exception ex) {
+                    throw new Exception("Error al cargar la tabla");
+                }
+                tablaConductor.setItems(estadoVigente);
+                break;
+                
+            case "Revocada":
+                ObservableList<Conductor> estadoRevocada = FXCollections.observableArrayList();
+                try {
+                    estadoRevocada = ServicioConductor.obtenerConductoresPorEstado(estado);
+                } catch (Exception ex) {
+                    throw new Exception("Error al cargar la tabla");
+                }
+                tablaConductor.setItems(estadoRevocada);
+                break;
+                
+            case "Vencida":
+                ObservableList<Conductor> estadoVencida = FXCollections.observableArrayList();
+                try {
+                    estadoVencida = ServicioConductor.obtenerConductoresPorEstado(estado);
+                } catch (Exception ex) {
+                    throw new Exception("Error al cargar la tabla");
+                }
+                tablaConductor.setItems(estadoVencida);
+                break;
+            case "Suspendida":
+                 ObservableList<Conductor> estadoSuspendida = FXCollections.observableArrayList();
+                try {
+                    estadoSuspendida = ServicioConductor.obtenerConductoresPorEstado("Suspendida");
+                } catch (Exception ex) {
+                    throw new Exception("Error al cargar la tabla");
+                }
+                tablaConductor.setItems(estadoSuspendida);
+                break;
+            default:
+                ObservableList<Conductor> conductores= FXCollections.observableArrayList();
+                try {
+                    conductores = ServicioConductor.ObtenerConductores();
+                } catch (Exception ex) {
+                    throw new Exception("Error al cargar la tabla");
+                }
+                tablaConductor.setItems(conductores);
+
         }
     }
 
@@ -440,37 +539,73 @@ public class GestorTablas {
     }
 
     
-    public static void cargarTablaExamenesTeoricosTraAutoescuela(TableView<ExamenConduccion> tablaExamenes, Long id) {
-        try {
-            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorIDRol(id);
-            tablaExamenes.setItems(examenesTeoricos);
-            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
-            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
-        } catch (Exception ex) {
-            //Capturar Error
+    public static void cargarTablaExamenesTeoricosTraAutoescuela(TableView<ExamenConduccion> tablaExamenes, Long id,String aprobado) {
+       
+        if(aprobado.equalsIgnoreCase("aprobado"))
+        {
+            try {
+                ObservableList<ExamenConduccion> examenesTeoricosAprobados = ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorIDRolAprobados(id, aprobado);
+                tablaExamenes.setItems(examenesTeoricosAprobados);
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+            }
+        }else if(aprobado.equalsIgnoreCase("reprobado"))
+        {
+            try {
+                ObservableList<ExamenConduccion> examenesTeoricosReprobados = ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorIDRolAprobados(id, aprobado);
+                tablaExamenes.setItems(examenesTeoricosReprobados);
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+            }
+        }else
+        {
+            try {
+                ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorIDRol(id);
+                tablaExamenes.setItems(examenesTeoricos);
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+            }
         }
+        
     }
 
     
-    public static void cargarTablaExamenesPracticosTraAutoescuela(TableView<ExamenConduccion> tablaExamenes, Long id) {
-        try {
-            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticosPorIDRol(id);
-            tablaExamenes.setItems(examenesPracticos);
-            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
-            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
-        } catch (Exception ex) {
-            //Capturar Error
+    public static void cargarTablaExamenesPracticosTraAutoescuela(TableView<ExamenConduccion> tablaExamenes, Long id,String aprobado) {
+       if(aprobado.equalsIgnoreCase("aprobado"))
+        {
+            try {
+                ObservableList<ExamenConduccion> examenesPracticosAprobados = ServiciosExamenesConduccion.ObtenerExamenesPracticosPorIDRolAprobados(id, aprobado);
+                tablaExamenes.setItems(examenesPracticosAprobados);
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+            }
+        }else if(aprobado.equalsIgnoreCase("reprobado"))
+        {
+            try {
+                ObservableList<ExamenConduccion> examenesPracticosReprobados = ServiciosExamenesConduccion.ObtenerExamenesPracticosPorIDRolAprobados(id, aprobado);
+                tablaExamenes.setItems(examenesPracticosReprobados);
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+            }
+        }else
+        {
+            try {
+                ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticosPorIDRol(id);
+                tablaExamenes.setItems(examenesPracticos);
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+            }
         }
     }
 
     
     public static void configurarColumnasExamenesTraAutoescuela(
-            TableColumn<ExamenConduccion, String> columnaFotoExamen,
+            TableColumn<ExamenConduccion, Void> columnaFotoExamen,
             TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
             TableColumn<ExamenConduccion, Date> columnaFechaExamen,
             TableColumn<ExamenConduccion, String> columnaResultadoExamen,
             TableColumn<ExamenConduccion, String> columnaAutoescuelaExamen,
-            TableColumn<ExamenConduccion, String> columnaDetallesExamen) {
+            TableColumn<ExamenConduccion, Void> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
         columnaExaminadoExamen.setCellValueFactory(cellData -> {
@@ -492,6 +627,59 @@ public class GestorTablas {
             return new SimpleStringProperty("Reprobado");
         });
 
+        columnaFotoExamen.setCellFactory(param -> new TableCell<ExamenConduccion, Void>() {
+            private final ImageView imagen = new ImageView();
+
+            {
+                Image icono = new Image(
+                        Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                                "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
+                        )
+                );
+                try {
+                    imagen.setFitHeight(40);
+                    imagen.setFitWidth(40);
+                    imagen.setPreserveRatio(true);
+                    imagen.setImage(icono);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(imagen.getScene().getWindow(), ex);
+                }
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                if(empty)
+                    setGraphic(null);
+                else
+                    setGraphic(imagen);
+            }
+        }
+    );
+        
+        columnaDetallesExamen.setCellFactory(param -> new TableCell<ExamenConduccion, Void>(){
+            private final Label lbvVerMas = new Label("Ver mas");
+            {
+                lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                lbvVerMas.setOnMouseClicked(e ->{
+                    ExamenConduccion examen= getTableView().getItems().get(getIndex());
+                    try {
+                        mostrarDetalles(examen, lbvVerMas.getScene().getWindow());
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(lbvVerMas.getScene().getWindow(), ex);
+                    }
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : lbvVerMas);
+            }
+        });
+        
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
     }

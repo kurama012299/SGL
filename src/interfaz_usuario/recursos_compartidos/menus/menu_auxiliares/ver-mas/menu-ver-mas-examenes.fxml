@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasExamenes">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasExamenes">
    <children>
       <ImageView fitHeight="78.0" fitWidth="103.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,13 +28,14 @@
          </font>
       </Label>
       <TextField fx:id="txfId" disable="true" editable="false" layoutX="34.0" layoutY="132.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="04112767283" />
-      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="18.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
+      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="34.0" layoutY="308.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
       <Label layoutX="14.0" layoutY="177.0" prefHeight="25.0" prefWidth="111.0" text="Tipo de Exámen:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
       <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="27.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="43.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../imagenes/ico-atras.png" />
          </image>

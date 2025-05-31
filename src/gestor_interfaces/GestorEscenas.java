@@ -146,6 +146,7 @@ public class GestorEscenas  {
 
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
+            System.out.println(e.getCause());
             System.out.println(e.getMessage());
             throw new Exception("No se encuentra la interfaz");
         }

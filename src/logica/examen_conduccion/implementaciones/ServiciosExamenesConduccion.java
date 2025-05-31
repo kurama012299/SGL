@@ -5,6 +5,7 @@
 package logica.examen_conduccion.implementaciones;
 
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.examen_conduccion.consultas.ConsultaExamen;
 import logica.examen_conduccion.modelos.ExamenConduccion;
@@ -35,6 +36,44 @@ public class ServiciosExamenesConduccion {
     
     public static ObservableList<ExamenConduccion> ObtenerExamenesTeoricosPorIDRol(Long Id) throws Exception {
         return ConsultaExamen.obtenerExamenesTeoricosPorIdRolConsultas(Id);
+    }
+    
+    public static ObservableList<ExamenConduccion> ObtenerExamenesTeoricosPorIDRolAprobados(Long Id,String aprobado) throws Exception {
+       ObservableList<ExamenConduccion>examenesPorResultado=FXCollections.observableArrayList();
+       ObservableList<ExamenConduccion>examenes=ConsultaExamen.obtenerExamenesTeoricosPorIdRolConsultas(Id);
+        for(ExamenConduccion exa: examenes)
+        {
+            if(aprobado.equalsIgnoreCase("aprobado"))
+            {
+                if(exa.isAprobado())
+                    examenesPorResultado.add(exa);
+            }
+            else
+            {
+                if(!exa.isAprobado())
+                    examenesPorResultado.add(exa);
+            }
+        }
+        return examenesPorResultado;
+    }
+    
+    public static ObservableList<ExamenConduccion> ObtenerExamenesPracticosPorIDRolAprobados(Long Id,String aprobado) throws Exception {
+       ObservableList<ExamenConduccion>examenesPorResultado=FXCollections.observableArrayList();
+       ObservableList<ExamenConduccion>examenes=ConsultaExamen.obtenerExamenesPracticosPorIdRolConsultas(Id);
+        for(ExamenConduccion exa: examenes)
+        {
+            if(aprobado.equalsIgnoreCase("aprobado"))
+            {
+                if(exa.isAprobado())
+                    examenesPorResultado.add(exa);
+            }
+            else
+            {
+                if(!exa.isAprobado())
+                    examenesPorResultado.add(exa);
+            }
+        }
+        return examenesPorResultado;
     }
     
     public static ObservableList<ExamenConduccion> ObtenerExamenesPracticosPorIDRol(Long Id) throws Exception {
