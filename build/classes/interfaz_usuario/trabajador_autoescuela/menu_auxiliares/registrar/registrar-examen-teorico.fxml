@@ -13,21 +13,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="347.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="347.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz_usuario.trabajador_autoescuela.controladores.ControladorRegistrarExamenTeorico">
    <children>
       <Label layoutX="33.0" layoutY="17.0" prefHeight="44.0" prefWidth="370.0" text="Registrar Exámen Teórico">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </Label>
-      <JFXButton layoutX="394.0" layoutY="295.0" opacity="0.4" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: #8000ff;" text="Registrar" textFill="WHITE">
+      <JFXButton fx:id="btnRegistrar" layoutX="394.0" layoutY="295.0" onAction="#registrarValidar" opacity="0.4" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: #8000ff;" text="Registrar" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </JFXButton>
-      <TextField layoutX="34.0" layoutY="75.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre del examinado" style="-fx-background-color: transparent;" />
-      <TextField layoutX="34.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" promptText="ID" style="-fx-background-color: transparent;" />
-      <JFXButton layoutX="34.0" layoutY="295.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="         Cancelar">
+      <TextField fx:id="txfNombreExaminado" layoutX="34.0" layoutY="75.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre del examinado" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfCi" layoutX="34.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" promptText="ID" style="-fx-background-color: transparent;" />
+      <JFXButton fx:id="btnCancelar" layoutX="34.0" layoutY="295.0" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: gainsboro;" text="         Cancelar">
          <font>
             <Font size="13.0" />
          </font>
@@ -41,17 +41,22 @@
          </image>
       </ImageView>
       <Line endX="2.0000152587890625" layoutX="444.0" layoutY="89.0" startX="-100.0" stroke="#8000ff" />
-      <JFXRadioButton layoutX="356.0" layoutY="224.0" prefHeight="17.0" prefWidth="97.0" text="Aprobado">
+      <JFXRadioButton fx:id="rdbtAprobado" layoutX="356.0" layoutY="224.0" prefHeight="17.0" prefWidth="97.0" text="Aprobado">
          <selectedColor>
             <Color red="0.501960813999176" blue="1.0" />
          </selectedColor>
       </JFXRadioButton>
-      <DatePicker layoutX="307.0" layoutY="102.0" style="-fx-background-color: transparent;" />
+      <DatePicker fx:id="dpFechaExamen" layoutX="307.0" layoutY="102.0" style="-fx-background-color: transparent;" />
       <Label alignment="CENTER" layoutX="307.0" layoutY="73.0" prefHeight="17.0" prefWidth="175.0" text="Fecha del exámen">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox disable="true" layoutX="32.0" layoutY="233.0" prefHeight="25.0" prefWidth="200.0" promptText="Nombre de la entidad" style="-fx-background-color: transparent;" />
+      <ComboBox fx:id="cmbNombreEntidad" layoutX="32.0" layoutY="233.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent;" stylesheets="@../../../recursos_compartidos/estilos/EstilosComboBox.css" />
+      <Label alignment="CENTER" layoutX="32.0" layoutY="207.0" prefHeight="17.0" prefWidth="175.0" text="Nombre entidad">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

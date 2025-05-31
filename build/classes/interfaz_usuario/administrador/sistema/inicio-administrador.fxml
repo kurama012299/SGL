@@ -407,7 +407,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
+            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Conductores">
                      <font>
@@ -435,25 +435,22 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXRadioButton layoutX="656.0" layoutY="71.0" prefHeight="17.0" prefWidth="75.0" text="Vigente">
-                     <selectedColor>
-                        <Color red="0.501960813999176" blue="1.0" />
-                     </selectedColor>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="FiltroEstadoLicencia" />
-                     </toggleGroup>
-                  </JFXRadioButton>
-                  <JFXRadioButton layoutX="533.0" layoutY="71.0" prefHeight="17.0" prefWidth="75.0" text="Vencida" toggleGroup="$FiltroEstadoLicencia">
+                  <JFXRadioButton fx:id="rdbtVigente" layoutX="656.0" layoutY="71.0" prefHeight="17.0" prefWidth="75.0" text="Vigente">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="533.0" layoutY="101.0" prefHeight="17.0" prefWidth="96.0" text="Suspendida" toggleGroup="$FiltroEstadoLicencia">
+                  <JFXRadioButton fx:id="rdbtVencida" layoutX="533.0" layoutY="71.0" prefHeight="17.0" prefWidth="75.0" text="Vencida">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="656.0" layoutY="101.0" prefHeight="17.0" prefWidth="88.0" text="Revocada" toggleGroup="$FiltroEstadoLicencia">
+                  <JFXRadioButton fx:id="rdbtSuspendida" layoutX="533.0" layoutY="101.0" prefHeight="17.0" prefWidth="96.0" text="Suspendida">
+                     <selectedColor>
+                        <Color red="0.501960813999176" blue="1.0" />
+                     </selectedColor>
+                  </JFXRadioButton>
+                  <JFXRadioButton fx:id="rdbtRevocada" layoutX="656.0" layoutY="101.0" prefHeight="17.0" prefWidth="88.0" text="Revocada">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>

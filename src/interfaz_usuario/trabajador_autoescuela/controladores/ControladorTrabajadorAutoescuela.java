@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
@@ -70,7 +71,7 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     
     @FXML private TableView<ExamenConduccion>tblExamenesTeoricos;
     
-    @FXML private TableColumn<ExamenConduccion, String>tblcFotoTeorico;
+    @FXML private TableColumn<ExamenConduccion, Void>tblcFotoTeorico;
     
     @FXML private TableColumn<ExamenConduccion, String>tblcExaminadoTeorico;
     
@@ -80,11 +81,11 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     
     @FXML private TableColumn<ExamenConduccion, String> tblcAutoescuelaTeorico;
 
-    @FXML private TableColumn<ExamenConduccion, String>tblcDetallesTeorico;
+    @FXML private TableColumn<ExamenConduccion, Void>tblcDetallesTeorico;
     
     @FXML private TableView<ExamenConduccion>tblExamenesPracticos;
     
-    @FXML private TableColumn<ExamenConduccion, String>tblcFotoPractico;
+    @FXML private TableColumn<ExamenConduccion, Void>tblcFotoPractico;
     
     @FXML private TableColumn<ExamenConduccion, String>tblcExaminadoPractico;
     
@@ -94,13 +95,27 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     
     @FXML private TableColumn<ExamenConduccion, String>tblcAutoescuelaPractico;
     
-    @FXML private TableColumn<ExamenConduccion, String>tblcDetallesPractico;
+    @FXML private TableColumn<ExamenConduccion, Void>tblcDetallesPractico;
     
     @FXML private Label lblUsuarioNombre;
     
     @FXML private Label lblCorreoUsuario;
     
     @FXML private Label lblFechaHora;
+    
+    @FXML private RadioButton rdbtAprobadoTeorico;
+    
+    @FXML private RadioButton rdbtReprobadoTeorico;
+    
+    @FXML private RadioButton rdbtAprobadoPractico;
+    
+    @FXML private RadioButton rdbtReprobadoPractico;
+    
+    private RadioButton seleccionadoTeorico=null;
+    private RadioButton seleccionadoPractico=null;
+    
+    private ArrayList<RadioButton>gruposResultadoExamenTeorico= new ArrayList<>();
+    private ArrayList<RadioButton>gruposResultadoExamenPractico= new ArrayList<>();
        
     private ImageView ivTeorico;
     private ImageView ivPractico;
@@ -134,13 +149,100 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
         this.transcisionInicio();
         GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Trabajador autoescuela");
+        
+        accionFiltros();
     }
             
+    @FXML private void accionFiltros()
+    {
+        gruposResultadoExamenTeorico.add(rdbtAprobadoTeorico);
+        gruposResultadoExamenTeorico.add(rdbtReprobadoTeorico);
+        
+        gruposResultadoExamenPractico.add(rdbtAprobadoPractico);
+        gruposResultadoExamenPractico.add(rdbtReprobadoPractico);
+        
+        
+        for(RadioButton rb: gruposResultadoExamenTeorico)
+            {
+                rb.setOnAction(e -> {
+                    manejarSeleccionTeorico(rb);
+                    GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(tblExamenesTeoricos, Autentificador.usuario.getId(),rb.getText());
+                    eventoEstaSeleccionadoTeorico();
+                });
+            }
+        
+        for(RadioButton rb: gruposResultadoExamenPractico)
+            {
+                rb.setOnAction(e -> {
+                    manejarSeleccionPractico(rb);
+                    GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(tblExamenesPracticos, Autentificador.usuario.getId(),rb.getText());
+                    eventoEstaSeleccionadoPractico();
+                });
+            }
+    }
+    
+    @FXML private void limpiarFiltros()
+    {
+        ArrayList<RadioButton> botonesFiltros= new ArrayList<>();
+        botonesFiltros.addAll(gruposResultadoExamenPractico);
+        botonesFiltros.addAll(gruposResultadoExamenTeorico);
+        for(RadioButton rb: botonesFiltros)
+            rb.setSelected(false);
+        
+    }
+    
+    
+    @FXML private void eventoEstaSeleccionadoTeorico()
+    {
+        if(!rdbtAprobadoTeorico.isSelected() && !rdbtReprobadoTeorico.isSelected())
+        {
+            tblExamenesTeoricos.getItems().clear();
+            GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(tblExamenesTeoricos,Autentificador.usuario.getId()," ");
+        }        
+    }
+    
+    @FXML private void eventoEstaSeleccionadoPractico()
+    {
+        if(!rdbtAprobadoPractico.isSelected() && !rdbtReprobadoPractico.isSelected())
+        {
+            tblExamenesPracticos.getItems().clear();
+            GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(tblExamenesPracticos,Autentificador.usuario.getId()," ");
+        }        
+    }
+    
+    @FXML private void manejarSeleccionTeorico(RadioButton radioClickeado)
+    {
+        if (seleccionadoTeorico == radioClickeado) {
+            radioClickeado.setSelected(false);
+            seleccionadoTeorico = null;
+        } else {
+            seleccionadoTeorico = radioClickeado;
+            for (RadioButton rb : gruposResultadoExamenTeorico) {
+                rb.setSelected(rb == radioClickeado);
+            }
+        }
+    }
+    
+    @FXML private void manejarSeleccionPractico(RadioButton radioClickeado)
+    {
+        if (seleccionadoPractico == radioClickeado) {
+            radioClickeado.setSelected(false);
+            seleccionadoPractico = null;
+        } else {
+            seleccionadoPractico = radioClickeado;
+            for (RadioButton rb : gruposResultadoExamenPractico) {
+                rb.setSelected(rb == radioClickeado);
+            }
+        }
+    }
+    
+    
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesTeoricos)
     @FXML public void transcisionExamenesTeoricos() {
         
+        limpiarFiltros();
         GestorTablas.configurarColumnasExamenesTraAutoescuela(tblcFotoTeorico, tblcExaminadoTeorico, tblcFechaTeorico, tblcResultadoTeorico, tblcAutoescuelaTeorico, tblcDetallesTeorico);
-        GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(tblExamenesTeoricos, Autentificador.usuario.getId());
+        GestorTablas.cargarTablaExamenesTeoricosTraAutoescuela(tblExamenesTeoricos, Autentificador.usuario.getId()," ");
         
         Pane[] panelesOcultar = {pnlExamenesPracticos, pnlInicio};
         GestorEscenas.mostrarOcultarPaneles(pnlExamenesTeoricos, panelesOcultar);
@@ -169,8 +271,9 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     //Funcion para hacer la transicion de un menu a otro en este caso(ExamenesPracticos)
     @FXML public void transcisionExamenesPracticos() {
         
+        limpiarFiltros();
         GestorTablas.configurarColumnasExamenesTraAutoescuela(tblcFotoPractico, tblcExaminadoPractico, tblcFechaPractico, tblcResultadoPractico, tblcAutoescuelaPractico, tblcDetallesPractico);
-        GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(tblExamenesPracticos, Autentificador.usuario.getId());
+        GestorTablas.cargarTablaExamenesPracticosTraAutoescuela(tblExamenesPracticos, Autentificador.usuario.getId()," ");
         
         Pane[] panelesOcultar={pnlExamenesTeoricos,pnlInicio};
         GestorEscenas.mostrarOcultarPaneles(pnlExamenesPracticos,panelesOcultar);
@@ -196,6 +299,7 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     //Funcion para hacer la transicion de un menu a otro en este caso(Inicio)
     @FXML public void transcisionInicio() {
         
+        limpiarFiltros();
         Pane[] panelesOcultar={pnlExamenesPracticos,pnlExamenesTeoricos};
         GestorEscenas.mostrarOcultarPaneles(pnlInicio,panelesOcultar);
         
@@ -219,6 +323,7 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     //Funcion para aparecer el menu de RegistrarExamen en este caso(Practico)
     @FXML public void registrarExamenPractico()
     {
+        limpiarFiltros();
         String direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-practico.fxml";
         Stage padre = (Stage) btnRegistrarPractico.getScene().getWindow();
         try {
@@ -231,6 +336,7 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     //Funcion para aparecer el menu de RegistrarExamen en este caso(Teorico)
     @FXML public void registrarExamenTeorico()
     {
+        limpiarFiltros();
         String direccion = "/interfaz_usuario/trabajador_autoescuela/menu_auxiliares/registrar/registrar-examen-teorico.fxml";
         Stage padre = (Stage) btnRegistrarTeorico.getScene().getWindow();
         
