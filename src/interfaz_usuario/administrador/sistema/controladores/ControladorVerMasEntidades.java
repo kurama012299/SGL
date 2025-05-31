@@ -10,14 +10,10 @@ import gestor_interfaces.modelos.Estadistica;
 import infraestructura.ConectorBaseDato;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import logica.entidad.implementaciones.ServicioEntidad;
 import logica.entidad.modelos.EntidadRelacionada;
 
 /**

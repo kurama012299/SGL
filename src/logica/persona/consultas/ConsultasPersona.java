@@ -280,4 +280,22 @@ public class ConsultasPersona {
     
     return conductoresVencidos;
 }
+    
+    public static boolean eliminarPersonaConCascada(long idPersona) throws Exception {
+    String consulta = "DELETE FROM \"Persona\" WHERE \"Id\" = ?";
+    
+    try (Connection conn = ConectorBaseDato.conectar();
+         PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        
+        stmt.setLong(1, idPersona);
+        int filasAfectadas = stmt.executeUpdate();
+        
+        // Si se eliminó al menos una fila, retorna true
+        return filasAfectadas > 0;
+        
+    } catch (SQLException e) {
+        System.out.println("Error al eliminar persona con cascada: " + e.getMessage());
+        throw new Exception("Error al eliminar la persona y sus registros relacionados");
+    }
+}
 }

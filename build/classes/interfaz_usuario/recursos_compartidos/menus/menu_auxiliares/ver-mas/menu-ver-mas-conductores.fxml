@@ -39,7 +39,7 @@
          </font>
       </Label>
       <TextField fx:id="TextFieldCorreo" disable="true" editable="false" layoutX="54.0" layoutY="181.0" prefHeight="25.0" prefWidth="167.0" style="-fx-background-color: transparent;" text="JuanManuel@gmail.com" />
-      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="15.0" layoutY="337.0"  prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
+      <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="15.0" layoutY="337.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
       <JFXButton cancelButton="true" layoutX="418.0" layoutY="337.0" opacity="0.4" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: red;" text="       Eliminar" textFill="WHITE" />
       <Label layoutX="157.0" layoutY="72.0" prefHeight="26.0" prefWidth="78.0" text="Licencia Id:">
          <font>
@@ -138,11 +138,5 @@
             </ImageView>
          </children>
       </Pane>
-      <JFXButton cancelButton="true" layoutX="312.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="     Editar" />
-      <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="319.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/ico-editar.png" />
-         </image>
-      </ImageView>
    </children>
 </Pane>

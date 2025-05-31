@@ -29,17 +29,11 @@
       </Label>
       <TextField fx:id="TextFieldIdLicencia" disable="true" editable="false" layoutX="81.0" layoutY="133.0" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" text="123g34" />
       <JFXButton fx:id="btnAtras" cancelButton="true" layoutX="16.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="  Atrás" />
-      <JFXButton cancelButton="true" layoutX="418.0" layoutY="337.0" opacity="0.4" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: red;" text="       Eliminar" textFill="WHITE" />
       <Label layoutX="16.0" layoutY="173.0" prefHeight="25.0" prefWidth="169.0" text="Gravedad de la infracción:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="429.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/ico-eliminar.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="25.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../imagenes/ico-atras.png" />
@@ -51,12 +45,6 @@
          </font>
       </Label>
       <TextArea fx:id="TextFieldDescripcion" disable="true" editable="false" layoutX="345.0" layoutY="162.0" prefHeight="78.0" prefWidth="152.0" style="-fx-background-color: transparent;" text="Exceso de velocidad por&#10;avenida principal" />
-      <JFXButton cancelButton="true" layoutX="313.0" layoutY="337.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="    Editar" />
-      <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="324.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/ico-editar.png" />
-         </image>
-      </ImageView>
       <Label layoutX="16.0" layoutY="215.0" prefHeight="25.0" prefWidth="55.0" text="Pagado:">
          <font>
             <Font name="System Bold" size="13.0" />
