@@ -37,8 +37,8 @@ public class ValidacionCrearExamenPractico {
             }
         }
         
-        ExamenMedico examenMedico = revisarExamenMedicoValido(ServiciosExamenesMedicos.ObtenerExamenesMedicoPorCI(ci));
-        revisarExamenTeoricoValido(ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorCI(ci));
+        ExamenMedico examenMedico = revisarExamenMedicoValido(ServiciosExamenesMedicos.obtenerExamenesMedicoPorCI(ci));
+        revisarExamenTeoricoValido(ServiciosExamenesConduccion.obtenerExamenesTeoricosPorCI(ci));
         
         if(usuario.getRol().equals("AdministradorMedico") || usuario.getRol().equals("Medico"))
             throw new Exception("Ese usuario no puede crear examenes medicos");

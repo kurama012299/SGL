@@ -17,22 +17,22 @@ import logica.examen_medico.modelos.ExamenMedico;
  */
 public class ServiciosExamenesMedicos {
     
-    public static ObservableList<ExamenMedico> ObtenerExamenesMedico() throws Exception {
-        return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionConsulta();
+    public static ObservableList<ExamenMedico> obtenerExamenesMedico() throws Exception {
+        return ConsultaExamenMedico.obtenerExamenesMedicosRestriccionConsulta();
     }
     
-    public static ObservableList<ExamenMedico> ObtenerExamenesMedicoPorIdExaminador(Long Id) throws Exception {
-        return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionPorIdExaminadorConsulta(Id);
+    public static ObservableList<ExamenMedico> obtenerExamenesMedicoPorIdExaminador(Long Id) throws Exception {
+        return ConsultaExamenMedico.obtenerExamenesMedicosRestriccionPorIdExaminadorConsulta(Id);
     }
     
-    public static ExamenMedico ObtenerExamenesMedicoPorId(Long Id) throws Exception {
-        return ConsultaExamenMedico.ObtenerExamenesMedicosRestriccionPorIdConsulta(Id);
+    public static ExamenMedico obtenerExamenesMedicoPorId(Long Id) throws Exception {
+        return ConsultaExamenMedico.obtenerExamenesMedicosRestriccionPorIdConsulta(Id);
     }
     
     
-    public static ArrayList<ExamenMedico> ObtenerExamenesMedicoPorCI(String ci) throws Exception {
+    public static ArrayList<ExamenMedico> obtenerExamenesMedicoPorCI(String ci) throws Exception {
         ArrayList<ExamenMedico> examenes = new ArrayList<>();
-        for(ExamenMedico e : ObtenerExamenesMedico())
+        for(ExamenMedico e : obtenerExamenesMedico())
         {
             if(e.getPersona().getCI().equals(ci))
             {

@@ -71,7 +71,7 @@ public class GestorTablas {
             case "Administrador":
                 if (objeto instanceof Conductor) {
                     Conductor conductor = (Conductor) objeto;
-                    Licencia licencia = ServicioLicencia.ObtenerLicenciaPorId(conductor.getIdLicencia());
+                    Licencia licencia = ServicioLicencia.obtenerLicenciaPorId(conductor.getIdLicencia());
                     GestorEscenas.cargarVerMasConductores(ventana, conductor, licencia);
 
                 } else if (objeto instanceof ExamenConduccion && !(objeto instanceof ExamenMedico)) {
@@ -79,7 +79,7 @@ public class GestorTablas {
                         ExamenConduccion examenConduccion = (ExamenConduccion) objeto;
                         GestorEscenas.cargarVerMasExamenes(ventana, examenConduccion, null);
                     } else {
-                        ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+                        ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedico();
                         for (ExamenMedico examen : examenesMedicos) {
                             if (examen.getId().equals(((ExamenConduccion) objeto).getId())) {
                                 ExamenMedico examenMedico = (ExamenMedico) examen;
@@ -89,7 +89,7 @@ public class GestorTablas {
                     }
                 } else if (objeto instanceof Infraccion) {
                     Infraccion infraccion = (Infraccion) objeto;
-                    Licencia licencia = ServicioLicencia.ObtenerLicenciaPorId(infraccion.getIdLicencia());
+                    Licencia licencia = ServicioLicencia.obtenerLicenciaPorId(infraccion.getIdLicencia());
                     GestorEscenas.cargarVerMasInfraccion(ventana, infraccion, licencia);
                 } else if (objeto instanceof Licencia) {
                     Licencia licencia = (Licencia) objeto;
@@ -357,9 +357,9 @@ public class GestorTablas {
 
     public static void cargarTablaExamenes(TableView<ExamenConduccion> tablaExamenes) throws Exception {
         try {
-            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
-            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
-            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.obtenerExamenesPracticos();
+            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.obtenerExamenesTeoricos();
+            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedico();
             ObservableList<ExamenConduccion> examenesMedicosNuevos = FXCollections.observableArrayList();
             for (int i = 0; i < examenesMedicos.size(); i++) {
                 ExamenConduccion examen = new ExamenConduccion(examenesMedicos.get(i).getId(), examenesMedicos.get(i).getFecha(), examenesMedicos.get(i).isAprobado(), examenesMedicos.get(i).getEntidad(), examenesMedicos.get(i).getPersona(), examenesMedicos.get(i).getExaminador(), examenesMedicos.get(i).getTipo());
@@ -377,7 +377,7 @@ public class GestorTablas {
 
     public static void cargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) throws Exception {
         try {
-            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
+            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.obtenerExamenesPracticos();
             tablaExamenes.setItems(examenesPracticos);
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
@@ -388,7 +388,7 @@ public class GestorTablas {
 
     public static void cargarTablaExamenesTeoricosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) throws Exception {
         try {
-            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
+            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.obtenerExamenesTeoricos();
             tablaExamenes.setItems(examenesTeoricos);
             llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
@@ -437,7 +437,7 @@ public class GestorTablas {
     
     public static void cargarTablaExamenesMedicosAdminMedico(TableView<ExamenMedico> tablaExamenesMedicos) {
         try {
-            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedico();
             tablaExamenesMedicos.setItems(examenesMedicos);
             llenarColumnaDetalles(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
@@ -492,7 +492,7 @@ public class GestorTablas {
     
     public static void cargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> tablaExamenesMedicos, Long id) {
         try {
-            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedicoPorIdExaminador(id);
+            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id);
             tablaExamenesMedicos.setItems(examenesMedicos);
             llenarColumnaDetalles(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
@@ -544,7 +544,7 @@ public class GestorTablas {
         if(aprobado.equalsIgnoreCase("aprobado"))
         {
             try {
-                ObservableList<ExamenConduccion> examenesTeoricosAprobados = ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorIDRolAprobados(id, aprobado);
+                ObservableList<ExamenConduccion> examenesTeoricosAprobados = ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRolAprobados(id, aprobado);
                 tablaExamenes.setItems(examenesTeoricosAprobados);
             } catch (Exception ex) {
                 GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
@@ -552,7 +552,7 @@ public class GestorTablas {
         }else if(aprobado.equalsIgnoreCase("reprobado"))
         {
             try {
-                ObservableList<ExamenConduccion> examenesTeoricosReprobados = ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorIDRolAprobados(id, aprobado);
+                ObservableList<ExamenConduccion> examenesTeoricosReprobados = ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRolAprobados(id, aprobado);
                 tablaExamenes.setItems(examenesTeoricosReprobados);
             } catch (Exception ex) {
                 GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
@@ -560,7 +560,7 @@ public class GestorTablas {
         }else
         {
             try {
-                ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorIDRol(id);
+                ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRol(id);
                 tablaExamenes.setItems(examenesTeoricos);
             } catch (Exception ex) {
                 GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
@@ -574,7 +574,7 @@ public class GestorTablas {
        if(aprobado.equalsIgnoreCase("aprobado"))
         {
             try {
-                ObservableList<ExamenConduccion> examenesPracticosAprobados = ServiciosExamenesConduccion.ObtenerExamenesPracticosPorIDRolAprobados(id, aprobado);
+                ObservableList<ExamenConduccion> examenesPracticosAprobados = ServiciosExamenesConduccion.obtenerExamenesPracticosPorIDRolAprobados(id, aprobado);
                 tablaExamenes.setItems(examenesPracticosAprobados);
             } catch (Exception ex) {
                 GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
@@ -582,7 +582,7 @@ public class GestorTablas {
         }else if(aprobado.equalsIgnoreCase("reprobado"))
         {
             try {
-                ObservableList<ExamenConduccion> examenesPracticosReprobados = ServiciosExamenesConduccion.ObtenerExamenesPracticosPorIDRolAprobados(id, aprobado);
+                ObservableList<ExamenConduccion> examenesPracticosReprobados = ServiciosExamenesConduccion.obtenerExamenesPracticosPorIDRolAprobados(id, aprobado);
                 tablaExamenes.setItems(examenesPracticosReprobados);
             } catch (Exception ex) {
                 GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
@@ -590,7 +590,7 @@ public class GestorTablas {
         }else
         {
             try {
-                ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticosPorIDRol(id);
+                ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.obtenerExamenesPracticosPorIDRol(id);
                 tablaExamenes.setItems(examenesPracticos);
             } catch (Exception ex) {
                 GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
@@ -729,7 +729,7 @@ public class GestorTablas {
             case "Autoescuela":
                 ObservableList<EntidadRelacionada> autoescuelas = FXCollections.observableArrayList();
                 try {
-                    autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
+                    autoescuelas = ServicioEntidad.obtenerAutoescuelas();
                     tablaEntidad.setItems(autoescuelas);
                 } catch (Exception ex) {
                     GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
@@ -738,7 +738,7 @@ public class GestorTablas {
             case "Clinicas":
                 ObservableList<EntidadRelacionada> clinicas = FXCollections.observableArrayList();
                 try {
-                    clinicas = ServicioEntidad.ObtenerClinicas();
+                    clinicas = ServicioEntidad.obtenerClinicas();
                     tablaEntidad.setItems(clinicas);
                 } catch (Exception ex) {
                     GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
@@ -747,7 +747,7 @@ public class GestorTablas {
             default:
                 ObservableList<EntidadRelacionada> entidades = FXCollections.observableArrayList();
                 try {
-                    entidades = ServicioEntidad.ObtenerEntidadRelacionadas();
+                    entidades = ServicioEntidad.obtenerEntidadRelacionadas();
                     tablaEntidad.setItems(entidades);
                 } catch (Exception ex) {
                     GestorEscenas.cargarError(tablaEntidad.getScene().getWindow(), ex);
@@ -775,7 +775,7 @@ public class GestorTablas {
     
     public static void cargarTablaAutoescuelas(TableView<EntidadRelacionada> tablaAE) {
         try {
-            ObservableList<EntidadRelacionada> autoescuelas = ServicioEntidad.ObtenerAutoescuelas();
+            ObservableList<EntidadRelacionada> autoescuelas = ServicioEntidad.obtenerAutoescuelas();
             tablaAE.setItems(autoescuelas);
             llenarColumnaDetalles(tablaAE, tablaAE.getItems().size() - 1);
         } catch (Exception ex) {
@@ -803,7 +803,7 @@ public class GestorTablas {
     
     public static void cargarTablaClinicas(TableView<EntidadRelacionada> tablaClinica) {
         try {
-            ObservableList<EntidadRelacionada> clinicas = ServicioEntidad.ObtenerClinicas();
+            ObservableList<EntidadRelacionada> clinicas = ServicioEntidad.obtenerClinicas();
             tablaClinica.setItems(clinicas);
             llenarColumnaDetalles(tablaClinica, tablaClinica.getItems().size() - 1);
         } catch (Exception ex) {
@@ -1001,7 +1001,7 @@ public class GestorTablas {
     
     public static void cargarTablaLicencias(TableView<Licencia> tablaLicencia) {
         try {
-            ObservableList<Licencia> licencias = ServicioLicencia.ObtenerLicencias();
+            ObservableList<Licencia> licencias = ServicioLicencia.obtenerLicencias();
             tablaLicencia.setItems(licencias);
             llenarColumnaDetalles(tablaLicencia, tablaLicencia.getItems().size() - 1);
             llenarColumnaFotos(tablaLicencia, tablaLicencia.getItems().size() - 1);

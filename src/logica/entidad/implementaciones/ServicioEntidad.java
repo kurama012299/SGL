@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import logica.entidad.consultas.ConsultasEntidad;
 import logica.entidad.modelos.EntidadRelacionada;
-import logica.persona.consultas.ConsultasPersona;
-import logica.persona.modelos.Conductor;
 
 /**
  *
@@ -17,42 +15,42 @@ import logica.persona.modelos.Conductor;
  */
 public class ServicioEntidad {
     
-     public static ObservableList<EntidadRelacionada> ObtenerEntidadRelacionadas() throws Exception {
-        return ConsultasEntidad.ObtenerEntidadesConsulta();
+     public static ObservableList<EntidadRelacionada> obtenerEntidadRelacionadas() throws Exception {
+        return ConsultasEntidad.obtenerEntidadesConsulta();
     }
     
-    public static EntidadRelacionada ObtenerEntidadPorId(long Id) throws Exception
+    public static EntidadRelacionada obtenerEntidadPorId(long Id) throws Exception
     {
-        return ConsultasEntidad.ObtenerEntidadPorIdConsulta(Id);
+        return ConsultasEntidad.obtenerEntidadPorIdConsulta(Id);
     }
     
-    public static ObservableList<EntidadRelacionada> ObtenerAutoescuelas() throws Exception {
-        return ConsultasEntidad.ObtenerAutoescuelasConsulta();
+    public static ObservableList<EntidadRelacionada> obtenerAutoescuelas() throws Exception {
+        return ConsultasEntidad.obtenerAutoescuelasConsulta();
     }
     
-    public static EntidadRelacionada ObtenerAutoescuelaPorId(long Id) throws Exception
+    public static EntidadRelacionada obtenerAutoescuelaPorId(long Id) throws Exception
     {
-        return ConsultasEntidad.ObtenerAutoescuelaPorIdConsulta(Id);
+        return ConsultasEntidad.obtenerAutoescuelaPorIdConsulta(Id);
     }
     
-    public static EntidadRelacionada ObtenerEntidadPorNombre(String nombre) throws Exception
+    public static EntidadRelacionada obtenerEntidadPorNombre(String nombre) throws Exception
     {
-        return ConsultasEntidad.ObtenerEntidadPorNombreConsulta(nombre);
+        return ConsultasEntidad.obtenerEntidadPorNombreConsulta(nombre);
     }
     
-    public static ObservableList<EntidadRelacionada> ObtenerClinicas() throws Exception {
-        return ConsultasEntidad.ObtenerClinicasConsulta();
+    public static ObservableList<EntidadRelacionada> obtenerClinicas() throws Exception {
+        return ConsultasEntidad.obtenerClinicasConsulta();
     }
     
-    public static EntidadRelacionada ObtenerClinicaPorId(long Id) throws Exception
+    public static EntidadRelacionada obtenerClinicaPorId(long Id) throws Exception
     {
-        return ConsultasEntidad.ObtenerClinicaPorIdConsulta(Id);
+        return ConsultasEntidad.obtenerClinicaPorIdConsulta(Id);
     }
     
     public static ArrayList<String> obtenerNombresClinicas() throws Exception
     {
         ArrayList<String>nombresAutoescuelas= new ArrayList<>();
-        ObservableList<EntidadRelacionada>autoescuelas=ObtenerAutoescuelas();
+        ObservableList<EntidadRelacionada>autoescuelas=obtenerAutoescuelas();
         for(EntidadRelacionada aut: autoescuelas)
         {
             nombresAutoescuelas.add(aut.getNombre());
@@ -63,7 +61,7 @@ public class ServicioEntidad {
      public static ArrayList<String> obtenerNombresAutoescuelas() throws Exception
     {
         ArrayList<String>nombresClinicas= new ArrayList<>();
-        ObservableList<EntidadRelacionada>clinicas=ObtenerClinicas();
+        ObservableList<EntidadRelacionada>clinicas=obtenerClinicas();
         for(EntidadRelacionada aut: clinicas)
         {
             nombresClinicas.add(aut.getNombre());

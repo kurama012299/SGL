@@ -35,7 +35,7 @@ public class ValidacionCrearExamenTeorico {
             }
         }
         
-        ExamenMedico examenMedico = revisarExamenMedicoValido(ServiciosExamenesMedicos.ObtenerExamenesMedicoPorCI(ci));
+        ExamenMedico examenMedico = revisarExamenMedicoValido(ServiciosExamenesMedicos.obtenerExamenesMedicoPorCI(ci));
         
         
         if(usuario.getRol().equals("AdministradorMedico") || usuario.getRol().equals("Medico"))

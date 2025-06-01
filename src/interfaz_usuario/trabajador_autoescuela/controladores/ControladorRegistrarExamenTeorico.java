@@ -69,7 +69,7 @@ public class ControladorRegistrarExamenTeorico {
         ObservableList<String>nombresAutoescuelas=FXCollections.observableArrayList();
         ObservableList<EntidadRelacionada>autoescuelas=FXCollections.observableArrayList();
         try {
-            autoescuelas=ServicioEntidad.ObtenerAutoescuelas();
+            autoescuelas=ServicioEntidad.obtenerAutoescuelas();
             for(EntidadRelacionada aut: autoescuelas)
             {
                 nombresAutoescuelas.add(aut.getNombre());
@@ -110,7 +110,7 @@ public class ControladorRegistrarExamenTeorico {
             
             examen = new ExamenConduccion(Date.from(dpFechaExamen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
                     rdbtAprobado.isSelected(),
-                    ServicioEntidad.ObtenerEntidadPorNombre((String) cmbNombreEntidad.getValue()),
+                    ServicioEntidad.obtenerEntidadPorNombre((String) cmbNombreEntidad.getValue()),
                     ServicioPersona.obtenerPersonaPorCi(txfCi.getText()),
                     Autentificador.usuario, "Teorico");
             examenMedico = ValidacionCrearExamenTeorico.validarCrearExamenTeorico(txfNombreExaminado.getText(),

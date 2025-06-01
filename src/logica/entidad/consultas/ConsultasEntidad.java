@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import logica.entidad.modelos.EntidadRelacionada;
 
 /**
@@ -21,7 +20,7 @@ import logica.entidad.modelos.EntidadRelacionada;
  */
 public class ConsultasEntidad {
 
-    public static ObservableList<EntidadRelacionada> ObtenerEntidadesConsulta() throws Exception {
+    public static ObservableList<EntidadRelacionada> obtenerEntidadesConsulta() throws Exception {
         ObservableList<EntidadRelacionada> Entidades = FXCollections.observableArrayList();
 
         String consulta = "SELECT * FROM \"Entidad\"";
@@ -49,7 +48,7 @@ public class ConsultasEntidad {
         return Entidades;
     }
 
-    public static EntidadRelacionada ObtenerEntidadPorNombreConsulta(String nombre) throws Exception {
+    public static EntidadRelacionada obtenerEntidadPorNombreConsulta(String nombre) throws Exception {
         EntidadRelacionada Entidad = null;
 
         String consulta = "SELECT * FROM \"Entidad\" WHERE \"Nombre\" = ?";
@@ -77,7 +76,7 @@ public class ConsultasEntidad {
 
         return Entidad;
     }
-    public static EntidadRelacionada ObtenerEntidadPorIdConsulta(long Id) throws Exception {
+    public static EntidadRelacionada obtenerEntidadPorIdConsulta(long Id) throws Exception {
         EntidadRelacionada Entidad = null;
 
         String consulta = "SELECT * FROM \"Entidad\" WHERE \"Id\" = ?";
@@ -106,7 +105,7 @@ public class ConsultasEntidad {
         return Entidad;
     }
 
-    public static ObservableList<EntidadRelacionada> ObtenerAutoescuelasConsulta() throws SQLException, Exception {
+    public static ObservableList<EntidadRelacionada> obtenerAutoescuelasConsulta() throws SQLException, Exception {
         ObservableList<EntidadRelacionada> Autoescuelas = FXCollections.observableArrayList();
         String consulta = "SELECT * FROM \"Entidad\" WHERE \"Tipo_Entidad\" = ?";
 
@@ -136,7 +135,7 @@ public class ConsultasEntidad {
         return Autoescuelas;
     }
 
-    public static EntidadRelacionada ObtenerAutoescuelaPorIdConsulta(long Id) throws Exception {
+    public static EntidadRelacionada obtenerAutoescuelaPorIdConsulta(long Id) throws Exception {
         EntidadRelacionada Autoescuela = null;
 
         String consulta = "SELECT * FROM \"Entidad\""
@@ -167,7 +166,7 @@ public class ConsultasEntidad {
         return Autoescuela;
     }
 
-    public static ObservableList<EntidadRelacionada> ObtenerClinicasConsulta() throws SQLException, Exception {
+    public static ObservableList<EntidadRelacionada> obtenerClinicasConsulta() throws SQLException, Exception {
         ObservableList<EntidadRelacionada> Clinicas = FXCollections.observableArrayList();
         String consulta = "SELECT * FROM \"Entidad\" WHERE \"Tipo_Entidad\" = ?";
 
@@ -197,7 +196,7 @@ public class ConsultasEntidad {
         return Clinicas;
     }
 
-    public static EntidadRelacionada ObtenerClinicaPorIdConsulta(long Id) throws Exception {
+    public static EntidadRelacionada obtenerClinicaPorIdConsulta(long Id) throws Exception {
         EntidadRelacionada Clinica = null;
 
         String consulta = "SELECT * FROM \"Entidad\""

@@ -53,9 +53,9 @@ public class ServicioExamenes {
     public static ObservableList<Examen> obtenerTodosLosExamenes() throws Exception{
         
         ObservableList<Examen> examenes = FXCollections.observableArrayList();
-        ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.ObtenerExamenesPracticos();
-        ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.ObtenerExamenesTeoricos();
-        ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedico();
+        ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.obtenerExamenesPracticos();
+        ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.obtenerExamenesTeoricos();
+        ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedico();
         
         examenes.addAll(examenesMedicos);
         examenes.addAll(examenesPracticos);

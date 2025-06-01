@@ -473,7 +473,7 @@ public class GestorPDF {
         // Datos de los conductores
         boolean fondoGris = false;
         for (Conductor conductor : conductores) {
-            Licencia licencia = ServicioLicencia.ObtenerLicenciaPorId(conductor.getIdLicencia());
+            Licencia licencia = ServicioLicencia.obtenerLicenciaPorId(conductor.getIdLicencia());
             BaseColor colorFondo = fondoGris ? BaseColor.LIGHT_GRAY : BaseColor.WHITE;
 
             // Celda con texto que se ajusta (wrap) y alineación superior

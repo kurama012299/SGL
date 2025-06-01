@@ -156,7 +156,7 @@ public class ControladorRegistrarInfraccion {
             RadioButton seleccionado = (RadioButton) grupoGravedadrdbt.getSelectedToggle();
             String gravedad = seleccionado.getText();
             
-            Licencia licencia = ServicioLicencia.ObtenerLicenciaPorId(idLicencia);
+            Licencia licencia = ServicioLicencia.obtenerLicenciaPorId(idLicencia);
             if(licencia.getCantPuntos()>=36)
                 throw new Exception("Esa licencia ya alcanzo el maximo de puntos");
             if(!licencia.getEstado().equals("Vigente"))

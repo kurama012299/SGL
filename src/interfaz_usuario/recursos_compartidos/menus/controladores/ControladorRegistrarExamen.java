@@ -229,7 +229,7 @@ public class ControladorRegistrarExamen {
             if (rbtMedico.isSelected()) {      
                 ExamenMedico examenMedico = new ExamenMedico(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
                         rbtAprobado.isSelected(),
-                        ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue()),
+                        ServicioEntidad.obtenerEntidadPorNombre(cmbNombreEntidad.getValue()),
                         ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText()),
                         examinador,
                         obtenerRestricciones());
@@ -255,7 +255,7 @@ public class ControladorRegistrarExamen {
                 //Crear examen teorico
                 examen = new ExamenConduccion(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
                         rbtAprobado.isSelected(),
-                        ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue()),
+                        ServicioEntidad.obtenerEntidadPorNombre(cmbNombreEntidad.getValue()),
                         ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText()),
                         examinador, "Teorico");
 
@@ -275,7 +275,7 @@ public class ControladorRegistrarExamen {
                 //Examen Practico
                 ExamenConduccion examen;
                 examen = new ExamenConduccion(Date.from(dtFecha.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())
-                        , rbtAprobado.isSelected(), ServicioEntidad.ObtenerEntidadPorNombre(cmbNombreEntidad.getValue())
+                        , rbtAprobado.isSelected(), ServicioEntidad.obtenerEntidadPorNombre(cmbNombreEntidad.getValue())
                         , ServicioPersona.obtenerPersonaPorCi(txfCarnet.getText())
                         , examinador, "Practico");
                 
@@ -286,7 +286,7 @@ public class ControladorRegistrarExamen {
                         throw new Exception("No puede realizar el examen practico antes del medico");
                 
                 if(examen.getFecha().before(ValidacionCrearExamenPractico.revisarExamenTeoricoValido(
-                        ServiciosExamenesConduccion.ObtenerExamenesTeoricosPorCI(
+                        ServiciosExamenesConduccion.obtenerExamenesTeoricosPorCI(
                                 txfCarnet.getText())).getFecha()))
                     throw new Exception("No puede realizar el examen practico antes del teorico");
                     
@@ -300,7 +300,7 @@ public class ControladorRegistrarExamen {
                     GestorEscenas.cargarRegistrarLicencia(ventanaActual,
                             (Stage) rbtMedico.getScene().getWindow(),
                             ValidacionCrearExamenPractico.revisarExamenMedicoValido(
-                                    ServiciosExamenesMedicos.ObtenerExamenesMedicoPorCI(txfCarnet.getText())),
+                                    ServiciosExamenesMedicos.obtenerExamenesMedicoPorCI(txfCarnet.getText())),
                              examen
                     );
                 }  

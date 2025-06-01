@@ -5,8 +5,6 @@
 package logica.licencia.implementaciones;
 
 import java.time.LocalDate;
-import java.time.Year;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +21,7 @@ import logica.licencia.modelos.Licencia;
  */
 public class ServicioLicencia {
  
-    public static ObservableList<Licencia> ObtenerLicencias() throws Exception {
+    public static ObservableList<Licencia> obtenerLicencias() throws Exception {
         return ConsultasLicencia.obtenerLicenciasConsulta();
     }
 
@@ -55,7 +53,7 @@ public class ServicioLicencia {
         return FXCollections.observableArrayList(licenciasFiltradas);
     }
 
-    public static Licencia ObtenerLicenciaPorId(long Id) throws Exception {
+    public static Licencia obtenerLicenciaPorId(long Id) throws Exception {
         return ConsultasLicencia.obtenerLicenciaPorIdConsulta(Id);
     }
 

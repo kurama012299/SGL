@@ -332,7 +332,7 @@ public class GestorExcel {
                 }
                 else if(examenes.isAprobado() && examenes.getTipo().equalsIgnoreCase("Médico"))
                 {
-                    examenMedico=ServiciosExamenesMedicos.ObtenerExamenesMedicoPorId(examenes.getId());
+                    examenMedico=ServiciosExamenesMedicos.obtenerExamenesMedicoPorId(examenes.getId());
                     if(examenMedico.getRestricciones().size()==0)
                     {
                         hoja.addCell(new Label(4, fila, "Aprobado condicional"));

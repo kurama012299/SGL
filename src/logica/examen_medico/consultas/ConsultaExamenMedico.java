@@ -25,7 +25,7 @@ import logica.usuario.modelos.Usuario;
 public class ConsultaExamenMedico {
     
     //Consulta para Devolver todos los examenes medicos con reestricciones y objetos necesarios para ver mas
-    public static ObservableList<ExamenMedico> ObtenerExamenesMedicosRestriccionConsulta() throws Exception {
+    public static ObservableList<ExamenMedico> obtenerExamenesMedicosRestriccionConsulta() throws Exception {
         ObservableList<ExamenMedico> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT em.\"Id\",em.\"Fecha\",em.\"Aprobado\","+
@@ -55,7 +55,7 @@ public class ConsultaExamenMedico {
                             examinador,
                             new ArrayList<String>());
                     // 2. Cargar restricciones para este examen
-                    CargarRestriccionesParaExamen(examen, conn);
+                    cargarRestriccionesParaExamen(examen, conn);
                     examenes.add(examen);
                 }
             } catch (SQLException e) {
@@ -65,7 +65,7 @@ public class ConsultaExamenMedico {
         }
     }
 
-    private static void CargarRestriccionesParaExamen(ExamenMedico examen, Connection conn) {
+    private static void cargarRestriccionesParaExamen(ExamenMedico examen, Connection conn) {
         String consulta = "SELECT r.\"Nombre\""
                 + "FROM \"Restriccion\" r "
                 + "JOIN \"ExamenMedicoRestriccion\" emr ON r.\"Id\" = emr.\"Id_Restriccion\""
@@ -84,7 +84,7 @@ public class ConsultaExamenMedico {
         }
     }
     
-    public static ExamenMedico ObtenerExamenesMedicosRestriccionPorIdConsulta(Long Id) throws Exception {
+    public static ExamenMedico obtenerExamenesMedicosRestriccionPorIdConsulta(Long Id) throws Exception {
         
          ExamenMedico examen=null;
          
@@ -117,7 +117,7 @@ public class ConsultaExamenMedico {
                             examinador,
                             new ArrayList<String>());
                     // 2. Cargar restricciones para este examen
-                    CargarRestriccionesParaExamen(examen, conn);
+                    cargarRestriccionesParaExamen(examen, conn);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -126,7 +126,7 @@ public class ConsultaExamenMedico {
         }
     }
     
-    public static ObservableList<ExamenMedico> ObtenerExamenesMedicosRestriccionPorIdExaminadorConsulta(Long Id) throws Exception {
+    public static ObservableList<ExamenMedico> obtenerExamenesMedicosRestriccionPorIdExaminadorConsulta(Long Id) throws Exception {
         ObservableList<ExamenMedico> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT em.\"Id\",em.\"Fecha\",em.\"Aprobado\","+
@@ -158,7 +158,7 @@ public class ConsultaExamenMedico {
                             examinador,
                             new ArrayList<String>());
                     // 2. Cargar restricciones para este examen
-                    CargarRestriccionesParaExamen(examen, conn);
+                    cargarRestriccionesParaExamen(examen, conn);
                     examenes.add(examen);
                 }
             } catch (SQLException e) {
