@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -49,12 +50,13 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="53.0" layoutY="82.0" prefHeight="26.0" prefWidth="149.0" text="Juan Pérez Pérez" />
-      <Label alignment="CENTER" layoutX="53.0" layoutY="134.0" prefHeight="26.0" prefWidth="149.0" text="78306512" />
       <Label alignment="CENTER" layoutX="414.0" layoutY="82.0" prefHeight="26.0" prefWidth="149.0" text="La Habana,Regla" />
-      <Label layoutX="270.0" layoutY="215.0" prefHeight="26.0" prefWidth="238.0" text="Rodrigo Martínez Aguado" />
-      <Label layoutX="233.0" layoutY="176.0" prefHeight="26.0" prefWidth="238.0" text="Silvio Rodrigues Martínez" />
-      <Label alignment="CENTER" layoutX="370.0" layoutY="134.0" prefHeight="26.0" prefWidth="238.0" text="Cristian Oliva Sandoval" />
       <JFXButton fx:id="btnCerrar" layoutX="479.0" layoutY="229.0" opacity="0.6" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: red;" text="Cerrar" textFill="WHITE" />
+      <JFXButton fx:id="btnGuardar" cancelButton="true" layoutX="482.0" layoutY="190.0" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: gainsboro;" text="Guardar" />
+      <TextField fx:id="txfContabilidad" layoutX="226.0" layoutY="177.0" prefHeight="25.0" prefWidth="178.0" promptText="Silvio Rodrigues Martínez" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfRecursosHumanos" layoutX="268.0" layoutY="216.0" prefHeight="25.0" prefWidth="171.0" promptText="Rodrigo Martínez Aguado" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfSecretarioGeneral" alignment="CENTER" layoutX="419.0" layoutY="134.0" promptText="Cristian Oliva Sandoval" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfDirectorGeneral" alignment="CENTER" layoutX="53.0" layoutY="83.0" promptText="Juan Pérez Pérez" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txfTelefono" alignment="CENTER" layoutX="53.0" layoutY="134.0" promptText="78306512" style="-fx-background-color: transparent;" />
    </children>
 </Pane>

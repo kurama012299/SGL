@@ -16,7 +16,7 @@ import logica.centro.modelos.Centro;
  *
  * @author Kris
  */
-public class ConsultaCentro {
+public class ConsultasCentro {
     
     
     public static Centro obtenerCentroConsulta() throws Exception {
@@ -46,5 +46,24 @@ public class ConsultaCentro {
         System.out.println(centro);
         return centro;
     }
+    
+    public static boolean actualizarCentroConsulta(Centro centro) throws Exception {
+    String consulta = "UPDATE \"Centro\" SET \"NombreDirectorGeneral\" = ?, \"Telefono\" = ?, \"NombreSecretarioGS\" = ?, \"NombreJefeDptoRH\" = ?";
+
+    try (Connection conn = ConectorBaseDato.conectar();
+         PreparedStatement stmt = conn.prepareStatement(consulta)) {
+        
+        stmt.setString(1, centro.getNombreDirectorGeneral());
+        stmt.setString(2, centro.getTelefono());
+        stmt.setString(3, centro.getNombreSecretarioGS());
+        stmt.setString(4, centro.getNombreJefeDptoRH());
+        
+        int filasAfectadas = stmt.executeUpdate();
+        return filasAfectadas > 0;
+        
+    } catch (SQLException e) {
+        throw new Exception("Error al actualizar el centro en la base de datos", e);
+    }
+}
 }
 

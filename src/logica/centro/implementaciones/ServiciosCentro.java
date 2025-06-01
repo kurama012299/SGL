@@ -4,7 +4,7 @@
  */
 package logica.centro.implementaciones;
 
-import logica.centro.consultas.ConsultaCentro;
+import logica.centro.consultas.ConsultasCentro;
 import logica.centro.modelos.Centro;
 
 /**
@@ -12,7 +12,13 @@ import logica.centro.modelos.Centro;
  * @author Kris
  */
 public class ServiciosCentro {
-    public static Centro ObtenerCentro() throws Exception {
-        return ConsultaCentro.obtenerCentroConsulta();
+    
+    public static Centro obtenerCentro() throws Exception {
+        return ConsultasCentro.obtenerCentroConsulta();
+    }
+    
+    public static void actualizarCentro(Centro centro) throws Exception
+    {
+        ConsultasCentro.actualizarCentroConsulta(centro);
     }
 }

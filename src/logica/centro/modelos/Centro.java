@@ -15,6 +15,26 @@ public class Centro {
     private String telefono;
     private String nombreDirectorGeneral;
     private String nombreJefeDptoRH;
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setNombreDirectorGeneral(String nombreDirectorGeneral) {
+        this.nombreDirectorGeneral = nombreDirectorGeneral;
+    }
+
+    public void setNombreJefeDptoRH(String nombreJefeDptoRH) {
+        this.nombreJefeDptoRH = nombreJefeDptoRH;
+    }
+
+    public void setNombreJefeDptoCont(String nombreJefeDptoCont) {
+        this.nombreJefeDptoCont = nombreJefeDptoCont;
+    }
+
+    public void setNombreSecretarioGS(String nombreSecretarioGS) {
+        this.nombreSecretarioGS = nombreSecretarioGS;
+    }
     private String nombreJefeDptoCont;
     private String nombreSecretarioGS;
     private String logo;
