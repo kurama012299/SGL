@@ -303,11 +303,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="2.0" orientation="VERTICAL" prefHeight="601.0" prefWidth="19.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="7 exámenes realizados desde último inicio de sesión" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos_compartidos/imagenes/ico-buscar.png" />

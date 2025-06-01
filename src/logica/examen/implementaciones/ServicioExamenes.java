@@ -4,6 +4,7 @@
  */
 package logica.examen.implementaciones;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,7 @@ import logica.examen_conduccion.implementaciones.ServiciosExamenesConduccion;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
+import logica.usuario.implementaciones.ServicioUsuario;
 
 /**
  *
@@ -63,4 +65,63 @@ public class ServicioExamenes {
         
         return examenes;
     }
+    
+    public static ObservableList<Examen> obtenerTodosLosExamenesMedicos() throws Exception{
+        
+        ObservableList<Examen> examenes = obtenerTodosLosExamenes();
+        for(Examen examen:examenes)
+            if(!(examen.getTipo().equals("Médico")))
+                examenes.remove(examen);
+        return examenes;
+    }
+    
+   public static ObservableList<Examen> obtenerTodosLosExamenesConduccion() throws Exception{
+        
+        ObservableList<Examen> examenes = FXCollections.observableArrayList();
+        ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.obtenerExamenesPracticos();
+        ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.obtenerExamenesTeoricos();
+        
+        examenes.addAll(examenesPracticos);
+        examenes.addAll(examenesTeoricos);
+        
+        return examenes;
+    }
+   
+   public static ObservableList<Examen> obtenerTodosLosExamenesPorEntidad(Long id) throws Exception{
+       ObservableList<Examen> examenes = obtenerTodosLosExamenes();
+       ObservableList<Examen> examenesEntidad = FXCollections.observableArrayList();
+        for(Examen examen:examenes)
+            if(examen.getEntidad().getId().equals(id))
+                examenesEntidad.add(examen);
+        return examenesEntidad;
+   }
+   
+   public static int TotalMedicos() throws Exception{
+        return ServicioUsuario.obtenerUsuariosExamenesMedicos().size();
+    } 
+     
+     public static int TotalExamenesAprobados(Long id) throws SQLException, Exception {
+
+        ObservableList<Examen> examenes = ServicioExamenes.obtenerTodosLosExamenesPorEntidad(id);
+        int cont = 0;
+        for(Examen examen:examenes)
+            if(examen.isAprobado())
+                cont++;
+        return cont;
+    }
+     
+     public static int TotalExamenesSuspensos(Long id) throws SQLException, Exception {
+
+        ObservableList<Examen> examenes = ServicioExamenes.obtenerTodosLosExamenesPorEntidad(id);
+        int cont = 0;
+        for(Examen examen:examenes)
+            if(!(examen.isAprobado()))
+                cont++;
+        return cont;
+    }
+     
+    public static int TotalExaminadores() throws Exception{
+        return ServicioUsuario.obtenerUsuariosExamenesConduccion().size();
+    } 
+    
 }

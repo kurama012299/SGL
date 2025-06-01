@@ -32,7 +32,8 @@ public class ConsultaExamen {
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
                      "u.\"Nombre\" as nombre_examinador, "+
-                     "ent.\"Nombre\" as nombre_entidad "+ 
+                     "ent.\"Nombre\" as nombre_entidad, "+ 
+                     "ent.\"Id\" as id_entidad "+
                      "FROM \"ExamenTeorico\" et  "+
                      "LEFT JOIN \"Persona\" p ON et.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON et.\"Id_Examinador\" = u.\"Id\"" + 
@@ -42,7 +43,7 @@ public class ConsultaExamen {
             try{
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
-                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"),rs.getLong("id_entidad"));
                     
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
                     
@@ -79,7 +80,8 @@ public class ConsultaExamen {
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
                      "u.\"Nombre\" as nombre_examinador, "+
-                     "ent.\"Nombre\" as nombre_entidad "+ 
+                     "ent.\"Nombre\" as nombre_entidad, "+
+                     "ent.\"Id\" as id_entidad "+
                      "FROM \"ExamenPractico\" ep  "+
                      "LEFT JOIN \"Persona\" p ON ep.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
@@ -88,7 +90,8 @@ public class ConsultaExamen {
             try{
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
-                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"),rs.getLong("id_entidad"));
+                    
                     
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
                     
@@ -110,6 +113,9 @@ public class ConsultaExamen {
                     examenes.add(practico);  
                 }
             } catch (SQLException e) {
+                System.out.println(e.getCause());
+                System.out.println(e.getLocalizedMessage());
+                System.out.println(e.getMessage());
                 throw new Exception("Error al obtener los examenes practicos");
             }
             return examenes;
@@ -127,7 +133,8 @@ public class ConsultaExamen {
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
                      "u.\"Nombre\" as nombre_examinador, "+
-                     "ent.\"Nombre\" as nombre_entidad "+ 
+                     "ent.\"Nombre\" as nombre_entidad, "+
+                 "ent.\"Id\" as id_entidad "+
                      "FROM \"ExamenTeorico\" et  "+
                      "LEFT JOIN \"Persona\" p ON et.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON et.\"Id_Examinador\" = u.\"Id\"" + 
@@ -139,7 +146,7 @@ public class ConsultaExamen {
                 
                 ResultSet rs = stmt.executeQuery();         
                 if (rs.next()) {
-                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"),rs.getLong("id_entidad"));
                     
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
                     
@@ -176,7 +183,8 @@ public class ConsultaExamen {
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
                      "u.\"Nombre\" as nombre_examinador, "+
-                     "ent.\"Nombre\" as nombre_entidad "+ 
+                     "ent.\"Nombre\" as nombre_entidad, "+ 
+                 "ent.\"Id\" as id_entidad "+
                      "FROM \"ExamenPractico\" ep  "+
                      "LEFT JOIN \"Persona\" p ON ep.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
@@ -188,7 +196,7 @@ public class ConsultaExamen {
                 
                 ResultSet rs = stmt.executeQuery();         
                 if (rs.next()) {
-                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"),rs.getLong("id_entidad"));
                     
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
                     
@@ -224,7 +232,8 @@ public class ConsultaExamen {
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
                      "u.\"Nombre\" as nombre_examinador, "+
-                     "ent.\"Nombre\" as nombre_entidad "+ 
+                     "ent.\"Nombre\" as nombre_entidad, "+ 
+                 "ent.\"Id\" as id_entidad "+
                      "FROM \"ExamenPractico\" ep  "+
                      "LEFT JOIN \"Persona\" p ON ep.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
@@ -237,7 +246,7 @@ public class ConsultaExamen {
             
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
-                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"),rs.getLong("id_entidad"));
                     
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
                     
@@ -274,7 +283,8 @@ public class ConsultaExamen {
                      "p.\"Apellidos\" as apellidos_persona, "+ 
                      "p.\"CI\" as ci_persona, "+ 
                      "u.\"Nombre\" as nombre_examinador, "+
-                     "ent.\"Nombre\" as nombre_entidad "+ 
+                     "ent.\"Nombre\" as nombre_entidad, "+ 
+                 "ent.\"Id\" as id_entidad "+
                      "FROM \"ExamenTeorico\" ep  "+
                      "LEFT JOIN \"Persona\" p ON ep.\"Id_Persona\" = p.\"Id\"" +
                      "LEFT JOIN \"Usuario\" u ON ep.\"Id_Examinador\" = u.\"Id\"" + 
@@ -287,7 +297,7 @@ public class ConsultaExamen {
             
                 ResultSet rs = stmt.executeQuery();         
                 while (rs.next()) {
-                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"));
+                    EntidadRelacionada entidad= new EntidadRelacionada(rs.getString("nombre_entidad"),rs.getLong("id_entidad"));
                     
                     Usuario examinador= new Usuario(rs.getString("nombre_examinador"));
                     
