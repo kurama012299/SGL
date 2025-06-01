@@ -159,11 +159,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="-7.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" translateX="1.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="17.0" prefWidth="175.0" text="22 Autoescuelas trabajando" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <JFXButton fx:id="btnExportarAutoescuela" focusTraversable="false" layoutX="407.0" layoutY="95.0" onAction="#ExportarAutoescuelas" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
@@ -194,11 +189,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="595.0" prefWidth="19.0" translateX="1.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="17.0" prefWidth="175.0" text="22 Autoescuelas trabajando" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <JFXButton fx:id="btnExportarClinica" focusTraversable="false" layoutX="407.0" layoutY="95.0" onAction="#ExportarClinicas" prefHeight="28.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
@@ -229,11 +219,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="599.0" prefWidth="19.0" translateX="1.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="217.0" text="22 Entidades trabajando en total " textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <JFXButton fx:id="btnExportarEntidades" focusTraversable="false" layoutX="558.0" layoutY="95.0" onAction="#ExportarEntidades" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
@@ -276,11 +261,6 @@
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Infracciones">
                      <font>
                         <Font name="Arial" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="17.0" prefWidth="175.0" text="114 infracciones recientes" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
                      </font>
                   </Label>
                   <JFXButton fx:id="btnExportarInfracciones" focusTraversable="false" layoutX="518.0" layoutY="94.0" onAction="#ExportarInfracciones" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
@@ -341,11 +321,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="602.0" prefWidth="19.0" translateX="1.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <JFXButton fx:id="btnExportarExamenes" focusTraversable="false" layoutX="398.0" layoutY="94.0" onAction="#ExportarExamenes" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
@@ -407,7 +382,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0">
+            <Pane fx:id="PanelConductores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="850.0" visible="false">
                <children>
                   <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="253.0" text="Gestión Conductores">
                      <font>
@@ -415,11 +390,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="599.0" prefWidth="19.0" translateX="1.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="17.0" prefWidth="175.0" text="2400 Conductores" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <JFXButton fx:id="BotonExportarConductores" focusTraversable="false" layoutX="417.0" layoutY="95.0" onAction="#ExportarConductores" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
@@ -475,11 +445,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="-9.0" orientation="VERTICAL" prefHeight="599.0" prefWidth="19.0" translateX="-11.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="17.0" prefWidth="175.0" text="23 licencias agregadas" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <JFXButton fx:id="btnExportarLicencias" focusTraversable="false" layoutX="358.0" layoutY="94.0" onAction="#ExportarLicencias" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
