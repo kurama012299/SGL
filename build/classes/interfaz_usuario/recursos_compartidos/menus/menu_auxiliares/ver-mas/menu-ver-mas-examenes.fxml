@@ -34,7 +34,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="27.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+     
       <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="43.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../imagenes/ico-atras.png" />
