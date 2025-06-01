@@ -6,6 +6,8 @@ package interfaz_usuario.recursos_compartidos.menus.controladores;
 
 
 import gestor_interfaces.GestorEscenas;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import logica.licencia.modelos.Licencia;
+import logica.persona.implementaciones.ServicioConductor;
 import logica.persona.modelos.Conductor;
 
 /**
@@ -67,6 +70,8 @@ public class ControladorVerMasConductor{
     Pane CategoriaCamion;
     
     @FXML Button btnAtras;
+    
+    @FXML Button btnEliminar;
 
 
     @FXML
@@ -124,6 +129,15 @@ public class ControladorVerMasConductor{
     }
 
         
+    @FXML public void eliminar()
+    {
+        try {
+            ServicioConductor.eliminarConductor(Conductor.getId());
+            GestorEscenas.cerrar(btnAtras);
+        } catch (Exception ex) {
+            GestorEscenas.cargarError(btnEliminar.getScene().getWindow(), ex);
+        }
+    }
     
 
 }

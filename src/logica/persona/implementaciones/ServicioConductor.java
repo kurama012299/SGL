@@ -56,6 +56,8 @@ public class ServicioConductor{
         return conductoresPorEstado;
     }
       
-       
+    public static void eliminarConductor(long id) throws Exception{
+        ConsultasPersona.eliminarPersonaTotalmente(id);
+    }
 
 }

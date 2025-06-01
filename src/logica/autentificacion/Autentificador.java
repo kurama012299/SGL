@@ -7,6 +7,7 @@ package logica.autentificacion;
 import logica.inicios_sesion.consultas.ConsultasInicioSesion;
 import logica.usuario.consultas.ConsultasUsuario;
 import logica.usuario.modelos.Usuario;
+import logica.utiles.Encriptador;
 
 
 
@@ -19,7 +20,7 @@ public class Autentificador {
     public static Usuario usuario;
     public static String existeUsuario(String correo,String clave) throws Exception
     {
-        usuario = ConsultasUsuario.obtenerUsuario(correo, clave);
+        usuario = ConsultasUsuario.obtenerUsuario(correo, Encriptador.encriptar(clave, 5));
         System.out.println(usuario);
         ConsultasInicioSesion.crearInicioSesion(usuario.getId());
         return usuario.getRol();
