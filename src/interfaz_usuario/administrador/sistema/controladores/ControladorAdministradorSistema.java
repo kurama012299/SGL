@@ -12,6 +12,9 @@ import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
@@ -175,7 +178,7 @@ public class ControladorAdministradorSistema extends Controlador{
     private TableView<ExamenConduccion> TablaExamenes;
     
     @FXML
-    private TableColumn<ExamenConduccion, String> ColumnaFotoExamen;
+    private TableColumn<ExamenConduccion, Void> ColumnaFotoExamen;
     
     @FXML
     private TableColumn<ExamenConduccion, String> ColumnaExaminadoExamen;
@@ -193,7 +196,7 @@ public class ControladorAdministradorSistema extends Controlador{
     private TableColumn<ExamenConduccion, String> ColumnaResultadoExamen;
     
     @FXML
-    private TableColumn<ExamenConduccion, String> ColumnaDetallesExamen;
+    private TableColumn<ExamenConduccion, Void> ColumnaDetallesExamen;
     
     @FXML
     private TableColumn<Conductor, Void> ColumnaFoto;
@@ -308,7 +311,7 @@ public class ControladorAdministradorSistema extends Controlador{
     private TableView<Licencia> TablaLicencia;
     
     @FXML
-    private TableColumn<Licencia, String> ColumnaFotoLicencia;
+    private TableColumn<Licencia, Void> ColumnaFotoLicencia;
     
     @FXML
     private TableColumn<Licencia, String> ColumnaNombreLicencia;
@@ -326,7 +329,7 @@ public class ControladorAdministradorSistema extends Controlador{
     private TableColumn<Licencia, Integer> ColumnaPuntosLicencia;
     
     @FXML
-    private TableColumn<Licencia, String> ColumnaDetallesLicencia;
+    private TableColumn<Licencia, Void> ColumnaDetallesLicencia;
     
     @FXML
     private Label LabelUltimoInicioSesion;
@@ -396,10 +399,6 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML private Button btnEscondidoConfiguracion;
    
-   @FXML private RadioButton rdbtAprobadoExamen;
-   
-   @FXML private RadioButton rdbtReprobadoExamen;
-   
    @FXML private RadioButton rdbtLeve;
    
    @FXML private RadioButton rdbtGrave;
@@ -424,6 +423,16 @@ public class ControladorAdministradorSistema extends Controlador{
    
    @FXML private RadioButton rdbtVigente;
    
+   @FXML private RadioButton rdbtTipoLicenciaA;
+   
+   @FXML private RadioButton rdbtTipoLicenciaB;
+   
+   @FXML private RadioButton rdbtTipoLicenciaC;
+   
+   @FXML private RadioButton rdbtTipoLicenciaD;
+   
+   @FXML private RadioButton rdbtTipoLicenciaE;
+   
    @FXML private Button btnExportarAutoescuela;
    
    @FXML private Button btnExportarClinica;
@@ -439,15 +448,16 @@ public class ControladorAdministradorSistema extends Controlador{
    private RadioButton seleccionadoEntidad=null;
    private RadioButton seleccionadoTipoExamen=null;
    private RadioButton seleccionadoGravedadInfraccion=null;
-   private RadioButton seleccionadoResultadoExamen=null;
    private RadioButton seleccionadoEstadoConductor=null;
+   private RadioButton seleccionadoTipoLicencia=null;
    
    
    private ArrayList<RadioButton> grupoRadioEntidades= new ArrayList<>();
    private ArrayList<RadioButton> grupoRadioTipoExamen= new ArrayList<>();
-   private ArrayList<RadioButton> grupoRadioResultadoExamen= new ArrayList<>();
    private ArrayList<RadioButton> grupoRadioGravedadInfraccion= new ArrayList<>();
    private ArrayList<RadioButton> grupoRadioEstadoConductores= new ArrayList<>();
+   private ArrayList<RadioButton> grupoRadioTipoLicencia= new ArrayList<>();
+
    
     private ImageView ImagenLicencias;
     private ImageView ImagenConductores;
@@ -465,21 +475,6 @@ public class ControladorAdministradorSistema extends Controlador{
     {
         
         accionFiltros();
-        
-        
-        grupoRadioTipoExamen.add(rdbtExamenMedico);
-        grupoRadioTipoExamen.add(rdbtExamenPractico);
-        grupoRadioTipoExamen.add(rdbtExamenTeorico);
-        
-        for(RadioButton rb: grupoRadioTipoExamen)
-            {
-                rb.setOnAction(e -> {
-                    manejarSeleccionTipo(rb);
-                    /*GestorTablas.cargarTablaEntidades(TablaEntidad, rb.getText());
-                    eventoEstaSeleccionado();*/
-                });
-            }
-       
         configuracionCentro();
         
         ImagenLicencias = (ImageView) Licencias.getGraphic();
@@ -492,6 +487,7 @@ public class ControladorAdministradorSistema extends Controlador{
         ImagenClinica = (ImageView) Clinica.getGraphic();
         ImagenEntidades = (ImageView) Entidades.getGraphic();
        
+        
         ImagenUsuario.setImage(GestorImagenes.cargarImagen(Autentificador.usuario.getFoto()));
         
         GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Administrador");
@@ -499,21 +495,27 @@ public class ControladorAdministradorSistema extends Controlador{
         
         configurarReportes();
         
-        BotonCerrarSesion.setOnAction(e ->
-        {
+        BotonCerrarSesion.setOnAction(e
+                -> {
             try {
                 GestorEscenas.cargarMensajeCerrarSesion(BotonCerrarSesion.getScene().getWindow());
-                
+
             } catch (Exception ex) {
                 GestorEscenas.cargarError(BotonCerrarSesion.getScene().getWindow(), ex);
             }
-            
+
         });
         
         JFXButton[] BotonesConsumirTecla = {Inicio, Examenes, Licencias, Conductores, Infracciones, Reportes, Autoescuela, Clinica, Entidades};
         GestorEscenas.consumirTecla(BotonesConsumirTecla);
         
-        
+        GestorEscenas.suprimirReordenamientoTablas(TablaAE);
+        GestorEscenas.suprimirReordenamientoTablas(TablaClinica);
+        GestorEscenas.suprimirReordenamientoTablas(TablaConductor);
+        GestorEscenas.suprimirReordenamientoTablas(TablaEntidad);
+        GestorEscenas.suprimirReordenamientoTablas(TablaExamenes);
+        GestorEscenas.suprimirReordenamientoTablas(TablaInfraccion);
+        GestorEscenas.suprimirReordenamientoTablas(TablaLicencia);
         
         System.out.println("Controlador Administrador Sistema Iniciado");
         this.TransicionInicio();   
@@ -525,6 +527,8 @@ public class ControladorAdministradorSistema extends Controlador{
         botonesFiltros.addAll(grupoRadioGravedadInfraccion);
         botonesFiltros.addAll(grupoRadioEntidades);
         botonesFiltros.addAll(grupoRadioEstadoConductores);
+        botonesFiltros.addAll(grupoRadioTipoExamen);
+        botonesFiltros.addAll(grupoRadioTipoLicencia);
         for(RadioButton rb: botonesFiltros)
             rb.setSelected(false);
         
@@ -544,12 +548,42 @@ public class ControladorAdministradorSistema extends Controlador{
         grupoRadioEstadoConductores.add(rdbtVencida);
         grupoRadioEstadoConductores.add(rdbtVigente);
         
+        grupoRadioTipoExamen.add(rdbtExamenMedico);
+        grupoRadioTipoExamen.add(rdbtExamenPractico);
+        grupoRadioTipoExamen.add(rdbtExamenTeorico);
+        
+       
+        grupoRadioTipoLicencia.add(rdbtTipoLicenciaA);
+        grupoRadioTipoLicencia.add(rdbtTipoLicenciaB);
+        grupoRadioTipoLicencia.add(rdbtTipoLicenciaC);
+        grupoRadioTipoLicencia.add(rdbtTipoLicenciaD);
+        grupoRadioTipoLicencia.add(rdbtTipoLicenciaE);
+        
+         for(RadioButton rb: grupoRadioTipoLicencia)
+            {
+                rb.setOnAction(e -> {
+                    manejarSeleccionTipoLicencia(rb);
+                    GestorTablas.cargarTablaLicencias(TablaLicencia, rb.getText());
+                    eventoEstaSeleccionadoTipoLicencia();
+                });
+            } 
+         
+         
+        for(RadioButton rb: grupoRadioTipoExamen)
+            {
+                rb.setOnAction(e -> {
+                    manejarSeleccionTipoExamenes(rb);
+                    GestorTablas.cargarTablaExamenes(TablaExamenes, rb.getText());
+                    eventoEstaSeleccionadoTipoExamen();
+                });
+            } 
+        
         for(RadioButton rb: grupoRadioEntidades)
             {
                 rb.setOnAction(e -> {
                     manejarSeleccionEntidades(rb);
                     GestorTablas.cargarTablaEntidades(TablaEntidad, rb.getText());
-                    eventoEstaSeleccionado();
+                    eventoEstaSeleccionadoEntidades();
                 });
             }
         
@@ -577,8 +611,7 @@ public class ControladorAdministradorSistema extends Controlador{
         
     }
     
-    
-     @FXML private void eventoEstaSeleccionado()
+     @FXML private void eventoEstaSeleccionadoEntidades()
     {
         if(!rdbtClinica.isSelected() && !rdbtAutoescuela.isSelected())
         {
@@ -586,6 +619,25 @@ public class ControladorAdministradorSistema extends Controlador{
             GestorTablas.cargarTablaEntidades(TablaEntidad,"");
         }        
     }
+     
+     @FXML private void eventoEstaSeleccionadoTipoLicencia()
+    {
+        if(!rdbtTipoLicenciaA.isSelected() && !rdbtTipoLicenciaB.isSelected() && !rdbtTipoLicenciaC.isSelected() && !rdbtTipoLicenciaD.isSelected() && !rdbtTipoLicenciaE.isSelected())
+        {
+            TablaLicencia.getItems().clear();
+            GestorTablas.cargarTablaLicencias(TablaLicencia,"");
+        }        
+    }
+     
+      @FXML private void eventoEstaSeleccionadoTipoExamen()
+    {
+        if(!rdbtExamenMedico.isSelected() && !rdbtExamenPractico.isSelected() && !rdbtExamenTeorico.isSelected())
+        {
+            TablaExamenes.getItems().clear();
+            GestorTablas.cargarTablaExamenes(TablaExamenes,"");
+        }     
+    }
+      
      
     @FXML private void eventoEstaSeleccionadoInfraccion()
     {
@@ -635,7 +687,7 @@ public class ControladorAdministradorSistema extends Controlador{
         }
     }
     
-    @FXML private void manejarSeleccionTipo(RadioButton radioClickeado)
+    @FXML private void manejarSeleccionTipoExamenes(RadioButton radioClickeado)
     {
         if (seleccionadoTipoExamen == radioClickeado) {
             radioClickeado.setSelected(false);
@@ -643,6 +695,19 @@ public class ControladorAdministradorSistema extends Controlador{
         } else {
             seleccionadoTipoExamen = radioClickeado;
             for (RadioButton rb : grupoRadioTipoExamen) {
+                rb.setSelected(rb == radioClickeado);
+            }
+        }
+    }
+    
+    @FXML private void manejarSeleccionTipoLicencia(RadioButton radioClickeado)
+    {
+        if (seleccionadoTipoLicencia == radioClickeado) {
+            radioClickeado.setSelected(false);
+            seleccionadoTipoLicencia = null;
+        } else {
+            seleccionadoTipoLicencia = radioClickeado;
+            for (RadioButton rb : grupoRadioTipoLicencia) {
                 rb.setSelected(rb == radioClickeado);
             }
         }
@@ -804,7 +869,7 @@ public class ControladorAdministradorSistema extends Controlador{
     {
         limpiarFiltros();
         GestorTablas.configurarColumnasLicencias(ColumnaFotoLicencia, ColumnaNombreLicencia, ColumnaTipoLicencia, ColumnaEmisionLicencia, ColumnaVencimientoLicencia, ColumnaPuntosLicencia, ColumnaDetallesLicencia);
-        GestorTablas.cargarTablaLicencias(TablaLicencia);
+        GestorTablas.cargarTablaLicencias(TablaLicencia,"");
         Pane[] PanelesOcultar={PanelInfracciones, PanelInicio,PanelReportes, PanelConductores, PanelExamenes, PanelClinica, PanelAutoescuela, PanelEntidades};
         GestorEscenas.mostrarOcultarPaneles(PanelLicencias,PanelesOcultar);
         JFXButton[] botones = {Inicio, Conductores, Infracciones, Examenes, Reportes, Autoescuela, Clinica, Entidades};
@@ -917,7 +982,7 @@ public class ControladorAdministradorSistema extends Controlador{
         limpiarFiltros();
         GestorTablas.configurarColumnasExamenes(ColumnaFotoExamen, ColumnaExaminadoExamen, ColumnaTipoExamen, ColumnaFechaExamen, ColumnaExaminadorExamen, ColumnaResultadoExamen, ColumnaDetallesExamen);
         try {
-            GestorTablas.cargarTablaExamenes(TablaExamenes);
+            GestorTablas.cargarTablaExamenes(TablaExamenes,"");
         } catch (Exception ex) {
             GestorEscenas.cargarError(BotonCerrarSesion.getScene().getWindow(), ex);
         }

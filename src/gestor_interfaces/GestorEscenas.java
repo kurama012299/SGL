@@ -66,6 +66,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -1187,4 +1189,13 @@ public class GestorEscenas  {
         });   
     }
 
+    //Funcion para evitar que se puedan desorganizar las tablas
+    public static void suprimirReordenamientoTablas(TableView<?> tabla)
+    {
+        tabla.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        for(TableColumn<?,?> col:tabla.getColumns())
+        {
+            col.setReorderable(false);
+        }
+    }
 }

@@ -122,6 +122,7 @@ public class ControladorMedico extends Controlador{
         System.out.println("Controlador Medico Iniciado");
         
         accionFiltros();
+        GestorEscenas.suprimirReordenamientoTablas(tblExamenesMedicos);
         
         ivImagenInicio = (ImageView) jfxbtnInicio.getGraphic();
         ivImagenExamenesMedicos = (ImageView) jfxbtnExamenesMedicos.getGraphic();
