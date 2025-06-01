@@ -282,6 +282,7 @@ public class ConsultasPersona {
                 }
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new Exception("Error al eliminar conductor");
         }
         return false;

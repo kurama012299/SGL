@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.modelos.ExamenMedico;
 
