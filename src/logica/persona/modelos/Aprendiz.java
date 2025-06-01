@@ -19,15 +19,15 @@ public class Aprendiz extends Persona{
     @Override
     public String toString()
     {
-        return "Id: "+ Id + "\n"+
-                "Nombre: "+ Nombre + "\n"+
-                "Apellidos: "+ Apellidos + "\n"+
-                "CI: "+ CI + "\n"+
-                "FechaNacimiento: "+ FechaNacimiento + "\n"+
-                "Direccion: "+ Direccion + "\n"+
-                "Telefono: "+ Telefono + "\n"+
-                "Correo: "+ Correo + "\n"+
-                "Foto: "+ Foto + "\n";
+        return "Id: "+ id + "\n"+
+                "Nombre: "+ nombre + "\n"+
+                "Apellidos: "+ apellidos + "\n"+
+                "CI: "+ ci + "\n"+
+                "FechaNacimiento: "+ fechaNacimiento + "\n"+
+                "Direccion: "+ direccion + "\n"+
+                "Telefono: "+ telefono + "\n"+
+                "Correo: "+ correo + "\n"+
+                "Foto: "+ foto + "\n";
     }
     
     public Aprendiz(long id,String nombre,String apellido,String Ci)

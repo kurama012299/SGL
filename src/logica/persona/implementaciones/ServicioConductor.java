@@ -5,18 +5,12 @@
 package logica.persona.implementaciones;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import logica.infraccion.consultas.ConsultasInfraccion;
-import logica.infraccion.modelos.Infraccion;
 import logica.licencia.implementaciones.ServicioLicencia;
 import logica.licencia.modelos.Licencia;
 import logica.persona.consultas.ConsultasPersona;
 import logica.persona.modelos.Conductor;
-import logica.persona.modelos.Persona;
 
 /**
  *
@@ -25,16 +19,16 @@ import logica.persona.modelos.Persona;
 public class ServicioConductor{
 
     
-    public static ObservableList<Conductor> ObtenerConductores() throws Exception {
+    public static ObservableList<Conductor> obtenerConductores() throws Exception {
         return ConsultasPersona.obtenerConductoresConsulta();
     }
     
-    public static Conductor ObtenerConductorPorId(long Id) throws Exception
+    public static Conductor obtenerConductorPorId(long Id) throws Exception
     {
         return ConsultasPersona.obtenerConductorPorIdConsulta(Id);
     }
     
-     public static Conductor ObtenerConductorPorIdLicencia(long IdLicencia) throws Exception
+     public static Conductor obtenerConductorPorIdLicencia(long IdLicencia) throws Exception
     {
         return ConsultasPersona.obtenerConductorPorIdLicenciaConsulta(IdLicencia);
     }
@@ -50,7 +44,7 @@ public class ServicioConductor{
         int i=0;
         for (Conductor con : ConsultasPersona.obtenerConductoresConsulta()) {
             if (licencias.get(i++).getEstado().equalsIgnoreCase(estado)) {
-                conductoresPorEstado.add(ServicioConductor.ObtenerConductorPorIdLicencia(licencias.get(i-1).getId()));
+                conductoresPorEstado.add(ServicioConductor.obtenerConductorPorIdLicencia(licencias.get(i-1).getId()));
             }
         }
         return conductoresPorEstado;

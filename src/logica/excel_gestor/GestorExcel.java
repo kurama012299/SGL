@@ -256,7 +256,7 @@ public class GestorExcel {
             // Escribir datos de las infracciones
             int fila = 1;
             for (Infraccion infracciones : listaInfracciones) {
-                hoja.addCell(new Label(0, fila, (ServicioConductor.ObtenerConductorPorId(infracciones.getIdLicencia())).getNombreApellidos()));
+                hoja.addCell(new Label(0, fila, (ServicioConductor.obtenerConductorPorId(infracciones.getIdLicencia())).getNombreApellidos()));
                 hoja.addCell(new Label(1, fila, infracciones.getGravedad()));
                 hoja.addCell(new Label(2, fila, infracciones.getFecha().toString()));
                 hoja.addCell(new Label(3, fila, infracciones.getLugar()));
@@ -396,7 +396,7 @@ public class GestorExcel {
             // Escribir datos de las licencias
             int fila = 1;
             for (Licencia licencia : listaLicencias) {
-                hoja.addCell(new Label(0, fila, ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId()).getNombreApellidos()));
+                hoja.addCell(new Label(0, fila, ServicioConductor.obtenerConductorPorIdLicencia(licencia.getId()).getNombreApellidos()));
                 hoja.addCell(new Label(1, fila, licencia.getTipo()));
                 hoja.addCell(new Label(2, fila, licencia.getFechaEmision().toString()));
                 hoja.addCell(new Label(3, fila, licencia.getFechaVencimiento().toString()));

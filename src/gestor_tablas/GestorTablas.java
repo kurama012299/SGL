@@ -93,7 +93,7 @@ public class GestorTablas {
                     GestorEscenas.cargarVerMasInfraccion(ventana, infraccion, licencia);
                 } else if (objeto instanceof Licencia) {
                     Licencia licencia = (Licencia) objeto;
-                    Conductor conductor = ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId());
+                    Conductor conductor = ServicioConductor.obtenerConductorPorIdLicencia(licencia.getId());
                     GestorEscenas.cargarVerMasLicencias(ventana, conductor, licencia);
                 } else if (objeto instanceof EntidadRelacionada) {
                     EntidadRelacionada entidad = (EntidadRelacionada) objeto;
@@ -346,7 +346,7 @@ public class GestorTablas {
             default:
                 ObservableList<Conductor> conductores= FXCollections.observableArrayList();
                 try {
-                    conductores = ServicioConductor.ObtenerConductores();
+                    conductores = ServicioConductor.obtenerConductores();
                 } catch (Exception ex) {
                     throw new Exception("Error al cargar la tabla");
                 }
@@ -832,7 +832,7 @@ public class GestorTablas {
             Infraccion infraccion = cellData.getValue();
             Conductor conductor = null;
             try {
-                conductor = ServicioConductor.ObtenerConductorPorIdLicencia(infraccion.getIdLicencia());
+                conductor = ServicioConductor.obtenerConductorPorIdLicencia(infraccion.getIdLicencia());
             } catch (Exception ex) {
 
             }
@@ -970,7 +970,7 @@ public class GestorTablas {
             try {
                 Licencia licencia = cellData.getValue();
                 Conductor conductor = null;
-                conductor = ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId());
+                conductor = ServicioConductor.obtenerConductorPorIdLicencia(licencia.getId());
                 return new SimpleStringProperty(
                         String.format("%s %s", conductor.getNombre(), conductor.getApellidos())
                 );
@@ -983,7 +983,7 @@ public class GestorTablas {
         columnaFotoLicencia.setCellValueFactory(cellData -> {
             try {
                 Licencia licencia = cellData.getValue();
-                return new SimpleStringProperty(ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId()).getFoto()
+                return new SimpleStringProperty(ServicioConductor.obtenerConductorPorIdLicencia(licencia.getId()).getFoto()
                 );
             } catch (Exception ex) {
 

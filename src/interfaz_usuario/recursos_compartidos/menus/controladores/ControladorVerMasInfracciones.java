@@ -71,7 +71,7 @@ public class ControladorVerMasInfracciones {
     {
         System.out.println("Iniciar llamado");
         String puntosStr = Integer.toString(Licencia.getCantPuntos());
-        Conductor Conductor = ServicioConductor.ObtenerConductorPorIdLicencia(Licencia.getId());
+        Conductor Conductor = ServicioConductor.obtenerConductorPorIdLicencia(Licencia.getId());
         TextFieldPuntos.setText(puntosStr);
         ColorGravedad(Infraccion.getGravedad(), TextFieldGravedad);
         TextFieldPagado.setText(Pagado(Infraccion.isPagada()));

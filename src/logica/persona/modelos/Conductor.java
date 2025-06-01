@@ -11,16 +11,16 @@ import java.util.Date;
  * @author Angel Hernandez
  */
 public class Conductor extends Persona{
-    private Long IdLicencia;
+    private Long idLicencia;
 
     public Conductor(Long Id, String Nombre, String Apellidos, String CI, Date FechaNacimiento, String Direccion, String Telefono, String Correo, String Foto,Long IdLicencia) {
         super(Id, Nombre, Apellidos, CI, FechaNacimiento, Direccion, Telefono, Correo, Foto);
-        this.IdLicencia=IdLicencia;
+        this.idLicencia=IdLicencia;
     }
     
      public Conductor(String Nombre, String Apellidos, Long IdLicencia, String CI, String Foto){
          super(Nombre,Apellidos,CI,Foto);
-        this.IdLicencia=IdLicencia;
+        this.idLicencia=IdLicencia;
     }
      
      public Conductor(String CI){
@@ -29,27 +29,27 @@ public class Conductor extends Persona{
      
      public Conductor(long id,String nombre, String apellidos, String CI, long idLicencia){
          super(id,nombre,apellidos,CI);
-         this.IdLicencia=idLicencia;
+         this.idLicencia=idLicencia;
      }
     
 
     public Long getIdLicencia() {
-        return IdLicencia;
+        return idLicencia;
     }
     
     
     @Override
     public String toString()
     {
-        return "Id: "+ Id + "\n"+
-                "Nombre: "+ Nombre + "\n"+
-                "Apellidos: "+ Apellidos + "\n"+
-                "CI: "+ CI + "\n"+
-                "FechaNacimiento: "+ FechaNacimiento + "\n"+
-                "Direccion: "+ Direccion + "\n"+
-                "Telefono: "+ Telefono + "\n"+
-                "Correo: "+ Correo + "\n"+
-                "Foto: "+ Foto + "\n"+
-                "IdLicencia: "+ IdLicencia + "\n";
+        return "Id: "+ id + "\n"+
+                "Nombre: "+ nombre + "\n"+
+                "Apellidos: "+ apellidos + "\n"+
+                "CI: "+ ci + "\n"+
+                "FechaNacimiento: "+ fechaNacimiento + "\n"+
+                "Direccion: "+ direccion + "\n"+
+                "Telefono: "+ telefono + "\n"+
+                "Correo: "+ correo + "\n"+
+                "Foto: "+ foto + "\n"+
+                "IdLicencia: "+ idLicencia + "\n";
     }
 }

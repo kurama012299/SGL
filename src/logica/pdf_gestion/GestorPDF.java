@@ -114,7 +114,7 @@ public class GestorPDF {
             agregarCeldaDatosAjustable(tabla, licencia.getFechaEmision().toString(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, licencia.getFechaVencimiento().toString(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, obtenerRestriccionesFormateadas(licencia.getRestricciones()), estilos.get("datos"), colorFondo);
-            agregarCeldaDatosAjustable(tabla, ServicioConductor.ObtenerConductorPorIdLicencia(licencia.getId()).getCI(), estilos.get("datos"), colorFondo);
+            agregarCeldaDatosAjustable(tabla, ServicioConductor.obtenerConductorPorIdLicencia(licencia.getId()).getCI(), estilos.get("datos"), colorFondo);
             agregarCeldaDatosAjustable(tabla, obtenerCategoriasFormateadas(licencia.getCategorias()), estilos.get("datos"), colorFondo);
 
             fondoGris = !fondoGris;
