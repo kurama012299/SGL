@@ -86,7 +86,7 @@ public class ControladorVerMasEntidades {
    private double totalExamenesClinica() throws SQLException, Exception {
 
         try (Connection conn = ConectorBaseDato.conectar()) {
-            Estadistica Estadistica = GestorEstadisticas.ObtenerCantidadExamenesClinica(conn);
+            Estadistica Estadistica = GestorEstadisticas.obtenerCantidadExamenesClinica(conn);
             return Estadistica.GetValor();
         }
     }
@@ -94,7 +94,7 @@ public class ControladorVerMasEntidades {
     private double totalExamenesAutoescuela() throws SQLException, Exception {
 
         try (Connection conn = ConectorBaseDato.conectar()) {
-            Estadistica Estadistica = GestorEstadisticas.ObtenerCantidadExamenesAutoescuela(conn);
+            Estadistica Estadistica = GestorEstadisticas.obtenerCantidadExamenesAutoescuela(conn);
             return Estadistica.GetValor();
         }
 
