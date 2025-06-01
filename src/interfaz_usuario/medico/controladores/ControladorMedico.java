@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
@@ -92,9 +93,9 @@ public class ControladorMedico extends Controlador{
     
     @FXML private TableColumn<ExamenMedico, String>tblcClinica;
     
-    @FXML private TableColumn<ExamenMedico, String>tblcDetalles;
+    @FXML private TableColumn<ExamenMedico, Void>tblcDetalles;
     
-    @FXML private TableColumn<ExamenMedico, String>tblcFoto;
+    @FXML private TableColumn<ExamenMedico, Void>tblcFoto;
 
     @FXML private Label lblUsuarioNombre;
     
@@ -102,12 +103,25 @@ public class ControladorMedico extends Controlador{
     
     @FXML private Label lblFechaHora;
     
+    @FXML private RadioButton rdbtAprobadoCondicional;
+    
+    @FXML private RadioButton rdbtAprobado;
+    
+    @FXML private RadioButton rdbtReprobado;
+    
+    private RadioButton seleccionado;
+    
+    
+    private ArrayList<RadioButton>grupoFiltro= new ArrayList<>();
+    
     private ImageView ivImagenInicio;
     private ImageView ivImagenExamenesMedicos;
     
     @FXML
     public void initialize() {
         System.out.println("Controlador Medico Iniciado");
+        
+        accionFiltros();
         
         ivImagenInicio = (ImageView) jfxbtnInicio.getGraphic();
         ivImagenExamenesMedicos = (ImageView) jfxbtnExamenesMedicos.getGraphic();
@@ -128,11 +142,50 @@ public class ControladorMedico extends Controlador{
 
     }
     
+    @FXML private void accionFiltros()
+    {
+        grupoFiltro.add(rdbtAprobado);
+        grupoFiltro.add(rdbtAprobadoCondicional);
+        grupoFiltro.add(rdbtReprobado);
+        
+        for(RadioButton rb: grupoFiltro)
+            {
+                rb.setOnAction(e -> {
+                    manejarSeleccion(rb);
+                    GestorTablas.cargarTablaExamenesMedicosMedicoUnico(tblExamenesMedicos,Autentificador.usuario.getId(), rb.getText());
+                    eventoEstaSeleccionado();
+                });
+            }
+    }
+    
+     @FXML private void eventoEstaSeleccionado()
+    {
+        if(!rdbtAprobado.isSelected() && !rdbtAprobadoCondicional.isSelected() && !rdbtReprobado.isSelected())
+        {
+            tblExamenesMedicos.getItems().clear();
+            GestorTablas.cargarTablaExamenesMedicosMedicoUnico(tblExamenesMedicos,Autentificador.usuario.getId(),"");
+        }        
+    }
+     
+     @FXML private void manejarSeleccion(RadioButton radioClickeado)
+    {
+        if (seleccionado == radioClickeado) {
+            radioClickeado.setSelected(false);
+            seleccionado = null;
+        } else {
+            seleccionado = radioClickeado;
+            for (RadioButton rb : grupoFiltro) {
+                rb.setSelected(rb == radioClickeado);
+            }
+        }
+    }
+     
+     
     @FXML
     public void transicionExamenesMedico() {
         
         GestorTablas.configurarColumnasExamenesMedicosMedicoUnico(tblcFoto,tblcExaminado, tblcFecha, tblcResultado, tblcClinica, tblcDetalles);
-        GestorTablas.cargarTablaExamenesMedicosMedicoUnico(tblExamenesMedicos, Autentificador.usuario.getId());
+        GestorTablas.cargarTablaExamenesMedicosMedicoUnico(tblExamenesMedicos, Autentificador.usuario.getId(),"");
         
         Pane[] panelesOcultar={pnlInicio};
         GestorEscenas.mostrarOcultarPaneles(pnlExamenes,panelesOcultar);

@@ -7,6 +7,7 @@ package logica.examen_medico.implementaciones;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.examen_medico.consultas.ConsultaExamenMedico;
 import logica.examen_medico.modelos.ExamenMedico;
@@ -21,8 +22,35 @@ public class ServiciosExamenesMedicos {
         return ConsultaExamenMedico.obtenerExamenesMedicosRestriccionConsulta();
     }
     
-    public static ObservableList<ExamenMedico> obtenerExamenesMedicoPorIdExaminador(Long Id) throws Exception {
-        return ConsultaExamenMedico.obtenerExamenesMedicosRestriccionPorIdExaminadorConsulta(Id);
+    public static ObservableList<ExamenMedico> obtenerExamenesMedicoPorIdExaminador(Long Id,String resultado) throws Exception {
+        ObservableList<ExamenMedico>examenesPorResultado=FXCollections.observableArrayList();
+        ObservableList<ExamenMedico>examenesMedicos=ConsultaExamenMedico.obtenerExamenesMedicosRestriccionPorIdExaminadorConsulta(Id);
+        for(ExamenMedico exa: examenesMedicos)
+        {
+           if(resultado.equals("Aprobado"))
+           {
+               if(exa.isAprobado()==true && exa.getRestricciones().size()==0)
+                   examenesPorResultado.add(exa);
+           }
+           else if(resultado.equals("Reprobado"))
+           {
+               if (exa.isAprobado()==false) 
+                  examenesPorResultado.add(exa);
+           }
+           else if(resultado.equals("Aprobado condicional"))
+           {
+               if(exa.isAprobado()==true && exa.getRestricciones().size()!=0)
+               {
+                   examenesPorResultado.add(exa);
+               }
+           }
+           else 
+           {
+               examenesPorResultado.add(exa);
+           }
+        }
+        return examenesPorResultado;
+        
     }
     
     public static ExamenMedico obtenerExamenesMedicoPorId(Long Id) throws Exception {

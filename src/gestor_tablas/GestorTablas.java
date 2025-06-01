@@ -490,25 +490,52 @@ public class GestorTablas {
     }
 
     
-    public static void cargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> tablaExamenesMedicos, Long id) {
-        try {
-            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id);
-            tablaExamenesMedicos.setItems(examenesMedicos);
-            llenarColumnaDetalles(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
-            llenarColumnaFotos(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
-        } catch (Exception ex) {
-            //Capturar Error
+    public static void cargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> tablaExamenesMedicos, Long id,String resultado) {
+        
+        switch (resultado) {
+            case "Aprobado condicional":
+                try {
+                    ObservableList<ExamenMedico> examenesMedicoCondicional = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id, resultado);
+                    tablaExamenesMedicos.setItems(examenesMedicoCondicional);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenesMedicos.getScene().getWindow(), ex);
+                }
+                break;
+            case "Aprobado":
+                try {
+                    ObservableList<ExamenMedico> examenesMedicosAprobados = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id, resultado);
+                    tablaExamenesMedicos.setItems(examenesMedicosAprobados);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenesMedicos.getScene().getWindow(), ex);
+                }
+                break;
+            case "Reprobado":
+                try {
+                    ObservableList<ExamenMedico> examenesMedicosReprobados = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id, resultado);
+                    tablaExamenesMedicos.setItems(examenesMedicosReprobados);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenesMedicos.getScene().getWindow(), ex);
+                }
+                break;
+            default:
+                try {
+                    ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id, resultado);
+                    tablaExamenesMedicos.setItems(examenesMedicos);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenesMedicos.getScene().getWindow(), ex);
+                }
         }
+
     }
 
     
     public static void configurarColumnasExamenesMedicosMedicoUnico(
-            TableColumn<ExamenMedico, String> columnaFotoExamen,
+            TableColumn<ExamenMedico, Void> columnaFotoExamen,
             TableColumn<ExamenMedico, String> columnaExaminadoExamen,
             TableColumn<ExamenMedico, Date> columnaFechaExamen,
             TableColumn<ExamenMedico, String> columnaResultadoExamen,
             TableColumn<ExamenMedico, String> columnaClinicaExamen,
-            TableColumn<ExamenMedico, String> columnaDetallesExamen) {
+            TableColumn<ExamenMedico, Void> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
         columnaExaminadoExamen.setCellValueFactory(cellData -> {
@@ -533,6 +560,60 @@ public class GestorTablas {
             return new SimpleStringProperty("Reprobado");
         });
 
+        columnaFotoExamen.setCellFactory(param -> new TableCell<ExamenMedico, Void>() {
+            private final ImageView imagen = new ImageView();
+
+            {
+                Image icono = new Image(
+                        Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                                "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
+                        )
+                );
+                try {
+                    imagen.setFitHeight(40);
+                    imagen.setFitWidth(40);
+                    imagen.setPreserveRatio(true);
+                    imagen.setImage(icono);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(imagen.getScene().getWindow(), ex);
+                }
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                if(empty)
+                    setGraphic(null);
+                else
+                    setGraphic(imagen);
+            }
+        }
+    );
+        
+        columnaDetallesExamen.setCellFactory(param -> new TableCell<ExamenMedico, Void>(){
+            private final Label lbvVerMas = new Label("Ver mas");
+            {
+                lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                lbvVerMas.setOnMouseClicked(e ->{
+                    ExamenMedico examen= getTableView().getItems().get(getIndex());
+                    try {
+                        mostrarDetalles(examen, lbvVerMas.getScene().getWindow());
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(lbvVerMas.getScene().getWindow(), ex);
+                    }
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : lbvVerMas);
+            }
+        });
+        
+        
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
 

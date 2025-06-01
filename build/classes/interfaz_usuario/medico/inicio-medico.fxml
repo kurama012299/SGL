@@ -10,7 +10,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -90,7 +89,7 @@
       </VBox>
       <StackPane prefHeight="600.0" prefWidth="843.0">
          <children>
-            <Pane fx:id="pnlInicio" prefHeight="558.0" prefWidth="843.0">
+            <Pane fx:id="pnlInicio" prefHeight="558.0" prefWidth="843.0" visible="false">
                <children>
                   <Pane layoutX="-3.0" prefHeight="39.0" prefWidth="835.0" style="-fx-background-color: ghostwhite;">
                      <children>
@@ -295,19 +294,14 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pnlExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="831.0" visible="false">
+            <Pane fx:id="pnlExamenes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="831.0">
                <children>
-                  <Label layoutX="27.0" layoutY="22.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Médicos">
+                  <Label layoutX="14.0" layoutY="53.0" prefHeight="33.0" prefWidth="323.0" text="Gestión Exámenes Médicos">
                      <font>
                         <Font name="Arial" size="25.0" />
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="2.0" orientation="VERTICAL" prefHeight="601.0" prefWidth="19.0" />
-                  <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="14.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../recursos_compartidos/imagenes/ico-buscar.png" />
-                     </image>
-                  </ImageView>
                   <JFXButton focusTraversable="false" layoutX="406.0" layoutY="94.0" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
@@ -318,8 +312,6 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </JFXButton>
-                  <TextField layoutX="47.0" layoutY="95.0" prefHeight="25.0" prefWidth="336.0" promptText="Buscar" style="-fx-background-color: transparent;" />
-                  <Line endX="180.00003051757812" endY="7.62939453125E-6" layoutX="202.0" layoutY="120.0" startX="-147.00003051757812" stroke="#8000ff" />
                   <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="667.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../recursos_compartidos/imagenes/ico-filtros.png" />
@@ -330,17 +322,17 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXRadioButton layoutX="683.0" layoutY="49.0" prefHeight="17.0" prefWidth="180.0" text="Aprobado condicional">
+                  <JFXRadioButton fx:id="rdbtAprobadoCondicional" layoutX="683.0" layoutY="49.0" prefHeight="17.0" prefWidth="180.0" text="Aprobado condicional">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="683.0" layoutY="80.0" prefHeight="17.0" prefWidth="84.0" text="Aprobado">
+                  <JFXRadioButton fx:id="rdbtAprobado" layoutX="683.0" layoutY="80.0" prefHeight="17.0" prefWidth="84.0" text="Aprobado">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="683.0" layoutY="106.0" prefHeight="17.0" prefWidth="96.0" text="Reprobado">
+                  <JFXRadioButton fx:id="rdbtReprobado" layoutX="683.0" layoutY="106.0" prefHeight="17.0" prefWidth="96.0" text="Reprobado">
                      <selectedColor>
                         <Color red="0.501960813999176" blue="1.0" />
                      </selectedColor>
@@ -363,6 +355,11 @@
                         <String fx:value="scroll-bar" />
                      </styleClass>
                   </TableView>
+                  <Label layoutX="35.0" layoutY="87.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>
