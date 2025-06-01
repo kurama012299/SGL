@@ -5,8 +5,10 @@
 package interfaz_usuario.administrador.sistema.controladores;
 
 import gestor_interfaces.GestorEscenas;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -15,6 +17,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import logica.entidad.implementaciones.ServicioEntidad;
 import logica.entidad.modelos.EntidadRelacionada;
+import logica.examen.implementaciones.ServicioExamenes;
+import logica.examen.modelos.Examen;
+import logica.usuario.implementaciones.ServicioUsuario;
 
 /**
  *
@@ -31,11 +36,11 @@ public class ControladorVerMasClinicas {
     TextField txfDirector;
 
     @FXML
-    TextField txfCantidadPacientes;//Hacer Metodo en la base de datos
+    TextField txfCantidadPacientes;
 
     @FXML
-    TextField txfCantidadMedicos;//Hacer Metodo en la base de datos
-
+    TextField txfCantidadMedicos;
+    
     @FXML
     TextField txfTelefono;
 
@@ -43,10 +48,10 @@ public class ControladorVerMasClinicas {
     TextField txfCorreo;
 
     @FXML
-    TextField txfExamenesA;//Hacer Metodo en la base de datos
+    TextField txfExamenesA;
 
     @FXML
-    TextField txfExamenesD;//Hacer Metodo en la base de datos
+    TextField txfExamenesD;
 
     @FXML
     TextArea txfDireccion;
@@ -78,11 +83,19 @@ public class ControladorVerMasClinicas {
         btnAtras.setOnAction(e -> {
             GestorEscenas.cerrar(btnAtras);
         });
+        String cantPacientes = String.valueOf(ServicioExamenes.obtenerTodosLosExamenesPorEntidad(clinica.getId()).size());
+        String CantMed = String.valueOf(ServicioExamenes.TotalMedicos());
+        String CantExamA = String.valueOf(ServicioExamenes.TotalExamenesAprobados(clinica.getId()));
+        String CantExamS = String.valueOf(ServicioExamenes.TotalExamenesSuspensos(clinica.getId()));
         txfDirector.setText(clinica.getNombreDirector());
         txfCorreo.setText(clinica.getCorreo());
         txfNombre.setText(clinica.getNombre());
         txfTelefono.setText(clinica.getTelefono());
         txfDireccion.setText(clinica.getDireccion());
+        txfCantidadPacientes.setText(cantPacientes);
+        txfCantidadMedicos.setText(CantMed);
+        txfExamenesA.setText(CantExamA);
+        txfExamenesD.setText(CantExamS);
 
         btnEditar.setOnAction(e -> {
 
@@ -149,4 +162,6 @@ public class ControladorVerMasClinicas {
         }
 
     }
+    
+     
 }

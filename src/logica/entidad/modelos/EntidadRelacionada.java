@@ -54,9 +54,10 @@ public class EntidadRelacionada {
         this.nombreDirector = NombreDirector;
         this.tipoEntidad = TipoEntidad;
     }
-    public EntidadRelacionada(String nombre)
+    public EntidadRelacionada(String nombre, long id)
     {
         this.nombre = nombre;
+        this.id = id;
     }
     
     public EntidadRelacionada(String Nombre, String Direccion, String Telefono, String Correo, String NombreDirector, String TipoEntidad) {
