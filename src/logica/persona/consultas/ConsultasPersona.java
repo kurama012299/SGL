@@ -261,11 +261,6 @@ public class ConsultasPersona {
             }
 
         }
-        /*catch (SQLException e) {
-        System.out.println("Error al obtener conductores con licencia vencida: " + e.getMessage());
-        throw new Exception("Error al obtener conductores con licencia vencida en el periodo especificado");
-    }*/
-
         return conductoresVencidos;
     }
 

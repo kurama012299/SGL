@@ -21,7 +21,6 @@ public class Autentificador {
     public static String existeUsuario(String correo,String clave) throws Exception
     {
         usuario = ConsultasUsuario.obtenerUsuario(correo, Encriptador.encriptar(clave, 5));
-        System.out.println(usuario);
         ConsultasInicioSesion.crearInicioSesion(usuario.getId());
         return usuario.getRol();
     }
