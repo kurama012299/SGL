@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import logica.usuario.modelos.Usuario;
+import logica.utiles.Encriptador;
 /**
  *
  * @author Angel Hernandez
@@ -166,7 +167,7 @@ public class ConsultasUsuario {
         try (Connection conn = ConectorBaseDato.conectar(); PreparedStatement pstmt = conn.prepareStatement(guardar)) {
 
             pstmt.setString(1, usuario.getCorreo());
-            pstmt.setString(2, clave);
+            pstmt.setString(2, Encriptador.encriptar(clave, 5));
             pstmt.setString(3, usuario.getNombre());
             pstmt.setLong(4, idRol);
             pstmt.setString(5, usuario.getFoto());
