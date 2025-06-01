@@ -50,7 +50,6 @@ import interfaz_usuario.medico.controladores.ControladorVerMasExamenesMedicosDoc
 import interfaz_usuario.recursos_compartidos.errores.controladores.ControladorMenuAuxiliarDosAcciones;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesPeriodo;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorMenuReportesTipo;
-import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarInfraccion;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarLicencia;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarPersona;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorRegistrarUsuario;
@@ -58,7 +57,6 @@ import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasEx
 import interfaz_usuario.trabajador_autoescuela.controladores.ControladorVerMasExamenesTeoricosTrabajador;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasInfracciones;
 import interfaz_usuario.recursos_compartidos.menus.controladores.ControladorVerMasLicencias;
-import java.awt.Insets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javafx.animation.KeyFrame;
@@ -77,7 +75,6 @@ import javafx.util.Duration;
 import logica.entidad.modelos.EntidadRelacionada;
 import logica.infraccion.modelos.Infraccion;
 import logica.persona.modelos.Persona;
-import java.util.Date;
 
 
 /**
@@ -125,7 +122,7 @@ public class GestorEscenas  {
                     break;
 
                 case "Médico":
-                    
+                    estadisticas = GestorEstadisticas.obtenerEstadisticasMedico();
                     break;
             }
 

@@ -129,7 +129,7 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="11.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="   7">
+                        <Label fx:id="lblIniciosSesion" layoutX="11.0" layoutY="13.0" prefHeight="53.0" prefWidth="72.0" text="   7">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -148,7 +148,7 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="12.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   120">
+                        <Label fx:id="lblCantPacientes" layoutX="12.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   120">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -162,7 +162,7 @@
                   </Pane>
                   <Pane layoutX="609.0" layoutY="106.0" prefHeight="111.0" prefWidth="169.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: gainsboro;">
                      <children>
-                        <Label layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   25">
+                        <Label fx:id="lblCantReprobados" layoutX="13.0" layoutY="14.0" prefHeight="53.0" prefWidth="72.0" text="   25">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -269,7 +269,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
+                  <Label fx:id="lblUltimoInicioSesion" layoutX="53.0" layoutY="70.0" prefHeight="20.0" prefWidth="219.0" text="Último inicio de sesión hace 2 días " textFill="#919191">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -286,7 +286,7 @@
                               <Image url="@../recursos_compartidos/imagenes/ico-examen%20-medico.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="68">
+                        <Label fx:id="lblCantExamenes" layoutX="404.0" layoutY="10.0" prefHeight="33.0" prefWidth="35.0" text="68">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>

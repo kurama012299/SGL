@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
@@ -44,6 +45,16 @@ public class ControladorMedico extends Controlador{
     @FXML private Pane pnlExamenes;
     
     @FXML private Button btnRegistrar;
+    
+    @FXML private Label lblUltimoInicioSesion;
+    
+    @FXML private Label lblIniciosSesion;
+    
+    @FXML private Label lblCantPacientes;
+    
+    @FXML private Label lblCantExamenes;
+    
+    @FXML private Label lblCantReprobados;
     
     @FXML private ProgressBar pbarAprobado;
     
@@ -113,9 +124,6 @@ public class ControladorMedico extends Controlador{
         JFXButton[] botonesConsumirTecla={jfxbtnInicio,jfxbtnExamenesMedicos};
         GestorEscenas.consumirTecla(botonesConsumirTecla);
         
-        Label[] porcentajesBarra = {lblProgresoAprobado,lblProgresoReprobado,lblProgresoAprobadoR,lblProgresoJoven,lblProgresoAdulto,lblProgresoAnciano};
-        ProgressBar[] barrasProgreso = {pbarAprobado,pbarReprobado,pbarAprobadoR,pbarJoven,pbarAdulto,pbarAnciano};
-        GestorEscenas.progresoLabel(porcentajesBarra, barrasProgreso);
         this.transicionInicio();
 
     }
@@ -178,7 +186,7 @@ public class ControladorMedico extends Controlador{
         try {
             GestorEscenas.cargarPanelAuxiliar(padre, direccion, true, "Registrar examen medico");
         } catch (Exception ex) {
-            //CAPTURAR ERROR
+            GestorEscenas.cargarError(padre, ex);
         }
     }
 
@@ -191,12 +199,49 @@ public class ControladorMedico extends Controlador{
         lblUsuarioNombre.setTooltip(mouseNombre);
         lblUsuarioNombre.setMaxWidth(100);
         lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
-        
+        CargarEstadisticas(menuEstadisticas);
     }
 
     @Override
     protected void CargarEstadisticas(MenuEstadisticas menuEstadisticas) {
-        
+
+        lblUltimoInicioSesion.setText("Último inicio sesion hace " + menuEstadisticas.GetEstadisticaUsuario().GetUltimoInicioSesion());
+        lblIniciosSesion.setText(String.valueOf(menuEstadisticas.GetEstadisticaUsuario().GetCantidadIniciosSesion()));
+        for (Estadistica e : menuEstadisticas.getEstadisticas()) {
+            switch (e.GetCategoria()) {
+                case "CantPacientes":
+                    lblCantPacientes.setText(String.valueOf(Math.round(e.GetValor())));
+                    break;
+                case "CantExamenes":
+                    lblCantExamenes.setText(String.valueOf(Math.round(e.GetValor())));
+                    break;
+                case "Porciento18a40":
+                    lblProgresoJoven.setText(String.valueOf(Math.round(e.GetValor()))+ "%");
+                    break;
+                case "Porciento40a60":
+                    lblProgresoAdulto.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+                case "Porciento60a70":
+                    lblProgresoAnciano.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+                case "Reprobados":
+                    lblCantReprobados.setText(String.valueOf(Math.round(e.GetValor())));
+                    break;
+                case "PorcientoAprobado":
+                    lblProgresoAprobado.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+                case "PorcientoAprobadoRestricciones":
+                    lblProgresoAprobadoR.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+                case "PorcientoReprobado":
+                    lblCantReprobados.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+            }
+        }
+        Label[] PorcentajesBarra = {lblProgresoAprobado, lblProgresoAprobadoR, lblProgresoReprobado, lblProgresoJoven, lblProgresoAdulto, lblProgresoAnciano};
+        ProgressBar[] BarrasProgreso = {pbarAprobado, pbarAprobadoR, pbarReprobado, pbarJoven, pbarAdulto, pbarAnciano};
+        GestorEscenas.progresoLabel(PorcentajesBarra, BarrasProgreso);
+
     }
 
 }

@@ -492,7 +492,7 @@ public class GestorTablas {
     
     public static void cargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> tablaExamenesMedicos, Long id) {
         try {
-            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedicoPorIdRol(id);
+            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.ObtenerExamenesMedicoPorIdExaminador(id);
             tablaExamenesMedicos.setItems(examenesMedicos);
             llenarColumnaDetalles(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
             llenarColumnaFotos(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);

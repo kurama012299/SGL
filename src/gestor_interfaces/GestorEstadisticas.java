@@ -11,7 +11,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+import javafx.collections.ObservableList;
+import logica.autentificacion.Autentificador;
+import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
+import logica.examen_medico.modelos.ExamenMedico;
+import logica.utiles.ConvertidorFecha;
 
 
 /**
@@ -325,4 +334,125 @@ public class GestorEstadisticas {
                         examenesAprobados
                 );
      } 
+     
+     private static ArrayList<Estadistica> obtenerPorcientoResultados(ObservableList<ExamenMedico> examenes)
+     {
+         int aprobado=0;
+         int reprobado=0;
+         int aprobadoRestricciones=0;
+         
+         for(ExamenMedico e : examenes)
+         {
+             if(e.isAprobado())
+             {
+                 if(e.getRestricciones().isEmpty())
+                     aprobado++;
+                 else
+                     aprobadoRestricciones++;
+             }
+             else
+             {
+                 reprobado++;
+             }
+         }
+         
+         Estadistica porcientoAprobado = new Estadistica("PorcientoAprobado", (aprobado*100)/examenes.size());
+         Estadistica porcientoAprobadoRestricciones = new Estadistica("PorcientoAprobadoRestricciones", (aprobadoRestricciones*100)/examenes.size());
+         Estadistica porcientoReprobado = new Estadistica("PorcientoReprobado", (reprobado*100)/examenes.size());
+         
+         ArrayList<Estadistica> porcientoResultado= new ArrayList<>();
+         porcientoResultado.add(porcientoAprobado);
+         porcientoResultado.add(porcientoAprobadoRestricciones);
+         porcientoResultado.add(porcientoReprobado);
+         return porcientoResultado;
+     }
+     
+     private static Estadistica cantidadExamenesMedicosReprobados(ObservableList<ExamenMedico> examenes)
+     {
+
+         int reprobado=0;
+
+         
+         for(ExamenMedico e : examenes)
+         {
+             if(!e.isAprobado())
+                reprobado++;
+         }
+         
+         Estadistica reprobados = new Estadistica("Reprobados", reprobado);
+         return reprobados;
+     }
+     
+     private static ArrayList<Estadistica> obtenerPorcientoEdades(ObservableList<ExamenMedico> examenes) throws Exception
+     {
+         
+         int de18a40=0;
+         int de40a60=0;
+         int de60a70=0;
+
+         
+         for (ExamenMedico e : examenes) {
+             int edad = calcularEdad(ConvertidorFecha.convertirFecha(e.getPersona().getCI().substring(0, 6)));
+
+             if (edad < 40) {
+                 de18a40++;
+             } else if (edad >= 40 && edad < 60) {
+                 de40a60++;
+             } else if (edad >= 60 && edad <= 70) {
+                 de60a70++;
+             }
+         }
+         
+         
+         Estadistica porciento18a40 = new Estadistica("Porciento18a40", (de18a40*100)/examenes.size());
+         Estadistica porciento40a60 = new Estadistica("Porciento40a60", (de40a60*100)/examenes.size());
+         Estadistica porciento60a70 = new Estadistica("Porciento60a70", (de60a70*100)/examenes.size());
+         
+         ArrayList<Estadistica> porcientoResultado= new ArrayList<>();
+         porcientoResultado.add(porciento18a40);
+         porcientoResultado.add(porciento40a60);
+         porcientoResultado.add(porciento60a70);
+         return porcientoResultado;
+     }
+    
+    private static int calcularEdad(Date fechaNacimiento) {
+        // Convertir Date a LocalDate
+        LocalDate fechaNac = fechaNacimiento.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+
+        LocalDate ahora = LocalDate.now();
+
+        // Calcular periodo entre ambas fechas
+        Period periodo = Period.between(fechaNac, ahora);
+
+        return periodo.getYears();
+    }
+     
+    public static ArrayList<Estadistica> obtenerEstadisticasMedico() throws Exception
+    {
+         ArrayList<Estadistica> estadisticas = new ArrayList<>();
+         ObservableList<ExamenMedico> examenes = ServiciosExamenesMedicos.
+                 ObtenerExamenesMedicoPorIdExaminador(Autentificador.usuario.getId());
+
+        try (Connection conn = ConectorBaseDato.conectar()) {
+            
+            // 1. Total pacientes
+            estadisticas.add(new Estadistica("CantPacientes", examenes.size()));
+            // 2. Total examenes
+            estadisticas.add(new Estadistica("CantExamenes", examenes.size()));
+            // 3. Porciento resultados
+            estadisticas.addAll(obtenerPorcientoResultados(examenes));
+            // 4. Reprobados
+            estadisticas.add(cantidadExamenesMedicosReprobados(examenes));
+            // 5.Porciento edades
+            estadisticas.addAll(obtenerPorcientoEdades(examenes));
+           
+            
+        } catch (SQLException e) {
+            System.err.println("Error al obtener estadísticas: " + e.getMessage());
+        }
+
+        return estadisticas;
+    }
 }

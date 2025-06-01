@@ -126,7 +126,7 @@ public class ConsultaExamenMedico {
         }
     }
     
-    public static ObservableList<ExamenMedico> ObtenerExamenesMedicosRestriccionPorIdRolConsulta(Long Id) throws Exception {
+    public static ObservableList<ExamenMedico> ObtenerExamenesMedicosRestriccionPorIdExaminadorConsulta(Long Id) throws Exception {
         ObservableList<ExamenMedico> examenes = FXCollections.observableArrayList();
 
          String consulta = "SELECT em.\"Id\",em.\"Fecha\",em.\"Aprobado\","+

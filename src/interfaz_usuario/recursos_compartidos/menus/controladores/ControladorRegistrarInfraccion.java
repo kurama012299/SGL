@@ -18,6 +18,7 @@ import javafx.scene.control.ToggleGroup;
 import logica.infraccion.implementaciones.ServicioInfraccion;
 import logica.infraccion.modelos.Infraccion;
 import logica.licencia.implementaciones.ServicioLicencia;
+import logica.licencia.modelos.Licencia;
 import logica.validaciones_generales.ValidacionCampoVacio;
 import logica.validaciones_generales.ValidacionCantidadCaracteresExacta;
 import logica.validaciones_generales.ValidacionCantidadCaracteresMaxima;
@@ -154,6 +155,12 @@ public class ControladorRegistrarInfraccion {
             int puntos = Integer.parseInt((String) cmbPtosDeducidos.getValue());
             RadioButton seleccionado = (RadioButton) grupoGravedadrdbt.getSelectedToggle();
             String gravedad = seleccionado.getText();
+            
+            Licencia licencia = ServicioLicencia.ObtenerLicenciaPorId(idLicencia);
+            if(licencia.getCantPuntos()>=36)
+                throw new Exception("Esa licencia ya alcanzo el maximo de puntos");
+            if(!licencia.getEstado().equals("Vigente"))
+                throw new Exception("El estado de la licencia no permite asignarle una infraccion");
             
             
             Infraccion infraccion = new Infraccion(
