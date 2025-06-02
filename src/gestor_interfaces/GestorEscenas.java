@@ -95,18 +95,18 @@ public class GestorEscenas  {
      
             Controlador controlador = cargador.getController();
             MenuEstadisticas menuEstadisticas = new MenuEstadisticas();
-            menuEstadisticas.SetEstadisticaUsuario(GestorEstadisticas.ObtenerEstadisticasUsuario(Autentificador.usuario.getId()));
+            menuEstadisticas.SetEstadisticaUsuario(GestorEstadisticas.obtenerEstadisticasUsuario(Autentificador.usuario.getId()));
             
             ArrayList<Estadistica> estadisticas = new ArrayList<>();
             
             switch (Autentificador.usuario.getRol()) 
             {
                 case "Administrador":
-                    estadisticas = GestorEstadisticas.ObtenerEstadisticasMenuAdministrador();
+                    estadisticas = GestorEstadisticas.otenerEstadisticasMenuAdministrador();
                     break;
 
                 case "Administrador autoescuela":
-                    estadisticas = GestorEstadisticas.ObtenerEstadisticasMenuAdministradorAutoescuela();
+                    estadisticas = GestorEstadisticas.obtenerEstadisticasMenuAdministradorAutoescuela();
                     break;
 
                 case "Administrador médico":
@@ -114,7 +114,7 @@ public class GestorEscenas  {
                     break;
 
                 case "Trabajador autoescuela":
-                    
+                    estadisticas = GestorEstadisticas.obtenerEstadisticasTrabajadorAutoescuela();
                     break;
 
                 case "Trabajador centro":

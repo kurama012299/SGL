@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.ObservableList;
 import logica.autentificacion.Autentificador;
+import logica.examen_conduccion.implementaciones.ServiciosExamenesConduccion;
+import logica.examen_conduccion.modelos.ExamenConduccion;
 import logica.examen_medico.implementaciones.ServiciosExamenesMedicos;
 import logica.examen_medico.modelos.ExamenMedico;
 import logica.utiles.ConvertidorFecha;
@@ -29,7 +31,7 @@ import logica.utiles.ConvertidorFecha;
  */
 public class GestorEstadisticas {
     
-    public static EstadisticaUsuario ObtenerEstadisticasUsuario(long IdUsuario) throws Exception {
+    public static EstadisticaUsuario obtenerEstadisticasUsuario(long IdUsuario) throws Exception {
         String Consulta = "SELECT * FROM obtenerestadisticasusuario (?)";
         EstadisticaUsuario Estadistica = null;
 
@@ -54,24 +56,24 @@ public class GestorEstadisticas {
         return Estadistica;
     }
 
-    public static ArrayList<Estadistica> ObtenerEstadisticasMenuAdministrador() throws Exception {
+    public static ArrayList<Estadistica> otenerEstadisticasMenuAdministrador() throws Exception {
         ArrayList<Estadistica> estadisticas = new ArrayList<>();
 
         try (Connection conn = ConectorBaseDato.conectar()) {
             // 1. Cantidad de conductores
-            estadisticas.add(ObtenerCantidadConductores(conn));
+            estadisticas.add(obtenerCantidadConductores(conn));
 
             // 2. Cantidad de entidades
-            estadisticas.add(ObtenerCantidadEntidades(conn));
+            estadisticas.add(obtenerCantidadEntidades(conn));
 
             // 3. Exámenes reprobados
-            estadisticas.add(ObtenerCantidadExamenesReprobados(conn));
+            estadisticas.add(obtenerCantidadExamenesReprobados(conn));
 
             // 4. Porcentaje de infracciones por gravedad
-            estadisticas.addAll(ObtenerPorcientoInfraccionesPorGravedad(conn));
+            estadisticas.addAll(obtenerPorcientoInfraccionesPorGravedad(conn));
 
             // 5. Porcentaje de licencias por tipo
-            estadisticas.addAll(ObtenerPorcientoLicenciasPorTipo(conn));
+            estadisticas.addAll(obtenerPorcientoLicenciasPorTipo(conn));
 
         } catch (SQLException e) {
             System.err.println("Error al obtener estadísticas: " + e.getMessage());
@@ -80,29 +82,29 @@ public class GestorEstadisticas {
         return estadisticas;
     }
 
-    public static ArrayList<Estadistica> ObtenerEstadisticasMenuAdministradorAutoescuela() throws Exception
+    public static ArrayList<Estadistica> obtenerEstadisticasMenuAdministradorAutoescuela() throws Exception
     {
          ArrayList<Estadistica> estadisticas = new ArrayList<>();
 
         try (Connection conn = ConectorBaseDato.conectar()) {
             
             // 1. Total examenes
-            estadisticas.add(ObtenerCantidadExamenes(conn));
+            estadisticas.add(obtenerCantidadExamenes(conn));
             // 2. Total trabajadores
-            estadisticas.add(ObtenerCantidadTrabajadores(conn));
+            estadisticas.add(obtenerCantidadTrabajadores(conn));
             // 3. Exámenes reprobados
-            estadisticas.add(ObtenerCantidadExamenesReprobadosConduccion(conn));
+            estadisticas.add(obtenerCantidadExamenesReprobadosConduccion(conn));
             // 4. Examenes Teoricos
-            estadisticas.add(ObtenerCantidadExamenesTeoricos(conn));
+            estadisticas.add(obtenerCantidadExamenesTeoricos(conn));
             // 5. Examenes Practicos
-            estadisticas.add(ObtenerCantidadExamenesPracticos(conn));
+            estadisticas.add(obtenerCantidadExamenesPracticos(conn));
             // 6. %Aprobados,Reprobados,Teorico,Practico,IndiceAprobado
-            estadisticas.addAll(UtilMenuAdministradorAutoescuela(estadisticas.get(0).GetValor(),
+            estadisticas.addAll(utilMenuAdministradorAutoescuela(estadisticas.get(0).GetValor(),
                                                                 estadisticas.get(3).GetValor(),
                                                                 estadisticas.get(4).GetValor(),
                                                                 estadisticas.get(2).GetValor()));
             //7. Porciento Mes Anterior
-            estadisticas.add(ObtenerPorcientoMesAnterior(conn));
+            estadisticas.add(obtenerPorcientoMesAnterior(conn));
             
         } catch (SQLException e) {
             System.err.println("Error al obtener estadísticas: " + e.getMessage());
@@ -111,7 +113,7 @@ public class GestorEstadisticas {
         return estadisticas;
     }
 
-    public static Estadistica ObtenerCantidadConductores(Connection conn) throws SQLException {
+    public static Estadistica obtenerCantidadConductores(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadConductores()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -125,7 +127,7 @@ public class GestorEstadisticas {
      return null;
     }
     
-    public static Estadistica ObtenerPorcientoMesAnterior(Connection conn) throws SQLException {
+    public static Estadistica obtenerPorcientoMesAnterior(Connection conn) throws SQLException {
         String sql = "SELECT * FROM obtenerporcientoexamenesmes()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -139,7 +141,7 @@ public class GestorEstadisticas {
      return null;
     }
     
-    public static Estadistica ObtenerCantidadTrabajadores(Connection conn) throws SQLException {
+    public static Estadistica obtenerCantidadTrabajadores(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadTrabajadores()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -153,7 +155,7 @@ public class GestorEstadisticas {
      return null;
     }
 
-    public static Estadistica ObtenerCantidadExamenesTeoricos(Connection conn) throws SQLException {
+    public static Estadistica obtenerCantidadExamenesTeoricos(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadExamenesTeoricos()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -167,7 +169,7 @@ public class GestorEstadisticas {
      return null;
     }
     
-    public static Estadistica ObtenerCantidadExamenesPracticos(Connection conn) throws SQLException {
+    public static Estadistica obtenerCantidadExamenesPracticos(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadExamenesPracticos()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -181,7 +183,7 @@ public class GestorEstadisticas {
      return null;
     }
     
-    public static Estadistica ObtenerCantidadExamenes(Connection conn) throws SQLException {
+    public static Estadistica obtenerCantidadExamenes(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadExamenes()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -195,7 +197,7 @@ public class GestorEstadisticas {
      return null;
     }
     
-    public static Estadistica ObtenerCantidadEntidades(Connection conn) throws SQLException {
+    public static Estadistica obtenerCantidadEntidades(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadEntidades()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -210,7 +212,7 @@ public class GestorEstadisticas {
       
     }
 
-    public static Estadistica ObtenerCantidadExamenesReprobados(Connection conn) throws SQLException {
+    public static Estadistica obtenerCantidadExamenesReprobados(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadExamenesReprobados()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -224,7 +226,7 @@ public class GestorEstadisticas {
         return null;
     }
     
-    public static Estadistica ObtenerCantidadExamenesReprobadosConduccion(Connection conn) throws SQLException {
+    public static Estadistica obtenerCantidadExamenesReprobadosConduccion(Connection conn) throws SQLException {
         String sql = "SELECT * FROM ObtenerCantidadExamenesReprobadosConduccion()";
         try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -238,7 +240,7 @@ public class GestorEstadisticas {
         return null;
     }
 
-    public static ArrayList<Estadistica> ObtenerPorcientoInfraccionesPorGravedad(Connection conn) throws SQLException {
+    public static ArrayList<Estadistica> obtenerPorcientoInfraccionesPorGravedad(Connection conn) throws SQLException {
         ArrayList<Estadistica> lista = new ArrayList<>();
         String sql = "SELECT * FROM ObtenerPorcentajeInfraccionesPorGravedad()";
 
@@ -254,7 +256,7 @@ public class GestorEstadisticas {
         return lista;
     }
 
-    public static ArrayList<Estadistica> ObtenerPorcientoLicenciasPorTipo(Connection conn) throws SQLException {
+    public static ArrayList<Estadistica> obtenerPorcientoLicenciasPorTipo(Connection conn) throws SQLException {
         ArrayList<Estadistica> lista = new ArrayList<>();
         String sql = "SELECT * FROM ObtenerPorcentajeLicenciasPorTipo()";
 
@@ -270,7 +272,7 @@ public class GestorEstadisticas {
         return lista;
     }
     
-    private static ArrayList<Estadistica> UtilMenuAdministradorAutoescuela(double TotalExamenes , double ExamenesTeoricos, double ExamenesPracticos, double CantReprobados){
+    private static ArrayList<Estadistica> utilMenuAdministradorAutoescuela(double TotalExamenes , double ExamenesTeoricos, double ExamenesPracticos, double CantReprobados){
         ArrayList<Estadistica> Estadisticas = new ArrayList<>();
         
         Estadistica PorcientoTeorico = new Estadistica("PorcientoTeorico", Math.round(ExamenesTeoricos/TotalExamenes*100));
@@ -292,11 +294,11 @@ public class GestorEstadisticas {
         return Estadisticas;
     }
     
-    public static Estadistica ObtenerCantidadExamenesClinica(Connection conn) throws SQLException{
+    public static Estadistica obtenerCantidadExamenesClinica(Connection conn) throws SQLException{
         
-        Estadistica TotalExamenes = ObtenerCantidadExamenes(conn);
-        Estadistica TotalExamenesP = ObtenerCantidadExamenesPracticos(conn);
-        Estadistica TotalExamenesT = ObtenerCantidadExamenesTeoricos(conn);
+        Estadistica TotalExamenes = obtenerCantidadExamenes(conn);
+        Estadistica TotalExamenesP = obtenerCantidadExamenesPracticos(conn);
+        Estadistica TotalExamenesT = obtenerCantidadExamenesTeoricos(conn);
         
         double CantidadExamenesClinica = TotalExamenes.GetValor() - (TotalExamenesP.GetValor() + TotalExamenesT.GetValor());
         
@@ -308,10 +310,10 @@ public class GestorEstadisticas {
         
     }
     
-     public static Estadistica ObtenerCantidadExamenesAutoescuela(Connection conn) throws SQLException{
+     public static Estadistica obtenerCantidadExamenesAutoescuela(Connection conn) throws SQLException{
         
-        Estadistica TotalExamenesP = ObtenerCantidadExamenesPracticos(conn);
-        Estadistica TotalExamenesT = ObtenerCantidadExamenesTeoricos(conn);
+        Estadistica TotalExamenesP = obtenerCantidadExamenesPracticos(conn);
+        Estadistica TotalExamenesT = obtenerCantidadExamenesTeoricos(conn);
         
         double CantidadExamenesAutoescuela = TotalExamenesP.GetValor() + TotalExamenesT.GetValor();
         
@@ -325,8 +327,8 @@ public class GestorEstadisticas {
      
      public static Estadistica obtenerCantidadExamenesAutoescuelaAprobados(Connection conn) throws SQLException{
          
-         Estadistica examenesAutoescuela = ObtenerCantidadExamenesAutoescuela(conn);
-         Estadistica examenesReprobadosAutoescuela = ObtenerCantidadExamenesReprobadosConduccion(conn);
+         Estadistica examenesAutoescuela = obtenerCantidadExamenesAutoescuela(conn);
+         Estadistica examenesReprobadosAutoescuela = obtenerCantidadExamenesReprobadosConduccion(conn);
          double examenesAprobados = examenesAutoescuela.GetValor() - examenesReprobadosAutoescuela.GetValor();
          
          return new Estadistica(
@@ -335,8 +337,7 @@ public class GestorEstadisticas {
                 );
      } 
      
-     private static ArrayList<Estadistica> obtenerPorcientoResultados(ObservableList<ExamenMedico> examenes)
-     {
+     private static ArrayList<Estadistica> obtenerPorcientoResultados(ObservableList<ExamenMedico> examenes){
          int aprobado=0;
          int reprobado=0;
          int aprobadoRestricciones=0;
@@ -367,8 +368,7 @@ public class GestorEstadisticas {
          return porcientoResultado;
      }
      
-     private static Estadistica cantidadExamenesMedicosReprobados(ObservableList<ExamenMedico> examenes)
-     {
+     private static Estadistica cantidadExamenesMedicosReprobados(ObservableList<ExamenMedico> examenes){
 
          int reprobado=0;
 
@@ -383,8 +383,7 @@ public class GestorEstadisticas {
          return reprobados;
      }
      
-     private static ArrayList<Estadistica> obtenerPorcientoEdades(ObservableList<ExamenMedico> examenes) throws Exception
-     {
+     private static ArrayList<Estadistica> obtenerPorcientoEdades(ObservableList<ExamenMedico> examenes) throws Exception{
          
          int de18a40=0;
          int de40a60=0;
@@ -453,5 +452,22 @@ public class GestorEstadisticas {
         }
 
         return estadisticas;
+    }
+    
+    
+    public static ArrayList<Estadistica> obtenerEstadisticasTrabajadorAutoescuela() throws Exception
+    {
+         ArrayList<Estadistica> estadisticas = new ArrayList<>();
+         
+         // 1.Cantidad de Examinados
+         estadisticas.add(cantidadExaminadorPorExaminador(Autentificador.usuario.getId()));
+         return estadisticas;
+    }
+    
+    private static Estadistica cantidadExaminadorPorExaminador(long idExaminador) throws Exception
+    {
+        return new Estadistica("CantidadExaminados",ServiciosExamenesConduccion.
+                obtenerExamenesPracticosPorIDRol(idExaminador).size()+
+                ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRol(idExaminador).size());
     }
 }
