@@ -10,8 +10,10 @@ import gestor_interfaces.modelos.Estadistica;
 import infraestructura.ConectorBaseDato;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -20,6 +22,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import logica.entidad.implementaciones.ServicioEntidad;
 import logica.entidad.modelos.EntidadRelacionada;
+import logica.examen.implementaciones.ServicioExamenes;
+import static logica.examen.implementaciones.ServicioExamenes.obtenerTodosLosExamenesPorEntidad;
+import logica.examen.modelos.Examen;
+import logica.usuario.implementaciones.ServicioUsuario;
+import logica.usuario.modelos.Usuario;
 
 /**
  *
@@ -36,10 +43,10 @@ public class ControladorVerMasAutoescuelas {
     TextField txfDirector;
 
     @FXML
-    TextField txfCantidadClientes;//Hacer Metodo en la base de datos
+    TextField txfCantidadClientes;
 
     @FXML
-    TextField txfCantidadExaminadores;//Hacer Metodo en la base de datos
+    TextField txfCantidadExaminadores;
 
     @FXML
     TextField txfTelefono;
@@ -76,13 +83,19 @@ public class ControladorVerMasAutoescuelas {
         btnAtras.setOnAction(e -> {
             GestorEscenas.cerrar(btnAtras);
         });
-        String puntosStr = String.valueOf(Math.round(TotalExamenesAprobados()));
+        String puntosStr = String.valueOf(ServicioExamenes.TotalExamenesAprobados(autoescuela.getId()));
+        String cantClientes = String.valueOf(ServicioExamenes.obtenerTodosLosExamenesPorEntidad(autoescuela.getId()).size());
+        String CantExamin = String.valueOf(ServicioExamenes.TotalExaminadores());
         txfExamenesAprobados.setText(puntosStr);
         txfDirector.setText(autoescuela.getNombreDirector());
         txfCorreo.setText(autoescuela.getCorreo());
         txfNombre.setText(autoescuela.getNombre());
         txfTelefono.setText(autoescuela.getTelefono());
         txfDireccion.setText(autoescuela.getDireccion());
+        txfCantidadClientes.setText(cantClientes);
+        txfCantidadExaminadores.setText(CantExamin);
+        
+        
         
     btnEditar.setOnAction(e -> {
 
@@ -137,17 +150,7 @@ public class ControladorVerMasAutoescuelas {
         txfCorreo.setStyle(style);
         txfDirector.setStyle(style);
         txfTelefono.setStyle(style);
-    }    
-
-    
-
-    private double TotalExamenesAprobados() throws SQLException, Exception {
-
-        try (Connection conn = ConectorBaseDato.conectar()) {
-            Estadistica Estadistica = GestorEstadisticas.obtenerCantidadExamenesAutoescuelaAprobados(conn);
-            return Estadistica.GetValor();
-        }
-    }
+    }   
     
     @FXML private void transicionregistrarUsuario() 
     {

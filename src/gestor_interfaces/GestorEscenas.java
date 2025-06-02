@@ -1089,7 +1089,9 @@ public class GestorEscenas  {
             
 
         } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
             System.out.println(e.getCause());
+            System.out.println(e.getMessage());
             throw new Exception("Error al cargar la interfaz");
         }
       }
