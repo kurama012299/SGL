@@ -140,6 +140,9 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
         System.out.println("Controlador TrabajadorAutoescuela Iniciado");
         
         GestorEscenas.ponerIconoVentana(hbVentanaPrincipal, "Trabajador autoescuela");
+        
+        GestorEscenas.suprimirReordenamientoTablas(tblExamenesPracticos);
+        GestorEscenas.suprimirReordenamientoTablas(tblExamenesTeoricos);
          
         ivTeorico = (ImageView) jfxbtnExamenesTeoricos.getGraphic();
         ivPractico = (ImageView) jfxbtnExamenesPracticos.getGraphic();

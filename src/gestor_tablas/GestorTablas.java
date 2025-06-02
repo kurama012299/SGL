@@ -7,6 +7,8 @@ package gestor_tablas;
 import gestor_interfaces.GestorEscenas;
 import java.util.Date;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -178,13 +180,13 @@ public class GestorTablas {
     }
 
     public static void configurarColumnasExamenes(
-            TableColumn<ExamenConduccion, String> columnaFotoExamen,
+            TableColumn<ExamenConduccion, Void> columnaFotoExamen,
             TableColumn<ExamenConduccion, String> columnaExaminadoExamen,
             TableColumn<ExamenConduccion, String> columnaTipoExamen,
             TableColumn<ExamenConduccion, Date> columnaFechaExamen,
             TableColumn<ExamenConduccion, String> columnaExaminadorExamen,
             TableColumn<ExamenConduccion, String> columnaResultadoExamen,
-            TableColumn<ExamenConduccion, String> columnaDetallesExamen) {
+            TableColumn<ExamenConduccion, Void> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
         columnaExaminadoExamen.setCellValueFactory(cellData -> {
@@ -209,6 +211,60 @@ public class GestorTablas {
             return new SimpleStringProperty(aprobado ? "Aprobado" : "Reprobado");
         });
 
+          columnaDetallesExamen.setCellFactory(param -> new TableCell<ExamenConduccion, Void>(){
+            private final Label lbvVerMas = new Label("Ver mas");
+            {
+                lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                lbvVerMas.setOnMouseClicked(e ->{
+                    ExamenConduccion examen= getTableView().getItems().get(getIndex());
+                    try {
+                        mostrarDetalles(examen, lbvVerMas.getScene().getWindow());
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(lbvVerMas.getScene().getWindow(), ex);
+                    }
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : lbvVerMas);
+            }
+        });
+        
+        columnaFotoExamen.setCellFactory(param -> new TableCell<ExamenConduccion, Void>() {
+            private final ImageView imagen = new ImageView();
+
+            {
+                Image icono = new Image(
+                        Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                                "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
+                        )
+                );
+                try {
+                    imagen.setFitHeight(40);
+                    imagen.setFitWidth(40);
+                    imagen.setPreserveRatio(true);
+                    imagen.setImage(icono);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(imagen.getScene().getWindow(), ex);
+                }
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                if(empty)
+                    setGraphic(null);
+                else
+                    setGraphic(imagen);
+            }
+        }
+    );
+
+        
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
     }
@@ -355,24 +411,59 @@ public class GestorTablas {
         }
     }
 
-    public static void cargarTablaExamenes(TableView<ExamenConduccion> tablaExamenes) throws Exception {
-        try {
-            ObservableList<ExamenConduccion> examenesPracticos = ServiciosExamenesConduccion.obtenerExamenesPracticos();
-            ObservableList<ExamenConduccion> examenesTeoricos = ServiciosExamenesConduccion.obtenerExamenesTeoricos();
-            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedico();
-            ObservableList<ExamenConduccion> examenesMedicosNuevos = FXCollections.observableArrayList();
-            for (int i = 0; i < examenesMedicos.size(); i++) {
-                ExamenConduccion examen = new ExamenConduccion(examenesMedicos.get(i).getId(), examenesMedicos.get(i).getFecha(), examenesMedicos.get(i).isAprobado(), examenesMedicos.get(i).getEntidad(), examenesMedicos.get(i).getPersona(), examenesMedicos.get(i).getExaminador(), examenesMedicos.get(i).getTipo());
-                examenesMedicosNuevos.add(examen);
-            }
+    public static void cargarTablaExamenes(TableView<ExamenConduccion> tablaExamenes,String tipo) {
+        switch (tipo) {
+            case "Teórico":
+                ObservableList<ExamenConduccion> examenesTeoricos = FXCollections.observableArrayList();
+                try {
+                    examenesTeoricos = ServiciosExamenesConduccion.obtenerExamenesTeoricos();
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+                }
+                tablaExamenes.setItems(examenesTeoricos);
+                break;
 
-            ObservableList<ExamenConduccion> examenesMostrar = FXCollections.concat(examenesTeoricos, examenesPracticos, examenesMedicosNuevos);
-            tablaExamenes.setItems(examenesMostrar);
-            llenarColumnaDetalles(tablaExamenes, tablaExamenes.getItems().size() - 1);
-            llenarColumnaFotos(tablaExamenes, tablaExamenes.getItems().size() - 1);
-        } catch (Exception ex) {
-            throw new Exception("Error al cargar la tabla");
+            case "Práctico":
+                ObservableList<ExamenConduccion> examenesPracticos=FXCollections.observableArrayList();
+                try {
+                    examenesPracticos = ServiciosExamenesConduccion.obtenerExamenesPracticos();
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+                }
+                tablaExamenes.setItems(examenesPracticos);
+                    break;
+            case "Médico":
+                ObservableList<ExamenMedico> examenesMedicos=FXCollections.observableArrayList();
+            try {
+                examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedico();
+            } catch (Exception ex) {
+                GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+            }
+                ObservableList<ExamenConduccion> examenesMedicosNuevos = FXCollections.observableArrayList();
+                for (int i = 0; i < examenesMedicos.size(); i++) {
+                    ExamenConduccion examen = new ExamenConduccion(examenesMedicos.get(i).getId(), examenesMedicos.get(i).getFecha(), examenesMedicos.get(i).isAprobado(), examenesMedicos.get(i).getEntidad(), examenesMedicos.get(i).getPersona(), examenesMedicos.get(i).getExaminador(), examenesMedicos.get(i).getTipo());
+                    examenesMedicosNuevos.add(examen);
+                }
+   
+                tablaExamenes.setItems(examenesMedicosNuevos);
+                break;
+            default:
+                try {
+                    ObservableList<ExamenConduccion> examenesPracticosMostrar = ServiciosExamenesConduccion.obtenerExamenesPracticos();
+                    ObservableList<ExamenConduccion> examenesTeoricosMostrar = ServiciosExamenesConduccion.obtenerExamenesTeoricos();
+                    ObservableList<ExamenMedico> examenesMedicosMostrar = ServiciosExamenesMedicos.obtenerExamenesMedico();
+                    ObservableList<ExamenConduccion> examenesMedicosNuevosMostrar = FXCollections.observableArrayList();
+                    for (int i = 0; i < examenesMedicosMostrar.size(); i++) {
+                        ExamenConduccion examen = new ExamenConduccion(examenesMedicosMostrar.get(i).getId(), examenesMedicosMostrar.get(i).getFecha(), examenesMedicosMostrar.get(i).isAprobado(), examenesMedicosMostrar.get(i).getEntidad(), examenesMedicosMostrar.get(i).getPersona(), examenesMedicosMostrar.get(i).getExaminador(), examenesMedicosMostrar.get(i).getTipo());
+                        examenesMedicosNuevosMostrar.add(examen);
+                    }
+                    ObservableList<ExamenConduccion> examenesMostrar = FXCollections.concat(examenesTeoricosMostrar, examenesPracticosMostrar, examenesMedicosNuevosMostrar);
+                    tablaExamenes.setItems(examenesMostrar);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenes.getScene().getWindow(), ex);
+                }
         }
+        
     }
 
     public static void cargarTablaExamenesPracticosAdminAutoescuela(TableView<ExamenConduccion> tablaExamenes) throws Exception {
@@ -490,25 +581,52 @@ public class GestorTablas {
     }
 
     
-    public static void cargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> tablaExamenesMedicos, Long id) {
-        try {
-            ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id);
-            tablaExamenesMedicos.setItems(examenesMedicos);
-            llenarColumnaDetalles(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
-            llenarColumnaFotos(tablaExamenesMedicos, tablaExamenesMedicos.getItems().size() - 1);
-        } catch (Exception ex) {
-            //Capturar Error
+    public static void cargarTablaExamenesMedicosMedicoUnico(TableView<ExamenMedico> tablaExamenesMedicos, Long id,String resultado) {
+        
+        switch (resultado) {
+            case "Aprobado condicional":
+                try {
+                    ObservableList<ExamenMedico> examenesMedicoCondicional = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id, resultado);
+                    tablaExamenesMedicos.setItems(examenesMedicoCondicional);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenesMedicos.getScene().getWindow(), ex);
+                }
+                break;
+            case "Aprobado":
+                try {
+                    ObservableList<ExamenMedico> examenesMedicosAprobados = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id, resultado);
+                    tablaExamenesMedicos.setItems(examenesMedicosAprobados);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenesMedicos.getScene().getWindow(), ex);
+                }
+                break;
+            case "Reprobado":
+                try {
+                    ObservableList<ExamenMedico> examenesMedicosReprobados = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id, resultado);
+                    tablaExamenesMedicos.setItems(examenesMedicosReprobados);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenesMedicos.getScene().getWindow(), ex);
+                }
+                break;
+            default:
+                try {
+                    ObservableList<ExamenMedico> examenesMedicos = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(id, resultado);
+                    tablaExamenesMedicos.setItems(examenesMedicos);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaExamenesMedicos.getScene().getWindow(), ex);
+                }
         }
+
     }
 
     
     public static void configurarColumnasExamenesMedicosMedicoUnico(
-            TableColumn<ExamenMedico, String> columnaFotoExamen,
+            TableColumn<ExamenMedico, Void> columnaFotoExamen,
             TableColumn<ExamenMedico, String> columnaExaminadoExamen,
             TableColumn<ExamenMedico, Date> columnaFechaExamen,
             TableColumn<ExamenMedico, String> columnaResultadoExamen,
             TableColumn<ExamenMedico, String> columnaClinicaExamen,
-            TableColumn<ExamenMedico, String> columnaDetallesExamen) {
+            TableColumn<ExamenMedico, Void> columnaDetallesExamen) {
 
         // Configuración de la columna de nombre completo
         columnaExaminadoExamen.setCellValueFactory(cellData -> {
@@ -533,6 +651,60 @@ public class GestorTablas {
             return new SimpleStringProperty("Reprobado");
         });
 
+        columnaFotoExamen.setCellFactory(param -> new TableCell<ExamenMedico, Void>() {
+            private final ImageView imagen = new ImageView();
+
+            {
+                Image icono = new Image(
+                        Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                                "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
+                        )
+                );
+                try {
+                    imagen.setFitHeight(40);
+                    imagen.setFitWidth(40);
+                    imagen.setPreserveRatio(true);
+                    imagen.setImage(icono);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(imagen.getScene().getWindow(), ex);
+                }
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                if(empty)
+                    setGraphic(null);
+                else
+                    setGraphic(imagen);
+            }
+        }
+    );
+        
+        columnaDetallesExamen.setCellFactory(param -> new TableCell<ExamenMedico, Void>(){
+            private final Label lbvVerMas = new Label("Ver mas");
+            {
+                lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                lbvVerMas.setOnMouseClicked(e ->{
+                    ExamenMedico examen= getTableView().getItems().get(getIndex());
+                    try {
+                        mostrarDetalles(examen, lbvVerMas.getScene().getWindow());
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(lbvVerMas.getScene().getWindow(), ex);
+                    }
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item,boolean empty)
+            {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : lbvVerMas);
+            }
+        });
+        
+        
         // Configuración estándar para otras columnas
         configurarColumnaPorDefecto(columnaFechaExamen, "Fecha");
 
@@ -952,13 +1124,13 @@ public class GestorTablas {
 
     
     public static void configurarColumnasLicencias(
-            TableColumn<Licencia, String> columnaFotoLicencia,
+            TableColumn<Licencia, Void> columnaFotoLicencia,
             TableColumn<Licencia, String> columnaNombreLicencia,
             TableColumn<Licencia, String> columnaTipoLicencia,
             TableColumn<Licencia, Date> columnaEmisionLicencia,
             TableColumn<Licencia, Date> columnaVencimientoLicencia,
             TableColumn<Licencia, Integer> columnaPuntosLicencia,
-            TableColumn<Licencia, String> columnaDetallesLicencia) {
+            TableColumn<Licencia, Void> columnaDetallesLicencia) {
 
         columnaTipoLicencia.setCellValueFactory(cellData -> {
             Licencia licencia = cellData.getValue();
@@ -980,14 +1152,56 @@ public class GestorTablas {
             }
         });
 
-        columnaFotoLicencia.setCellValueFactory(cellData -> {
-            try {
-                Licencia licencia = cellData.getValue();
-                return new SimpleStringProperty(ServicioConductor.obtenerConductorPorIdLicencia(licencia.getId()).getFoto()
-                );
-            } catch (Exception ex) {
+        columnaFotoLicencia.setCellFactory(param -> new TableCell<Licencia, Void>() {
+            private final ImageView imagen = new ImageView();
 
-                return null;
+            {
+                Image icono = new Image(
+                        Thread.currentThread().getContextClassLoader().getResourceAsStream(
+                                "interfaz_usuario/recursos_compartidos/imagenes/ico-cuenta-usuario.png"
+                        )
+                );
+                try {
+                    imagen.setFitHeight(40);
+                    imagen.setFitWidth(40);
+                    imagen.setPreserveRatio(true);
+                    imagen.setImage(icono);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(imagen.getScene().getWindow(), ex);
+                }
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(imagen);
+                }
+            }
+        }
+        );
+
+        columnaDetallesLicencia.setCellFactory(param -> new TableCell<Licencia, Void>() {
+            private final Label lbvVerMas = new Label("Ver mas");
+
+            {
+                lbvVerMas.setStyle("-fx-cursor: hand; -fx-underline: true; -fx-text-fill: #8000ff; -fx-font-weight: bold;");
+                lbvVerMas.setOnMouseClicked(e -> {
+                    Licencia licencia = getTableView().getItems().get(getIndex());
+                    try {
+                        mostrarDetalles(licencia, lbvVerMas.getScene().getWindow());
+                    } catch (Exception ex) {
+                        GestorEscenas.cargarError(lbvVerMas.getScene().getWindow(), ex);
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : lbvVerMas);
             }
         });
 
@@ -999,15 +1213,57 @@ public class GestorTablas {
     }
 
     
-    public static void cargarTablaLicencias(TableView<Licencia> tablaLicencia) {
-        try {
-            ObservableList<Licencia> licencias = ServicioLicencia.obtenerLicencias();
-            tablaLicencia.setItems(licencias);
-            llenarColumnaDetalles(tablaLicencia, tablaLicencia.getItems().size() - 1);
-            llenarColumnaFotos(tablaLicencia, tablaLicencia.getItems().size() - 1);
-        } catch (Exception ex) {
-
+    public static void cargarTablaLicencias(TableView<Licencia> tablaLicencia,String tipo) {
+        switch (tipo) {
+            case "A":
+                try {
+                    ObservableList<Licencia> licenciasTipoA = ServicioLicencia.obtenerLicenciasPorTipo(tipo);
+                    tablaLicencia.setItems(licenciasTipoA);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaLicencia.getScene().getWindow(), ex);
+                }
+                break;
+            case "B":
+                try {
+                    ObservableList<Licencia> licenciasTipoB = ServicioLicencia.obtenerLicenciasPorTipo(tipo);
+                    tablaLicencia.setItems(licenciasTipoB);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaLicencia.getScene().getWindow(), ex);
+                }
+                break;
+            case "C":
+                try {
+                    ObservableList<Licencia> licenciasTipoC = ServicioLicencia.obtenerLicenciasPorTipo(tipo);
+                    tablaLicencia.setItems(licenciasTipoC);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaLicencia.getScene().getWindow(), ex);
+                }
+                break;
+            case "D":
+                try {
+                    ObservableList<Licencia> licenciasTipoD = ServicioLicencia.obtenerLicenciasPorTipo(tipo);
+                    tablaLicencia.setItems(licenciasTipoD);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaLicencia.getScene().getWindow(), ex);
+                }
+                break;
+            case "E":
+                try {
+                    ObservableList<Licencia> licenciasTipoE = ServicioLicencia.obtenerLicenciasPorTipo(tipo);
+                    tablaLicencia.setItems(licenciasTipoE);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaLicencia.getScene().getWindow(), ex);
+                }
+                break;
+            default:
+                try {
+                    ObservableList<Licencia> licencias = ServicioLicencia.obtenerLicencias();
+                    tablaLicencia.setItems(licencias);
+                } catch (Exception ex) {
+                    GestorEscenas.cargarError(tablaLicencia.getScene().getWindow(), ex);
+                }
         }
+        
     }
 
 }

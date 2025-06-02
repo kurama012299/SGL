@@ -432,7 +432,7 @@ public class GestorEstadisticas {
     public static ArrayList<Estadistica> obtenerEstadisticasMedico() throws Exception
     {
          ArrayList<Estadistica> estadisticas = new ArrayList<>();
-         ObservableList<ExamenMedico> examenes = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(Autentificador.usuario.getId());
+         ObservableList<ExamenMedico> examenes = ServiciosExamenesMedicos.obtenerExamenesMedicoPorIdExaminador(Autentificador.usuario.getId(),"");
 
         try (Connection conn = ConectorBaseDato.conectar()) {
             

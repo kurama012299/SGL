@@ -56,6 +56,39 @@ public class ServicioLicencia {
     public static Licencia obtenerLicenciaPorId(long Id) throws Exception {
         return ConsultasLicencia.obtenerLicenciaPorIdConsulta(Id);
     }
+    
+    public static ObservableList<Licencia> obtenerLicenciasPorTipo(String tipo) throws Exception {
+        ObservableList<Licencia>licenciasPorTipo=FXCollections.observableArrayList();
+        ObservableList<Licencia>licencias=ConsultasLicencia.obtenerLicenciasConsulta();
+        for(Licencia lic: licencias)
+        {
+            switch (tipo) {
+            case "A":
+                if(lic.getTipo().equalsIgnoreCase(tipo))
+                    licenciasPorTipo.add(lic);
+                break;
+            case "B":
+                if(lic.getTipo().equalsIgnoreCase(tipo))
+                    licenciasPorTipo.add(lic);
+                break;
+            case "C":
+                if(lic.getTipo().equalsIgnoreCase(tipo))
+                    licenciasPorTipo.add(lic);
+                break;
+            case "D":
+                if(lic.getTipo().equalsIgnoreCase(tipo))
+                    licenciasPorTipo.add(lic);
+                break;
+            case "E":
+                if(lic.getTipo().equalsIgnoreCase(tipo))
+                    licenciasPorTipo.add(lic);
+                break;
+            default:
+                licenciasPorTipo.add(lic);
+            }
+        }
+        return licenciasPorTipo;
+    }
 
     public static int actualizarPuntosLicencia(long idLicencia, int puntosASumar) throws Exception{
         return ConsultasLicencia.actualizarPuntosLicenciaConsulta(idLicencia, puntosASumar);

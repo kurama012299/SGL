@@ -97,17 +97,17 @@ public class ControladorVerMasInfracciones {
         switch (Gravedad) {
             case "Grave":
                 TextFieldGravedad.setText(Gravedad);
-                TextField.setStyle("-fx-text-fill: #FFA500; -fx-background-color: transparent;");
+                TextField.setStyle("-fx-text-fill: #FF5722; -fx-text-weight: bold; -fx-background-color: transparent;");
                               
                 break;
             case "Muy grave":
                 TextFieldGravedad.setText(Gravedad);
-                TextField.setStyle("-fx-text-fill: #ff0000; -fx-background-color: transparent;");
+                TextField.setStyle("-fx-text-fill: red; -fx-background-color: transparent;");
                 
                 break;
             case "Leve":
                 TextFieldGravedad.setText(Gravedad);
-                TextField.setStyle("-fx-text-fill: #FFFF00; -fx-background-color: transparent;");
+                TextField.setStyle("-fx-text-fill: #FFD700; -fx-background-color: transparent;");
                 
                 break;
             default:
