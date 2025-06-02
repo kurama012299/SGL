@@ -233,7 +233,7 @@ public class ControladorMedico extends Controlador{
     @FXML
     public void registrarExamenMedico()
     {
-        String direccion = "/interfaz_usuario/administrador/medico/menu_auxiliares/registrar/registrar-examen-medico.fxml";
+        String direccion = "/interfaz_usuario/medico/menu_auxiliares/registrar/registrar-examen-medico.fxml";
         Stage padre = (Stage) btnRegistrar.getScene().getWindow();
         
         try {
