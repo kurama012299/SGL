@@ -108,11 +108,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="19.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <JFXButton focusTraversable="false" layoutX="425.0" layoutY="94.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
@@ -169,11 +164,6 @@
                      </font>
                   </Label>
                   <Separator layoutX="-10.0" layoutY="1.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="19.0" />
-                  <Label layoutX="40.0" layoutY="58.0" prefHeight="20.0" prefWidth="358.0" text="117 exámenes realizados desde último inicio de sesión" textFill="#919191">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <JFXButton focusTraversable="false" layoutX="422.0" layoutY="94.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: gainsboro;" text="Exportar" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
