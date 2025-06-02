@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import gestor_interfaces.GestorEscenas;
 import gestor_interfaces.modelos.Controlador;
+import gestor_interfaces.modelos.Estadistica;
 import gestor_interfaces.modelos.MenuEstadisticas;
 import gestor_tablas.GestorTablas;
 import java.util.ArrayList;
@@ -110,6 +111,18 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
     @FXML private RadioButton rdbtAprobadoPractico;
     
     @FXML private RadioButton rdbtReprobadoPractico;
+    
+    @FXML private Label lblIniciosSesion;
+    
+    @FXML private Label lblUltimoInicioSesion;
+    
+    @FXML private Label lblTotalExaminados;
+    
+    @FXML private Label lblExamenesRealizados;
+    
+    @FXML private Label lblExamenTeorico;
+    
+    @FXML private Label lblExamenPractico;
     
     private RadioButton seleccionadoTeorico=null;
     private RadioButton seleccionadoPractico=null;
@@ -357,11 +370,44 @@ public class ControladorTrabajadorAutoescuela extends Controlador{
         lblUsuarioNombre.setTooltip(mouseNombre);
         lblUsuarioNombre.setMaxWidth(100);
         lblCorreoUsuario.setText(GestorEscenas.seguridadCorreo(Autentificador.usuario.getCorreo()));
+        CargarEstadisticas(menuEstadisticas);
     }
 
     @Override
     protected void CargarEstadisticas(MenuEstadisticas menuEstadisticas) {
-        
+        lblUltimoInicioSesion.setText("Último inicio sesion hace " + menuEstadisticas.GetEstadisticaUsuario().GetUltimoInicioSesion());
+        lblIniciosSesion.setText(String.valueOf(menuEstadisticas.GetEstadisticaUsuario().GetCantidadIniciosSesion()));
+        for (Estadistica e : menuEstadisticas.getEstadisticas()) {
+            switch (e.GetCategoria()) {
+                case "CantidadExaminados":
+                    lblTotalExaminados.setText(String.valueOf(Math.round(e.GetValor())));
+                    break;
+                case "CantidadExamenes":
+                    lblExamenesRealizados.setText(String.valueOf(Math.round(e.GetValor())));
+                    break;
+                case "CantidadExamenesTeoricos":
+                    lblExamenTeorico.setText(String.valueOf(Math.round(e.GetValor())));
+                    break;
+                case "CantidadExamenesPracticos":
+                    lblExamenPractico.setText(String.valueOf(Math.round(e.GetValor())));
+                    break;
+                case "PorcientoAprobado":
+                    lblProgresoAprobado.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+                case "PorcientoReprobado":
+                    lblProgresoReprobado.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+                case "PorcientoTeorico":
+                    lblProgresoTeorico.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+                case "PorcientoPractico":
+                    lblProgresoPractico.setText(String.valueOf(Math.round(e.GetValor())) + "%");
+                    break;
+            }
+        }
+        Label[] PorcentajesBarra = {lblProgresoAprobado, lblProgresoReprobado,lblProgresoTeorico,lblProgresoPractico};
+        ProgressBar[] BarrasProgreso = {pbarAprobado, pbarReprobado, pbarTeorico,pbarPractico};
+        GestorEscenas.progresoLabel(PorcentajesBarra, BarrasProgreso);
     }
     
    

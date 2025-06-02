@@ -16,6 +16,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logica.autentificacion.Autentificador;
 import logica.examen_conduccion.implementaciones.ServiciosExamenesConduccion;
@@ -460,14 +461,83 @@ public class GestorEstadisticas {
          ArrayList<Estadistica> estadisticas = new ArrayList<>();
          
          // 1.Cantidad de Examinados
-         estadisticas.add(cantidadExaminadorPorExaminador(Autentificador.usuario.getId()));
+         estadisticas.add(cantidadExaminadosPorExaminador(Autentificador.usuario.getId()));
+          // 2.Cantidad de Examenes
+         estadisticas.add(cantidadExamenesPorExaminador(Autentificador.usuario.getId()));
+         // 3.Cantidad de Examenes Teoricos
+         estadisticas.add(cantidadExamenesTeoricosPorExaminador(Autentificador.usuario.getId()));
+          // 4.Cantidad de Examenes Practicos
+         estadisticas.add(cantidadExamenesPracticosPorExaminador(Autentificador.usuario.getId()));
+         // 5.Porciento aprobado
+         estadisticas.addAll(porcientoAprobadoPorExaminador(Autentificador.usuario.getId()));
+         // 6.Porciento aprobado
+         estadisticas.addAll(porcientoTipoExamenPorExaminador(Autentificador.usuario.getId()));
+         
          return estadisticas;
     }
     
-    private static Estadistica cantidadExaminadorPorExaminador(long idExaminador) throws Exception
+    private static Estadistica cantidadExaminadosPorExaminador(long idExaminador) throws Exception
     {
         return new Estadistica("CantidadExaminados",ServiciosExamenesConduccion.
                 obtenerExamenesPracticosPorIDRol(idExaminador).size()+
                 ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRol(idExaminador).size());
     }
+    
+    private static Estadistica cantidadExamenesPorExaminador(long idExaminador) throws Exception
+    {
+        return new Estadistica("CantidadExamenes",ServiciosExamenesConduccion.
+                obtenerExamenesPracticosPorIDRol(idExaminador).size()+
+                ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRol(idExaminador).size());
+    }
+    
+    private static Estadistica cantidadExamenesTeoricosPorExaminador(long idExaminador) throws Exception
+    {
+        return new Estadistica("CantidadExamenesTeoricos",
+                ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRol(idExaminador).size());
+    }
+    
+    private static Estadistica cantidadExamenesPracticosPorExaminador(long idExaminador) throws Exception
+    {
+        return new Estadistica("CantidadExamenesPracticos",ServiciosExamenesConduccion.
+                obtenerExamenesPracticosPorIDRol(idExaminador).size());
+    }
+    
+    private static ArrayList<Estadistica> porcientoAprobadoPorExaminador(long idExaminador) throws Exception
+    {
+        ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
+        examenes.addAll(ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRol(idExaminador));
+        examenes.addAll(ServiciosExamenesConduccion.obtenerExamenesPracticosPorIDRol(idExaminador));
+        
+        int reprobados=0;
+        
+        for(ExamenConduccion e : examenes)
+        {
+            if(!e.isAprobado())
+                reprobados++;
+        }
+        
+        Estadistica porcientoAprobado = new Estadistica("PorcientoAprobado",(examenes.size()-reprobados)*100/examenes.size());
+        Estadistica porcientoReprobado = new Estadistica("PorcientoReprobado",(reprobados)*100/examenes.size());
+        
+        ArrayList<Estadistica> estadisticas = new ArrayList<>();
+        estadisticas.add(porcientoAprobado);
+        estadisticas.add(porcientoReprobado);
+        return estadisticas;
+    }
+    
+    private static ArrayList<Estadistica> porcientoTipoExamenPorExaminador(long idExaminador) throws Exception
+    {
+        ObservableList<ExamenConduccion> examenes = FXCollections.observableArrayList();
+        examenes.addAll(ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRol(idExaminador));
+        examenes.addAll(ServiciosExamenesConduccion.obtenerExamenesPracticosPorIDRol(idExaminador));
+
+        Estadistica porcientoTeorico = new Estadistica("PorcientoTeorico",ServiciosExamenesConduccion.obtenerExamenesTeoricosPorIDRol(idExaminador).size()*100/examenes.size());
+        Estadistica porcientoPractico = new Estadistica("PorcientoPractico",ServiciosExamenesConduccion.obtenerExamenesPracticosPorIDRol(idExaminador).size()*100/examenes.size());
+        
+        ArrayList<Estadistica> estadisticas = new ArrayList<>();
+        estadisticas.add(porcientoTeorico);
+        estadisticas.add(porcientoPractico);
+        return estadisticas;
+    }
+    
 }
