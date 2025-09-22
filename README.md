@@ -1,2 +1,2 @@
 # SGL
- Proyecto final de la asignatura Optativa de Scala 
+ Proyecto final de la asignatura Base de Datos de 2do
